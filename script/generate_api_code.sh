@@ -38,4 +38,5 @@ echo "Running OpenAPI generator..."
 "$_JAVA" -jar -DapiDocs=false -DmodelDocs=false "$JARFILE" generate \
     -i $SPECFILE \
     -g rust \
-    -c openapi-generator.yaml
+    -c openapi-generator.yaml \
+    -t templates
