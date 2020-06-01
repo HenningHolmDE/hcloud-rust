@@ -1,0 +1,18 @@
+[package]
+name = "hcloud"
+version = "0.1.0"
+authors = ["Henning Holm <git@henningholm.de>"]
+edition = "2018"
+license = "MIT OR Apache-2.0"
+readme = "README.md"
+description = "Unofficial Rust crate for accessing the Hetzner Cloud API"
+repository = "https://github.com/HenningHolmDE/hcloud-rust"
+keywords = ["hcloud", "hetzner", "hetzner-cloud"]
+categories = ["api-bindings", "development-tools"]
+
+[dependencies]
+reqwest = "~0.9"
+serde = "^1.0"
+serde_derive = "^1.0"
+serde_json = "^1.0"
+url = "~2.1"
