@@ -2,6 +2,7 @@
 
 [![Crates.io](https://img.shields.io/crates/v/hcloud.svg)](https://crates.io/crates/hcloud)
 [![Documentation](https://docs.rs/hcloud/badge.svg)](https://docs.rs/hcloud/)
+![Build and test](https://github.com/HenningHolmDE/hcloud-rust/workflows/Build%20and%20test/badge.svg)
 
 {{readme}}
 
