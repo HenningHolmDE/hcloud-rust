@@ -1,11 +1,32 @@
 use reqwest;
 use serde_json;
+use std::fmt;
 
 #[derive(Debug)]
 pub enum Error {
     Reqwest(reqwest::Error),
     Serde(serde_json::Error),
     Io(std::io::Error),
+}
+
+impl fmt::Display for Error {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        match self {
+            Error::Reqwest(e) => fmt::Display::fmt(e, f),
+            Error::Serde(e) => fmt::Display::fmt(e, f),
+            Error::Io(e) => fmt::Display::fmt(e, f),
+        }
+    }
+}
+
+impl std::error::Error for Error {
+    fn source(&self) -> Option<&(dyn std::error::Error + 'static)> {
+        match self {
+            Error::Reqwest(err) => Some(err),
+            Error::Serde(err) => Some(err),
+            Error::Io(err) => Some(err),
+        }
+    }
 }
 
 impl From<reqwest::Error> for Error {
