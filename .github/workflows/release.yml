@@ -14,8 +14,16 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Get release version from tag
-        id: get_version
-        run: echo ::set-output name=tag_version::${GITHUB_REF#refs/tags/v}
+        id: get_tag_version
+        run: echo ::set-output name=version::${GITHUB_REF#refs/tags/v}
+
+      - name: Get crate version from Cargo.toml
+        id: get_crate_version
+        run: echo ::set-output name=version::$(cargo read-manifest | jq -r .version)
+
+      - name: Assert tag version matches crate version
+        run: echo ${{ steps.get_tag_version.outputs.version }} != ${{ steps.get_crate_version.outputs.version }} && exit 1
+        if: ${{ steps.get_tag_version.outputs.version != steps.get_crate_version.outputs.version }}
 
       - name: Create GitHub release
         id: create_release
@@ -24,9 +32,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
-          release_name: hcloud-rust v${{ steps.get_version.outputs.tag_version }}
+          release_name: hcloud-rust v${{ steps.get_tag_version.outputs.version }}
           draft: true
-          prerelease: ${{ startsWith(steps.get_version.outputs.tag_version, '0.') }}
+          prerelease: ${{ startsWith(steps.get_tag_version.outputs.version, '0.') }}
 
       - name: Publish crate to crates.io
         uses: actions-rs/cargo@v1
