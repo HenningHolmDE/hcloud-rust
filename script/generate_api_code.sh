@@ -40,3 +40,9 @@ echo "Running OpenAPI generator..."
     -g rust \
     -c openapi-generator.yaml \
     -t templates
+
+# restore CRLF line endings on Windows
+if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then
+    unix2dos -k -q src/apis/*.rs
+    unix2dos -k -q src/models/*.rs
+fi
