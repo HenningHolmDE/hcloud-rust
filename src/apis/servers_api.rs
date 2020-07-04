@@ -30,6 +30,239 @@ impl ServersApiClient {
     }
 }
 
+/// struct for passing parameters to the method `attach_iso_to_server`
+#[derive(Clone, Debug, Default)]
+pub struct AttachIsoToServerParams {
+    /// ID of the Server
+    pub id: String,
+    pub attach_iso_to_server_request: Option<crate::models::AttachIsoToServerRequest>
+}
+
+/// struct for passing parameters to the method `attach_server_to_network`
+#[derive(Clone, Debug, Default)]
+pub struct AttachServerToNetworkParams {
+    /// ID of the Server
+    pub id: String,
+    pub attach_server_to_network_request: Option<crate::models::AttachServerToNetworkRequest>
+}
+
+/// struct for passing parameters to the method `change_alias_ips_of_network`
+#[derive(Clone, Debug, Default)]
+pub struct ChangeAliasIpsOfNetworkParams {
+    /// ID of the Server
+    pub id: String,
+    pub change_alias_ips_of_network_request: Option<crate::models::ChangeAliasIpsOfNetworkRequest>
+}
+
+/// struct for passing parameters to the method `change_reverse_dns_entry_for_this_server`
+#[derive(Clone, Debug, Default)]
+pub struct ChangeReverseDnsEntryForThisServerParams {
+    /// ID of the Server
+    pub id: String,
+    pub change_reverse_dns_entry_for_this_server_request: Option<crate::models::ChangeReverseDnsEntryForThisServerRequest>
+}
+
+/// struct for passing parameters to the method `change_server_protection`
+#[derive(Clone, Debug, Default)]
+pub struct ChangeServerProtectionParams {
+    /// ID of the Server
+    pub id: String,
+    pub change_server_protection_request: Option<crate::models::ChangeServerProtectionRequest>
+}
+
+/// struct for passing parameters to the method `change_type_of_server`
+#[derive(Clone, Debug, Default)]
+pub struct ChangeTypeOfServerParams {
+    /// ID of the Server
+    pub id: String,
+    pub change_type_of_server_request: Option<crate::models::ChangeTypeOfServerRequest>
+}
+
+/// struct for passing parameters to the method `create_image_from_server`
+#[derive(Clone, Debug, Default)]
+pub struct CreateImageFromServerParams {
+    /// ID of the Server
+    pub id: String,
+    pub create_image_from_server_request: Option<crate::models::CreateImageFromServerRequest>
+}
+
+/// struct for passing parameters to the method `create_server`
+#[derive(Clone, Debug, Default)]
+pub struct CreateServerParams {
+    pub create_server_request: Option<crate::models::CreateServerRequest>
+}
+
+/// struct for passing parameters to the method `delete_server`
+#[derive(Clone, Debug, Default)]
+pub struct DeleteServerParams {
+    /// ID of the Server
+    pub id: String
+}
+
+/// struct for passing parameters to the method `detach_iso_from_server`
+#[derive(Clone, Debug, Default)]
+pub struct DetachIsoFromServerParams {
+    /// ID of the Server
+    pub id: String
+}
+
+/// struct for passing parameters to the method `detach_server_from_network`
+#[derive(Clone, Debug, Default)]
+pub struct DetachServerFromNetworkParams {
+    /// ID of the Server
+    pub id: String,
+    pub detach_server_from_network_request: Option<crate::models::DetachServerFromNetworkRequest>
+}
+
+/// struct for passing parameters to the method `disable_backups_for_server`
+#[derive(Clone, Debug, Default)]
+pub struct DisableBackupsForServerParams {
+    /// ID of the Server
+    pub id: String
+}
+
+/// struct for passing parameters to the method `disable_rescue_mode_for_server`
+#[derive(Clone, Debug, Default)]
+pub struct DisableRescueModeForServerParams {
+    /// ID of the Server
+    pub id: String
+}
+
+/// struct for passing parameters to the method `enable_and_configure_backups_for_server`
+#[derive(Clone, Debug, Default)]
+pub struct EnableAndConfigureBackupsForServerParams {
+    /// ID of the Server
+    pub id: String
+}
+
+/// struct for passing parameters to the method `enable_rescue_mode_for_server`
+#[derive(Clone, Debug, Default)]
+pub struct EnableRescueModeForServerParams {
+    /// ID of the Server
+    pub id: String,
+    pub enable_rescue_mode_for_server_request: Option<crate::models::EnableRescueModeForServerRequest>
+}
+
+/// struct for passing parameters to the method `get_action_for_server`
+#[derive(Clone, Debug, Default)]
+pub struct GetActionForServerParams {
+    /// ID of the Server
+    pub id: String,
+    /// ID of the Action
+    pub action_id: String
+}
+
+/// struct for passing parameters to the method `get_metrics_for_server`
+#[derive(Clone, Debug, Default)]
+pub struct GetMetricsForServerParams {
+    /// ID of the Server
+    pub id: String,
+    /// Type of metrics to get cpu disk network
+    pub _type: String,
+    /// Start of period to get Metrics for (in ISO-8601 format)
+    pub start: String,
+    /// End of period to get Metrics for (in ISO-8601 format)
+    pub end: String,
+    /// Resolution of results in seconds
+    pub step: Option<String>
+}
+
+/// struct for passing parameters to the method `get_server`
+#[derive(Clone, Debug, Default)]
+pub struct GetServerParams {
+    /// ID of the Server
+    pub id: String
+}
+
+/// struct for passing parameters to the method `list_actions_for_server`
+#[derive(Clone, Debug, Default)]
+pub struct ListActionsForServerParams {
+    /// ID of the Server
+    pub id: String,
+    /// Can be used multiple times, the response will contain only Actions with specified statuses Choices: running success error
+    pub status: Option<String>,
+    /// Can be used multiple times Choices: id id:asc id:desc command command:asc command:desc status status:asc status:desc progress progress:asc progress:desc started started:asc started:desc finished finished:asc finished:desc
+    pub sort: Option<String>
+}
+
+/// struct for passing parameters to the method `list_servers`
+#[derive(Clone, Debug, Default)]
+pub struct ListServersParams {
+    /// Can be used multiple times. The response will only contain Server matching the status. Choices: initializing starting running stopping off deleting rebuilding migrating unknown
+    pub status: Option<String>,
+    /// Can be used multiple times. Choices: id id:asc id:desc name name:asc name:desc created created:asc created:desc
+    pub sort: Option<String>,
+    /// Can be used to filter Servers by their name. The response will only contain the Server matching the specified name.
+    pub name: Option<String>,
+    /// Can be used to filter Servers by labels. The response will only contain Servers matching the label selector.
+    pub label_selector: Option<String>
+}
+
+/// struct for passing parameters to the method `power_off_server`
+#[derive(Clone, Debug, Default)]
+pub struct PowerOffServerParams {
+    /// ID of the Server
+    pub id: String
+}
+
+/// struct for passing parameters to the method `power_on_server`
+#[derive(Clone, Debug, Default)]
+pub struct PowerOnServerParams {
+    /// ID of the Server
+    pub id: String
+}
+
+/// struct for passing parameters to the method `rebuild_server_from_image`
+#[derive(Clone, Debug, Default)]
+pub struct RebuildServerFromImageParams {
+    /// ID of the Server
+    pub id: String,
+    pub rebuild_server_from_image_request: Option<crate::models::RebuildServerFromImageRequest>
+}
+
+/// struct for passing parameters to the method `replace_server`
+#[derive(Clone, Debug, Default)]
+pub struct ReplaceServerParams {
+    /// ID of the Server
+    pub id: String,
+    pub replace_server_request: Option<crate::models::ReplaceServerRequest>
+}
+
+/// struct for passing parameters to the method `request_console_for_server`
+#[derive(Clone, Debug, Default)]
+pub struct RequestConsoleForServerParams {
+    /// ID of the Server
+    pub id: String
+}
+
+/// struct for passing parameters to the method `reset_root_password_of_server`
+#[derive(Clone, Debug, Default)]
+pub struct ResetRootPasswordOfServerParams {
+    /// ID of the Server
+    pub id: String
+}
+
+/// struct for passing parameters to the method `reset_server`
+#[derive(Clone, Debug, Default)]
+pub struct ResetServerParams {
+    /// ID of the Server
+    pub id: String
+}
+
+/// struct for passing parameters to the method `shutdown_server`
+#[derive(Clone, Debug, Default)]
+pub struct ShutdownServerParams {
+    /// ID of the Server
+    pub id: String
+}
+
+/// struct for passing parameters to the method `soft_reboot_server`
+#[derive(Clone, Debug, Default)]
+pub struct SoftRebootServerParams {
+    /// ID of the Server
+    pub id: String
+}
+
 
 /// struct for typed errors of method `attach_iso_to_server`
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -236,39 +469,43 @@ pub enum SoftRebootServerError {
 
 
 pub trait ServersApi {
-    fn attach_iso_to_server(&self, id: &str, attach_iso_to_server_request: Option<crate::models::AttachIsoToServerRequest>) -> Result<crate::models::AttachIsoToServerResponse, Error<AttachIsoToServerError>>;
-    fn attach_server_to_network(&self, id: &str, attach_server_to_network_request: Option<crate::models::AttachServerToNetworkRequest>) -> Result<crate::models::AttachServerToNetworkResponse, Error<AttachServerToNetworkError>>;
-    fn change_alias_ips_of_network(&self, id: &str, change_alias_ips_of_network_request: Option<crate::models::ChangeAliasIpsOfNetworkRequest>) -> Result<crate::models::ChangeAliasIpsOfNetworkResponse, Error<ChangeAliasIpsOfNetworkError>>;
-    fn change_reverse_dns_entry_for_this_server(&self, id: &str, change_reverse_dns_entry_for_this_server_request: Option<crate::models::ChangeReverseDnsEntryForThisServerRequest>) -> Result<crate::models::ChangeReverseDnsEntryForThisServerResponse, Error<ChangeReverseDnsEntryForThisServerError>>;
-    fn change_server_protection(&self, id: &str, change_server_protection_request: Option<crate::models::ChangeServerProtectionRequest>) -> Result<crate::models::ChangeServerProtectionResponse, Error<ChangeServerProtectionError>>;
-    fn change_type_of_server(&self, id: &str, change_type_of_server_request: Option<crate::models::ChangeTypeOfServerRequest>) -> Result<crate::models::ChangeTypeOfServerResponse, Error<ChangeTypeOfServerError>>;
-    fn create_image_from_server(&self, id: &str, create_image_from_server_request: Option<crate::models::CreateImageFromServerRequest>) -> Result<crate::models::CreateImageFromServerResponse, Error<CreateImageFromServerError>>;
-    fn create_server(&self, create_server_request: Option<crate::models::CreateServerRequest>) -> Result<crate::models::CreateServerResponse, Error<CreateServerError>>;
-    fn delete_server(&self, id: &str) -> Result<crate::models::DeleteServerResponse, Error<DeleteServerError>>;
-    fn detach_iso_from_server(&self, id: &str) -> Result<crate::models::DetachIsoFromServerResponse, Error<DetachIsoFromServerError>>;
-    fn detach_server_from_network(&self, id: &str, detach_server_from_network_request: Option<crate::models::DetachServerFromNetworkRequest>) -> Result<crate::models::DetachServerFromNetworkResponse, Error<DetachServerFromNetworkError>>;
-    fn disable_backups_for_server(&self, id: &str) -> Result<crate::models::DisableBackupsForServerResponse, Error<DisableBackupsForServerError>>;
-    fn disable_rescue_mode_for_server(&self, id: &str) -> Result<crate::models::DisableRescueModeForServerResponse, Error<DisableRescueModeForServerError>>;
-    fn enable_and_configure_backups_for_server(&self, id: &str) -> Result<crate::models::EnableAndConfigureBackupsForServerResponse, Error<EnableAndConfigureBackupsForServerError>>;
-    fn enable_rescue_mode_for_server(&self, id: &str, enable_rescue_mode_for_server_request: Option<crate::models::EnableRescueModeForServerRequest>) -> Result<crate::models::EnableRescueModeForServerResponse, Error<EnableRescueModeForServerError>>;
-    fn get_action_for_server(&self, id: &str, action_id: &str) -> Result<crate::models::GetActionForServerResponse, Error<GetActionForServerError>>;
-    fn get_metrics_for_server(&self, id: &str, _type: &str, start: &str, end: &str, step: Option<&str>) -> Result<crate::models::GetMetricsForServerResponse, Error<GetMetricsForServerError>>;
-    fn get_server(&self, id: &str) -> Result<crate::models::GetServerResponse, Error<GetServerError>>;
-    fn list_actions_for_server(&self, id: &str, status: Option<&str>, sort: Option<&str>) -> Result<crate::models::ListActionsForServerResponse, Error<ListActionsForServerError>>;
-    fn list_servers(&self, status: Option<&str>, sort: Option<&str>, name: Option<&str>, label_selector: Option<&str>) -> Result<crate::models::ListServersResponse, Error<ListServersError>>;
-    fn power_off_server(&self, id: &str) -> Result<crate::models::PowerOffServerResponse, Error<PowerOffServerError>>;
-    fn power_on_server(&self, id: &str) -> Result<crate::models::PowerOnServerResponse, Error<PowerOnServerError>>;
-    fn rebuild_server_from_image(&self, id: &str, rebuild_server_from_image_request: Option<crate::models::RebuildServerFromImageRequest>) -> Result<crate::models::RebuildServerFromImageResponse, Error<RebuildServerFromImageError>>;
-    fn replace_server(&self, id: &str, replace_server_request: Option<crate::models::ReplaceServerRequest>) -> Result<crate::models::ReplaceServerResponse, Error<ReplaceServerError>>;
-    fn request_console_for_server(&self, id: &str) -> Result<crate::models::RequestConsoleForServerResponse, Error<RequestConsoleForServerError>>;
-    fn reset_root_password_of_server(&self, id: &str) -> Result<crate::models::ResetRootPasswordOfServerResponse, Error<ResetRootPasswordOfServerError>>;
-    fn reset_server(&self, id: &str) -> Result<crate::models::ResetServerResponse, Error<ResetServerError>>;
-    fn shutdown_server(&self, id: &str) -> Result<crate::models::ShutdownServerResponse, Error<ShutdownServerError>>;
-    fn soft_reboot_server(&self, id: &str) -> Result<crate::models::SoftRebootServerResponse, Error<SoftRebootServerError>>;
+    fn attach_iso_to_server(&self, params: AttachIsoToServerParams) -> Result<crate::models::AttachIsoToServerResponse, Error<AttachIsoToServerError>>;
+    fn attach_server_to_network(&self, params: AttachServerToNetworkParams) -> Result<crate::models::AttachServerToNetworkResponse, Error<AttachServerToNetworkError>>;
+    fn change_alias_ips_of_network(&self, params: ChangeAliasIpsOfNetworkParams) -> Result<crate::models::ChangeAliasIpsOfNetworkResponse, Error<ChangeAliasIpsOfNetworkError>>;
+    fn change_reverse_dns_entry_for_this_server(&self, params: ChangeReverseDnsEntryForThisServerParams) -> Result<crate::models::ChangeReverseDnsEntryForThisServerResponse, Error<ChangeReverseDnsEntryForThisServerError>>;
+    fn change_server_protection(&self, params: ChangeServerProtectionParams) -> Result<crate::models::ChangeServerProtectionResponse, Error<ChangeServerProtectionError>>;
+    fn change_type_of_server(&self, params: ChangeTypeOfServerParams) -> Result<crate::models::ChangeTypeOfServerResponse, Error<ChangeTypeOfServerError>>;
+    fn create_image_from_server(&self, params: CreateImageFromServerParams) -> Result<crate::models::CreateImageFromServerResponse, Error<CreateImageFromServerError>>;
+    fn create_server(&self, params: CreateServerParams) -> Result<crate::models::CreateServerResponse, Error<CreateServerError>>;
+    fn delete_server(&self, params: DeleteServerParams) -> Result<crate::models::DeleteServerResponse, Error<DeleteServerError>>;
+    fn detach_iso_from_server(&self, params: DetachIsoFromServerParams) -> Result<crate::models::DetachIsoFromServerResponse, Error<DetachIsoFromServerError>>;
+    fn detach_server_from_network(&self, params: DetachServerFromNetworkParams) -> Result<crate::models::DetachServerFromNetworkResponse, Error<DetachServerFromNetworkError>>;
+    fn disable_backups_for_server(&self, params: DisableBackupsForServerParams) -> Result<crate::models::DisableBackupsForServerResponse, Error<DisableBackupsForServerError>>;
+    fn disable_rescue_mode_for_server(&self, params: DisableRescueModeForServerParams) -> Result<crate::models::DisableRescueModeForServerResponse, Error<DisableRescueModeForServerError>>;
+    fn enable_and_configure_backups_for_server(&self, params: EnableAndConfigureBackupsForServerParams) -> Result<crate::models::EnableAndConfigureBackupsForServerResponse, Error<EnableAndConfigureBackupsForServerError>>;
+    fn enable_rescue_mode_for_server(&self, params: EnableRescueModeForServerParams) -> Result<crate::models::EnableRescueModeForServerResponse, Error<EnableRescueModeForServerError>>;
+    fn get_action_for_server(&self, params: GetActionForServerParams) -> Result<crate::models::GetActionForServerResponse, Error<GetActionForServerError>>;
+    fn get_metrics_for_server(&self, params: GetMetricsForServerParams) -> Result<crate::models::GetMetricsForServerResponse, Error<GetMetricsForServerError>>;
+    fn get_server(&self, params: GetServerParams) -> Result<crate::models::GetServerResponse, Error<GetServerError>>;
+    fn list_actions_for_server(&self, params: ListActionsForServerParams) -> Result<crate::models::ListActionsForServerResponse, Error<ListActionsForServerError>>;
+    fn list_servers(&self, params: ListServersParams) -> Result<crate::models::ListServersResponse, Error<ListServersError>>;
+    fn power_off_server(&self, params: PowerOffServerParams) -> Result<crate::models::PowerOffServerResponse, Error<PowerOffServerError>>;
+    fn power_on_server(&self, params: PowerOnServerParams) -> Result<crate::models::PowerOnServerResponse, Error<PowerOnServerError>>;
+    fn rebuild_server_from_image(&self, params: RebuildServerFromImageParams) -> Result<crate::models::RebuildServerFromImageResponse, Error<RebuildServerFromImageError>>;
+    fn replace_server(&self, params: ReplaceServerParams) -> Result<crate::models::ReplaceServerResponse, Error<ReplaceServerError>>;
+    fn request_console_for_server(&self, params: RequestConsoleForServerParams) -> Result<crate::models::RequestConsoleForServerResponse, Error<RequestConsoleForServerError>>;
+    fn reset_root_password_of_server(&self, params: ResetRootPasswordOfServerParams) -> Result<crate::models::ResetRootPasswordOfServerResponse, Error<ResetRootPasswordOfServerError>>;
+    fn reset_server(&self, params: ResetServerParams) -> Result<crate::models::ResetServerResponse, Error<ResetServerError>>;
+    fn shutdown_server(&self, params: ShutdownServerParams) -> Result<crate::models::ShutdownServerResponse, Error<ShutdownServerError>>;
+    fn soft_reboot_server(&self, params: SoftRebootServerParams) -> Result<crate::models::SoftRebootServerResponse, Error<SoftRebootServerError>>;
 }
 
 impl ServersApi for ServersApiClient {
-    fn attach_iso_to_server(&self, id: &str, attach_iso_to_server_request: Option<crate::models::AttachIsoToServerRequest>) -> Result<crate::models::AttachIsoToServerResponse, Error<AttachIsoToServerError>> {
+    fn attach_iso_to_server(&self, params: AttachIsoToServerParams) -> Result<crate::models::AttachIsoToServerResponse, Error<AttachIsoToServerError>> {
+        // unbox the parameters
+        let id = params.id;
+        let attach_iso_to_server_request = params.attach_iso_to_server_request;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -298,7 +535,11 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn attach_server_to_network(&self, id: &str, attach_server_to_network_request: Option<crate::models::AttachServerToNetworkRequest>) -> Result<crate::models::AttachServerToNetworkResponse, Error<AttachServerToNetworkError>> {
+    fn attach_server_to_network(&self, params: AttachServerToNetworkParams) -> Result<crate::models::AttachServerToNetworkResponse, Error<AttachServerToNetworkError>> {
+        // unbox the parameters
+        let id = params.id;
+        let attach_server_to_network_request = params.attach_server_to_network_request;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -328,7 +569,11 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn change_alias_ips_of_network(&self, id: &str, change_alias_ips_of_network_request: Option<crate::models::ChangeAliasIpsOfNetworkRequest>) -> Result<crate::models::ChangeAliasIpsOfNetworkResponse, Error<ChangeAliasIpsOfNetworkError>> {
+    fn change_alias_ips_of_network(&self, params: ChangeAliasIpsOfNetworkParams) -> Result<crate::models::ChangeAliasIpsOfNetworkResponse, Error<ChangeAliasIpsOfNetworkError>> {
+        // unbox the parameters
+        let id = params.id;
+        let change_alias_ips_of_network_request = params.change_alias_ips_of_network_request;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -358,7 +603,11 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn change_reverse_dns_entry_for_this_server(&self, id: &str, change_reverse_dns_entry_for_this_server_request: Option<crate::models::ChangeReverseDnsEntryForThisServerRequest>) -> Result<crate::models::ChangeReverseDnsEntryForThisServerResponse, Error<ChangeReverseDnsEntryForThisServerError>> {
+    fn change_reverse_dns_entry_for_this_server(&self, params: ChangeReverseDnsEntryForThisServerParams) -> Result<crate::models::ChangeReverseDnsEntryForThisServerResponse, Error<ChangeReverseDnsEntryForThisServerError>> {
+        // unbox the parameters
+        let id = params.id;
+        let change_reverse_dns_entry_for_this_server_request = params.change_reverse_dns_entry_for_this_server_request;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -388,7 +637,11 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn change_server_protection(&self, id: &str, change_server_protection_request: Option<crate::models::ChangeServerProtectionRequest>) -> Result<crate::models::ChangeServerProtectionResponse, Error<ChangeServerProtectionError>> {
+    fn change_server_protection(&self, params: ChangeServerProtectionParams) -> Result<crate::models::ChangeServerProtectionResponse, Error<ChangeServerProtectionError>> {
+        // unbox the parameters
+        let id = params.id;
+        let change_server_protection_request = params.change_server_protection_request;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -418,7 +671,11 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn change_type_of_server(&self, id: &str, change_type_of_server_request: Option<crate::models::ChangeTypeOfServerRequest>) -> Result<crate::models::ChangeTypeOfServerResponse, Error<ChangeTypeOfServerError>> {
+    fn change_type_of_server(&self, params: ChangeTypeOfServerParams) -> Result<crate::models::ChangeTypeOfServerResponse, Error<ChangeTypeOfServerError>> {
+        // unbox the parameters
+        let id = params.id;
+        let change_type_of_server_request = params.change_type_of_server_request;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -448,7 +705,11 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn create_image_from_server(&self, id: &str, create_image_from_server_request: Option<crate::models::CreateImageFromServerRequest>) -> Result<crate::models::CreateImageFromServerResponse, Error<CreateImageFromServerError>> {
+    fn create_image_from_server(&self, params: CreateImageFromServerParams) -> Result<crate::models::CreateImageFromServerResponse, Error<CreateImageFromServerError>> {
+        // unbox the parameters
+        let id = params.id;
+        let create_image_from_server_request = params.create_image_from_server_request;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -478,7 +739,10 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn create_server(&self, create_server_request: Option<crate::models::CreateServerRequest>) -> Result<crate::models::CreateServerResponse, Error<CreateServerError>> {
+    fn create_server(&self, params: CreateServerParams) -> Result<crate::models::CreateServerResponse, Error<CreateServerError>> {
+        // unbox the parameters
+        let create_server_request = params.create_server_request;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -508,7 +772,10 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn delete_server(&self, id: &str) -> Result<crate::models::DeleteServerResponse, Error<DeleteServerError>> {
+    fn delete_server(&self, params: DeleteServerParams) -> Result<crate::models::DeleteServerResponse, Error<DeleteServerError>> {
+        // unbox the parameters
+        let id = params.id;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -537,7 +804,10 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn detach_iso_from_server(&self, id: &str) -> Result<crate::models::DetachIsoFromServerResponse, Error<DetachIsoFromServerError>> {
+    fn detach_iso_from_server(&self, params: DetachIsoFromServerParams) -> Result<crate::models::DetachIsoFromServerResponse, Error<DetachIsoFromServerError>> {
+        // unbox the parameters
+        let id = params.id;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -566,7 +836,11 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn detach_server_from_network(&self, id: &str, detach_server_from_network_request: Option<crate::models::DetachServerFromNetworkRequest>) -> Result<crate::models::DetachServerFromNetworkResponse, Error<DetachServerFromNetworkError>> {
+    fn detach_server_from_network(&self, params: DetachServerFromNetworkParams) -> Result<crate::models::DetachServerFromNetworkResponse, Error<DetachServerFromNetworkError>> {
+        // unbox the parameters
+        let id = params.id;
+        let detach_server_from_network_request = params.detach_server_from_network_request;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -596,7 +870,10 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn disable_backups_for_server(&self, id: &str) -> Result<crate::models::DisableBackupsForServerResponse, Error<DisableBackupsForServerError>> {
+    fn disable_backups_for_server(&self, params: DisableBackupsForServerParams) -> Result<crate::models::DisableBackupsForServerResponse, Error<DisableBackupsForServerError>> {
+        // unbox the parameters
+        let id = params.id;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -625,7 +902,10 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn disable_rescue_mode_for_server(&self, id: &str) -> Result<crate::models::DisableRescueModeForServerResponse, Error<DisableRescueModeForServerError>> {
+    fn disable_rescue_mode_for_server(&self, params: DisableRescueModeForServerParams) -> Result<crate::models::DisableRescueModeForServerResponse, Error<DisableRescueModeForServerError>> {
+        // unbox the parameters
+        let id = params.id;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -654,7 +934,10 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn enable_and_configure_backups_for_server(&self, id: &str) -> Result<crate::models::EnableAndConfigureBackupsForServerResponse, Error<EnableAndConfigureBackupsForServerError>> {
+    fn enable_and_configure_backups_for_server(&self, params: EnableAndConfigureBackupsForServerParams) -> Result<crate::models::EnableAndConfigureBackupsForServerResponse, Error<EnableAndConfigureBackupsForServerError>> {
+        // unbox the parameters
+        let id = params.id;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -683,7 +966,11 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn enable_rescue_mode_for_server(&self, id: &str, enable_rescue_mode_for_server_request: Option<crate::models::EnableRescueModeForServerRequest>) -> Result<crate::models::EnableRescueModeForServerResponse, Error<EnableRescueModeForServerError>> {
+    fn enable_rescue_mode_for_server(&self, params: EnableRescueModeForServerParams) -> Result<crate::models::EnableRescueModeForServerResponse, Error<EnableRescueModeForServerError>> {
+        // unbox the parameters
+        let id = params.id;
+        let enable_rescue_mode_for_server_request = params.enable_rescue_mode_for_server_request;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -713,7 +1000,11 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn get_action_for_server(&self, id: &str, action_id: &str) -> Result<crate::models::GetActionForServerResponse, Error<GetActionForServerError>> {
+    fn get_action_for_server(&self, params: GetActionForServerParams) -> Result<crate::models::GetActionForServerResponse, Error<GetActionForServerError>> {
+        // unbox the parameters
+        let id = params.id;
+        let action_id = params.action_id;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -742,7 +1033,14 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn get_metrics_for_server(&self, id: &str, _type: &str, start: &str, end: &str, step: Option<&str>) -> Result<crate::models::GetMetricsForServerResponse, Error<GetMetricsForServerError>> {
+    fn get_metrics_for_server(&self, params: GetMetricsForServerParams) -> Result<crate::models::GetMetricsForServerResponse, Error<GetMetricsForServerError>> {
+        // unbox the parameters
+        let id = params.id;
+        let _type = params._type;
+        let start = params.start;
+        let end = params.end;
+        let step = params.step;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -777,7 +1075,10 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn get_server(&self, id: &str) -> Result<crate::models::GetServerResponse, Error<GetServerError>> {
+    fn get_server(&self, params: GetServerParams) -> Result<crate::models::GetServerResponse, Error<GetServerError>> {
+        // unbox the parameters
+        let id = params.id;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -806,7 +1107,12 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn list_actions_for_server(&self, id: &str, status: Option<&str>, sort: Option<&str>) -> Result<crate::models::ListActionsForServerResponse, Error<ListActionsForServerError>> {
+    fn list_actions_for_server(&self, params: ListActionsForServerParams) -> Result<crate::models::ListActionsForServerResponse, Error<ListActionsForServerError>> {
+        // unbox the parameters
+        let id = params.id;
+        let status = params.status;
+        let sort = params.sort;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -841,7 +1147,13 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn list_servers(&self, status: Option<&str>, sort: Option<&str>, name: Option<&str>, label_selector: Option<&str>) -> Result<crate::models::ListServersResponse, Error<ListServersError>> {
+    fn list_servers(&self, params: ListServersParams) -> Result<crate::models::ListServersResponse, Error<ListServersError>> {
+        // unbox the parameters
+        let status = params.status;
+        let sort = params.sort;
+        let name = params.name;
+        let label_selector = params.label_selector;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -882,7 +1194,10 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn power_off_server(&self, id: &str) -> Result<crate::models::PowerOffServerResponse, Error<PowerOffServerError>> {
+    fn power_off_server(&self, params: PowerOffServerParams) -> Result<crate::models::PowerOffServerResponse, Error<PowerOffServerError>> {
+        // unbox the parameters
+        let id = params.id;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -911,7 +1226,10 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn power_on_server(&self, id: &str) -> Result<crate::models::PowerOnServerResponse, Error<PowerOnServerError>> {
+    fn power_on_server(&self, params: PowerOnServerParams) -> Result<crate::models::PowerOnServerResponse, Error<PowerOnServerError>> {
+        // unbox the parameters
+        let id = params.id;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -940,7 +1258,11 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn rebuild_server_from_image(&self, id: &str, rebuild_server_from_image_request: Option<crate::models::RebuildServerFromImageRequest>) -> Result<crate::models::RebuildServerFromImageResponse, Error<RebuildServerFromImageError>> {
+    fn rebuild_server_from_image(&self, params: RebuildServerFromImageParams) -> Result<crate::models::RebuildServerFromImageResponse, Error<RebuildServerFromImageError>> {
+        // unbox the parameters
+        let id = params.id;
+        let rebuild_server_from_image_request = params.rebuild_server_from_image_request;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -970,7 +1292,11 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn replace_server(&self, id: &str, replace_server_request: Option<crate::models::ReplaceServerRequest>) -> Result<crate::models::ReplaceServerResponse, Error<ReplaceServerError>> {
+    fn replace_server(&self, params: ReplaceServerParams) -> Result<crate::models::ReplaceServerResponse, Error<ReplaceServerError>> {
+        // unbox the parameters
+        let id = params.id;
+        let replace_server_request = params.replace_server_request;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -1000,7 +1326,10 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn request_console_for_server(&self, id: &str) -> Result<crate::models::RequestConsoleForServerResponse, Error<RequestConsoleForServerError>> {
+    fn request_console_for_server(&self, params: RequestConsoleForServerParams) -> Result<crate::models::RequestConsoleForServerResponse, Error<RequestConsoleForServerError>> {
+        // unbox the parameters
+        let id = params.id;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -1029,7 +1358,10 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn reset_root_password_of_server(&self, id: &str) -> Result<crate::models::ResetRootPasswordOfServerResponse, Error<ResetRootPasswordOfServerError>> {
+    fn reset_root_password_of_server(&self, params: ResetRootPasswordOfServerParams) -> Result<crate::models::ResetRootPasswordOfServerResponse, Error<ResetRootPasswordOfServerError>> {
+        // unbox the parameters
+        let id = params.id;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -1058,7 +1390,10 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn reset_server(&self, id: &str) -> Result<crate::models::ResetServerResponse, Error<ResetServerError>> {
+    fn reset_server(&self, params: ResetServerParams) -> Result<crate::models::ResetServerResponse, Error<ResetServerError>> {
+        // unbox the parameters
+        let id = params.id;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -1087,7 +1422,10 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn shutdown_server(&self, id: &str) -> Result<crate::models::ShutdownServerResponse, Error<ShutdownServerError>> {
+    fn shutdown_server(&self, params: ShutdownServerParams) -> Result<crate::models::ShutdownServerResponse, Error<ShutdownServerError>> {
+        // unbox the parameters
+        let id = params.id;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -1116,7 +1454,10 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn soft_reboot_server(&self, id: &str) -> Result<crate::models::SoftRebootServerResponse, Error<SoftRebootServerError>> {
+    fn soft_reboot_server(&self, params: SoftRebootServerParams) -> Result<crate::models::SoftRebootServerResponse, Error<SoftRebootServerError>> {
+        // unbox the parameters
+        let id = params.id;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 

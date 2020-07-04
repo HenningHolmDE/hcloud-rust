@@ -30,6 +30,20 @@ impl LocationsApiClient {
     }
 }
 
+/// struct for passing parameters to the method `get_location`
+#[derive(Clone, Debug, Default)]
+pub struct GetLocationParams {
+    /// ID of Location
+    pub id: String
+}
+
+/// struct for passing parameters to the method `list_locations`
+#[derive(Clone, Debug, Default)]
+pub struct ListLocationsParams {
+    /// Can be used to filter Locations by their name. The response will only contain the Location matching the specified name.
+    pub name: Option<String>
+}
+
 
 /// struct for typed errors of method `get_location`
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -47,12 +61,15 @@ pub enum ListLocationsError {
 
 
 pub trait LocationsApi {
-    fn get_location(&self, id: &str) -> Result<crate::models::GetLocationResponse, Error<GetLocationError>>;
-    fn list_locations(&self, name: Option<&str>) -> Result<crate::models::ListLocationsResponse, Error<ListLocationsError>>;
+    fn get_location(&self, params: GetLocationParams) -> Result<crate::models::GetLocationResponse, Error<GetLocationError>>;
+    fn list_locations(&self, params: ListLocationsParams) -> Result<crate::models::ListLocationsResponse, Error<ListLocationsError>>;
 }
 
 impl LocationsApi for LocationsApiClient {
-    fn get_location(&self, id: &str) -> Result<crate::models::GetLocationResponse, Error<GetLocationError>> {
+    fn get_location(&self, params: GetLocationParams) -> Result<crate::models::GetLocationResponse, Error<GetLocationError>> {
+        // unbox the parameters
+        let id = params.id;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -81,7 +98,10 @@ impl LocationsApi for LocationsApiClient {
         }
     }
 
-    fn list_locations(&self, name: Option<&str>) -> Result<crate::models::ListLocationsResponse, Error<ListLocationsError>> {
+    fn list_locations(&self, params: ListLocationsParams) -> Result<crate::models::ListLocationsResponse, Error<ListLocationsError>> {
+        // unbox the parameters
+        let name = params.name;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 

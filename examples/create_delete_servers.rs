@@ -1,5 +1,8 @@
 use hcloud::apis::client::APIClient;
 use hcloud::apis::configuration::Configuration;
+use hcloud::apis::servers_api::{
+    CreateServerParams, DeleteServerParams, ListActionsForServerParams,
+};
 use hcloud::models;
 use rand::{distributions, thread_rng, Rng};
 use std::{env, thread, time};
@@ -35,7 +38,7 @@ fn main() -> Result<(), String> {
     // collect all available SSH keys to be added to the server
     let ssh_keys: Vec<String> = api_client
         .ssh_keys_api()
-        .list_ssh_keys(None, None, None, None)
+        .list_ssh_keys(Default::default())
         .map_err(|err| format!("API call to list_ssh_keys failed: {:?}", err))?
         .ssh_keys
         .into_iter()
@@ -73,9 +76,12 @@ fn main() -> Result<(), String> {
         };
 
         // execute request and store server ID
+        let params = CreateServerParams {
+            create_server_request: Some(request),
+        };
         let response = api_client
             .servers_api()
-            .create_server(Some(request))
+            .create_server(params)
             .map_err(|err| format!("API call to create_server failed: {:?}", err))?;
 
         created_servers.push(ServerInfo {
@@ -98,9 +104,13 @@ fn main() -> Result<(), String> {
     loop {
         let mut any_running = false;
         for server_info in &created_servers {
+            let params = ListActionsForServerParams {
+                id: server_info.id.to_string(),
+                ..Default::default()
+            };
             let actions = api_client
                 .servers_api()
-                .list_actions_for_server(&server_info.id.to_string(), None, None)
+                .list_actions_for_server(params)
                 .map_err(|err| format!("API call to list_actions_for_server failed: {:?}", err))?
                 .actions;
             println!(" Actions for server {}:", server_info.name);
@@ -128,9 +138,12 @@ fn main() -> Result<(), String> {
     println!("Deleting servers...");
     for server_info in &created_servers {
         println!(" Deleting server {}...", server_info.name);
+        let params = DeleteServerParams {
+            id: server_info.id.to_string(),
+        };
         api_client
             .servers_api()
-            .delete_server(&server_info.id.to_string())
+            .delete_server(params)
             .map_err(|err| format!("API call to delete_server failed: {:?}", err))?;
     }
     println!("The servers should be deleted now!");

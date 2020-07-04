@@ -18,7 +18,7 @@ fn main() -> Result<(), String> {
     // get list of all existing servers from servers API
     let servers = api_client
         .servers_api()
-        .list_servers(None, None, None, None)
+        .list_servers(Default::default())
         .map_err(|err| format!("API call to list_servers failed: {:?}", err))?
         .servers;
 

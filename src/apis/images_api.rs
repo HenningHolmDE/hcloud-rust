@@ -30,6 +30,73 @@ impl ImagesApiClient {
     }
 }
 
+/// struct for passing parameters to the method `change_image_protection`
+#[derive(Clone, Debug, Default)]
+pub struct ChangeImageProtectionParams {
+    /// ID of the Image
+    pub id: String,
+    pub change_image_protection_request: Option<crate::models::ChangeImageProtectionRequest>
+}
+
+/// struct for passing parameters to the method `delete_image`
+#[derive(Clone, Debug, Default)]
+pub struct DeleteImageParams {
+    /// ID of the Image
+    pub id: String
+}
+
+/// struct for passing parameters to the method `get_action_for_image`
+#[derive(Clone, Debug, Default)]
+pub struct GetActionForImageParams {
+    /// ID of the Image
+    pub id: String,
+    /// ID of the Action
+    pub action_id: String
+}
+
+/// struct for passing parameters to the method `get_image`
+#[derive(Clone, Debug, Default)]
+pub struct GetImageParams {
+    /// ID of the Image
+    pub id: String
+}
+
+/// struct for passing parameters to the method `list_actions_for_image`
+#[derive(Clone, Debug, Default)]
+pub struct ListActionsForImageParams {
+    /// ID of the Image
+    pub id: String,
+    /// Can be used multiple times, the response will contain only Actions with specified statuses Choices: running success error
+    pub status: Option<String>,
+    /// Can be used multiple times Choices: id id:asc id:desc command command:asc command:desc status status:asc status:desc progress progress:asc progress:desc started started:asc started:desc finished finished:asc finished:desc
+    pub sort: Option<String>
+}
+
+/// struct for passing parameters to the method `list_images`
+#[derive(Clone, Debug, Default)]
+pub struct ListImagesParams {
+    /// Can be used multiple times. Choices: id id:asc id:desc name name:asc name:desc created created:asc created:desc
+    pub sort: Option<String>,
+    /// Can be used multiple times. Choices: system snapshot backup
+    pub _type: Option<String>,
+    /// Can be used multiple times. The response will only contain Images matching the status. Choices: available creating
+    pub status: Option<String>,
+    /// Can be used multiple times. Server ID linked to the Image. Only available for Images of type backup
+    pub bound_to: Option<String>,
+    /// Can be used to filter Images by their name. The response will only contain the Image matching the specified name.
+    pub name: Option<String>,
+    /// Can be used to filter Images by labels. The response will only contain Images matching the label selector.
+    pub label_selector: Option<String>
+}
+
+/// struct for passing parameters to the method `replace_image`
+#[derive(Clone, Debug, Default)]
+pub struct ReplaceImageParams {
+    /// ID of the Image to be updated
+    pub id: String,
+    pub replace_image_request: Option<crate::models::ReplaceImageRequest>
+}
+
 
 /// struct for typed errors of method `change_image_protection`
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -82,17 +149,21 @@ pub enum ReplaceImageError {
 
 
 pub trait ImagesApi {
-    fn change_image_protection(&self, id: &str, change_image_protection_request: Option<crate::models::ChangeImageProtectionRequest>) -> Result<crate::models::ChangeImageProtectionResponse, Error<ChangeImageProtectionError>>;
-    fn delete_image(&self, id: &str) -> Result<(), Error<DeleteImageError>>;
-    fn get_action_for_image(&self, id: &str, action_id: &str) -> Result<crate::models::GetActionForImageResponse, Error<GetActionForImageError>>;
-    fn get_image(&self, id: &str) -> Result<crate::models::GetImageResponse, Error<GetImageError>>;
-    fn list_actions_for_image(&self, id: &str, status: Option<&str>, sort: Option<&str>) -> Result<crate::models::ListActionsForImageResponse, Error<ListActionsForImageError>>;
-    fn list_images(&self, sort: Option<&str>, _type: Option<&str>, status: Option<&str>, bound_to: Option<&str>, name: Option<&str>, label_selector: Option<&str>) -> Result<crate::models::ListImagesResponse, Error<ListImagesError>>;
-    fn replace_image(&self, id: &str, replace_image_request: Option<crate::models::ReplaceImageRequest>) -> Result<crate::models::ReplaceImageResponse, Error<ReplaceImageError>>;
+    fn change_image_protection(&self, params: ChangeImageProtectionParams) -> Result<crate::models::ChangeImageProtectionResponse, Error<ChangeImageProtectionError>>;
+    fn delete_image(&self, params: DeleteImageParams) -> Result<(), Error<DeleteImageError>>;
+    fn get_action_for_image(&self, params: GetActionForImageParams) -> Result<crate::models::GetActionForImageResponse, Error<GetActionForImageError>>;
+    fn get_image(&self, params: GetImageParams) -> Result<crate::models::GetImageResponse, Error<GetImageError>>;
+    fn list_actions_for_image(&self, params: ListActionsForImageParams) -> Result<crate::models::ListActionsForImageResponse, Error<ListActionsForImageError>>;
+    fn list_images(&self, params: ListImagesParams) -> Result<crate::models::ListImagesResponse, Error<ListImagesError>>;
+    fn replace_image(&self, params: ReplaceImageParams) -> Result<crate::models::ReplaceImageResponse, Error<ReplaceImageError>>;
 }
 
 impl ImagesApi for ImagesApiClient {
-    fn change_image_protection(&self, id: &str, change_image_protection_request: Option<crate::models::ChangeImageProtectionRequest>) -> Result<crate::models::ChangeImageProtectionResponse, Error<ChangeImageProtectionError>> {
+    fn change_image_protection(&self, params: ChangeImageProtectionParams) -> Result<crate::models::ChangeImageProtectionResponse, Error<ChangeImageProtectionError>> {
+        // unbox the parameters
+        let id = params.id;
+        let change_image_protection_request = params.change_image_protection_request;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -122,7 +193,10 @@ impl ImagesApi for ImagesApiClient {
         }
     }
 
-    fn delete_image(&self, id: &str) -> Result<(), Error<DeleteImageError>> {
+    fn delete_image(&self, params: DeleteImageParams) -> Result<(), Error<DeleteImageError>> {
+        // unbox the parameters
+        let id = params.id;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -151,7 +225,11 @@ impl ImagesApi for ImagesApiClient {
         }
     }
 
-    fn get_action_for_image(&self, id: &str, action_id: &str) -> Result<crate::models::GetActionForImageResponse, Error<GetActionForImageError>> {
+    fn get_action_for_image(&self, params: GetActionForImageParams) -> Result<crate::models::GetActionForImageResponse, Error<GetActionForImageError>> {
+        // unbox the parameters
+        let id = params.id;
+        let action_id = params.action_id;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -180,7 +258,10 @@ impl ImagesApi for ImagesApiClient {
         }
     }
 
-    fn get_image(&self, id: &str) -> Result<crate::models::GetImageResponse, Error<GetImageError>> {
+    fn get_image(&self, params: GetImageParams) -> Result<crate::models::GetImageResponse, Error<GetImageError>> {
+        // unbox the parameters
+        let id = params.id;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -209,7 +290,12 @@ impl ImagesApi for ImagesApiClient {
         }
     }
 
-    fn list_actions_for_image(&self, id: &str, status: Option<&str>, sort: Option<&str>) -> Result<crate::models::ListActionsForImageResponse, Error<ListActionsForImageError>> {
+    fn list_actions_for_image(&self, params: ListActionsForImageParams) -> Result<crate::models::ListActionsForImageResponse, Error<ListActionsForImageError>> {
+        // unbox the parameters
+        let id = params.id;
+        let status = params.status;
+        let sort = params.sort;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -244,7 +330,15 @@ impl ImagesApi for ImagesApiClient {
         }
     }
 
-    fn list_images(&self, sort: Option<&str>, _type: Option<&str>, status: Option<&str>, bound_to: Option<&str>, name: Option<&str>, label_selector: Option<&str>) -> Result<crate::models::ListImagesResponse, Error<ListImagesError>> {
+    fn list_images(&self, params: ListImagesParams) -> Result<crate::models::ListImagesResponse, Error<ListImagesError>> {
+        // unbox the parameters
+        let sort = params.sort;
+        let _type = params._type;
+        let status = params.status;
+        let bound_to = params.bound_to;
+        let name = params.name;
+        let label_selector = params.label_selector;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -291,7 +385,11 @@ impl ImagesApi for ImagesApiClient {
         }
     }
 
-    fn replace_image(&self, id: &str, replace_image_request: Option<crate::models::ReplaceImageRequest>) -> Result<crate::models::ReplaceImageResponse, Error<ReplaceImageError>> {
+    fn replace_image(&self, params: ReplaceImageParams) -> Result<crate::models::ReplaceImageResponse, Error<ReplaceImageError>> {
+        // unbox the parameters
+        let id = params.id;
+        let replace_image_request = params.replace_image_request;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 

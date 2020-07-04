@@ -30,6 +30,20 @@ impl ServerTypesApiClient {
     }
 }
 
+/// struct for passing parameters to the method `get_server_type`
+#[derive(Clone, Debug, Default)]
+pub struct GetServerTypeParams {
+    /// ID of Server type
+    pub id: String
+}
+
+/// struct for passing parameters to the method `list_server_types`
+#[derive(Clone, Debug, Default)]
+pub struct ListServerTypesParams {
+    /// Can be used to filter Server types by their name. The response will only contain the Server type matching the specified name.
+    pub name: Option<String>
+}
+
 
 /// struct for typed errors of method `get_server_type`
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -47,12 +61,15 @@ pub enum ListServerTypesError {
 
 
 pub trait ServerTypesApi {
-    fn get_server_type(&self, id: &str) -> Result<crate::models::GetServerTypeResponse, Error<GetServerTypeError>>;
-    fn list_server_types(&self, name: Option<&str>) -> Result<crate::models::ListServerTypesResponse, Error<ListServerTypesError>>;
+    fn get_server_type(&self, params: GetServerTypeParams) -> Result<crate::models::GetServerTypeResponse, Error<GetServerTypeError>>;
+    fn list_server_types(&self, params: ListServerTypesParams) -> Result<crate::models::ListServerTypesResponse, Error<ListServerTypesError>>;
 }
 
 impl ServerTypesApi for ServerTypesApiClient {
-    fn get_server_type(&self, id: &str) -> Result<crate::models::GetServerTypeResponse, Error<GetServerTypeError>> {
+    fn get_server_type(&self, params: GetServerTypeParams) -> Result<crate::models::GetServerTypeResponse, Error<GetServerTypeError>> {
+        // unbox the parameters
+        let id = params.id;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -81,7 +98,10 @@ impl ServerTypesApi for ServerTypesApiClient {
         }
     }
 
-    fn list_server_types(&self, name: Option<&str>) -> Result<crate::models::ListServerTypesResponse, Error<ListServerTypesError>> {
+    fn list_server_types(&self, params: ListServerTypesParams) -> Result<crate::models::ListServerTypesResponse, Error<ListServerTypesError>> {
+        // unbox the parameters
+        let name = params.name;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 

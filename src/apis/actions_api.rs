@@ -30,6 +30,22 @@ impl ActionsApiClient {
     }
 }
 
+/// struct for passing parameters to the method `get_action`
+#[derive(Clone, Debug, Default)]
+pub struct GetActionParams {
+    /// ID of the Action
+    pub id: String
+}
+
+/// struct for passing parameters to the method `list_all_actions`
+#[derive(Clone, Debug, Default)]
+pub struct ListAllActionsParams {
+    /// Can be used multiple times, the response will contain only Actions with specified statuses Choices: running success error
+    pub status: Option<String>,
+    /// Can be used multiple times Choices: id id:asc id:desc command command:asc command:desc status status:asc status:desc progress progress:asc progress:desc started started:asc started:desc finished finished:asc finished:desc
+    pub sort: Option<String>
+}
+
 
 /// struct for typed errors of method `get_action`
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -47,12 +63,15 @@ pub enum ListAllActionsError {
 
 
 pub trait ActionsApi {
-    fn get_action(&self, id: &str) -> Result<crate::models::GetActionResponse, Error<GetActionError>>;
-    fn list_all_actions(&self, status: Option<&str>, sort: Option<&str>) -> Result<crate::models::ListAllActionsResponse, Error<ListAllActionsError>>;
+    fn get_action(&self, params: GetActionParams) -> Result<crate::models::GetActionResponse, Error<GetActionError>>;
+    fn list_all_actions(&self, params: ListAllActionsParams) -> Result<crate::models::ListAllActionsResponse, Error<ListAllActionsError>>;
 }
 
 impl ActionsApi for ActionsApiClient {
-    fn get_action(&self, id: &str) -> Result<crate::models::GetActionResponse, Error<GetActionError>> {
+    fn get_action(&self, params: GetActionParams) -> Result<crate::models::GetActionResponse, Error<GetActionError>> {
+        // unbox the parameters
+        let id = params.id;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -81,7 +100,11 @@ impl ActionsApi for ActionsApiClient {
         }
     }
 
-    fn list_all_actions(&self, status: Option<&str>, sort: Option<&str>) -> Result<crate::models::ListAllActionsResponse, Error<ListAllActionsError>> {
+    fn list_all_actions(&self, params: ListAllActionsParams) -> Result<crate::models::ListAllActionsResponse, Error<ListAllActionsError>> {
+        // unbox the parameters
+        let status = params.status;
+        let sort = params.sort;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 

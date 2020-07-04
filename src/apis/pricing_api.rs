@@ -40,11 +40,13 @@ pub enum ListPricesError {
 
 
 pub trait PricingApi {
-    fn list_prices(&self, ) -> Result<crate::models::ListPricesResponse, Error<ListPricesError>>;
+    fn list_prices(&self) -> Result<crate::models::ListPricesResponse, Error<ListPricesError>>;
 }
 
 impl PricingApi for PricingApiClient {
-    fn list_prices(&self, ) -> Result<crate::models::ListPricesResponse, Error<ListPricesError>> {
+    fn list_prices(&self) -> Result<crate::models::ListPricesResponse, Error<ListPricesError>> {
+        // unbox the parameters
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 

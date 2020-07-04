@@ -1,4 +1,4 @@
 library: reqwest
 supportAsync: false
 supportMultipleResponses: false
-useSingleRequestParameter: false
+useSingleRequestParameter: true

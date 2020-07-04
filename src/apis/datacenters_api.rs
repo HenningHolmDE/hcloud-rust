@@ -30,6 +30,20 @@ impl DatacentersApiClient {
     }
 }
 
+/// struct for passing parameters to the method `get_datacenter`
+#[derive(Clone, Debug, Default)]
+pub struct GetDatacenterParams {
+    /// ID of Datacenter
+    pub id: String
+}
+
+/// struct for passing parameters to the method `list_datacenters`
+#[derive(Clone, Debug, Default)]
+pub struct ListDatacentersParams {
+    /// Can be used to filter Datacenters by their name. The response will only contain the Datacenter matching the specified name. When the name does not match the Datacenter name format, an invalid_input error is returned.
+    pub name: Option<String>
+}
+
 
 /// struct for typed errors of method `get_datacenter`
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -47,12 +61,15 @@ pub enum ListDatacentersError {
 
 
 pub trait DatacentersApi {
-    fn get_datacenter(&self, id: &str) -> Result<crate::models::GetDatacenterResponse, Error<GetDatacenterError>>;
-    fn list_datacenters(&self, name: Option<&str>) -> Result<crate::models::ListDatacentersResponse, Error<ListDatacentersError>>;
+    fn get_datacenter(&self, params: GetDatacenterParams) -> Result<crate::models::GetDatacenterResponse, Error<GetDatacenterError>>;
+    fn list_datacenters(&self, params: ListDatacentersParams) -> Result<crate::models::ListDatacentersResponse, Error<ListDatacentersError>>;
 }
 
 impl DatacentersApi for DatacentersApiClient {
-    fn get_datacenter(&self, id: &str) -> Result<crate::models::GetDatacenterResponse, Error<GetDatacenterError>> {
+    fn get_datacenter(&self, params: GetDatacenterParams) -> Result<crate::models::GetDatacenterResponse, Error<GetDatacenterError>> {
+        // unbox the parameters
+        let id = params.id;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -81,7 +98,10 @@ impl DatacentersApi for DatacentersApiClient {
         }
     }
 
-    fn list_datacenters(&self, name: Option<&str>) -> Result<crate::models::ListDatacentersResponse, Error<ListDatacentersError>> {
+    fn list_datacenters(&self, params: ListDatacentersParams) -> Result<crate::models::ListDatacentersResponse, Error<ListDatacentersError>> {
+        // unbox the parameters
+        let name = params.name;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 

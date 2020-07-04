@@ -30,6 +30,20 @@ impl IsosApiClient {
     }
 }
 
+/// struct for passing parameters to the method `get_iso`
+#[derive(Clone, Debug, Default)]
+pub struct GetIsoParams {
+    /// ID of the ISO
+    pub id: String
+}
+
+/// struct for passing parameters to the method `list_isos`
+#[derive(Clone, Debug, Default)]
+pub struct ListIsosParams {
+    /// Can be used to filter ISOs by their name. The response will only contain the ISO matching the specified name.
+    pub name: Option<String>
+}
+
 
 /// struct for typed errors of method `get_iso`
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -47,12 +61,15 @@ pub enum ListIsosError {
 
 
 pub trait IsosApi {
-    fn get_iso(&self, id: &str) -> Result<crate::models::GetIsoResponse, Error<GetIsoError>>;
-    fn list_isos(&self, name: Option<&str>) -> Result<crate::models::ListIsosResponse, Error<ListIsosError>>;
+    fn get_iso(&self, params: GetIsoParams) -> Result<crate::models::GetIsoResponse, Error<GetIsoError>>;
+    fn list_isos(&self, params: ListIsosParams) -> Result<crate::models::ListIsosResponse, Error<ListIsosError>>;
 }
 
 impl IsosApi for IsosApiClient {
-    fn get_iso(&self, id: &str) -> Result<crate::models::GetIsoResponse, Error<GetIsoError>> {
+    fn get_iso(&self, params: GetIsoParams) -> Result<crate::models::GetIsoResponse, Error<GetIsoError>> {
+        // unbox the parameters
+        let id = params.id;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -81,7 +98,10 @@ impl IsosApi for IsosApiClient {
         }
     }
 
-    fn list_isos(&self, name: Option<&str>) -> Result<crate::models::ListIsosResponse, Error<ListIsosError>> {
+    fn list_isos(&self, params: ListIsosParams) -> Result<crate::models::ListIsosResponse, Error<ListIsosError>> {
+        // unbox the parameters
+        let name = params.name;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 

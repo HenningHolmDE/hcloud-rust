@@ -30,6 +30,47 @@ impl SshKeysApiClient {
     }
 }
 
+/// struct for passing parameters to the method `create_ssh_key`
+#[derive(Clone, Debug, Default)]
+pub struct CreateSshKeyParams {
+    pub create_ssh_key_request: Option<crate::models::CreateSshKeyRequest>
+}
+
+/// struct for passing parameters to the method `delete_ssh_key`
+#[derive(Clone, Debug, Default)]
+pub struct DeleteSshKeyParams {
+    /// ID of the SSH key
+    pub id: String
+}
+
+/// struct for passing parameters to the method `get_ssh_key`
+#[derive(Clone, Debug, Default)]
+pub struct GetSshKeyParams {
+    /// ID of the SSH key
+    pub id: String
+}
+
+/// struct for passing parameters to the method `list_ssh_keys`
+#[derive(Clone, Debug, Default)]
+pub struct ListSshKeysParams {
+    /// Can be used multiple times. Choices: id id:asc id:desc name name:asc name:desc
+    pub sort: Option<String>,
+    /// Can be used to filter SSH keys by their name. The response will only contain the SSH key matching the specified name.
+    pub name: Option<String>,
+    /// Can be used to filter SSH keys by their fingerprint. The response will only contain the SSH key matching the specified fingerprint.
+    pub fingerprint: Option<String>,
+    /// Can be used to filter SSH keys by labels. The response will only contain SSH keys matching the label selector.
+    pub label_selector: Option<String>
+}
+
+/// struct for passing parameters to the method `replace_ssh_key`
+#[derive(Clone, Debug, Default)]
+pub struct ReplaceSshKeyParams {
+    /// ID of the SSH key
+    pub id: String,
+    pub replace_ssh_key_request: Option<crate::models::ReplaceSshKeyRequest>
+}
+
 
 /// struct for typed errors of method `create_ssh_key`
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -68,15 +109,18 @@ pub enum ReplaceSshKeyError {
 
 
 pub trait SshKeysApi {
-    fn create_ssh_key(&self, create_ssh_key_request: Option<crate::models::CreateSshKeyRequest>) -> Result<crate::models::CreateSshKeyResponse, Error<CreateSshKeyError>>;
-    fn delete_ssh_key(&self, id: &str) -> Result<(), Error<DeleteSshKeyError>>;
-    fn get_ssh_key(&self, id: &str) -> Result<crate::models::GetSshKeyResponse, Error<GetSshKeyError>>;
-    fn list_ssh_keys(&self, sort: Option<&str>, name: Option<&str>, fingerprint: Option<&str>, label_selector: Option<&str>) -> Result<crate::models::ListSshKeysResponse, Error<ListSshKeysError>>;
-    fn replace_ssh_key(&self, id: &str, replace_ssh_key_request: Option<crate::models::ReplaceSshKeyRequest>) -> Result<crate::models::ReplaceSshKeyResponse, Error<ReplaceSshKeyError>>;
+    fn create_ssh_key(&self, params: CreateSshKeyParams) -> Result<crate::models::CreateSshKeyResponse, Error<CreateSshKeyError>>;
+    fn delete_ssh_key(&self, params: DeleteSshKeyParams) -> Result<(), Error<DeleteSshKeyError>>;
+    fn get_ssh_key(&self, params: GetSshKeyParams) -> Result<crate::models::GetSshKeyResponse, Error<GetSshKeyError>>;
+    fn list_ssh_keys(&self, params: ListSshKeysParams) -> Result<crate::models::ListSshKeysResponse, Error<ListSshKeysError>>;
+    fn replace_ssh_key(&self, params: ReplaceSshKeyParams) -> Result<crate::models::ReplaceSshKeyResponse, Error<ReplaceSshKeyError>>;
 }
 
 impl SshKeysApi for SshKeysApiClient {
-    fn create_ssh_key(&self, create_ssh_key_request: Option<crate::models::CreateSshKeyRequest>) -> Result<crate::models::CreateSshKeyResponse, Error<CreateSshKeyError>> {
+    fn create_ssh_key(&self, params: CreateSshKeyParams) -> Result<crate::models::CreateSshKeyResponse, Error<CreateSshKeyError>> {
+        // unbox the parameters
+        let create_ssh_key_request = params.create_ssh_key_request;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -106,7 +150,10 @@ impl SshKeysApi for SshKeysApiClient {
         }
     }
 
-    fn delete_ssh_key(&self, id: &str) -> Result<(), Error<DeleteSshKeyError>> {
+    fn delete_ssh_key(&self, params: DeleteSshKeyParams) -> Result<(), Error<DeleteSshKeyError>> {
+        // unbox the parameters
+        let id = params.id;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -135,7 +182,10 @@ impl SshKeysApi for SshKeysApiClient {
         }
     }
 
-    fn get_ssh_key(&self, id: &str) -> Result<crate::models::GetSshKeyResponse, Error<GetSshKeyError>> {
+    fn get_ssh_key(&self, params: GetSshKeyParams) -> Result<crate::models::GetSshKeyResponse, Error<GetSshKeyError>> {
+        // unbox the parameters
+        let id = params.id;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -164,7 +214,13 @@ impl SshKeysApi for SshKeysApiClient {
         }
     }
 
-    fn list_ssh_keys(&self, sort: Option<&str>, name: Option<&str>, fingerprint: Option<&str>, label_selector: Option<&str>) -> Result<crate::models::ListSshKeysResponse, Error<ListSshKeysError>> {
+    fn list_ssh_keys(&self, params: ListSshKeysParams) -> Result<crate::models::ListSshKeysResponse, Error<ListSshKeysError>> {
+        // unbox the parameters
+        let sort = params.sort;
+        let name = params.name;
+        let fingerprint = params.fingerprint;
+        let label_selector = params.label_selector;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -205,7 +261,11 @@ impl SshKeysApi for SshKeysApiClient {
         }
     }
 
-    fn replace_ssh_key(&self, id: &str, replace_ssh_key_request: Option<crate::models::ReplaceSshKeyRequest>) -> Result<crate::models::ReplaceSshKeyResponse, Error<ReplaceSshKeyError>> {
+    fn replace_ssh_key(&self, params: ReplaceSshKeyParams) -> Result<crate::models::ReplaceSshKeyResponse, Error<ReplaceSshKeyError>> {
+        // unbox the parameters
+        let id = params.id;
+        let replace_ssh_key_request = params.replace_ssh_key_request;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 

@@ -30,6 +30,111 @@ impl NetworksApiClient {
     }
 }
 
+/// struct for passing parameters to the method `add_route_to_network`
+#[derive(Clone, Debug, Default)]
+pub struct AddRouteToNetworkParams {
+    /// ID of the Network
+    pub id: String,
+    pub body: Option<crate::models::Route>
+}
+
+/// struct for passing parameters to the method `add_subnet_to_network`
+#[derive(Clone, Debug, Default)]
+pub struct AddSubnetToNetworkParams {
+    /// ID of the Network
+    pub id: String,
+    pub body: Option<crate::models::Subnet>
+}
+
+/// struct for passing parameters to the method `change_ip_range_of_network`
+#[derive(Clone, Debug, Default)]
+pub struct ChangeIpRangeOfNetworkParams {
+    /// ID of the Network
+    pub id: String,
+    pub change_ip_range_of_network_request: Option<crate::models::ChangeIpRangeOfNetworkRequest>
+}
+
+/// struct for passing parameters to the method `change_network_protection`
+#[derive(Clone, Debug, Default)]
+pub struct ChangeNetworkProtectionParams {
+    /// ID of the Network
+    pub id: String,
+    pub change_network_protection_request: Option<crate::models::ChangeNetworkProtectionRequest>
+}
+
+/// struct for passing parameters to the method `create_network`
+#[derive(Clone, Debug, Default)]
+pub struct CreateNetworkParams {
+    pub create_network_request: Option<crate::models::CreateNetworkRequest>
+}
+
+/// struct for passing parameters to the method `delete_network`
+#[derive(Clone, Debug, Default)]
+pub struct DeleteNetworkParams {
+    /// ID of the network
+    pub id: String
+}
+
+/// struct for passing parameters to the method `delete_route_from_network`
+#[derive(Clone, Debug, Default)]
+pub struct DeleteRouteFromNetworkParams {
+    /// ID of the Network
+    pub id: String,
+    pub body: Option<crate::models::Route>
+}
+
+/// struct for passing parameters to the method `delete_subnet_from_network`
+#[derive(Clone, Debug, Default)]
+pub struct DeleteSubnetFromNetworkParams {
+    /// ID of the Network
+    pub id: String,
+    pub delete_subnet_from_network_request: Option<crate::models::DeleteSubnetFromNetworkRequest>
+}
+
+/// struct for passing parameters to the method `get_action_for_network`
+#[derive(Clone, Debug, Default)]
+pub struct GetActionForNetworkParams {
+    /// ID of the Network
+    pub id: String,
+    /// ID of the Action
+    pub action_id: String
+}
+
+/// struct for passing parameters to the method `get_network`
+#[derive(Clone, Debug, Default)]
+pub struct GetNetworkParams {
+    /// ID of the network
+    pub id: String
+}
+
+/// struct for passing parameters to the method `list_actions_for_network`
+#[derive(Clone, Debug, Default)]
+pub struct ListActionsForNetworkParams {
+    /// ID of the Network
+    pub id: String,
+    /// Can be used multiple times, the response will contain only Actions with specified statuses Choices: running success error
+    pub status: Option<String>,
+    /// Can be used multiple times Choices: id id:asc id:desc command command:asc command:desc status status:asc status:desc progress progress:asc progress:desc started started:asc started:desc finished finished:asc finished:desc
+    pub sort: Option<String>
+}
+
+/// struct for passing parameters to the method `list_networks`
+#[derive(Clone, Debug, Default)]
+pub struct ListNetworksParams {
+    /// Can be used to filter networks by their name. The response will only contain the networks matching the specified name.
+    pub name: Option<String>,
+    /// Can be used to filter networks by labels. The response will only contain networks with a matching label selector pattern.
+    pub label_selector: Option<String>
+}
+
+/// struct for passing parameters to the method `replace_network`
+#[derive(Clone, Debug, Default)]
+pub struct ReplaceNetworkParams {
+    /// ID of the network to update
+    pub id: String,
+    pub replace_network_request: Option<crate::models::ReplaceNetworkRequest>
+}
+
 
 /// struct for typed errors of method `add_route_to_network`
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -124,23 +229,27 @@ pub enum ReplaceNetworkError {
 
 
 pub trait NetworksApi {
-    fn add_route_to_network(&self, id: &str, body: Option<crate::models::Route>) -> Result<crate::models::AddRouteToNetworkResponse, Error<AddRouteToNetworkError>>;
-    fn add_subnet_to_network(&self, id: &str, body: Option<crate::models::Subnet>) -> Result<crate::models::AddSubnetToNetworkResponse, Error<AddSubnetToNetworkError>>;
-    fn change_ip_range_of_network(&self, id: &str, change_ip_range_of_network_request: Option<crate::models::ChangeIpRangeOfNetworkRequest>) -> Result<crate::models::ChangeIpRangeOfNetworkResponse, Error<ChangeIpRangeOfNetworkError>>;
-    fn change_network_protection(&self, id: &str, change_network_protection_request: Option<crate::models::ChangeNetworkProtectionRequest>) -> Result<crate::models::ChangeNetworkProtectionResponse, Error<ChangeNetworkProtectionError>>;
-    fn create_network(&self, create_network_request: Option<crate::models::CreateNetworkRequest>) -> Result<crate::models::CreateNetworkResponse, Error<CreateNetworkError>>;
-    fn delete_network(&self, id: &str) -> Result<(), Error<DeleteNetworkError>>;
-    fn delete_route_from_network(&self, id: &str, body: Option<crate::models::Route>) -> Result<crate::models::DeleteRouteFromNetworkResponse, Error<DeleteRouteFromNetworkError>>;
-    fn delete_subnet_from_network(&self, id: &str, delete_subnet_from_network_request: Option<crate::models::DeleteSubnetFromNetworkRequest>) -> Result<crate::models::DeleteSubnetFromNetworkResponse, Error<DeleteSubnetFromNetworkError>>;
-    fn get_action_for_network(&self, id: &str, action_id: &str) -> Result<crate::models::GetActionForNetworkResponse, Error<GetActionForNetworkError>>;
-    fn get_network(&self, id: &str) -> Result<crate::models::GetNetworkResponse, Error<GetNetworkError>>;
-    fn list_actions_for_network(&self, id: &str, status: Option<&str>, sort: Option<&str>) -> Result<crate::models::ListActionsForNetworkResponse, Error<ListActionsForNetworkError>>;
-    fn list_networks(&self, name: Option<&str>, label_selector: Option<&str>) -> Result<crate::models::ListNetworksResponse, Error<ListNetworksError>>;
-    fn replace_network(&self, id: &str, replace_network_request: Option<crate::models::ReplaceNetworkRequest>) -> Result<crate::models::ReplaceNetworkResponse, Error<ReplaceNetworkError>>;
+    fn add_route_to_network(&self, params: AddRouteToNetworkParams) -> Result<crate::models::AddRouteToNetworkResponse, Error<AddRouteToNetworkError>>;
+    fn add_subnet_to_network(&self, params: AddSubnetToNetworkParams) -> Result<crate::models::AddSubnetToNetworkResponse, Error<AddSubnetToNetworkError>>;
+    fn change_ip_range_of_network(&self, params: ChangeIpRangeOfNetworkParams) -> Result<crate::models::ChangeIpRangeOfNetworkResponse, Error<ChangeIpRangeOfNetworkError>>;
+    fn change_network_protection(&self, params: ChangeNetworkProtectionParams) -> Result<crate::models::ChangeNetworkProtectionResponse, Error<ChangeNetworkProtectionError>>;
+    fn create_network(&self, params: CreateNetworkParams) -> Result<crate::models::CreateNetworkResponse, Error<CreateNetworkError>>;
+    fn delete_network(&self, params: DeleteNetworkParams) -> Result<(), Error<DeleteNetworkError>>;
+    fn delete_route_from_network(&self, params: DeleteRouteFromNetworkParams) -> Result<crate::models::DeleteRouteFromNetworkResponse, Error<DeleteRouteFromNetworkError>>;
+    fn delete_subnet_from_network(&self, params: DeleteSubnetFromNetworkParams) -> Result<crate::models::DeleteSubnetFromNetworkResponse, Error<DeleteSubnetFromNetworkError>>;
+    fn get_action_for_network(&self, params: GetActionForNetworkParams) -> Result<crate::models::GetActionForNetworkResponse, Error<GetActionForNetworkError>>;
+    fn get_network(&self, params: GetNetworkParams) -> Result<crate::models::GetNetworkResponse, Error<GetNetworkError>>;
+    fn list_actions_for_network(&self, params: ListActionsForNetworkParams) -> Result<crate::models::ListActionsForNetworkResponse, Error<ListActionsForNetworkError>>;
+    fn list_networks(&self, params: ListNetworksParams) -> Result<crate::models::ListNetworksResponse, Error<ListNetworksError>>;
+    fn replace_network(&self, params: ReplaceNetworkParams) -> Result<crate::models::ReplaceNetworkResponse, Error<ReplaceNetworkError>>;
 }
 
 impl NetworksApi for NetworksApiClient {
-    fn add_route_to_network(&self, id: &str, body: Option<crate::models::Route>) -> Result<crate::models::AddRouteToNetworkResponse, Error<AddRouteToNetworkError>> {
+    fn add_route_to_network(&self, params: AddRouteToNetworkParams) -> Result<crate::models::AddRouteToNetworkResponse, Error<AddRouteToNetworkError>> {
+        // unbox the parameters
+        let id = params.id;
+        let body = params.body;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -170,7 +279,11 @@ impl NetworksApi for NetworksApiClient {
         }
     }
 
-    fn add_subnet_to_network(&self, id: &str, body: Option<crate::models::Subnet>) -> Result<crate::models::AddSubnetToNetworkResponse, Error<AddSubnetToNetworkError>> {
+    fn add_subnet_to_network(&self, params: AddSubnetToNetworkParams) -> Result<crate::models::AddSubnetToNetworkResponse, Error<AddSubnetToNetworkError>> {
+        // unbox the parameters
+        let id = params.id;
+        let body = params.body;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -200,7 +313,11 @@ impl NetworksApi for NetworksApiClient {
         }
     }
 
-    fn change_ip_range_of_network(&self, id: &str, change_ip_range_of_network_request: Option<crate::models::ChangeIpRangeOfNetworkRequest>) -> Result<crate::models::ChangeIpRangeOfNetworkResponse, Error<ChangeIpRangeOfNetworkError>> {
+    fn change_ip_range_of_network(&self, params: ChangeIpRangeOfNetworkParams) -> Result<crate::models::ChangeIpRangeOfNetworkResponse, Error<ChangeIpRangeOfNetworkError>> {
+        // unbox the parameters
+        let id = params.id;
+        let change_ip_range_of_network_request = params.change_ip_range_of_network_request;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -230,7 +347,11 @@ impl NetworksApi for NetworksApiClient {
         }
     }
 
-    fn change_network_protection(&self, id: &str, change_network_protection_request: Option<crate::models::ChangeNetworkProtectionRequest>) -> Result<crate::models::ChangeNetworkProtectionResponse, Error<ChangeNetworkProtectionError>> {
+    fn change_network_protection(&self, params: ChangeNetworkProtectionParams) -> Result<crate::models::ChangeNetworkProtectionResponse, Error<ChangeNetworkProtectionError>> {
+        // unbox the parameters
+        let id = params.id;
+        let change_network_protection_request = params.change_network_protection_request;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -260,7 +381,10 @@ impl NetworksApi for NetworksApiClient {
         }
     }
 
-    fn create_network(&self, create_network_request: Option<crate::models::CreateNetworkRequest>) -> Result<crate::models::CreateNetworkResponse, Error<CreateNetworkError>> {
+    fn create_network(&self, params: CreateNetworkParams) -> Result<crate::models::CreateNetworkResponse, Error<CreateNetworkError>> {
+        // unbox the parameters
+        let create_network_request = params.create_network_request;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -290,7 +414,10 @@ impl NetworksApi for NetworksApiClient {
         }
     }
 
-    fn delete_network(&self, id: &str) -> Result<(), Error<DeleteNetworkError>> {
+    fn delete_network(&self, params: DeleteNetworkParams) -> Result<(), Error<DeleteNetworkError>> {
+        // unbox the parameters
+        let id = params.id;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -319,7 +446,11 @@ impl NetworksApi for NetworksApiClient {
         }
     }
 
-    fn delete_route_from_network(&self, id: &str, body: Option<crate::models::Route>) -> Result<crate::models::DeleteRouteFromNetworkResponse, Error<DeleteRouteFromNetworkError>> {
+    fn delete_route_from_network(&self, params: DeleteRouteFromNetworkParams) -> Result<crate::models::DeleteRouteFromNetworkResponse, Error<DeleteRouteFromNetworkError>> {
+        // unbox the parameters
+        let id = params.id;
+        let body = params.body;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -349,7 +480,11 @@ impl NetworksApi for NetworksApiClient {
         }
     }
 
-    fn delete_subnet_from_network(&self, id: &str, delete_subnet_from_network_request: Option<crate::models::DeleteSubnetFromNetworkRequest>) -> Result<crate::models::DeleteSubnetFromNetworkResponse, Error<DeleteSubnetFromNetworkError>> {
+    fn delete_subnet_from_network(&self, params: DeleteSubnetFromNetworkParams) -> Result<crate::models::DeleteSubnetFromNetworkResponse, Error<DeleteSubnetFromNetworkError>> {
+        // unbox the parameters
+        let id = params.id;
+        let delete_subnet_from_network_request = params.delete_subnet_from_network_request;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -379,7 +514,11 @@ impl NetworksApi for NetworksApiClient {
         }
     }
 
-    fn get_action_for_network(&self, id: &str, action_id: &str) -> Result<crate::models::GetActionForNetworkResponse, Error<GetActionForNetworkError>> {
+    fn get_action_for_network(&self, params: GetActionForNetworkParams) -> Result<crate::models::GetActionForNetworkResponse, Error<GetActionForNetworkError>> {
+        // unbox the parameters
+        let id = params.id;
+        let action_id = params.action_id;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -408,7 +547,10 @@ impl NetworksApi for NetworksApiClient {
         }
     }
 
-    fn get_network(&self, id: &str) -> Result<crate::models::GetNetworkResponse, Error<GetNetworkError>> {
+    fn get_network(&self, params: GetNetworkParams) -> Result<crate::models::GetNetworkResponse, Error<GetNetworkError>> {
+        // unbox the parameters
+        let id = params.id;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -437,7 +579,12 @@ impl NetworksApi for NetworksApiClient {
         }
     }
 
-    fn list_actions_for_network(&self, id: &str, status: Option<&str>, sort: Option<&str>) -> Result<crate::models::ListActionsForNetworkResponse, Error<ListActionsForNetworkError>> {
+    fn list_actions_for_network(&self, params: ListActionsForNetworkParams) -> Result<crate::models::ListActionsForNetworkResponse, Error<ListActionsForNetworkError>> {
+        // unbox the parameters
+        let id = params.id;
+        let status = params.status;
+        let sort = params.sort;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -472,7 +619,11 @@ impl NetworksApi for NetworksApiClient {
         }
     }
 
-    fn list_networks(&self, name: Option<&str>, label_selector: Option<&str>) -> Result<crate::models::ListNetworksResponse, Error<ListNetworksError>> {
+    fn list_networks(&self, params: ListNetworksParams) -> Result<crate::models::ListNetworksResponse, Error<ListNetworksError>> {
+        // unbox the parameters
+        let name = params.name;
+        let label_selector = params.label_selector;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -507,7 +658,11 @@ impl NetworksApi for NetworksApiClient {
         }
     }
 
-    fn replace_network(&self, id: &str, replace_network_request: Option<crate::models::ReplaceNetworkRequest>) -> Result<crate::models::ReplaceNetworkResponse, Error<ReplaceNetworkError>> {
+    fn replace_network(&self, params: ReplaceNetworkParams) -> Result<crate::models::ReplaceNetworkResponse, Error<ReplaceNetworkError>> {
+        // unbox the parameters
+        let id = params.id;
+        let replace_network_request = params.replace_network_request;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 

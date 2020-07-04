@@ -30,6 +30,98 @@ impl VolumesApiClient {
     }
 }
 
+/// struct for passing parameters to the method `attach_volume_to_server`
+#[derive(Clone, Debug, Default)]
+pub struct AttachVolumeToServerParams {
+    /// ID of the Volume
+    pub id: String,
+    pub attach_volume_to_server_request: Option<crate::models::AttachVolumeToServerRequest>
+}
+
+/// struct for passing parameters to the method `change_volume_protection`
+#[derive(Clone, Debug, Default)]
+pub struct ChangeVolumeProtectionParams {
+    /// ID of the Volume
+    pub id: String,
+    pub change_volume_protection_request: Option<crate::models::ChangeVolumeProtectionRequest>
+}
+
+/// struct for passing parameters to the method `create_volume`
+#[derive(Clone, Debug, Default)]
+pub struct CreateVolumeParams {
+    pub create_volume_request: Option<crate::models::CreateVolumeRequest>
+}
+
+/// struct for passing parameters to the method `delete_volume`
+#[derive(Clone, Debug, Default)]
+pub struct DeleteVolumeParams {
+    /// ID of the Volume
+    pub id: String
+}
+
+/// struct for passing parameters to the method `detach_volume`
+#[derive(Clone, Debug, Default)]
+pub struct DetachVolumeParams {
+    /// ID of the Volume
+    pub id: String
+}
+
+/// struct for passing parameters to the method `get_action_for_volume`
+#[derive(Clone, Debug, Default)]
+pub struct GetActionForVolumeParams {
+    /// ID of the Volume
+    pub id: String,
+    /// ID of the Action
+    pub action_id: String
+}
+
+/// struct for passing parameters to the method `get_volume`
+#[derive(Clone, Debug, Default)]
+pub struct GetVolumeParams {
+    /// ID of the volume
+    pub id: String
+}
+
+/// struct for passing parameters to the method `list_actions_for_volume`
+#[derive(Clone, Debug, Default)]
+pub struct ListActionsForVolumeParams {
+    /// ID of the Volume
+    pub id: String,
+    /// Can be used multiple times, the response will contain only Actions with specified statuses Choices: running success error
+    pub status: Option<String>,
+    /// Can be used multiple times Choices: id id:asc id:desc command command:asc command:desc status status:asc status:desc progress progress:asc progress:desc started started:asc started:desc finished finished:asc finished:desc
+    pub sort: Option<String>
+}
+
+/// struct for passing parameters to the method `list_volumes`
+#[derive(Clone, Debug, Default)]
+pub struct ListVolumesParams {
+    /// Can be used multiple times. The response will only contain Volumes matching the status. Choices: available creating
+    pub status: Option<String>,
+    /// Can be used multiple times. Choices: id id:asc id:desc name name:asc name:desc created created:asc created:desc
+    pub sort: Option<String>,
+    /// Can be used to filter Volumes by their name. The response will only contain the Volumes matching the specified name.
+    pub name: Option<String>,
+    /// Can be used to filter Volumes by labels. The response will only contain Volumes with a matching label selector pattern.
+    pub label_selector: Option<String>
+}
+
+/// struct for passing parameters to the method `replace_volume`
+#[derive(Clone, Debug, Default)]
+pub struct ReplaceVolumeParams {
+    /// ID of the Volume to update
+    pub id: String,
+    pub replace_volume_request: Option<crate::models::ReplaceVolumeRequest>
+}
+
+/// struct for passing parameters to the method `resize_volume`
+#[derive(Clone, Debug, Default)]
+pub struct ResizeVolumeParams {
+    /// ID of the Volume to update
+    pub id: String,
+    pub resize_volume_request: Option<crate::models::ResizeVolumeRequest>
+}
+
 
 /// struct for typed errors of method `attach_volume_to_server`
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -110,21 +202,25 @@ pub enum ResizeVolumeError {
 
 
 pub trait VolumesApi {
-    fn attach_volume_to_server(&self, id: &str, attach_volume_to_server_request: Option<crate::models::AttachVolumeToServerRequest>) -> Result<crate::models::AttachVolumeToServerResponse, Error<AttachVolumeToServerError>>;
-    fn change_volume_protection(&self, id: &str, change_volume_protection_request: Option<crate::models::ChangeVolumeProtectionRequest>) -> Result<crate::models::ChangeVolumeProtectionResponse, Error<ChangeVolumeProtectionError>>;
-    fn create_volume(&self, create_volume_request: Option<crate::models::CreateVolumeRequest>) -> Result<crate::models::CreateVolumeResponse, Error<CreateVolumeError>>;
-    fn delete_volume(&self, id: &str) -> Result<(), Error<DeleteVolumeError>>;
-    fn detach_volume(&self, id: &str) -> Result<crate::models::DetachVolumeResponse, Error<DetachVolumeError>>;
-    fn get_action_for_volume(&self, id: &str, action_id: &str) -> Result<crate::models::GetActionForVolumeResponse, Error<GetActionForVolumeError>>;
-    fn get_volume(&self, id: &str) -> Result<crate::models::GetVolumeResponse, Error<GetVolumeError>>;
-    fn list_actions_for_volume(&self, id: &str, status: Option<&str>, sort: Option<&str>) -> Result<crate::models::ListActionsForVolumeResponse, Error<ListActionsForVolumeError>>;
-    fn list_volumes(&self, status: Option<&str>, sort: Option<&str>, name: Option<&str>, label_selector: Option<&str>) -> Result<crate::models::ListVolumesResponse, Error<ListVolumesError>>;
-    fn replace_volume(&self, id: &str, replace_volume_request: Option<crate::models::ReplaceVolumeRequest>) -> Result<crate::models::ReplaceVolumeResponse, Error<ReplaceVolumeError>>;
-    fn resize_volume(&self, id: &str, resize_volume_request: Option<crate::models::ResizeVolumeRequest>) -> Result<crate::models::ResizeVolumeResponse, Error<ResizeVolumeError>>;
+    fn attach_volume_to_server(&self, params: AttachVolumeToServerParams) -> Result<crate::models::AttachVolumeToServerResponse, Error<AttachVolumeToServerError>>;
+    fn change_volume_protection(&self, params: ChangeVolumeProtectionParams) -> Result<crate::models::ChangeVolumeProtectionResponse, Error<ChangeVolumeProtectionError>>;
+    fn create_volume(&self, params: CreateVolumeParams) -> Result<crate::models::CreateVolumeResponse, Error<CreateVolumeError>>;
+    fn delete_volume(&self, params: DeleteVolumeParams) -> Result<(), Error<DeleteVolumeError>>;
+    fn detach_volume(&self, params: DetachVolumeParams) -> Result<crate::models::DetachVolumeResponse, Error<DetachVolumeError>>;
+    fn get_action_for_volume(&self, params: GetActionForVolumeParams) -> Result<crate::models::GetActionForVolumeResponse, Error<GetActionForVolumeError>>;
+    fn get_volume(&self, params: GetVolumeParams) -> Result<crate::models::GetVolumeResponse, Error<GetVolumeError>>;
+    fn list_actions_for_volume(&self, params: ListActionsForVolumeParams) -> Result<crate::models::ListActionsForVolumeResponse, Error<ListActionsForVolumeError>>;
+    fn list_volumes(&self, params: ListVolumesParams) -> Result<crate::models::ListVolumesResponse, Error<ListVolumesError>>;
+    fn replace_volume(&self, params: ReplaceVolumeParams) -> Result<crate::models::ReplaceVolumeResponse, Error<ReplaceVolumeError>>;
+    fn resize_volume(&self, params: ResizeVolumeParams) -> Result<crate::models::ResizeVolumeResponse, Error<ResizeVolumeError>>;
 }
 
 impl VolumesApi for VolumesApiClient {
-    fn attach_volume_to_server(&self, id: &str, attach_volume_to_server_request: Option<crate::models::AttachVolumeToServerRequest>) -> Result<crate::models::AttachVolumeToServerResponse, Error<AttachVolumeToServerError>> {
+    fn attach_volume_to_server(&self, params: AttachVolumeToServerParams) -> Result<crate::models::AttachVolumeToServerResponse, Error<AttachVolumeToServerError>> {
+        // unbox the parameters
+        let id = params.id;
+        let attach_volume_to_server_request = params.attach_volume_to_server_request;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -154,7 +250,11 @@ impl VolumesApi for VolumesApiClient {
         }
     }
 
-    fn change_volume_protection(&self, id: &str, change_volume_protection_request: Option<crate::models::ChangeVolumeProtectionRequest>) -> Result<crate::models::ChangeVolumeProtectionResponse, Error<ChangeVolumeProtectionError>> {
+    fn change_volume_protection(&self, params: ChangeVolumeProtectionParams) -> Result<crate::models::ChangeVolumeProtectionResponse, Error<ChangeVolumeProtectionError>> {
+        // unbox the parameters
+        let id = params.id;
+        let change_volume_protection_request = params.change_volume_protection_request;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -184,7 +284,10 @@ impl VolumesApi for VolumesApiClient {
         }
     }
 
-    fn create_volume(&self, create_volume_request: Option<crate::models::CreateVolumeRequest>) -> Result<crate::models::CreateVolumeResponse, Error<CreateVolumeError>> {
+    fn create_volume(&self, params: CreateVolumeParams) -> Result<crate::models::CreateVolumeResponse, Error<CreateVolumeError>> {
+        // unbox the parameters
+        let create_volume_request = params.create_volume_request;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -214,7 +317,10 @@ impl VolumesApi for VolumesApiClient {
         }
     }
 
-    fn delete_volume(&self, id: &str) -> Result<(), Error<DeleteVolumeError>> {
+    fn delete_volume(&self, params: DeleteVolumeParams) -> Result<(), Error<DeleteVolumeError>> {
+        // unbox the parameters
+        let id = params.id;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -243,7 +349,10 @@ impl VolumesApi for VolumesApiClient {
         }
     }
 
-    fn detach_volume(&self, id: &str) -> Result<crate::models::DetachVolumeResponse, Error<DetachVolumeError>> {
+    fn detach_volume(&self, params: DetachVolumeParams) -> Result<crate::models::DetachVolumeResponse, Error<DetachVolumeError>> {
+        // unbox the parameters
+        let id = params.id;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -272,7 +381,11 @@ impl VolumesApi for VolumesApiClient {
         }
     }
 
-    fn get_action_for_volume(&self, id: &str, action_id: &str) -> Result<crate::models::GetActionForVolumeResponse, Error<GetActionForVolumeError>> {
+    fn get_action_for_volume(&self, params: GetActionForVolumeParams) -> Result<crate::models::GetActionForVolumeResponse, Error<GetActionForVolumeError>> {
+        // unbox the parameters
+        let id = params.id;
+        let action_id = params.action_id;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -301,7 +414,10 @@ impl VolumesApi for VolumesApiClient {
         }
     }
 
-    fn get_volume(&self, id: &str) -> Result<crate::models::GetVolumeResponse, Error<GetVolumeError>> {
+    fn get_volume(&self, params: GetVolumeParams) -> Result<crate::models::GetVolumeResponse, Error<GetVolumeError>> {
+        // unbox the parameters
+        let id = params.id;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -330,7 +446,12 @@ impl VolumesApi for VolumesApiClient {
         }
     }
 
-    fn list_actions_for_volume(&self, id: &str, status: Option<&str>, sort: Option<&str>) -> Result<crate::models::ListActionsForVolumeResponse, Error<ListActionsForVolumeError>> {
+    fn list_actions_for_volume(&self, params: ListActionsForVolumeParams) -> Result<crate::models::ListActionsForVolumeResponse, Error<ListActionsForVolumeError>> {
+        // unbox the parameters
+        let id = params.id;
+        let status = params.status;
+        let sort = params.sort;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -365,7 +486,13 @@ impl VolumesApi for VolumesApiClient {
         }
     }
 
-    fn list_volumes(&self, status: Option<&str>, sort: Option<&str>, name: Option<&str>, label_selector: Option<&str>) -> Result<crate::models::ListVolumesResponse, Error<ListVolumesError>> {
+    fn list_volumes(&self, params: ListVolumesParams) -> Result<crate::models::ListVolumesResponse, Error<ListVolumesError>> {
+        // unbox the parameters
+        let status = params.status;
+        let sort = params.sort;
+        let name = params.name;
+        let label_selector = params.label_selector;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -406,7 +533,11 @@ impl VolumesApi for VolumesApiClient {
         }
     }
 
-    fn replace_volume(&self, id: &str, replace_volume_request: Option<crate::models::ReplaceVolumeRequest>) -> Result<crate::models::ReplaceVolumeResponse, Error<ReplaceVolumeError>> {
+    fn replace_volume(&self, params: ReplaceVolumeParams) -> Result<crate::models::ReplaceVolumeResponse, Error<ReplaceVolumeError>> {
+        // unbox the parameters
+        let id = params.id;
+        let replace_volume_request = params.replace_volume_request;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -436,7 +567,11 @@ impl VolumesApi for VolumesApiClient {
         }
     }
 
-    fn resize_volume(&self, id: &str, resize_volume_request: Option<crate::models::ResizeVolumeRequest>) -> Result<crate::models::ResizeVolumeResponse, Error<ResizeVolumeError>> {
+    fn resize_volume(&self, params: ResizeVolumeParams) -> Result<crate::models::ResizeVolumeResponse, Error<ResizeVolumeError>> {
+        // unbox the parameters
+        let id = params.id;
+        let resize_volume_request = params.resize_volume_request;
+
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 

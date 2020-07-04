@@ -19,7 +19,7 @@ fn main() -> Result<(), String> {
     // query server types API for a list of all server types
     let server_types = api_client
         .server_types_api()
-        .list_server_types(None)
+        .list_server_types(Default::default())
         .map_err(|err| format!("API call to list_server_types failed: {:?}", err))?
         .server_types;
 
