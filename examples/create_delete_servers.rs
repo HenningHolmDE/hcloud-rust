@@ -1,8 +1,5 @@
-use hcloud::apis::client::APIClient;
 use hcloud::apis::configuration::Configuration;
-use hcloud::apis::servers_api::{
-    CreateServerParams, DeleteServerParams, ListActionsForServerParams,
-};
+use hcloud::apis::{servers_api, ssh_keys_api};
 use hcloud::models;
 use rand::{distributions, thread_rng, Rng};
 use std::{env, thread, time};
@@ -22,7 +19,8 @@ struct ServerInfo {
     ipv4: String,
 }
 
-fn main() -> Result<(), String> {
+#[tokio::main]
+async fn main() -> Result<(), String> {
     // use API token from command line
     let api_token = env::args()
         .nth(1)
@@ -32,13 +30,9 @@ fn main() -> Result<(), String> {
     let mut configuration = Configuration::new();
     configuration.bearer_access_token = Some(api_token);
 
-    // create API client handle from configuration
-    let api_client = APIClient::new(configuration);
-
     // collect all available SSH keys to be added to the server
-    let ssh_keys: Vec<String> = api_client
-        .ssh_keys_api()
-        .list_ssh_keys(Default::default())
+    let ssh_keys: Vec<String> = ssh_keys_api::list_ssh_keys(&configuration, Default::default())
+        .await
         .map_err(|err| format!("API call to list_ssh_keys failed: {:?}", err))?
         .ssh_keys
         .into_iter()
@@ -76,18 +70,18 @@ fn main() -> Result<(), String> {
         };
 
         // execute request and store server ID
-        let params = CreateServerParams {
+        let params = servers_api::CreateServerParams {
             create_server_request: Some(request),
         };
-        let response = api_client
-            .servers_api()
-            .create_server(params)
-            .map_err(|err| format!("API call to create_server failed: {:?}", err))?;
+        let server = servers_api::create_server(&configuration, params)
+            .await
+            .map_err(|err| format!("API call to create_server failed: {:?}", err))?
+            .server;
 
         created_servers.push(ServerInfo {
-            id: response.server.id,
-            name: response.server.name,
-            ipv4: response.server.public_net.ipv4.ip,
+            id: server.id,
+            name: server.name,
+            ipv4: server.public_net.ipv4.ip,
         });
     }
     println!();
@@ -104,15 +98,15 @@ fn main() -> Result<(), String> {
     loop {
         let mut any_running = false;
         for server_info in &created_servers {
-            let params = ListActionsForServerParams {
+            let params = servers_api::ListActionsForServerParams {
                 id: server_info.id.to_string(),
                 ..Default::default()
             };
-            let actions = api_client
-                .servers_api()
-                .list_actions_for_server(params)
+            let actions = servers_api::list_actions_for_server(&configuration, params)
+                .await
                 .map_err(|err| format!("API call to list_actions_for_server failed: {:?}", err))?
                 .actions;
+
             println!(" Actions for server {}:", server_info.name);
             for action in actions {
                 println!(
@@ -138,12 +132,11 @@ fn main() -> Result<(), String> {
     println!("Deleting servers...");
     for server_info in &created_servers {
         println!(" Deleting server {}...", server_info.name);
-        let params = DeleteServerParams {
+        let params = servers_api::DeleteServerParams {
             id: server_info.id.to_string(),
         };
-        api_client
-            .servers_api()
-            .delete_server(params)
+        servers_api::delete_server(&configuration, params)
+            .await
             .map_err(|err| format!("API call to delete_server failed: {:?}", err))?;
     }
     println!("The servers should be deleted now!");

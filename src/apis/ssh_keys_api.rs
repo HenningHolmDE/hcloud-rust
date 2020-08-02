@@ -10,25 +10,13 @@
 
 #[allow(unused_imports)]
 use std::rc::Rc;
-use std::borrow::Borrow;
+
 use std::option::Option;
 
 use reqwest;
 
 use crate::apis::ResponseContent;
 use super::{Error, configuration};
-
-pub struct SshKeysApiClient {
-    configuration: Rc<configuration::Configuration>,
-}
-
-impl SshKeysApiClient {
-    pub fn new(configuration: Rc<configuration::Configuration>) -> SshKeysApiClient {
-        SshKeysApiClient {
-            configuration,
-        }
-    }
-}
 
 /// struct for passing parameters to the method `create_ssh_key`
 #[derive(Clone, Debug, Default)]
@@ -108,20 +96,10 @@ pub enum ReplaceSshKeyError {
 }
 
 
-pub trait SshKeysApi {
-    fn create_ssh_key(&self, params: CreateSshKeyParams) -> Result<crate::models::CreateSshKeyResponse, Error<CreateSshKeyError>>;
-    fn delete_ssh_key(&self, params: DeleteSshKeyParams) -> Result<(), Error<DeleteSshKeyError>>;
-    fn get_ssh_key(&self, params: GetSshKeyParams) -> Result<crate::models::GetSshKeyResponse, Error<GetSshKeyError>>;
-    fn list_ssh_keys(&self, params: ListSshKeysParams) -> Result<crate::models::ListSshKeysResponse, Error<ListSshKeysError>>;
-    fn replace_ssh_key(&self, params: ReplaceSshKeyParams) -> Result<crate::models::ReplaceSshKeyResponse, Error<ReplaceSshKeyError>>;
-}
-
-impl SshKeysApi for SshKeysApiClient {
-    fn create_ssh_key(&self, params: CreateSshKeyParams) -> Result<crate::models::CreateSshKeyResponse, Error<CreateSshKeyError>> {
+    pub async fn create_ssh_key(configuration: &configuration::Configuration, params: CreateSshKeyParams) -> Result<crate::models::CreateSshKeyResponse, Error<CreateSshKeyError>> {
         // unbox the parameters
         let create_ssh_key_request = params.create_ssh_key_request;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/ssh_keys", configuration.base_path);
@@ -136,10 +114,10 @@ impl SshKeysApi for SshKeysApiClient {
         req_builder = req_builder.json(&create_ssh_key_request);
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -150,11 +128,10 @@ impl SshKeysApi for SshKeysApiClient {
         }
     }
 
-    fn delete_ssh_key(&self, params: DeleteSshKeyParams) -> Result<(), Error<DeleteSshKeyError>> {
+    pub async fn delete_ssh_key(configuration: &configuration::Configuration, params: DeleteSshKeyParams) -> Result<(), Error<DeleteSshKeyError>> {
         // unbox the parameters
         let id = params.id;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/ssh_keys/{id}", configuration.base_path, id=crate::apis::urlencode(id));
@@ -168,10 +145,10 @@ impl SshKeysApi for SshKeysApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             Ok(())
@@ -182,11 +159,10 @@ impl SshKeysApi for SshKeysApiClient {
         }
     }
 
-    fn get_ssh_key(&self, params: GetSshKeyParams) -> Result<crate::models::GetSshKeyResponse, Error<GetSshKeyError>> {
+    pub async fn get_ssh_key(configuration: &configuration::Configuration, params: GetSshKeyParams) -> Result<crate::models::GetSshKeyResponse, Error<GetSshKeyError>> {
         // unbox the parameters
         let id = params.id;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/ssh_keys/{id}", configuration.base_path, id=crate::apis::urlencode(id));
@@ -200,10 +176,10 @@ impl SshKeysApi for SshKeysApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -214,14 +190,13 @@ impl SshKeysApi for SshKeysApiClient {
         }
     }
 
-    fn list_ssh_keys(&self, params: ListSshKeysParams) -> Result<crate::models::ListSshKeysResponse, Error<ListSshKeysError>> {
+    pub async fn list_ssh_keys(configuration: &configuration::Configuration, params: ListSshKeysParams) -> Result<crate::models::ListSshKeysResponse, Error<ListSshKeysError>> {
         // unbox the parameters
         let sort = params.sort;
         let name = params.name;
         let fingerprint = params.fingerprint;
         let label_selector = params.label_selector;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/ssh_keys", configuration.base_path);
@@ -247,10 +222,10 @@ impl SshKeysApi for SshKeysApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -261,12 +236,11 @@ impl SshKeysApi for SshKeysApiClient {
         }
     }
 
-    fn replace_ssh_key(&self, params: ReplaceSshKeyParams) -> Result<crate::models::ReplaceSshKeyResponse, Error<ReplaceSshKeyError>> {
+    pub async fn replace_ssh_key(configuration: &configuration::Configuration, params: ReplaceSshKeyParams) -> Result<crate::models::ReplaceSshKeyResponse, Error<ReplaceSshKeyError>> {
         // unbox the parameters
         let id = params.id;
         let replace_ssh_key_request = params.replace_ssh_key_request;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/ssh_keys/{id}", configuration.base_path, id=crate::apis::urlencode(id));
@@ -281,10 +255,10 @@ impl SshKeysApi for SshKeysApiClient {
         req_builder = req_builder.json(&replace_ssh_key_request);
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -295,4 +269,3 @@ impl SshKeysApi for SshKeysApiClient {
         }
     }
 
-}

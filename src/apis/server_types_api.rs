@@ -10,25 +10,13 @@
 
 #[allow(unused_imports)]
 use std::rc::Rc;
-use std::borrow::Borrow;
+
 use std::option::Option;
 
 use reqwest;
 
 use crate::apis::ResponseContent;
 use super::{Error, configuration};
-
-pub struct ServerTypesApiClient {
-    configuration: Rc<configuration::Configuration>,
-}
-
-impl ServerTypesApiClient {
-    pub fn new(configuration: Rc<configuration::Configuration>) -> ServerTypesApiClient {
-        ServerTypesApiClient {
-            configuration,
-        }
-    }
-}
 
 /// struct for passing parameters to the method `get_server_type`
 #[derive(Clone, Debug, Default)]
@@ -60,17 +48,10 @@ pub enum ListServerTypesError {
 }
 
 
-pub trait ServerTypesApi {
-    fn get_server_type(&self, params: GetServerTypeParams) -> Result<crate::models::GetServerTypeResponse, Error<GetServerTypeError>>;
-    fn list_server_types(&self, params: ListServerTypesParams) -> Result<crate::models::ListServerTypesResponse, Error<ListServerTypesError>>;
-}
-
-impl ServerTypesApi for ServerTypesApiClient {
-    fn get_server_type(&self, params: GetServerTypeParams) -> Result<crate::models::GetServerTypeResponse, Error<GetServerTypeError>> {
+    pub async fn get_server_type(configuration: &configuration::Configuration, params: GetServerTypeParams) -> Result<crate::models::GetServerTypeResponse, Error<GetServerTypeError>> {
         // unbox the parameters
         let id = params.id;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/server_types/{id}", configuration.base_path, id=crate::apis::urlencode(id));
@@ -84,10 +65,10 @@ impl ServerTypesApi for ServerTypesApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -98,11 +79,10 @@ impl ServerTypesApi for ServerTypesApiClient {
         }
     }
 
-    fn list_server_types(&self, params: ListServerTypesParams) -> Result<crate::models::ListServerTypesResponse, Error<ListServerTypesError>> {
+    pub async fn list_server_types(configuration: &configuration::Configuration, params: ListServerTypesParams) -> Result<crate::models::ListServerTypesResponse, Error<ListServerTypesError>> {
         // unbox the parameters
         let name = params.name;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/server_types", configuration.base_path);
@@ -119,10 +99,10 @@ impl ServerTypesApi for ServerTypesApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -133,4 +113,3 @@ impl ServerTypesApi for ServerTypesApiClient {
         }
     }
 
-}

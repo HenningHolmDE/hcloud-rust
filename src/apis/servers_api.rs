@@ -10,25 +10,13 @@
 
 #[allow(unused_imports)]
 use std::rc::Rc;
-use std::borrow::Borrow;
+
 use std::option::Option;
 
 use reqwest;
 
 use crate::apis::ResponseContent;
 use super::{Error, configuration};
-
-pub struct ServersApiClient {
-    configuration: Rc<configuration::Configuration>,
-}
-
-impl ServersApiClient {
-    pub fn new(configuration: Rc<configuration::Configuration>) -> ServersApiClient {
-        ServersApiClient {
-            configuration,
-        }
-    }
-}
 
 /// struct for passing parameters to the method `attach_iso_to_server`
 #[derive(Clone, Debug, Default)]
@@ -468,45 +456,11 @@ pub enum SoftRebootServerError {
 }
 
 
-pub trait ServersApi {
-    fn attach_iso_to_server(&self, params: AttachIsoToServerParams) -> Result<crate::models::AttachIsoToServerResponse, Error<AttachIsoToServerError>>;
-    fn attach_server_to_network(&self, params: AttachServerToNetworkParams) -> Result<crate::models::AttachServerToNetworkResponse, Error<AttachServerToNetworkError>>;
-    fn change_alias_ips_of_network(&self, params: ChangeAliasIpsOfNetworkParams) -> Result<crate::models::ChangeAliasIpsOfNetworkResponse, Error<ChangeAliasIpsOfNetworkError>>;
-    fn change_reverse_dns_entry_for_this_server(&self, params: ChangeReverseDnsEntryForThisServerParams) -> Result<crate::models::ChangeReverseDnsEntryForThisServerResponse, Error<ChangeReverseDnsEntryForThisServerError>>;
-    fn change_server_protection(&self, params: ChangeServerProtectionParams) -> Result<crate::models::ChangeServerProtectionResponse, Error<ChangeServerProtectionError>>;
-    fn change_type_of_server(&self, params: ChangeTypeOfServerParams) -> Result<crate::models::ChangeTypeOfServerResponse, Error<ChangeTypeOfServerError>>;
-    fn create_image_from_server(&self, params: CreateImageFromServerParams) -> Result<crate::models::CreateImageFromServerResponse, Error<CreateImageFromServerError>>;
-    fn create_server(&self, params: CreateServerParams) -> Result<crate::models::CreateServerResponse, Error<CreateServerError>>;
-    fn delete_server(&self, params: DeleteServerParams) -> Result<crate::models::DeleteServerResponse, Error<DeleteServerError>>;
-    fn detach_iso_from_server(&self, params: DetachIsoFromServerParams) -> Result<crate::models::DetachIsoFromServerResponse, Error<DetachIsoFromServerError>>;
-    fn detach_server_from_network(&self, params: DetachServerFromNetworkParams) -> Result<crate::models::DetachServerFromNetworkResponse, Error<DetachServerFromNetworkError>>;
-    fn disable_backups_for_server(&self, params: DisableBackupsForServerParams) -> Result<crate::models::DisableBackupsForServerResponse, Error<DisableBackupsForServerError>>;
-    fn disable_rescue_mode_for_server(&self, params: DisableRescueModeForServerParams) -> Result<crate::models::DisableRescueModeForServerResponse, Error<DisableRescueModeForServerError>>;
-    fn enable_and_configure_backups_for_server(&self, params: EnableAndConfigureBackupsForServerParams) -> Result<crate::models::EnableAndConfigureBackupsForServerResponse, Error<EnableAndConfigureBackupsForServerError>>;
-    fn enable_rescue_mode_for_server(&self, params: EnableRescueModeForServerParams) -> Result<crate::models::EnableRescueModeForServerResponse, Error<EnableRescueModeForServerError>>;
-    fn get_action_for_server(&self, params: GetActionForServerParams) -> Result<crate::models::GetActionForServerResponse, Error<GetActionForServerError>>;
-    fn get_metrics_for_server(&self, params: GetMetricsForServerParams) -> Result<crate::models::GetMetricsForServerResponse, Error<GetMetricsForServerError>>;
-    fn get_server(&self, params: GetServerParams) -> Result<crate::models::GetServerResponse, Error<GetServerError>>;
-    fn list_actions_for_server(&self, params: ListActionsForServerParams) -> Result<crate::models::ListActionsForServerResponse, Error<ListActionsForServerError>>;
-    fn list_servers(&self, params: ListServersParams) -> Result<crate::models::ListServersResponse, Error<ListServersError>>;
-    fn power_off_server(&self, params: PowerOffServerParams) -> Result<crate::models::PowerOffServerResponse, Error<PowerOffServerError>>;
-    fn power_on_server(&self, params: PowerOnServerParams) -> Result<crate::models::PowerOnServerResponse, Error<PowerOnServerError>>;
-    fn rebuild_server_from_image(&self, params: RebuildServerFromImageParams) -> Result<crate::models::RebuildServerFromImageResponse, Error<RebuildServerFromImageError>>;
-    fn replace_server(&self, params: ReplaceServerParams) -> Result<crate::models::ReplaceServerResponse, Error<ReplaceServerError>>;
-    fn request_console_for_server(&self, params: RequestConsoleForServerParams) -> Result<crate::models::RequestConsoleForServerResponse, Error<RequestConsoleForServerError>>;
-    fn reset_root_password_of_server(&self, params: ResetRootPasswordOfServerParams) -> Result<crate::models::ResetRootPasswordOfServerResponse, Error<ResetRootPasswordOfServerError>>;
-    fn reset_server(&self, params: ResetServerParams) -> Result<crate::models::ResetServerResponse, Error<ResetServerError>>;
-    fn shutdown_server(&self, params: ShutdownServerParams) -> Result<crate::models::ShutdownServerResponse, Error<ShutdownServerError>>;
-    fn soft_reboot_server(&self, params: SoftRebootServerParams) -> Result<crate::models::SoftRebootServerResponse, Error<SoftRebootServerError>>;
-}
-
-impl ServersApi for ServersApiClient {
-    fn attach_iso_to_server(&self, params: AttachIsoToServerParams) -> Result<crate::models::AttachIsoToServerResponse, Error<AttachIsoToServerError>> {
+    pub async fn attach_iso_to_server(configuration: &configuration::Configuration, params: AttachIsoToServerParams) -> Result<crate::models::AttachIsoToServerResponse, Error<AttachIsoToServerError>> {
         // unbox the parameters
         let id = params.id;
         let attach_iso_to_server_request = params.attach_iso_to_server_request;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/servers/{id}/actions/attach_iso", configuration.base_path, id=crate::apis::urlencode(id));
@@ -521,10 +475,10 @@ impl ServersApi for ServersApiClient {
         req_builder = req_builder.json(&attach_iso_to_server_request);
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -535,12 +489,11 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn attach_server_to_network(&self, params: AttachServerToNetworkParams) -> Result<crate::models::AttachServerToNetworkResponse, Error<AttachServerToNetworkError>> {
+    pub async fn attach_server_to_network(configuration: &configuration::Configuration, params: AttachServerToNetworkParams) -> Result<crate::models::AttachServerToNetworkResponse, Error<AttachServerToNetworkError>> {
         // unbox the parameters
         let id = params.id;
         let attach_server_to_network_request = params.attach_server_to_network_request;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/servers/{id}/actions/attach_to_network", configuration.base_path, id=crate::apis::urlencode(id));
@@ -555,10 +508,10 @@ impl ServersApi for ServersApiClient {
         req_builder = req_builder.json(&attach_server_to_network_request);
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -569,12 +522,11 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn change_alias_ips_of_network(&self, params: ChangeAliasIpsOfNetworkParams) -> Result<crate::models::ChangeAliasIpsOfNetworkResponse, Error<ChangeAliasIpsOfNetworkError>> {
+    pub async fn change_alias_ips_of_network(configuration: &configuration::Configuration, params: ChangeAliasIpsOfNetworkParams) -> Result<crate::models::ChangeAliasIpsOfNetworkResponse, Error<ChangeAliasIpsOfNetworkError>> {
         // unbox the parameters
         let id = params.id;
         let change_alias_ips_of_network_request = params.change_alias_ips_of_network_request;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/servers/{id}/actions/change_alias_ips", configuration.base_path, id=crate::apis::urlencode(id));
@@ -589,10 +541,10 @@ impl ServersApi for ServersApiClient {
         req_builder = req_builder.json(&change_alias_ips_of_network_request);
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -603,12 +555,11 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn change_reverse_dns_entry_for_this_server(&self, params: ChangeReverseDnsEntryForThisServerParams) -> Result<crate::models::ChangeReverseDnsEntryForThisServerResponse, Error<ChangeReverseDnsEntryForThisServerError>> {
+    pub async fn change_reverse_dns_entry_for_this_server(configuration: &configuration::Configuration, params: ChangeReverseDnsEntryForThisServerParams) -> Result<crate::models::ChangeReverseDnsEntryForThisServerResponse, Error<ChangeReverseDnsEntryForThisServerError>> {
         // unbox the parameters
         let id = params.id;
         let change_reverse_dns_entry_for_this_server_request = params.change_reverse_dns_entry_for_this_server_request;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/servers/{id}/actions/change_dns_ptr", configuration.base_path, id=crate::apis::urlencode(id));
@@ -623,10 +574,10 @@ impl ServersApi for ServersApiClient {
         req_builder = req_builder.json(&change_reverse_dns_entry_for_this_server_request);
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -637,12 +588,11 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn change_server_protection(&self, params: ChangeServerProtectionParams) -> Result<crate::models::ChangeServerProtectionResponse, Error<ChangeServerProtectionError>> {
+    pub async fn change_server_protection(configuration: &configuration::Configuration, params: ChangeServerProtectionParams) -> Result<crate::models::ChangeServerProtectionResponse, Error<ChangeServerProtectionError>> {
         // unbox the parameters
         let id = params.id;
         let change_server_protection_request = params.change_server_protection_request;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/servers/{id}/actions/change_protection", configuration.base_path, id=crate::apis::urlencode(id));
@@ -657,10 +607,10 @@ impl ServersApi for ServersApiClient {
         req_builder = req_builder.json(&change_server_protection_request);
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -671,12 +621,11 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn change_type_of_server(&self, params: ChangeTypeOfServerParams) -> Result<crate::models::ChangeTypeOfServerResponse, Error<ChangeTypeOfServerError>> {
+    pub async fn change_type_of_server(configuration: &configuration::Configuration, params: ChangeTypeOfServerParams) -> Result<crate::models::ChangeTypeOfServerResponse, Error<ChangeTypeOfServerError>> {
         // unbox the parameters
         let id = params.id;
         let change_type_of_server_request = params.change_type_of_server_request;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/servers/{id}/actions/change_type", configuration.base_path, id=crate::apis::urlencode(id));
@@ -691,10 +640,10 @@ impl ServersApi for ServersApiClient {
         req_builder = req_builder.json(&change_type_of_server_request);
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -705,12 +654,11 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn create_image_from_server(&self, params: CreateImageFromServerParams) -> Result<crate::models::CreateImageFromServerResponse, Error<CreateImageFromServerError>> {
+    pub async fn create_image_from_server(configuration: &configuration::Configuration, params: CreateImageFromServerParams) -> Result<crate::models::CreateImageFromServerResponse, Error<CreateImageFromServerError>> {
         // unbox the parameters
         let id = params.id;
         let create_image_from_server_request = params.create_image_from_server_request;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/servers/{id}/actions/create_image", configuration.base_path, id=crate::apis::urlencode(id));
@@ -725,10 +673,10 @@ impl ServersApi for ServersApiClient {
         req_builder = req_builder.json(&create_image_from_server_request);
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -739,11 +687,10 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn create_server(&self, params: CreateServerParams) -> Result<crate::models::CreateServerResponse, Error<CreateServerError>> {
+    pub async fn create_server(configuration: &configuration::Configuration, params: CreateServerParams) -> Result<crate::models::CreateServerResponse, Error<CreateServerError>> {
         // unbox the parameters
         let create_server_request = params.create_server_request;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/servers", configuration.base_path);
@@ -758,10 +705,10 @@ impl ServersApi for ServersApiClient {
         req_builder = req_builder.json(&create_server_request);
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -772,11 +719,10 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn delete_server(&self, params: DeleteServerParams) -> Result<crate::models::DeleteServerResponse, Error<DeleteServerError>> {
+    pub async fn delete_server(configuration: &configuration::Configuration, params: DeleteServerParams) -> Result<crate::models::DeleteServerResponse, Error<DeleteServerError>> {
         // unbox the parameters
         let id = params.id;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/servers/{id}", configuration.base_path, id=crate::apis::urlencode(id));
@@ -790,10 +736,10 @@ impl ServersApi for ServersApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -804,11 +750,10 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn detach_iso_from_server(&self, params: DetachIsoFromServerParams) -> Result<crate::models::DetachIsoFromServerResponse, Error<DetachIsoFromServerError>> {
+    pub async fn detach_iso_from_server(configuration: &configuration::Configuration, params: DetachIsoFromServerParams) -> Result<crate::models::DetachIsoFromServerResponse, Error<DetachIsoFromServerError>> {
         // unbox the parameters
         let id = params.id;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/servers/{id}/actions/detach_iso", configuration.base_path, id=crate::apis::urlencode(id));
@@ -822,10 +767,10 @@ impl ServersApi for ServersApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -836,12 +781,11 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn detach_server_from_network(&self, params: DetachServerFromNetworkParams) -> Result<crate::models::DetachServerFromNetworkResponse, Error<DetachServerFromNetworkError>> {
+    pub async fn detach_server_from_network(configuration: &configuration::Configuration, params: DetachServerFromNetworkParams) -> Result<crate::models::DetachServerFromNetworkResponse, Error<DetachServerFromNetworkError>> {
         // unbox the parameters
         let id = params.id;
         let detach_server_from_network_request = params.detach_server_from_network_request;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/servers/{id}/actions/detach_from_network", configuration.base_path, id=crate::apis::urlencode(id));
@@ -856,10 +800,10 @@ impl ServersApi for ServersApiClient {
         req_builder = req_builder.json(&detach_server_from_network_request);
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -870,11 +814,10 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn disable_backups_for_server(&self, params: DisableBackupsForServerParams) -> Result<crate::models::DisableBackupsForServerResponse, Error<DisableBackupsForServerError>> {
+    pub async fn disable_backups_for_server(configuration: &configuration::Configuration, params: DisableBackupsForServerParams) -> Result<crate::models::DisableBackupsForServerResponse, Error<DisableBackupsForServerError>> {
         // unbox the parameters
         let id = params.id;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/servers/{id}/actions/disable_backup", configuration.base_path, id=crate::apis::urlencode(id));
@@ -888,10 +831,10 @@ impl ServersApi for ServersApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -902,11 +845,10 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn disable_rescue_mode_for_server(&self, params: DisableRescueModeForServerParams) -> Result<crate::models::DisableRescueModeForServerResponse, Error<DisableRescueModeForServerError>> {
+    pub async fn disable_rescue_mode_for_server(configuration: &configuration::Configuration, params: DisableRescueModeForServerParams) -> Result<crate::models::DisableRescueModeForServerResponse, Error<DisableRescueModeForServerError>> {
         // unbox the parameters
         let id = params.id;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/servers/{id}/actions/disable_rescue", configuration.base_path, id=crate::apis::urlencode(id));
@@ -920,10 +862,10 @@ impl ServersApi for ServersApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -934,11 +876,10 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn enable_and_configure_backups_for_server(&self, params: EnableAndConfigureBackupsForServerParams) -> Result<crate::models::EnableAndConfigureBackupsForServerResponse, Error<EnableAndConfigureBackupsForServerError>> {
+    pub async fn enable_and_configure_backups_for_server(configuration: &configuration::Configuration, params: EnableAndConfigureBackupsForServerParams) -> Result<crate::models::EnableAndConfigureBackupsForServerResponse, Error<EnableAndConfigureBackupsForServerError>> {
         // unbox the parameters
         let id = params.id;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/servers/{id}/actions/enable_backup", configuration.base_path, id=crate::apis::urlencode(id));
@@ -952,10 +893,10 @@ impl ServersApi for ServersApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -966,12 +907,11 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn enable_rescue_mode_for_server(&self, params: EnableRescueModeForServerParams) -> Result<crate::models::EnableRescueModeForServerResponse, Error<EnableRescueModeForServerError>> {
+    pub async fn enable_rescue_mode_for_server(configuration: &configuration::Configuration, params: EnableRescueModeForServerParams) -> Result<crate::models::EnableRescueModeForServerResponse, Error<EnableRescueModeForServerError>> {
         // unbox the parameters
         let id = params.id;
         let enable_rescue_mode_for_server_request = params.enable_rescue_mode_for_server_request;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/servers/{id}/actions/enable_rescue", configuration.base_path, id=crate::apis::urlencode(id));
@@ -986,10 +926,10 @@ impl ServersApi for ServersApiClient {
         req_builder = req_builder.json(&enable_rescue_mode_for_server_request);
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -1000,12 +940,11 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn get_action_for_server(&self, params: GetActionForServerParams) -> Result<crate::models::GetActionForServerResponse, Error<GetActionForServerError>> {
+    pub async fn get_action_for_server(configuration: &configuration::Configuration, params: GetActionForServerParams) -> Result<crate::models::GetActionForServerResponse, Error<GetActionForServerError>> {
         // unbox the parameters
         let id = params.id;
         let action_id = params.action_id;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/servers/{id}/actions/{action_id}", configuration.base_path, id=crate::apis::urlencode(id), action_id=crate::apis::urlencode(action_id));
@@ -1019,10 +958,10 @@ impl ServersApi for ServersApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -1033,7 +972,7 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn get_metrics_for_server(&self, params: GetMetricsForServerParams) -> Result<crate::models::GetMetricsForServerResponse, Error<GetMetricsForServerError>> {
+    pub async fn get_metrics_for_server(configuration: &configuration::Configuration, params: GetMetricsForServerParams) -> Result<crate::models::GetMetricsForServerResponse, Error<GetMetricsForServerError>> {
         // unbox the parameters
         let id = params.id;
         let _type = params._type;
@@ -1041,7 +980,6 @@ impl ServersApi for ServersApiClient {
         let end = params.end;
         let step = params.step;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/servers/{id}/metrics", configuration.base_path, id=crate::apis::urlencode(id));
@@ -1061,10 +999,10 @@ impl ServersApi for ServersApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -1075,11 +1013,10 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn get_server(&self, params: GetServerParams) -> Result<crate::models::GetServerResponse, Error<GetServerError>> {
+    pub async fn get_server(configuration: &configuration::Configuration, params: GetServerParams) -> Result<crate::models::GetServerResponse, Error<GetServerError>> {
         // unbox the parameters
         let id = params.id;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/servers/{id}", configuration.base_path, id=crate::apis::urlencode(id));
@@ -1093,10 +1030,10 @@ impl ServersApi for ServersApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -1107,13 +1044,12 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn list_actions_for_server(&self, params: ListActionsForServerParams) -> Result<crate::models::ListActionsForServerResponse, Error<ListActionsForServerError>> {
+    pub async fn list_actions_for_server(configuration: &configuration::Configuration, params: ListActionsForServerParams) -> Result<crate::models::ListActionsForServerResponse, Error<ListActionsForServerError>> {
         // unbox the parameters
         let id = params.id;
         let status = params.status;
         let sort = params.sort;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/servers/{id}/actions", configuration.base_path, id=crate::apis::urlencode(id));
@@ -1133,10 +1069,10 @@ impl ServersApi for ServersApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -1147,14 +1083,13 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn list_servers(&self, params: ListServersParams) -> Result<crate::models::ListServersResponse, Error<ListServersError>> {
+    pub async fn list_servers(configuration: &configuration::Configuration, params: ListServersParams) -> Result<crate::models::ListServersResponse, Error<ListServersError>> {
         // unbox the parameters
         let status = params.status;
         let sort = params.sort;
         let name = params.name;
         let label_selector = params.label_selector;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/servers", configuration.base_path);
@@ -1180,10 +1115,10 @@ impl ServersApi for ServersApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -1194,11 +1129,10 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn power_off_server(&self, params: PowerOffServerParams) -> Result<crate::models::PowerOffServerResponse, Error<PowerOffServerError>> {
+    pub async fn power_off_server(configuration: &configuration::Configuration, params: PowerOffServerParams) -> Result<crate::models::PowerOffServerResponse, Error<PowerOffServerError>> {
         // unbox the parameters
         let id = params.id;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/servers/{id}/actions/poweroff", configuration.base_path, id=crate::apis::urlencode(id));
@@ -1212,10 +1146,10 @@ impl ServersApi for ServersApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -1226,11 +1160,10 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn power_on_server(&self, params: PowerOnServerParams) -> Result<crate::models::PowerOnServerResponse, Error<PowerOnServerError>> {
+    pub async fn power_on_server(configuration: &configuration::Configuration, params: PowerOnServerParams) -> Result<crate::models::PowerOnServerResponse, Error<PowerOnServerError>> {
         // unbox the parameters
         let id = params.id;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/servers/{id}/actions/poweron", configuration.base_path, id=crate::apis::urlencode(id));
@@ -1244,10 +1177,10 @@ impl ServersApi for ServersApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -1258,12 +1191,11 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn rebuild_server_from_image(&self, params: RebuildServerFromImageParams) -> Result<crate::models::RebuildServerFromImageResponse, Error<RebuildServerFromImageError>> {
+    pub async fn rebuild_server_from_image(configuration: &configuration::Configuration, params: RebuildServerFromImageParams) -> Result<crate::models::RebuildServerFromImageResponse, Error<RebuildServerFromImageError>> {
         // unbox the parameters
         let id = params.id;
         let rebuild_server_from_image_request = params.rebuild_server_from_image_request;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/servers/{id}/actions/rebuild", configuration.base_path, id=crate::apis::urlencode(id));
@@ -1278,10 +1210,10 @@ impl ServersApi for ServersApiClient {
         req_builder = req_builder.json(&rebuild_server_from_image_request);
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -1292,12 +1224,11 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn replace_server(&self, params: ReplaceServerParams) -> Result<crate::models::ReplaceServerResponse, Error<ReplaceServerError>> {
+    pub async fn replace_server(configuration: &configuration::Configuration, params: ReplaceServerParams) -> Result<crate::models::ReplaceServerResponse, Error<ReplaceServerError>> {
         // unbox the parameters
         let id = params.id;
         let replace_server_request = params.replace_server_request;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/servers/{id}", configuration.base_path, id=crate::apis::urlencode(id));
@@ -1312,10 +1243,10 @@ impl ServersApi for ServersApiClient {
         req_builder = req_builder.json(&replace_server_request);
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -1326,11 +1257,10 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn request_console_for_server(&self, params: RequestConsoleForServerParams) -> Result<crate::models::RequestConsoleForServerResponse, Error<RequestConsoleForServerError>> {
+    pub async fn request_console_for_server(configuration: &configuration::Configuration, params: RequestConsoleForServerParams) -> Result<crate::models::RequestConsoleForServerResponse, Error<RequestConsoleForServerError>> {
         // unbox the parameters
         let id = params.id;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/servers/{id}/actions/request_console", configuration.base_path, id=crate::apis::urlencode(id));
@@ -1344,10 +1274,10 @@ impl ServersApi for ServersApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -1358,11 +1288,10 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn reset_root_password_of_server(&self, params: ResetRootPasswordOfServerParams) -> Result<crate::models::ResetRootPasswordOfServerResponse, Error<ResetRootPasswordOfServerError>> {
+    pub async fn reset_root_password_of_server(configuration: &configuration::Configuration, params: ResetRootPasswordOfServerParams) -> Result<crate::models::ResetRootPasswordOfServerResponse, Error<ResetRootPasswordOfServerError>> {
         // unbox the parameters
         let id = params.id;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/servers/{id}/actions/reset_password", configuration.base_path, id=crate::apis::urlencode(id));
@@ -1376,10 +1305,10 @@ impl ServersApi for ServersApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -1390,11 +1319,10 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn reset_server(&self, params: ResetServerParams) -> Result<crate::models::ResetServerResponse, Error<ResetServerError>> {
+    pub async fn reset_server(configuration: &configuration::Configuration, params: ResetServerParams) -> Result<crate::models::ResetServerResponse, Error<ResetServerError>> {
         // unbox the parameters
         let id = params.id;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/servers/{id}/actions/reset", configuration.base_path, id=crate::apis::urlencode(id));
@@ -1408,10 +1336,10 @@ impl ServersApi for ServersApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -1422,11 +1350,10 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn shutdown_server(&self, params: ShutdownServerParams) -> Result<crate::models::ShutdownServerResponse, Error<ShutdownServerError>> {
+    pub async fn shutdown_server(configuration: &configuration::Configuration, params: ShutdownServerParams) -> Result<crate::models::ShutdownServerResponse, Error<ShutdownServerError>> {
         // unbox the parameters
         let id = params.id;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/servers/{id}/actions/shutdown", configuration.base_path, id=crate::apis::urlencode(id));
@@ -1440,10 +1367,10 @@ impl ServersApi for ServersApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -1454,11 +1381,10 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-    fn soft_reboot_server(&self, params: SoftRebootServerParams) -> Result<crate::models::SoftRebootServerResponse, Error<SoftRebootServerError>> {
+    pub async fn soft_reboot_server(configuration: &configuration::Configuration, params: SoftRebootServerParams) -> Result<crate::models::SoftRebootServerResponse, Error<SoftRebootServerError>> {
         // unbox the parameters
         let id = params.id;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/servers/{id}/actions/reboot", configuration.base_path, id=crate::apis::urlencode(id));
@@ -1472,10 +1398,10 @@ impl ServersApi for ServersApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -1486,4 +1412,3 @@ impl ServersApi for ServersApiClient {
         }
     }
 
-}

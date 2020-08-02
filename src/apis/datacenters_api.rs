@@ -10,25 +10,13 @@
 
 #[allow(unused_imports)]
 use std::rc::Rc;
-use std::borrow::Borrow;
+
 use std::option::Option;
 
 use reqwest;
 
 use crate::apis::ResponseContent;
 use super::{Error, configuration};
-
-pub struct DatacentersApiClient {
-    configuration: Rc<configuration::Configuration>,
-}
-
-impl DatacentersApiClient {
-    pub fn new(configuration: Rc<configuration::Configuration>) -> DatacentersApiClient {
-        DatacentersApiClient {
-            configuration,
-        }
-    }
-}
 
 /// struct for passing parameters to the method `get_datacenter`
 #[derive(Clone, Debug, Default)]
@@ -60,17 +48,10 @@ pub enum ListDatacentersError {
 }
 
 
-pub trait DatacentersApi {
-    fn get_datacenter(&self, params: GetDatacenterParams) -> Result<crate::models::GetDatacenterResponse, Error<GetDatacenterError>>;
-    fn list_datacenters(&self, params: ListDatacentersParams) -> Result<crate::models::ListDatacentersResponse, Error<ListDatacentersError>>;
-}
-
-impl DatacentersApi for DatacentersApiClient {
-    fn get_datacenter(&self, params: GetDatacenterParams) -> Result<crate::models::GetDatacenterResponse, Error<GetDatacenterError>> {
+    pub async fn get_datacenter(configuration: &configuration::Configuration, params: GetDatacenterParams) -> Result<crate::models::GetDatacenterResponse, Error<GetDatacenterError>> {
         // unbox the parameters
         let id = params.id;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/datacenters/{id}", configuration.base_path, id=crate::apis::urlencode(id));
@@ -84,10 +65,10 @@ impl DatacentersApi for DatacentersApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -98,11 +79,10 @@ impl DatacentersApi for DatacentersApiClient {
         }
     }
 
-    fn list_datacenters(&self, params: ListDatacentersParams) -> Result<crate::models::ListDatacentersResponse, Error<ListDatacentersError>> {
+    pub async fn list_datacenters(configuration: &configuration::Configuration, params: ListDatacentersParams) -> Result<crate::models::ListDatacentersResponse, Error<ListDatacentersError>> {
         // unbox the parameters
         let name = params.name;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/datacenters", configuration.base_path);
@@ -119,10 +99,10 @@ impl DatacentersApi for DatacentersApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -133,4 +113,3 @@ impl DatacentersApi for DatacentersApiClient {
         }
     }
 
-}

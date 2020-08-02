@@ -10,25 +10,13 @@
 
 #[allow(unused_imports)]
 use std::rc::Rc;
-use std::borrow::Borrow;
+
 use std::option::Option;
 
 use reqwest;
 
 use crate::apis::ResponseContent;
 use super::{Error, configuration};
-
-pub struct VolumesApiClient {
-    configuration: Rc<configuration::Configuration>,
-}
-
-impl VolumesApiClient {
-    pub fn new(configuration: Rc<configuration::Configuration>) -> VolumesApiClient {
-        VolumesApiClient {
-            configuration,
-        }
-    }
-}
 
 /// struct for passing parameters to the method `attach_volume_to_server`
 #[derive(Clone, Debug, Default)]
@@ -201,27 +189,11 @@ pub enum ResizeVolumeError {
 }
 
 
-pub trait VolumesApi {
-    fn attach_volume_to_server(&self, params: AttachVolumeToServerParams) -> Result<crate::models::AttachVolumeToServerResponse, Error<AttachVolumeToServerError>>;
-    fn change_volume_protection(&self, params: ChangeVolumeProtectionParams) -> Result<crate::models::ChangeVolumeProtectionResponse, Error<ChangeVolumeProtectionError>>;
-    fn create_volume(&self, params: CreateVolumeParams) -> Result<crate::models::CreateVolumeResponse, Error<CreateVolumeError>>;
-    fn delete_volume(&self, params: DeleteVolumeParams) -> Result<(), Error<DeleteVolumeError>>;
-    fn detach_volume(&self, params: DetachVolumeParams) -> Result<crate::models::DetachVolumeResponse, Error<DetachVolumeError>>;
-    fn get_action_for_volume(&self, params: GetActionForVolumeParams) -> Result<crate::models::GetActionForVolumeResponse, Error<GetActionForVolumeError>>;
-    fn get_volume(&self, params: GetVolumeParams) -> Result<crate::models::GetVolumeResponse, Error<GetVolumeError>>;
-    fn list_actions_for_volume(&self, params: ListActionsForVolumeParams) -> Result<crate::models::ListActionsForVolumeResponse, Error<ListActionsForVolumeError>>;
-    fn list_volumes(&self, params: ListVolumesParams) -> Result<crate::models::ListVolumesResponse, Error<ListVolumesError>>;
-    fn replace_volume(&self, params: ReplaceVolumeParams) -> Result<crate::models::ReplaceVolumeResponse, Error<ReplaceVolumeError>>;
-    fn resize_volume(&self, params: ResizeVolumeParams) -> Result<crate::models::ResizeVolumeResponse, Error<ResizeVolumeError>>;
-}
-
-impl VolumesApi for VolumesApiClient {
-    fn attach_volume_to_server(&self, params: AttachVolumeToServerParams) -> Result<crate::models::AttachVolumeToServerResponse, Error<AttachVolumeToServerError>> {
+    pub async fn attach_volume_to_server(configuration: &configuration::Configuration, params: AttachVolumeToServerParams) -> Result<crate::models::AttachVolumeToServerResponse, Error<AttachVolumeToServerError>> {
         // unbox the parameters
         let id = params.id;
         let attach_volume_to_server_request = params.attach_volume_to_server_request;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/volumes/{id}/actions/attach", configuration.base_path, id=crate::apis::urlencode(id));
@@ -236,10 +208,10 @@ impl VolumesApi for VolumesApiClient {
         req_builder = req_builder.json(&attach_volume_to_server_request);
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -250,12 +222,11 @@ impl VolumesApi for VolumesApiClient {
         }
     }
 
-    fn change_volume_protection(&self, params: ChangeVolumeProtectionParams) -> Result<crate::models::ChangeVolumeProtectionResponse, Error<ChangeVolumeProtectionError>> {
+    pub async fn change_volume_protection(configuration: &configuration::Configuration, params: ChangeVolumeProtectionParams) -> Result<crate::models::ChangeVolumeProtectionResponse, Error<ChangeVolumeProtectionError>> {
         // unbox the parameters
         let id = params.id;
         let change_volume_protection_request = params.change_volume_protection_request;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/volumes/{id}/actions/change_protection", configuration.base_path, id=crate::apis::urlencode(id));
@@ -270,10 +241,10 @@ impl VolumesApi for VolumesApiClient {
         req_builder = req_builder.json(&change_volume_protection_request);
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -284,11 +255,10 @@ impl VolumesApi for VolumesApiClient {
         }
     }
 
-    fn create_volume(&self, params: CreateVolumeParams) -> Result<crate::models::CreateVolumeResponse, Error<CreateVolumeError>> {
+    pub async fn create_volume(configuration: &configuration::Configuration, params: CreateVolumeParams) -> Result<crate::models::CreateVolumeResponse, Error<CreateVolumeError>> {
         // unbox the parameters
         let create_volume_request = params.create_volume_request;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/volumes", configuration.base_path);
@@ -303,10 +273,10 @@ impl VolumesApi for VolumesApiClient {
         req_builder = req_builder.json(&create_volume_request);
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -317,11 +287,10 @@ impl VolumesApi for VolumesApiClient {
         }
     }
 
-    fn delete_volume(&self, params: DeleteVolumeParams) -> Result<(), Error<DeleteVolumeError>> {
+    pub async fn delete_volume(configuration: &configuration::Configuration, params: DeleteVolumeParams) -> Result<(), Error<DeleteVolumeError>> {
         // unbox the parameters
         let id = params.id;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/volumes/{id}", configuration.base_path, id=crate::apis::urlencode(id));
@@ -335,10 +304,10 @@ impl VolumesApi for VolumesApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             Ok(())
@@ -349,11 +318,10 @@ impl VolumesApi for VolumesApiClient {
         }
     }
 
-    fn detach_volume(&self, params: DetachVolumeParams) -> Result<crate::models::DetachVolumeResponse, Error<DetachVolumeError>> {
+    pub async fn detach_volume(configuration: &configuration::Configuration, params: DetachVolumeParams) -> Result<crate::models::DetachVolumeResponse, Error<DetachVolumeError>> {
         // unbox the parameters
         let id = params.id;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/volumes/{id}/actions/detach", configuration.base_path, id=crate::apis::urlencode(id));
@@ -367,10 +335,10 @@ impl VolumesApi for VolumesApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -381,12 +349,11 @@ impl VolumesApi for VolumesApiClient {
         }
     }
 
-    fn get_action_for_volume(&self, params: GetActionForVolumeParams) -> Result<crate::models::GetActionForVolumeResponse, Error<GetActionForVolumeError>> {
+    pub async fn get_action_for_volume(configuration: &configuration::Configuration, params: GetActionForVolumeParams) -> Result<crate::models::GetActionForVolumeResponse, Error<GetActionForVolumeError>> {
         // unbox the parameters
         let id = params.id;
         let action_id = params.action_id;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/volumes/{id}/actions/{action_id}", configuration.base_path, id=crate::apis::urlencode(id), action_id=crate::apis::urlencode(action_id));
@@ -400,10 +367,10 @@ impl VolumesApi for VolumesApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -414,11 +381,10 @@ impl VolumesApi for VolumesApiClient {
         }
     }
 
-    fn get_volume(&self, params: GetVolumeParams) -> Result<crate::models::GetVolumeResponse, Error<GetVolumeError>> {
+    pub async fn get_volume(configuration: &configuration::Configuration, params: GetVolumeParams) -> Result<crate::models::GetVolumeResponse, Error<GetVolumeError>> {
         // unbox the parameters
         let id = params.id;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/volumes/{id}", configuration.base_path, id=crate::apis::urlencode(id));
@@ -432,10 +398,10 @@ impl VolumesApi for VolumesApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -446,13 +412,12 @@ impl VolumesApi for VolumesApiClient {
         }
     }
 
-    fn list_actions_for_volume(&self, params: ListActionsForVolumeParams) -> Result<crate::models::ListActionsForVolumeResponse, Error<ListActionsForVolumeError>> {
+    pub async fn list_actions_for_volume(configuration: &configuration::Configuration, params: ListActionsForVolumeParams) -> Result<crate::models::ListActionsForVolumeResponse, Error<ListActionsForVolumeError>> {
         // unbox the parameters
         let id = params.id;
         let status = params.status;
         let sort = params.sort;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/volumes/{id}/actions", configuration.base_path, id=crate::apis::urlencode(id));
@@ -472,10 +437,10 @@ impl VolumesApi for VolumesApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -486,14 +451,13 @@ impl VolumesApi for VolumesApiClient {
         }
     }
 
-    fn list_volumes(&self, params: ListVolumesParams) -> Result<crate::models::ListVolumesResponse, Error<ListVolumesError>> {
+    pub async fn list_volumes(configuration: &configuration::Configuration, params: ListVolumesParams) -> Result<crate::models::ListVolumesResponse, Error<ListVolumesError>> {
         // unbox the parameters
         let status = params.status;
         let sort = params.sort;
         let name = params.name;
         let label_selector = params.label_selector;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/volumes", configuration.base_path);
@@ -519,10 +483,10 @@ impl VolumesApi for VolumesApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -533,12 +497,11 @@ impl VolumesApi for VolumesApiClient {
         }
     }
 
-    fn replace_volume(&self, params: ReplaceVolumeParams) -> Result<crate::models::ReplaceVolumeResponse, Error<ReplaceVolumeError>> {
+    pub async fn replace_volume(configuration: &configuration::Configuration, params: ReplaceVolumeParams) -> Result<crate::models::ReplaceVolumeResponse, Error<ReplaceVolumeError>> {
         // unbox the parameters
         let id = params.id;
         let replace_volume_request = params.replace_volume_request;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/volumes/{id}", configuration.base_path, id=crate::apis::urlencode(id));
@@ -553,10 +516,10 @@ impl VolumesApi for VolumesApiClient {
         req_builder = req_builder.json(&replace_volume_request);
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -567,12 +530,11 @@ impl VolumesApi for VolumesApiClient {
         }
     }
 
-    fn resize_volume(&self, params: ResizeVolumeParams) -> Result<crate::models::ResizeVolumeResponse, Error<ResizeVolumeError>> {
+    pub async fn resize_volume(configuration: &configuration::Configuration, params: ResizeVolumeParams) -> Result<crate::models::ResizeVolumeResponse, Error<ResizeVolumeError>> {
         // unbox the parameters
         let id = params.id;
         let resize_volume_request = params.resize_volume_request;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/volumes/{id}/actions/resize", configuration.base_path, id=crate::apis::urlencode(id));
@@ -587,10 +549,10 @@ impl VolumesApi for VolumesApiClient {
         req_builder = req_builder.json(&resize_volume_request);
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -601,4 +563,3 @@ impl VolumesApi for VolumesApiClient {
         }
     }
 
-}

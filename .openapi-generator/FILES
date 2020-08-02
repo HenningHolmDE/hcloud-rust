@@ -1,5 +1,4 @@
 src\apis\actions_api.rs
-src\apis\client.rs
 src\apis\configuration.rs
 src\apis\datacenters_api.rs
 src\apis\floating_ips_api.rs

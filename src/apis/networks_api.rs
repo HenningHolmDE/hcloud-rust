@@ -10,25 +10,13 @@
 
 #[allow(unused_imports)]
 use std::rc::Rc;
-use std::borrow::Borrow;
+
 use std::option::Option;
 
 use reqwest;
 
 use crate::apis::ResponseContent;
 use super::{Error, configuration};
-
-pub struct NetworksApiClient {
-    configuration: Rc<configuration::Configuration>,
-}
-
-impl NetworksApiClient {
-    pub fn new(configuration: Rc<configuration::Configuration>) -> NetworksApiClient {
-        NetworksApiClient {
-            configuration,
-        }
-    }
-}
 
 /// struct for passing parameters to the method `add_route_to_network`
 #[derive(Clone, Debug, Default)]
@@ -228,29 +216,11 @@ pub enum ReplaceNetworkError {
 }
 
 
-pub trait NetworksApi {
-    fn add_route_to_network(&self, params: AddRouteToNetworkParams) -> Result<crate::models::AddRouteToNetworkResponse, Error<AddRouteToNetworkError>>;
-    fn add_subnet_to_network(&self, params: AddSubnetToNetworkParams) -> Result<crate::models::AddSubnetToNetworkResponse, Error<AddSubnetToNetworkError>>;
-    fn change_ip_range_of_network(&self, params: ChangeIpRangeOfNetworkParams) -> Result<crate::models::ChangeIpRangeOfNetworkResponse, Error<ChangeIpRangeOfNetworkError>>;
-    fn change_network_protection(&self, params: ChangeNetworkProtectionParams) -> Result<crate::models::ChangeNetworkProtectionResponse, Error<ChangeNetworkProtectionError>>;
-    fn create_network(&self, params: CreateNetworkParams) -> Result<crate::models::CreateNetworkResponse, Error<CreateNetworkError>>;
-    fn delete_network(&self, params: DeleteNetworkParams) -> Result<(), Error<DeleteNetworkError>>;
-    fn delete_route_from_network(&self, params: DeleteRouteFromNetworkParams) -> Result<crate::models::DeleteRouteFromNetworkResponse, Error<DeleteRouteFromNetworkError>>;
-    fn delete_subnet_from_network(&self, params: DeleteSubnetFromNetworkParams) -> Result<crate::models::DeleteSubnetFromNetworkResponse, Error<DeleteSubnetFromNetworkError>>;
-    fn get_action_for_network(&self, params: GetActionForNetworkParams) -> Result<crate::models::GetActionForNetworkResponse, Error<GetActionForNetworkError>>;
-    fn get_network(&self, params: GetNetworkParams) -> Result<crate::models::GetNetworkResponse, Error<GetNetworkError>>;
-    fn list_actions_for_network(&self, params: ListActionsForNetworkParams) -> Result<crate::models::ListActionsForNetworkResponse, Error<ListActionsForNetworkError>>;
-    fn list_networks(&self, params: ListNetworksParams) -> Result<crate::models::ListNetworksResponse, Error<ListNetworksError>>;
-    fn replace_network(&self, params: ReplaceNetworkParams) -> Result<crate::models::ReplaceNetworkResponse, Error<ReplaceNetworkError>>;
-}
-
-impl NetworksApi for NetworksApiClient {
-    fn add_route_to_network(&self, params: AddRouteToNetworkParams) -> Result<crate::models::AddRouteToNetworkResponse, Error<AddRouteToNetworkError>> {
+    pub async fn add_route_to_network(configuration: &configuration::Configuration, params: AddRouteToNetworkParams) -> Result<crate::models::AddRouteToNetworkResponse, Error<AddRouteToNetworkError>> {
         // unbox the parameters
         let id = params.id;
         let body = params.body;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/networks/{id}/actions/add_route", configuration.base_path, id=crate::apis::urlencode(id));
@@ -265,10 +235,10 @@ impl NetworksApi for NetworksApiClient {
         req_builder = req_builder.json(&body);
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -279,12 +249,11 @@ impl NetworksApi for NetworksApiClient {
         }
     }
 
-    fn add_subnet_to_network(&self, params: AddSubnetToNetworkParams) -> Result<crate::models::AddSubnetToNetworkResponse, Error<AddSubnetToNetworkError>> {
+    pub async fn add_subnet_to_network(configuration: &configuration::Configuration, params: AddSubnetToNetworkParams) -> Result<crate::models::AddSubnetToNetworkResponse, Error<AddSubnetToNetworkError>> {
         // unbox the parameters
         let id = params.id;
         let body = params.body;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/networks/{id}/actions/add_subnet", configuration.base_path, id=crate::apis::urlencode(id));
@@ -299,10 +268,10 @@ impl NetworksApi for NetworksApiClient {
         req_builder = req_builder.json(&body);
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -313,12 +282,11 @@ impl NetworksApi for NetworksApiClient {
         }
     }
 
-    fn change_ip_range_of_network(&self, params: ChangeIpRangeOfNetworkParams) -> Result<crate::models::ChangeIpRangeOfNetworkResponse, Error<ChangeIpRangeOfNetworkError>> {
+    pub async fn change_ip_range_of_network(configuration: &configuration::Configuration, params: ChangeIpRangeOfNetworkParams) -> Result<crate::models::ChangeIpRangeOfNetworkResponse, Error<ChangeIpRangeOfNetworkError>> {
         // unbox the parameters
         let id = params.id;
         let change_ip_range_of_network_request = params.change_ip_range_of_network_request;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/networks/{id}/actions/change_ip_range", configuration.base_path, id=crate::apis::urlencode(id));
@@ -333,10 +301,10 @@ impl NetworksApi for NetworksApiClient {
         req_builder = req_builder.json(&change_ip_range_of_network_request);
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -347,12 +315,11 @@ impl NetworksApi for NetworksApiClient {
         }
     }
 
-    fn change_network_protection(&self, params: ChangeNetworkProtectionParams) -> Result<crate::models::ChangeNetworkProtectionResponse, Error<ChangeNetworkProtectionError>> {
+    pub async fn change_network_protection(configuration: &configuration::Configuration, params: ChangeNetworkProtectionParams) -> Result<crate::models::ChangeNetworkProtectionResponse, Error<ChangeNetworkProtectionError>> {
         // unbox the parameters
         let id = params.id;
         let change_network_protection_request = params.change_network_protection_request;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/networks/{id}/actions/change_protection", configuration.base_path, id=crate::apis::urlencode(id));
@@ -367,10 +334,10 @@ impl NetworksApi for NetworksApiClient {
         req_builder = req_builder.json(&change_network_protection_request);
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -381,11 +348,10 @@ impl NetworksApi for NetworksApiClient {
         }
     }
 
-    fn create_network(&self, params: CreateNetworkParams) -> Result<crate::models::CreateNetworkResponse, Error<CreateNetworkError>> {
+    pub async fn create_network(configuration: &configuration::Configuration, params: CreateNetworkParams) -> Result<crate::models::CreateNetworkResponse, Error<CreateNetworkError>> {
         // unbox the parameters
         let create_network_request = params.create_network_request;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/networks", configuration.base_path);
@@ -400,10 +366,10 @@ impl NetworksApi for NetworksApiClient {
         req_builder = req_builder.json(&create_network_request);
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -414,11 +380,10 @@ impl NetworksApi for NetworksApiClient {
         }
     }
 
-    fn delete_network(&self, params: DeleteNetworkParams) -> Result<(), Error<DeleteNetworkError>> {
+    pub async fn delete_network(configuration: &configuration::Configuration, params: DeleteNetworkParams) -> Result<(), Error<DeleteNetworkError>> {
         // unbox the parameters
         let id = params.id;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/networks/{id}", configuration.base_path, id=crate::apis::urlencode(id));
@@ -432,10 +397,10 @@ impl NetworksApi for NetworksApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             Ok(())
@@ -446,12 +411,11 @@ impl NetworksApi for NetworksApiClient {
         }
     }
 
-    fn delete_route_from_network(&self, params: DeleteRouteFromNetworkParams) -> Result<crate::models::DeleteRouteFromNetworkResponse, Error<DeleteRouteFromNetworkError>> {
+    pub async fn delete_route_from_network(configuration: &configuration::Configuration, params: DeleteRouteFromNetworkParams) -> Result<crate::models::DeleteRouteFromNetworkResponse, Error<DeleteRouteFromNetworkError>> {
         // unbox the parameters
         let id = params.id;
         let body = params.body;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/networks/{id}/actions/delete_route", configuration.base_path, id=crate::apis::urlencode(id));
@@ -466,10 +430,10 @@ impl NetworksApi for NetworksApiClient {
         req_builder = req_builder.json(&body);
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -480,12 +444,11 @@ impl NetworksApi for NetworksApiClient {
         }
     }
 
-    fn delete_subnet_from_network(&self, params: DeleteSubnetFromNetworkParams) -> Result<crate::models::DeleteSubnetFromNetworkResponse, Error<DeleteSubnetFromNetworkError>> {
+    pub async fn delete_subnet_from_network(configuration: &configuration::Configuration, params: DeleteSubnetFromNetworkParams) -> Result<crate::models::DeleteSubnetFromNetworkResponse, Error<DeleteSubnetFromNetworkError>> {
         // unbox the parameters
         let id = params.id;
         let delete_subnet_from_network_request = params.delete_subnet_from_network_request;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/networks/{id}/actions/delete_subnet", configuration.base_path, id=crate::apis::urlencode(id));
@@ -500,10 +463,10 @@ impl NetworksApi for NetworksApiClient {
         req_builder = req_builder.json(&delete_subnet_from_network_request);
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -514,12 +477,11 @@ impl NetworksApi for NetworksApiClient {
         }
     }
 
-    fn get_action_for_network(&self, params: GetActionForNetworkParams) -> Result<crate::models::GetActionForNetworkResponse, Error<GetActionForNetworkError>> {
+    pub async fn get_action_for_network(configuration: &configuration::Configuration, params: GetActionForNetworkParams) -> Result<crate::models::GetActionForNetworkResponse, Error<GetActionForNetworkError>> {
         // unbox the parameters
         let id = params.id;
         let action_id = params.action_id;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/networks/{id}/actions/{action_id}", configuration.base_path, id=crate::apis::urlencode(id), action_id=crate::apis::urlencode(action_id));
@@ -533,10 +495,10 @@ impl NetworksApi for NetworksApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -547,11 +509,10 @@ impl NetworksApi for NetworksApiClient {
         }
     }
 
-    fn get_network(&self, params: GetNetworkParams) -> Result<crate::models::GetNetworkResponse, Error<GetNetworkError>> {
+    pub async fn get_network(configuration: &configuration::Configuration, params: GetNetworkParams) -> Result<crate::models::GetNetworkResponse, Error<GetNetworkError>> {
         // unbox the parameters
         let id = params.id;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/networks/{id}", configuration.base_path, id=crate::apis::urlencode(id));
@@ -565,10 +526,10 @@ impl NetworksApi for NetworksApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -579,13 +540,12 @@ impl NetworksApi for NetworksApiClient {
         }
     }
 
-    fn list_actions_for_network(&self, params: ListActionsForNetworkParams) -> Result<crate::models::ListActionsForNetworkResponse, Error<ListActionsForNetworkError>> {
+    pub async fn list_actions_for_network(configuration: &configuration::Configuration, params: ListActionsForNetworkParams) -> Result<crate::models::ListActionsForNetworkResponse, Error<ListActionsForNetworkError>> {
         // unbox the parameters
         let id = params.id;
         let status = params.status;
         let sort = params.sort;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/networks/{id}/actions", configuration.base_path, id=crate::apis::urlencode(id));
@@ -605,10 +565,10 @@ impl NetworksApi for NetworksApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -619,12 +579,11 @@ impl NetworksApi for NetworksApiClient {
         }
     }
 
-    fn list_networks(&self, params: ListNetworksParams) -> Result<crate::models::ListNetworksResponse, Error<ListNetworksError>> {
+    pub async fn list_networks(configuration: &configuration::Configuration, params: ListNetworksParams) -> Result<crate::models::ListNetworksResponse, Error<ListNetworksError>> {
         // unbox the parameters
         let name = params.name;
         let label_selector = params.label_selector;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/networks", configuration.base_path);
@@ -644,10 +603,10 @@ impl NetworksApi for NetworksApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -658,12 +617,11 @@ impl NetworksApi for NetworksApiClient {
         }
     }
 
-    fn replace_network(&self, params: ReplaceNetworkParams) -> Result<crate::models::ReplaceNetworkResponse, Error<ReplaceNetworkError>> {
+    pub async fn replace_network(configuration: &configuration::Configuration, params: ReplaceNetworkParams) -> Result<crate::models::ReplaceNetworkResponse, Error<ReplaceNetworkError>> {
         // unbox the parameters
         let id = params.id;
         let replace_network_request = params.replace_network_request;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/networks/{id}", configuration.base_path, id=crate::apis::urlencode(id));
@@ -678,10 +636,10 @@ impl NetworksApi for NetworksApiClient {
         req_builder = req_builder.json(&replace_network_request);
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -692,4 +650,3 @@ impl NetworksApi for NetworksApiClient {
         }
     }
 
-}

@@ -10,25 +10,13 @@
 
 #[allow(unused_imports)]
 use std::rc::Rc;
-use std::borrow::Borrow;
+
 use std::option::Option;
 
 use reqwest;
 
 use crate::apis::ResponseContent;
 use super::{Error, configuration};
-
-pub struct ImagesApiClient {
-    configuration: Rc<configuration::Configuration>,
-}
-
-impl ImagesApiClient {
-    pub fn new(configuration: Rc<configuration::Configuration>) -> ImagesApiClient {
-        ImagesApiClient {
-            configuration,
-        }
-    }
-}
 
 /// struct for passing parameters to the method `change_image_protection`
 #[derive(Clone, Debug, Default)]
@@ -148,23 +136,11 @@ pub enum ReplaceImageError {
 }
 
 
-pub trait ImagesApi {
-    fn change_image_protection(&self, params: ChangeImageProtectionParams) -> Result<crate::models::ChangeImageProtectionResponse, Error<ChangeImageProtectionError>>;
-    fn delete_image(&self, params: DeleteImageParams) -> Result<(), Error<DeleteImageError>>;
-    fn get_action_for_image(&self, params: GetActionForImageParams) -> Result<crate::models::GetActionForImageResponse, Error<GetActionForImageError>>;
-    fn get_image(&self, params: GetImageParams) -> Result<crate::models::GetImageResponse, Error<GetImageError>>;
-    fn list_actions_for_image(&self, params: ListActionsForImageParams) -> Result<crate::models::ListActionsForImageResponse, Error<ListActionsForImageError>>;
-    fn list_images(&self, params: ListImagesParams) -> Result<crate::models::ListImagesResponse, Error<ListImagesError>>;
-    fn replace_image(&self, params: ReplaceImageParams) -> Result<crate::models::ReplaceImageResponse, Error<ReplaceImageError>>;
-}
-
-impl ImagesApi for ImagesApiClient {
-    fn change_image_protection(&self, params: ChangeImageProtectionParams) -> Result<crate::models::ChangeImageProtectionResponse, Error<ChangeImageProtectionError>> {
+    pub async fn change_image_protection(configuration: &configuration::Configuration, params: ChangeImageProtectionParams) -> Result<crate::models::ChangeImageProtectionResponse, Error<ChangeImageProtectionError>> {
         // unbox the parameters
         let id = params.id;
         let change_image_protection_request = params.change_image_protection_request;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/images/{id}/actions/change_protection", configuration.base_path, id=crate::apis::urlencode(id));
@@ -179,10 +155,10 @@ impl ImagesApi for ImagesApiClient {
         req_builder = req_builder.json(&change_image_protection_request);
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -193,11 +169,10 @@ impl ImagesApi for ImagesApiClient {
         }
     }
 
-    fn delete_image(&self, params: DeleteImageParams) -> Result<(), Error<DeleteImageError>> {
+    pub async fn delete_image(configuration: &configuration::Configuration, params: DeleteImageParams) -> Result<(), Error<DeleteImageError>> {
         // unbox the parameters
         let id = params.id;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/images/{id}", configuration.base_path, id=crate::apis::urlencode(id));
@@ -211,10 +186,10 @@ impl ImagesApi for ImagesApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             Ok(())
@@ -225,12 +200,11 @@ impl ImagesApi for ImagesApiClient {
         }
     }
 
-    fn get_action_for_image(&self, params: GetActionForImageParams) -> Result<crate::models::GetActionForImageResponse, Error<GetActionForImageError>> {
+    pub async fn get_action_for_image(configuration: &configuration::Configuration, params: GetActionForImageParams) -> Result<crate::models::GetActionForImageResponse, Error<GetActionForImageError>> {
         // unbox the parameters
         let id = params.id;
         let action_id = params.action_id;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/images/{id}/actions/{action_id}", configuration.base_path, id=crate::apis::urlencode(id), action_id=crate::apis::urlencode(action_id));
@@ -244,10 +218,10 @@ impl ImagesApi for ImagesApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -258,11 +232,10 @@ impl ImagesApi for ImagesApiClient {
         }
     }
 
-    fn get_image(&self, params: GetImageParams) -> Result<crate::models::GetImageResponse, Error<GetImageError>> {
+    pub async fn get_image(configuration: &configuration::Configuration, params: GetImageParams) -> Result<crate::models::GetImageResponse, Error<GetImageError>> {
         // unbox the parameters
         let id = params.id;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/images/{id}", configuration.base_path, id=crate::apis::urlencode(id));
@@ -276,10 +249,10 @@ impl ImagesApi for ImagesApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -290,13 +263,12 @@ impl ImagesApi for ImagesApiClient {
         }
     }
 
-    fn list_actions_for_image(&self, params: ListActionsForImageParams) -> Result<crate::models::ListActionsForImageResponse, Error<ListActionsForImageError>> {
+    pub async fn list_actions_for_image(configuration: &configuration::Configuration, params: ListActionsForImageParams) -> Result<crate::models::ListActionsForImageResponse, Error<ListActionsForImageError>> {
         // unbox the parameters
         let id = params.id;
         let status = params.status;
         let sort = params.sort;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/images/{id}/actions", configuration.base_path, id=crate::apis::urlencode(id));
@@ -316,10 +288,10 @@ impl ImagesApi for ImagesApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -330,7 +302,7 @@ impl ImagesApi for ImagesApiClient {
         }
     }
 
-    fn list_images(&self, params: ListImagesParams) -> Result<crate::models::ListImagesResponse, Error<ListImagesError>> {
+    pub async fn list_images(configuration: &configuration::Configuration, params: ListImagesParams) -> Result<crate::models::ListImagesResponse, Error<ListImagesError>> {
         // unbox the parameters
         let sort = params.sort;
         let _type = params._type;
@@ -339,7 +311,6 @@ impl ImagesApi for ImagesApiClient {
         let name = params.name;
         let label_selector = params.label_selector;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/images", configuration.base_path);
@@ -371,10 +342,10 @@ impl ImagesApi for ImagesApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -385,12 +356,11 @@ impl ImagesApi for ImagesApiClient {
         }
     }
 
-    fn replace_image(&self, params: ReplaceImageParams) -> Result<crate::models::ReplaceImageResponse, Error<ReplaceImageError>> {
+    pub async fn replace_image(configuration: &configuration::Configuration, params: ReplaceImageParams) -> Result<crate::models::ReplaceImageResponse, Error<ReplaceImageError>> {
         // unbox the parameters
         let id = params.id;
         let replace_image_request = params.replace_image_request;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/images/{id}", configuration.base_path, id=crate::apis::urlencode(id));
@@ -405,10 +375,10 @@ impl ImagesApi for ImagesApiClient {
         req_builder = req_builder.json(&replace_image_request);
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -419,4 +389,3 @@ impl ImagesApi for ImagesApiClient {
         }
     }
 
-}

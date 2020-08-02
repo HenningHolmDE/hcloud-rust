@@ -80,5 +80,4 @@ pub mod servers_api;
 pub mod ssh_keys_api;
 pub mod volumes_api;
 
-pub mod client;
 pub mod configuration;

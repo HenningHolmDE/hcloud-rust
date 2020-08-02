@@ -10,25 +10,13 @@
 
 #[allow(unused_imports)]
 use std::rc::Rc;
-use std::borrow::Borrow;
+
 use std::option::Option;
 
 use reqwest;
 
 use crate::apis::ResponseContent;
 use super::{Error, configuration};
-
-pub struct IsosApiClient {
-    configuration: Rc<configuration::Configuration>,
-}
-
-impl IsosApiClient {
-    pub fn new(configuration: Rc<configuration::Configuration>) -> IsosApiClient {
-        IsosApiClient {
-            configuration,
-        }
-    }
-}
 
 /// struct for passing parameters to the method `get_iso`
 #[derive(Clone, Debug, Default)]
@@ -60,17 +48,10 @@ pub enum ListIsosError {
 }
 
 
-pub trait IsosApi {
-    fn get_iso(&self, params: GetIsoParams) -> Result<crate::models::GetIsoResponse, Error<GetIsoError>>;
-    fn list_isos(&self, params: ListIsosParams) -> Result<crate::models::ListIsosResponse, Error<ListIsosError>>;
-}
-
-impl IsosApi for IsosApiClient {
-    fn get_iso(&self, params: GetIsoParams) -> Result<crate::models::GetIsoResponse, Error<GetIsoError>> {
+    pub async fn get_iso(configuration: &configuration::Configuration, params: GetIsoParams) -> Result<crate::models::GetIsoResponse, Error<GetIsoError>> {
         // unbox the parameters
         let id = params.id;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/isos/{id}", configuration.base_path, id=crate::apis::urlencode(id));
@@ -84,10 +65,10 @@ impl IsosApi for IsosApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -98,11 +79,10 @@ impl IsosApi for IsosApiClient {
         }
     }
 
-    fn list_isos(&self, params: ListIsosParams) -> Result<crate::models::ListIsosResponse, Error<ListIsosError>> {
+    pub async fn list_isos(configuration: &configuration::Configuration, params: ListIsosParams) -> Result<crate::models::ListIsosResponse, Error<ListIsosError>> {
         // unbox the parameters
         let name = params.name;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/isos", configuration.base_path);
@@ -119,10 +99,10 @@ impl IsosApi for IsosApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -133,4 +113,3 @@ impl IsosApi for IsosApiClient {
         }
     }
 
-}

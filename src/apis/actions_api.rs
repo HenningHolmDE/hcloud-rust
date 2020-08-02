@@ -10,25 +10,13 @@
 
 #[allow(unused_imports)]
 use std::rc::Rc;
-use std::borrow::Borrow;
+
 use std::option::Option;
 
 use reqwest;
 
 use crate::apis::ResponseContent;
 use super::{Error, configuration};
-
-pub struct ActionsApiClient {
-    configuration: Rc<configuration::Configuration>,
-}
-
-impl ActionsApiClient {
-    pub fn new(configuration: Rc<configuration::Configuration>) -> ActionsApiClient {
-        ActionsApiClient {
-            configuration,
-        }
-    }
-}
 
 /// struct for passing parameters to the method `get_action`
 #[derive(Clone, Debug, Default)]
@@ -62,17 +50,10 @@ pub enum ListAllActionsError {
 }
 
 
-pub trait ActionsApi {
-    fn get_action(&self, params: GetActionParams) -> Result<crate::models::GetActionResponse, Error<GetActionError>>;
-    fn list_all_actions(&self, params: ListAllActionsParams) -> Result<crate::models::ListAllActionsResponse, Error<ListAllActionsError>>;
-}
-
-impl ActionsApi for ActionsApiClient {
-    fn get_action(&self, params: GetActionParams) -> Result<crate::models::GetActionResponse, Error<GetActionError>> {
+    pub async fn get_action(configuration: &configuration::Configuration, params: GetActionParams) -> Result<crate::models::GetActionResponse, Error<GetActionError>> {
         // unbox the parameters
         let id = params.id;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/actions/{id}", configuration.base_path, id=crate::apis::urlencode(id));
@@ -86,10 +67,10 @@ impl ActionsApi for ActionsApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -100,12 +81,11 @@ impl ActionsApi for ActionsApiClient {
         }
     }
 
-    fn list_all_actions(&self, params: ListAllActionsParams) -> Result<crate::models::ListAllActionsResponse, Error<ListAllActionsError>> {
+    pub async fn list_all_actions(configuration: &configuration::Configuration, params: ListAllActionsParams) -> Result<crate::models::ListAllActionsResponse, Error<ListAllActionsError>> {
         // unbox the parameters
         let status = params.status;
         let sort = params.sort;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/actions", configuration.base_path);
@@ -125,10 +105,10 @@ impl ActionsApi for ActionsApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -139,4 +119,3 @@ impl ActionsApi for ActionsApiClient {
         }
     }
 
-}

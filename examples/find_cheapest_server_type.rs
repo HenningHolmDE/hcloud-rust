@@ -1,9 +1,10 @@
-use hcloud::apis::client::APIClient;
 use hcloud::apis::configuration::Configuration;
+use hcloud::apis::server_types_api;
 use hcloud::models::ServerType;
 use std::env;
 
-fn main() -> Result<(), String> {
+#[tokio::main]
+async fn main() -> Result<(), String> {
     // use API token from command line
     let api_token = env::args()
         .nth(1)
@@ -13,13 +14,9 @@ fn main() -> Result<(), String> {
     let mut configuration = Configuration::new();
     configuration.bearer_access_token = Some(api_token);
 
-    // create API client handle from configuration
-    let api_client = APIClient::new(configuration);
-
     // query server types API for a list of all server types
-    let server_types = api_client
-        .server_types_api()
-        .list_server_types(Default::default())
+    let server_types = server_types_api::list_server_types(&configuration, Default::default())
+        .await
         .map_err(|err| format!("API call to list_server_types failed: {:?}", err))?
         .server_types;
 

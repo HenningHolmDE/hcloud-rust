@@ -10,25 +10,13 @@
 
 #[allow(unused_imports)]
 use std::rc::Rc;
-use std::borrow::Borrow;
+
 use std::option::Option;
 
 use reqwest;
 
 use crate::apis::ResponseContent;
 use super::{Error, configuration};
-
-pub struct LocationsApiClient {
-    configuration: Rc<configuration::Configuration>,
-}
-
-impl LocationsApiClient {
-    pub fn new(configuration: Rc<configuration::Configuration>) -> LocationsApiClient {
-        LocationsApiClient {
-            configuration,
-        }
-    }
-}
 
 /// struct for passing parameters to the method `get_location`
 #[derive(Clone, Debug, Default)]
@@ -60,17 +48,10 @@ pub enum ListLocationsError {
 }
 
 
-pub trait LocationsApi {
-    fn get_location(&self, params: GetLocationParams) -> Result<crate::models::GetLocationResponse, Error<GetLocationError>>;
-    fn list_locations(&self, params: ListLocationsParams) -> Result<crate::models::ListLocationsResponse, Error<ListLocationsError>>;
-}
-
-impl LocationsApi for LocationsApiClient {
-    fn get_location(&self, params: GetLocationParams) -> Result<crate::models::GetLocationResponse, Error<GetLocationError>> {
+    pub async fn get_location(configuration: &configuration::Configuration, params: GetLocationParams) -> Result<crate::models::GetLocationResponse, Error<GetLocationError>> {
         // unbox the parameters
         let id = params.id;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/locations/{id}", configuration.base_path, id=crate::apis::urlencode(id));
@@ -84,10 +65,10 @@ impl LocationsApi for LocationsApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -98,11 +79,10 @@ impl LocationsApi for LocationsApiClient {
         }
     }
 
-    fn list_locations(&self, params: ListLocationsParams) -> Result<crate::models::ListLocationsResponse, Error<ListLocationsError>> {
+    pub async fn list_locations(configuration: &configuration::Configuration, params: ListLocationsParams) -> Result<crate::models::ListLocationsResponse, Error<ListLocationsError>> {
         // unbox the parameters
         let name = params.name;
 
-        let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/locations", configuration.base_path);
@@ -119,10 +99,10 @@ impl LocationsApi for LocationsApiClient {
         };
 
         let req = req_builder.build()?;
-        let mut resp = client.execute(req)?;
+        let resp = client.execute(req).await?;
 
         let status = resp.status();
-        let content = resp.text()?;
+        let content = resp.text().await?;
 
         if status.is_success() {
             serde_json::from_str(&content).map_err(Error::from)
@@ -133,4 +113,3 @@ impl LocationsApi for LocationsApiClient {
         }
     }
 
-}
