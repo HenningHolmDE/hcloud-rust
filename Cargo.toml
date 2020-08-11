@@ -8,7 +8,7 @@ readme = "README.md"
 description = "Unofficial Rust crate for accessing the Hetzner Cloud API"
 repository = "https://github.com/HenningHolmDE/hcloud-rust"
 keywords = ["hcloud", "hetzner", "hetzner-cloud"]
-categories = ["api-bindings", "development-tools"]
+categories = ["api-bindings"]
 
 [dependencies]
 serde = "^1.0"
