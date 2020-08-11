@@ -18,6 +18,22 @@ The API client code of this crate has been auto-generated from the [Unofficial O
 - asynchronous API functions
 - documentation and tests are still WIP
 
+## Selecting TLS implementation
+
+The underlying TLS implementation for `request` can be selected using [Cargo features](https://doc.rust-lang.org/stable/cargo/reference/manifest.html#the-features-section):
+- **default-tls** *(enabled by default)*: Provides TLS support to connect over HTTPS.
+- **native-tls**: Enables TLS functionality provided by `native-tls`.
+- **native-tls-vendored**: Enables the `vendored` feature of `native-tls`.
+- **rustls-tls**: Enables TLS functionality provided by `rustls`.
+
+(Refer to [Optional Features](https://docs.rs/reqwest/latest/reqwest/#optional-features) in the `request` documentation.)
+
+Example for using the TLS functionality provided by `rustls`:
+```toml
+[dependencies]
+hcloud = { version = "*", default-features = false, features = ["rustls-tls"] }
+```
+
 ## Example
 
 A very basic example for listing all existing servers:

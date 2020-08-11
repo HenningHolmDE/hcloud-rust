@@ -10,6 +10,13 @@ repository = "https://github.com/HenningHolmDE/hcloud-rust"
 keywords = ["hcloud", "hetzner", "hetzner-cloud"]
 categories = ["api-bindings"]
 
+[features]
+default = ["default-tls"]
+default-tls = ["reqwest/default-tls"]
+native-tls = ["reqwest/native-tls"]
+native-tls-vendored = ["reqwest/native-tls-vendored"]
+rustls-tls = ["reqwest/rustls-tls"]
+
 [dependencies]
 serde = "^1.0"
 serde_derive = "^1.0"
@@ -19,7 +26,7 @@ url = "~2.1"
 [dependencies.reqwest]
 version = "^0.10"
 default-features = false
-features = ["default-tls", "json"]
+features = ["json"]
 
 [dev-dependencies]
 rand = "~0.7"
