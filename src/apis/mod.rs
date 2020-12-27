@@ -1,18 +1,13 @@
 use reqwest;
 use serde_json;
-use std::{error, fmt};
+use std::error;
+use std::fmt;
 
 #[derive(Debug, Clone)]
 pub struct ResponseContent<T> {
     pub status: reqwest::StatusCode,
     pub content: String,
     pub entity: Option<T>,
-}
-
-impl<T> fmt::Display for ResponseContent<T> {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}: {}", self.status, self.content)
-    }
 }
 
 #[derive(Debug)]
@@ -23,25 +18,26 @@ pub enum Error<T> {
     ResponseError(ResponseContent<T>),
 }
 
-impl<T> fmt::Display for Error<T> {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        match self {
-            Error::Reqwest(e) => fmt::Display::fmt(e, f),
-            Error::Serde(e) => fmt::Display::fmt(e, f),
-            Error::Io(e) => fmt::Display::fmt(e, f),
-            Error::ResponseError(e) => fmt::Display::fmt(e, f),
-        }
+impl <T> fmt::Display for Error<T> {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        let (module, e) = match self {
+            Error::Reqwest(e) => ("reqwest", e.to_string()),
+            Error::Serde(e) => ("serde", e.to_string()),
+            Error::Io(e) => ("IO", e.to_string()),
+            Error::ResponseError(e) => ("response", format!("status code {}", e.status)),
+        };
+        write!(f, "error in {}: {}", module, e)
     }
 }
 
-impl<T: fmt::Debug> error::Error for Error<T> {
+impl <T: fmt::Debug> error::Error for Error<T> {
     fn source(&self) -> Option<&(dyn error::Error + 'static)> {
-        match self {
-            Error::Reqwest(err) => Some(err),
-            Error::Serde(err) => Some(err),
-            Error::Io(err) => Some(err),
-            Error::ResponseError(_) => None,
-        }
+        Some(match self {
+            Error::Reqwest(e) => e,
+            Error::Serde(e) => e,
+            Error::Io(e) => e,
+            Error::ResponseError(_) => return None,
+        })
     }
 }
 
