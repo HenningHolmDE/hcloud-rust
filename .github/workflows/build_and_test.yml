@@ -1,5 +1,6 @@
 on:
   push:
+    branches:
   pull_request:
 
 name: Build and test
