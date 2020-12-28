@@ -35,6 +35,9 @@ echo "Running OpenAPI generator..."
     -c openapi-generator.yaml \
     -t templates
 
+# replace references to non-existing OneOf types with serde_json::Value
+sed -ri "s/crate::models::OneOf\w+/serde_json::Value/g" src/models/*.rs
+
 # restore CRLF line endings on Windows
 if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then
     unix2dos -k -q src/apis/*.rs
