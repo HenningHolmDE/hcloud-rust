@@ -99,7 +99,7 @@ async fn main() -> Result<(), String> {
         let mut any_running = false;
         for server_info in &created_servers {
             let params = servers_api::ListActionsForServerParams {
-                id: server_info.id.to_string(),
+                id: server_info.id,
                 ..Default::default()
             };
             let actions = servers_api::list_actions_for_server(&configuration, params)
