@@ -31,6 +31,8 @@ async fn main() -> Result<(), String> {
     configuration.bearer_access_token = Some(api_token);
 
     // collect all available SSH keys to be added to the server
+    // Note: This only requests the first page (max 25) of SSH keys,
+    //       see `list_isos.rs` for an example of using pagination.
     let ssh_keys: Vec<String> = ssh_keys_api::list_ssh_keys(&configuration, Default::default())
         .await
         .map_err(|err| format!("API call to list_ssh_keys failed: {:?}", err))?

@@ -14,6 +14,8 @@ async fn main() -> Result<(), String> {
     configuration.bearer_access_token = Some(api_token);
 
     // get list of all existing servers from servers API
+    // Note: This only requests the first page (max 25) of servers,
+    //       see `list_isos.rs` for an example of using pagination.
     let servers = servers_api::list_servers(&configuration, Default::default())
         .await
         .map_err(|err| format!("API call to list_servers failed: {:?}", err))?

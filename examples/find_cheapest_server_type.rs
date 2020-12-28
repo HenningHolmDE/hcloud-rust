@@ -15,6 +15,8 @@ async fn main() -> Result<(), String> {
     configuration.bearer_access_token = Some(api_token);
 
     // query server types API for a list of all server types
+    // Note: This only requests the first page (max 25) of server types,
+    //       see `list_isos.rs` for an example of using pagination.
     let server_types = server_types_api::list_server_types(&configuration, Default::default())
         .await
         .map_err(|err| format!("API call to list_server_types failed: {:?}", err))?
