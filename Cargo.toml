@@ -1,6 +1,6 @@
 [package]
 name = "hcloud"
-version = "0.2.0" # also set in openapi-generator.yaml and regenerate API code
+version = "0.3.0" # also set in openapi-generator.yaml and regenerate API code
 authors = ["Henning Holm <git@henningholm.de>"]
 edition = "2018"
 license = "MIT OR Apache-2.0"
