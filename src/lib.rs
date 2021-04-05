@@ -8,20 +8,20 @@
 //!
 //!# Current state of development
 //!
-//!- supported API endpoints (complete as of December 2020): `actions`, `certificates`, `datacenters`, `floating_ips`, `images`, `isos`, `load_balancer_types`, `load_balancers`, `locations`, `networks`, `pricing`, `server_types`, `servers`, `ssh_keys`, `volumes`
+//!- supported API endpoints (complete as of March 2021): `actions`, `certificates`, `datacenters`, `firewalls`, `floating_ips`, `images`, `isos`, `load_balancer_types`, `load_balancers`, `locations`, `networks`, `pricing`, `server_types`, `servers`, `ssh_keys`, `volumes`
 //!- asynchronous API functions
 //!- pagination support
 //!- documentation and tests are still WIP
 //!
 //!# Selecting TLS implementation
 //!
-//!The underlying TLS implementation for `request` can be selected using [Cargo features](https://doc.rust-lang.org/stable/cargo/reference/manifest.html#the-features-section):
+//!The underlying TLS implementation for `reqwest` can be selected using [Cargo features](https://doc.rust-lang.org/stable/cargo/reference/manifest.html#the-features-section):
 //!- **default-tls** *(enabled by default)*: Provides TLS support to connect over HTTPS.
 //!- **native-tls**: Enables TLS functionality provided by `native-tls`.
 //!- **native-tls-vendored**: Enables the `vendored` feature of `native-tls`.
 //!- **rustls-tls**: Enables TLS functionality provided by `rustls`.
 //!
-//!(Refer to [Optional Features](https://docs.rs/reqwest/latest/reqwest/#optional-features) in the `request` documentation.)
+//!(Refer to [Optional Features](https://docs.rs/reqwest/latest/reqwest/#optional-features) in the `reqwest` documentation.)
 //!
 //!Example for using the TLS functionality provided by `rustls`:
 //!```toml
