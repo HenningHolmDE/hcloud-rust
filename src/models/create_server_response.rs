@@ -15,9 +15,9 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CreateServerResponse {
     #[serde(rename = "server")]
-    pub server: crate::models::Server,
+    pub server: Box<crate::models::Server>,
     #[serde(rename = "action")]
-    pub action: crate::models::Action,
+    pub action: Box<crate::models::Action>,
     #[serde(rename = "next_actions")]
     pub next_actions: Vec<crate::models::Action>,
     /// Root password when no SSH keys have been specified
@@ -29,8 +29,8 @@ impl CreateServerResponse {
     /// Response to POST https://api.hetzner.cloud/v1/servers
     pub fn new(server: crate::models::Server, action: crate::models::Action, next_actions: Vec<crate::models::Action>, root_password: Option<String>) -> CreateServerResponse {
         CreateServerResponse {
-            server,
-            action,
+            server: Box::new(server),
+            action: Box::new(action),
             next_actions,
             root_password,
         }

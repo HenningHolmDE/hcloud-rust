@@ -18,7 +18,7 @@ pub struct FirewallResourceId {
     #[serde(rename = "type")]
     pub _type: Type,
     #[serde(rename = "server", skip_serializing_if = "Option::is_none")]
-    pub server: Option<crate::models::FirewallResourceIdServer>,
+    pub server: Option<Box<crate::models::FirewallResourceIdServer>>,
 }
 
 impl FirewallResourceId {

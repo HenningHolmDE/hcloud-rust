@@ -76,7 +76,7 @@ pub async fn get_action(configuration: &configuration::Configuration, params: Ge
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<GetActionError> = serde_json::from_str(&local_var_content).ok();
@@ -128,7 +128,7 @@ pub async fn list_actions(configuration: &configuration::Configuration, params: 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ListActionsError> = serde_json::from_str(&local_var_content).ok();

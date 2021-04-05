@@ -15,14 +15,14 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct SoftRebootServerResponse {
     #[serde(rename = "action")]
-    pub action: crate::models::Action,
+    pub action: Box<crate::models::Action>,
 }
 
 impl SoftRebootServerResponse {
     /// Response to POST https://api.hetzner.cloud/v1/servers/{id}/actions/reboot
     pub fn new(action: crate::models::Action) -> SoftRebootServerResponse {
         SoftRebootServerResponse {
-            action,
+            action: Box::new(action),
         }
     }
 }

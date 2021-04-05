@@ -15,14 +15,14 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GetCertificateResponse {
     #[serde(rename = "certificate")]
-    pub certificate: crate::models::Certificate,
+    pub certificate: Box<crate::models::Certificate>,
 }
 
 impl GetCertificateResponse {
     /// Response to GET https://api.hetzner.cloud/v1/certificates/{id}
     pub fn new(certificate: crate::models::Certificate) -> GetCertificateResponse {
         GetCertificateResponse {
-            certificate,
+            certificate: Box::new(certificate),
         }
     }
 }

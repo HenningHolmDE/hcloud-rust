@@ -21,7 +21,7 @@ pub struct CertificateStatus {
     #[serde(rename = "renewal", skip_serializing_if = "Option::is_none")]
     pub renewal: Option<Renewal>,
     #[serde(rename = "error", skip_serializing_if = "Option::is_none")]
-    pub error: Option<crate::models::CertificateStatusError>,
+    pub error: Option<Box<crate::models::CertificateStatusError>>,
 }
 
 impl CertificateStatus {

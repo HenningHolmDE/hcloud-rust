@@ -15,14 +15,14 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ListPricesResponsePricingFloatingIp {
     #[serde(rename = "price_monthly")]
-    pub price_monthly: crate::models::Price,
+    pub price_monthly: Box<crate::models::Price>,
 }
 
 impl ListPricesResponsePricingFloatingIp {
     /// The cost of one Floating IP per month
     pub fn new(price_monthly: crate::models::Price) -> ListPricesResponsePricingFloatingIp {
         ListPricesResponsePricingFloatingIp {
-            price_monthly,
+            price_monthly: Box::new(price_monthly),
         }
     }
 }

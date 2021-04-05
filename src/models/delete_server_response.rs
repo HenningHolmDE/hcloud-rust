@@ -15,7 +15,7 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct DeleteServerResponse {
     #[serde(rename = "action", skip_serializing_if = "Option::is_none")]
-    pub action: Option<crate::models::Action>,
+    pub action: Option<Box<crate::models::Action>>,
 }
 
 impl DeleteServerResponse {

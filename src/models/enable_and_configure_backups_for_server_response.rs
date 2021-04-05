@@ -15,14 +15,14 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct EnableAndConfigureBackupsForServerResponse {
     #[serde(rename = "action")]
-    pub action: crate::models::Action,
+    pub action: Box<crate::models::Action>,
 }
 
 impl EnableAndConfigureBackupsForServerResponse {
     /// Response to POST https://api.hetzner.cloud/v1/servers/{id}/actions/enable_backup
     pub fn new(action: crate::models::Action) -> EnableAndConfigureBackupsForServerResponse {
         EnableAndConfigureBackupsForServerResponse {
-            action,
+            action: Box::new(action),
         }
     }
 }

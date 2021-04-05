@@ -15,16 +15,16 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CreateCertificateResponse {
     #[serde(rename = "certificate")]
-    pub certificate: crate::models::Certificate,
+    pub certificate: Box<crate::models::Certificate>,
     #[serde(rename = "action", skip_serializing_if = "Option::is_none")]
-    pub action: Option<crate::models::Action>,
+    pub action: Option<Box<crate::models::Action>>,
 }
 
 impl CreateCertificateResponse {
     /// Response to POST https://api.hetzner.cloud/v1/certificates
     pub fn new(certificate: crate::models::Certificate) -> CreateCertificateResponse {
         CreateCertificateResponse {
-            certificate,
+            certificate: Box::new(certificate),
             action: None,
         }
     }

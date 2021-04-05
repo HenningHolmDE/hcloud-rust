@@ -27,9 +27,9 @@ pub struct Service {
     #[serde(rename = "proxyprotocol")]
     pub proxyprotocol: bool,
     #[serde(rename = "health_check")]
-    pub health_check: serde_json::Value,
+    pub health_check: Box<serde_json::Value>,
     #[serde(rename = "http", skip_serializing_if = "Option::is_none")]
-    pub http: Option<crate::models::Http>,
+    pub http: Option<Box<crate::models::Http>>,
 }
 
 impl Service {
@@ -40,7 +40,7 @@ impl Service {
             listen_port,
             destination_port,
             proxyprotocol,
-            health_check,
+            health_check: Box::new(health_check),
             http: None,
         }
     }

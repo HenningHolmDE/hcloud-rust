@@ -15,14 +15,14 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ChangeIpRangeOfNetworkResponse {
     #[serde(rename = "action")]
-    pub action: crate::models::Action,
+    pub action: Box<crate::models::Action>,
 }
 
 impl ChangeIpRangeOfNetworkResponse {
     /// Response to POST https://api.hetzner.cloud/v1/networks/{id}/actions/change_ip_range
     pub fn new(action: crate::models::Action) -> ChangeIpRangeOfNetworkResponse {
         ChangeIpRangeOfNetworkResponse {
-            action,
+            action: Box::new(action),
         }
     }
 }

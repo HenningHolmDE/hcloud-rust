@@ -15,14 +15,14 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ChangeReverseDnsEntryForFloatingIpResponse {
     #[serde(rename = "action")]
-    pub action: crate::models::Action,
+    pub action: Box<crate::models::Action>,
 }
 
 impl ChangeReverseDnsEntryForFloatingIpResponse {
     /// Response to POST https://api.hetzner.cloud/v1/floating_ips/{id}/actions/change_dns_ptr
     pub fn new(action: crate::models::Action) -> ChangeReverseDnsEntryForFloatingIpResponse {
         ChangeReverseDnsEntryForFloatingIpResponse {
-            action,
+            action: Box::new(action),
         }
     }
 }

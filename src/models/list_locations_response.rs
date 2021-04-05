@@ -17,7 +17,7 @@ pub struct ListLocationsResponse {
     #[serde(rename = "locations")]
     pub locations: Vec<crate::models::Location>,
     #[serde(rename = "meta", skip_serializing_if = "Option::is_none")]
-    pub meta: Option<crate::models::Meta>,
+    pub meta: Option<Box<crate::models::Meta>>,
 }
 
 impl ListLocationsResponse {

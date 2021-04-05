@@ -15,14 +15,14 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ReplaceFirewallResponse {
     #[serde(rename = "firewall")]
-    pub firewall: crate::models::Firewall,
+    pub firewall: Box<crate::models::Firewall>,
 }
 
 impl ReplaceFirewallResponse {
     /// Response to PUT https://api.hetzner.cloud/v1/firewalls/{id}
     pub fn new(firewall: crate::models::Firewall) -> ReplaceFirewallResponse {
         ReplaceFirewallResponse {
-            firewall,
+            firewall: Box::new(firewall),
         }
     }
 }

@@ -15,14 +15,14 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GetActionForFirewallResponse {
     #[serde(rename = "action")]
-    pub action: crate::models::Action,
+    pub action: Box<crate::models::Action>,
 }
 
 impl GetActionForFirewallResponse {
     /// Response to GET https://api.hetzner.cloud/v1/firewalls/{id}/actions/{action_id}
     pub fn new(action: crate::models::Action) -> GetActionForFirewallResponse {
         GetActionForFirewallResponse {
-            action,
+            action: Box::new(action),
         }
     }
 }

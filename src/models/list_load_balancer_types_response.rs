@@ -17,7 +17,7 @@ pub struct ListLoadBalancerTypesResponse {
     #[serde(rename = "load_balancer_types")]
     pub load_balancer_types: Vec<crate::models::LoadBalancerType>,
     #[serde(rename = "meta", skip_serializing_if = "Option::is_none")]
-    pub meta: Option<crate::models::Meta>,
+    pub meta: Option<Box<crate::models::Meta>>,
 }
 
 impl ListLoadBalancerTypesResponse {

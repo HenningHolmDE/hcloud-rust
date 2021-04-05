@@ -72,7 +72,7 @@ pub async fn get_load_balancer_type(configuration: &configuration::Configuration
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<GetLoadBalancerTypeError> = serde_json::from_str(&local_var_content).ok();
@@ -116,7 +116,7 @@ pub async fn list_load_balancer_types(configuration: &configuration::Configurati
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ListLoadBalancerTypesError> = serde_json::from_str(&local_var_content).ok();

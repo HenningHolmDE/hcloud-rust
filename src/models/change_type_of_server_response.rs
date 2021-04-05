@@ -15,14 +15,14 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ChangeTypeOfServerResponse {
     #[serde(rename = "action")]
-    pub action: crate::models::Action,
+    pub action: Box<crate::models::Action>,
 }
 
 impl ChangeTypeOfServerResponse {
     /// Response to POST https://api.hetzner.cloud/v1/servers/{id}/actions/change_type
     pub fn new(action: crate::models::Action) -> ChangeTypeOfServerResponse {
         ChangeTypeOfServerResponse {
-            action,
+            action: Box::new(action),
         }
     }
 }

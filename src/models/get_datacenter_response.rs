@@ -15,14 +15,14 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GetDatacenterResponse {
     #[serde(rename = "datacenter")]
-    pub datacenter: crate::models::Datacenter,
+    pub datacenter: Box<crate::models::Datacenter>,
 }
 
 impl GetDatacenterResponse {
     /// Response to GET https://api.hetzner.cloud/v1/datacenters/{id}
     pub fn new(datacenter: crate::models::Datacenter) -> GetDatacenterResponse {
         GetDatacenterResponse {
-            datacenter,
+            datacenter: Box::new(datacenter),
         }
     }
 }

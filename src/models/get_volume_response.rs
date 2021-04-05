@@ -15,14 +15,14 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GetVolumeResponse {
     #[serde(rename = "volume")]
-    pub volume: crate::models::Volume,
+    pub volume: Box<crate::models::Volume>,
 }
 
 impl GetVolumeResponse {
     /// Response to GET https://api.hetzner.cloud/v1/volumes/{id}
     pub fn new(volume: crate::models::Volume) -> GetVolumeResponse {
         GetVolumeResponse {
-            volume,
+            volume: Box::new(volume),
         }
     }
 }

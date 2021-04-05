@@ -17,17 +17,17 @@ pub struct PricePerTime {
     #[serde(rename = "location")]
     pub location: String,
     #[serde(rename = "price_hourly")]
-    pub price_hourly: crate::models::Price,
+    pub price_hourly: Box<crate::models::Price>,
     #[serde(rename = "price_monthly")]
-    pub price_monthly: crate::models::Price,
+    pub price_monthly: Box<crate::models::Price>,
 }
 
 impl PricePerTime {
     pub fn new(location: String, price_hourly: crate::models::Price, price_monthly: crate::models::Price) -> PricePerTime {
         PricePerTime {
             location,
-            price_hourly,
-            price_monthly,
+            price_hourly: Box::new(price_hourly),
+            price_monthly: Box::new(price_monthly),
         }
     }
 }

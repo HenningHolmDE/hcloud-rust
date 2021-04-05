@@ -15,14 +15,14 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GetIsoResponse {
     #[serde(rename = "iso")]
-    pub iso: crate::models::Iso,
+    pub iso: Box<crate::models::Iso>,
 }
 
 impl GetIsoResponse {
     /// Response to GET https://api.hetzner.cloud/v1/isos/{id}
     pub fn new(iso: crate::models::Iso) -> GetIsoResponse {
         GetIsoResponse {
-            iso,
+            iso: Box::new(iso),
         }
     }
 }

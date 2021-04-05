@@ -35,12 +35,12 @@ pub struct FloatingIp {
     #[serde(rename = "dns_ptr")]
     pub dns_ptr: Vec<crate::models::DnsPtr>,
     #[serde(rename = "home_location")]
-    pub home_location: crate::models::Location,
+    pub home_location: Box<crate::models::Location>,
     /// Whether the IP is blocked
     #[serde(rename = "blocked")]
     pub blocked: bool,
     #[serde(rename = "protection")]
-    pub protection: crate::models::FloatingIpProtection,
+    pub protection: Box<crate::models::FloatingIpProtection>,
     /// User-defined labels (key-value pairs)
     #[serde(rename = "labels")]
     pub labels: ::std::collections::HashMap<String, String>,
@@ -59,9 +59,9 @@ impl FloatingIp {
             _type,
             server,
             dns_ptr,
-            home_location,
+            home_location: Box::new(home_location),
             blocked,
-            protection,
+            protection: Box::new(protection),
             labels,
             created,
         }

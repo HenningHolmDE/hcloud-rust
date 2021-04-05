@@ -17,7 +17,7 @@ pub struct ListImagesResponse {
     #[serde(rename = "images")]
     pub images: Vec<crate::models::Image>,
     #[serde(rename = "meta", skip_serializing_if = "Option::is_none")]
-    pub meta: Option<crate::models::Meta>,
+    pub meta: Option<Box<crate::models::Meta>>,
 }
 
 impl ListImagesResponse {

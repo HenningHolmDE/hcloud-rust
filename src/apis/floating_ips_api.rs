@@ -219,7 +219,7 @@ pub async fn assign_floating_ip_to_server(configuration: &configuration::Configu
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<AssignFloatingIpToServerError> = serde_json::from_str(&local_var_content).ok();
@@ -254,7 +254,7 @@ pub async fn change_floating_ip_protection(configuration: &configuration::Config
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ChangeFloatingIpProtectionError> = serde_json::from_str(&local_var_content).ok();
@@ -289,7 +289,7 @@ pub async fn change_reverse_dns_entry_for_floating_ip(configuration: &configurat
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ChangeReverseDnsEntryForFloatingIpError> = serde_json::from_str(&local_var_content).ok();
@@ -323,7 +323,7 @@ pub async fn create_floating_ip(configuration: &configuration::Configuration, pa
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<CreateFloatingIpError> = serde_json::from_str(&local_var_content).ok();
@@ -356,7 +356,7 @@ pub async fn delete_floating_ip(configuration: &configuration::Configuration, pa
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         Ok(())
     } else {
         let local_var_entity: Option<DeleteFloatingIpError> = serde_json::from_str(&local_var_content).ok();
@@ -390,7 +390,7 @@ pub async fn get_action_for_floating_ip(configuration: &configuration::Configura
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<GetActionForFloatingIpError> = serde_json::from_str(&local_var_content).ok();
@@ -423,7 +423,7 @@ pub async fn get_floating_ip(configuration: &configuration::Configuration, param
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<GetFloatingIpError> = serde_json::from_str(&local_var_content).ok();
@@ -472,7 +472,7 @@ pub async fn list_actions_for_floating_ip(configuration: &configuration::Configu
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ListActionsForFloatingIpError> = serde_json::from_str(&local_var_content).ok();
@@ -524,7 +524,7 @@ pub async fn list_floating_ips(configuration: &configuration::Configuration, par
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ListFloatingIpsError> = serde_json::from_str(&local_var_content).ok();
@@ -559,7 +559,7 @@ pub async fn replace_floating_ip(configuration: &configuration::Configuration, p
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ReplaceFloatingIpError> = serde_json::from_str(&local_var_content).ok();
@@ -592,7 +592,7 @@ pub async fn unassign_floating_ip(configuration: &configuration::Configuration, 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<UnassignFloatingIpError> = serde_json::from_str(&local_var_content).ok();

@@ -15,14 +15,14 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ListPricesResponse {
     #[serde(rename = "pricing")]
-    pub pricing: crate::models::ListPricesResponsePricing,
+    pub pricing: Box<crate::models::ListPricesResponsePricing>,
 }
 
 impl ListPricesResponse {
     /// Response to GET https://api.hetzner.cloud/v1/pricing
     pub fn new(pricing: crate::models::ListPricesResponsePricing) -> ListPricesResponse {
         ListPricesResponse {
-            pricing,
+            pricing: Box::new(pricing),
         }
     }
 }

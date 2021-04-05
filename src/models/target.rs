@@ -18,7 +18,7 @@ pub struct Target {
     #[serde(rename = "type")]
     pub _type: Type,
     #[serde(rename = "server", skip_serializing_if = "Option::is_none")]
-    pub server: Option<crate::models::TargetServer>,
+    pub server: Option<Box<crate::models::TargetServer>>,
     /// List of health statuses of the services on this target
     #[serde(rename = "health_status", skip_serializing_if = "Option::is_none")]
     pub health_status: Option<Vec<crate::models::HealthStatus>>,
@@ -26,9 +26,9 @@ pub struct Target {
     #[serde(rename = "use_private_ip", skip_serializing_if = "Option::is_none")]
     pub use_private_ip: Option<bool>,
     #[serde(rename = "label_selector", skip_serializing_if = "Option::is_none")]
-    pub label_selector: Option<crate::models::TargetLabelSelector>,
+    pub label_selector: Option<Box<crate::models::TargetLabelSelector>>,
     #[serde(rename = "ip", skip_serializing_if = "Option::is_none")]
-    pub ip: Option<crate::models::AddTargetRequestIp>,
+    pub ip: Option<Box<crate::models::AddTargetRequestIp>>,
     /// List of selected targets
     #[serde(rename = "targets", skip_serializing_if = "Option::is_none")]
     pub targets: Option<Vec<crate::models::SelectedTarget>>,

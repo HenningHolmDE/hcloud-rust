@@ -15,14 +15,14 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct AddRouteToNetworkResponse {
     #[serde(rename = "action")]
-    pub action: crate::models::Action,
+    pub action: Box<crate::models::Action>,
 }
 
 impl AddRouteToNetworkResponse {
     /// Response to POST https://api.hetzner.cloud/v1/networks/{id}/actions/add_route
     pub fn new(action: crate::models::Action) -> AddRouteToNetworkResponse {
         AddRouteToNetworkResponse {
-            action,
+            action: Box::new(action),
         }
     }
 }

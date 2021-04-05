@@ -17,7 +17,7 @@ pub struct ListFloatingIpsResponse {
     #[serde(rename = "floating_ips")]
     pub floating_ips: Vec<crate::models::FloatingIp>,
     #[serde(rename = "meta", skip_serializing_if = "Option::is_none")]
-    pub meta: Option<crate::models::Meta>,
+    pub meta: Option<Box<crate::models::Meta>>,
 }
 
 impl ListFloatingIpsResponse {

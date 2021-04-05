@@ -17,7 +17,7 @@ pub struct ListActionsForImageResponse {
     #[serde(rename = "actions")]
     pub actions: Vec<crate::models::Action>,
     #[serde(rename = "meta", skip_serializing_if = "Option::is_none")]
-    pub meta: Option<crate::models::Meta>,
+    pub meta: Option<Box<crate::models::Meta>>,
 }
 
 impl ListActionsForImageResponse {

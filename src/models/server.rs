@@ -27,18 +27,18 @@ pub struct Server {
     #[serde(rename = "created")]
     pub created: String,
     #[serde(rename = "public_net")]
-    pub public_net: crate::models::PublicNetServer,
+    pub public_net: Box<crate::models::PublicNetServer>,
     /// Private networks information
     #[serde(rename = "private_net")]
     pub private_net: Vec<crate::models::PrivateNetServer>,
     #[serde(rename = "server_type")]
-    pub server_type: crate::models::ServerType,
+    pub server_type: Box<crate::models::ServerType>,
     #[serde(rename = "datacenter")]
-    pub datacenter: crate::models::Datacenter,
+    pub datacenter: Box<crate::models::Datacenter>,
     #[serde(rename = "image")]
-    pub image: crate::models::Image,
+    pub image: Box<crate::models::Image>,
     #[serde(rename = "iso")]
-    pub iso: Option<crate::models::Iso>,
+    pub iso: Option<Box<crate::models::Iso>>,
     /// True if rescue mode is enabled. Server will then boot into rescue system on next reboot
     #[serde(rename = "rescue_enabled")]
     pub rescue_enabled: bool,
@@ -58,7 +58,7 @@ pub struct Server {
     #[serde(rename = "included_traffic")]
     pub included_traffic: Option<i64>,
     #[serde(rename = "protection")]
-    pub protection: crate::models::Protection,
+    pub protection: Box<crate::models::Protection>,
     /// User-defined labels (key-value pairs)
     #[serde(rename = "labels")]
     pub labels: ::std::collections::HashMap<String, String>,
@@ -80,19 +80,19 @@ impl Server {
             name,
             status,
             created,
-            public_net,
+            public_net: Box::new(public_net),
             private_net,
-            server_type,
-            datacenter,
-            image,
-            iso,
+            server_type: Box::new(server_type),
+            datacenter: Box::new(datacenter),
+            image: Box::new(image),
+            iso: iso.map(Box::new),
             rescue_enabled,
             locked,
             backup_window,
             outgoing_traffic,
             ingoing_traffic,
             included_traffic,
-            protection,
+            protection: Box::new(protection),
             labels,
             volumes: None,
             load_balancers: None,

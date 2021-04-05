@@ -15,14 +15,14 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GetLoadBalancerResponse {
     #[serde(rename = "load_balancer")]
-    pub load_balancer: crate::models::LoadBalancer,
+    pub load_balancer: Box<crate::models::LoadBalancer>,
 }
 
 impl GetLoadBalancerResponse {
     /// Response to GET https://api.hetzner.cloud/v1/load_balancers/{id}
     pub fn new(load_balancer: crate::models::LoadBalancer) -> GetLoadBalancerResponse {
         GetLoadBalancerResponse {
-            load_balancer,
+            load_balancer: Box::new(load_balancer),
         }
     }
 }

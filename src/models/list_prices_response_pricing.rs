@@ -20,15 +20,15 @@ pub struct ListPricesResponsePricing {
     #[serde(rename = "vat_rate")]
     pub vat_rate: String,
     #[serde(rename = "image")]
-    pub image: crate::models::ListPricesResponsePricingImage,
+    pub image: Box<crate::models::ListPricesResponsePricingImage>,
     #[serde(rename = "floating_ip")]
-    pub floating_ip: crate::models::ListPricesResponsePricingFloatingIp,
+    pub floating_ip: Box<crate::models::ListPricesResponsePricingFloatingIp>,
     #[serde(rename = "traffic")]
-    pub traffic: crate::models::ListPricesResponsePricingTraffic,
+    pub traffic: Box<crate::models::ListPricesResponsePricingTraffic>,
     #[serde(rename = "server_backup")]
-    pub server_backup: crate::models::ListPricesResponsePricingServerBackup,
+    pub server_backup: Box<crate::models::ListPricesResponsePricingServerBackup>,
     #[serde(rename = "volume")]
-    pub volume: crate::models::ListPricesResponsePricingVolume,
+    pub volume: Box<crate::models::ListPricesResponsePricingVolume>,
     /// Costs of Server types per Location and type
     #[serde(rename = "server_types")]
     pub server_types: Vec<crate::models::ListPricesResponsePricingServerTypes>,
@@ -42,11 +42,11 @@ impl ListPricesResponsePricing {
         ListPricesResponsePricing {
             currency,
             vat_rate,
-            image,
-            floating_ip,
-            traffic,
-            server_backup,
-            volume,
+            image: Box::new(image),
+            floating_ip: Box::new(floating_ip),
+            traffic: Box::new(traffic),
+            server_backup: Box::new(server_backup),
+            volume: Box::new(volume),
             server_types,
             load_balancer_types,
         }

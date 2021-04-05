@@ -17,7 +17,7 @@ pub struct ListServerTypesResponse {
     #[serde(rename = "server_types")]
     pub server_types: Vec<crate::models::ServerType>,
     #[serde(rename = "meta", skip_serializing_if = "Option::is_none")]
-    pub meta: Option<crate::models::Meta>,
+    pub meta: Option<Box<crate::models::Meta>>,
 }
 
 impl ListServerTypesResponse {

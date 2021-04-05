@@ -18,7 +18,7 @@ pub struct EnableRescueModeForServerResponse {
     #[serde(rename = "root_password", skip_serializing_if = "Option::is_none")]
     pub root_password: Option<String>,
     #[serde(rename = "action", skip_serializing_if = "Option::is_none")]
-    pub action: Option<crate::models::Action>,
+    pub action: Option<Box<crate::models::Action>>,
 }
 
 impl EnableRescueModeForServerResponse {

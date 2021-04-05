@@ -168,7 +168,7 @@ pub async fn change_image_protection(configuration: &configuration::Configuratio
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ChangeImageProtectionError> = serde_json::from_str(&local_var_content).ok();
@@ -201,7 +201,7 @@ pub async fn delete_image(configuration: &configuration::Configuration, params: 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         Ok(())
     } else {
         let local_var_entity: Option<DeleteImageError> = serde_json::from_str(&local_var_content).ok();
@@ -235,7 +235,7 @@ pub async fn get_action_for_image(configuration: &configuration::Configuration, 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<GetActionForImageError> = serde_json::from_str(&local_var_content).ok();
@@ -268,7 +268,7 @@ pub async fn get_image(configuration: &configuration::Configuration, params: Get
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<GetImageError> = serde_json::from_str(&local_var_content).ok();
@@ -317,7 +317,7 @@ pub async fn list_actions_for_image(configuration: &configuration::Configuration
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ListActionsForImageError> = serde_json::from_str(&local_var_content).ok();
@@ -385,7 +385,7 @@ pub async fn list_images(configuration: &configuration::Configuration, params: L
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ListImagesError> = serde_json::from_str(&local_var_content).ok();
@@ -420,7 +420,7 @@ pub async fn replace_image(configuration: &configuration::Configuration, params:
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ReplaceImageError> = serde_json::from_str(&local_var_content).ok();

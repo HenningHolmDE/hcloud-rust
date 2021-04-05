@@ -489,7 +489,7 @@ pub async fn attach_iso_to_server(configuration: &configuration::Configuration, 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<AttachIsoToServerError> = serde_json::from_str(&local_var_content).ok();
@@ -524,7 +524,7 @@ pub async fn attach_server_to_network(configuration: &configuration::Configurati
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<AttachServerToNetworkError> = serde_json::from_str(&local_var_content).ok();
@@ -559,7 +559,7 @@ pub async fn change_alias_ips_of_network(configuration: &configuration::Configur
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ChangeAliasIpsOfNetworkError> = serde_json::from_str(&local_var_content).ok();
@@ -594,7 +594,7 @@ pub async fn change_reverse_dns_entry_for_this_server(configuration: &configurat
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ChangeReverseDnsEntryForThisServerError> = serde_json::from_str(&local_var_content).ok();
@@ -629,7 +629,7 @@ pub async fn change_server_protection(configuration: &configuration::Configurati
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ChangeServerProtectionError> = serde_json::from_str(&local_var_content).ok();
@@ -664,7 +664,7 @@ pub async fn change_type_of_server(configuration: &configuration::Configuration,
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ChangeTypeOfServerError> = serde_json::from_str(&local_var_content).ok();
@@ -699,7 +699,7 @@ pub async fn create_image_from_server(configuration: &configuration::Configurati
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<CreateImageFromServerError> = serde_json::from_str(&local_var_content).ok();
@@ -733,7 +733,7 @@ pub async fn create_server(configuration: &configuration::Configuration, params:
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<CreateServerError> = serde_json::from_str(&local_var_content).ok();
@@ -766,7 +766,7 @@ pub async fn delete_server(configuration: &configuration::Configuration, params:
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<DeleteServerError> = serde_json::from_str(&local_var_content).ok();
@@ -799,7 +799,7 @@ pub async fn detach_iso_from_server(configuration: &configuration::Configuration
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<DetachIsoFromServerError> = serde_json::from_str(&local_var_content).ok();
@@ -834,7 +834,7 @@ pub async fn detach_server_from_network(configuration: &configuration::Configura
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<DetachServerFromNetworkError> = serde_json::from_str(&local_var_content).ok();
@@ -867,7 +867,7 @@ pub async fn disable_backups_for_server(configuration: &configuration::Configura
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<DisableBackupsForServerError> = serde_json::from_str(&local_var_content).ok();
@@ -900,7 +900,7 @@ pub async fn disable_rescue_mode_for_server(configuration: &configuration::Confi
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<DisableRescueModeForServerError> = serde_json::from_str(&local_var_content).ok();
@@ -933,7 +933,7 @@ pub async fn enable_and_configure_backups_for_server(configuration: &configurati
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<EnableAndConfigureBackupsForServerError> = serde_json::from_str(&local_var_content).ok();
@@ -968,7 +968,7 @@ pub async fn enable_rescue_mode_for_server(configuration: &configuration::Config
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<EnableRescueModeForServerError> = serde_json::from_str(&local_var_content).ok();
@@ -1002,7 +1002,7 @@ pub async fn get_action_for_server(configuration: &configuration::Configuration,
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<GetActionForServerError> = serde_json::from_str(&local_var_content).ok();
@@ -1045,7 +1045,7 @@ pub async fn get_metrics_for_server(configuration: &configuration::Configuration
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<GetMetricsForServerError> = serde_json::from_str(&local_var_content).ok();
@@ -1078,7 +1078,7 @@ pub async fn get_server(configuration: &configuration::Configuration, params: Ge
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<GetServerError> = serde_json::from_str(&local_var_content).ok();
@@ -1127,7 +1127,7 @@ pub async fn list_actions_for_server(configuration: &configuration::Configuratio
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ListActionsForServerError> = serde_json::from_str(&local_var_content).ok();
@@ -1183,7 +1183,7 @@ pub async fn list_servers(configuration: &configuration::Configuration, params: 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ListServersError> = serde_json::from_str(&local_var_content).ok();
@@ -1216,7 +1216,7 @@ pub async fn power_off_server(configuration: &configuration::Configuration, para
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<PowerOffServerError> = serde_json::from_str(&local_var_content).ok();
@@ -1249,7 +1249,7 @@ pub async fn power_on_server(configuration: &configuration::Configuration, param
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<PowerOnServerError> = serde_json::from_str(&local_var_content).ok();
@@ -1284,7 +1284,7 @@ pub async fn rebuild_server_from_image(configuration: &configuration::Configurat
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<RebuildServerFromImageError> = serde_json::from_str(&local_var_content).ok();
@@ -1319,7 +1319,7 @@ pub async fn replace_server(configuration: &configuration::Configuration, params
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ReplaceServerError> = serde_json::from_str(&local_var_content).ok();
@@ -1352,7 +1352,7 @@ pub async fn request_console_for_server(configuration: &configuration::Configura
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<RequestConsoleForServerError> = serde_json::from_str(&local_var_content).ok();
@@ -1385,7 +1385,7 @@ pub async fn reset_root_password_of_server(configuration: &configuration::Config
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ResetRootPasswordOfServerError> = serde_json::from_str(&local_var_content).ok();
@@ -1418,7 +1418,7 @@ pub async fn reset_server(configuration: &configuration::Configuration, params: 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ResetServerError> = serde_json::from_str(&local_var_content).ok();
@@ -1451,7 +1451,7 @@ pub async fn shutdown_server(configuration: &configuration::Configuration, param
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ShutdownServerError> = serde_json::from_str(&local_var_content).ok();
@@ -1484,7 +1484,7 @@ pub async fn soft_reboot_server(configuration: &configuration::Configuration, pa
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<SoftRebootServerError> = serde_json::from_str(&local_var_content).ok();

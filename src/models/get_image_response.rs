@@ -15,7 +15,7 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GetImageResponse {
     #[serde(rename = "image", skip_serializing_if = "Option::is_none")]
-    pub image: Option<crate::models::Image>,
+    pub image: Option<Box<crate::models::Image>>,
 }
 
 impl GetImageResponse {

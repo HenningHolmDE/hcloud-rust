@@ -15,14 +15,14 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ChangeImageProtectionResponse {
     #[serde(rename = "action")]
-    pub action: crate::models::Action,
+    pub action: Box<crate::models::Action>,
 }
 
 impl ChangeImageProtectionResponse {
     /// Response to POST https://api.hetzner.cloud/v1/images/{id}/actions/change_protection
     pub fn new(action: crate::models::Action) -> ChangeImageProtectionResponse {
         ChangeImageProtectionResponse {
-            action,
+            action: Box::new(action),
         }
     }
 }

@@ -38,7 +38,7 @@ pub struct Image {
     #[serde(rename = "created")]
     pub created: String,
     #[serde(rename = "created_from")]
-    pub created_from: Option<crate::models::CreatedFrom>,
+    pub created_from: Option<Box<crate::models::CreatedFrom>>,
     /// ID of Server the Image is bound to. Only set for Images of type `backup`.
     #[serde(rename = "bound_to")]
     pub bound_to: Option<i32>,
@@ -52,7 +52,7 @@ pub struct Image {
     #[serde(rename = "rapid_deploy", skip_serializing_if = "Option::is_none")]
     pub rapid_deploy: Option<bool>,
     #[serde(rename = "protection")]
-    pub protection: crate::models::ImageProtection,
+    pub protection: Box<crate::models::ImageProtection>,
     /// Point in time when the Image is considered to be deprecated (in ISO-8601 format)
     #[serde(rename = "deprecated")]
     pub deprecated: Option<String>,
@@ -72,12 +72,12 @@ impl Image {
             image_size,
             disk_size,
             created,
-            created_from,
+            created_from: created_from.map(Box::new),
             bound_to,
             os_flavor,
             os_version,
             rapid_deploy: None,
-            protection,
+            protection: Box::new(protection),
             deprecated,
             labels,
         }

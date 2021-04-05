@@ -18,9 +18,9 @@ pub struct PublicNetLoadBalancer {
     #[serde(rename = "enabled")]
     pub enabled: bool,
     #[serde(rename = "ipv4")]
-    pub ipv4: crate::models::PublicNetLoadBalancerIpv4,
+    pub ipv4: Box<crate::models::PublicNetLoadBalancerIpv4>,
     #[serde(rename = "ipv6")]
-    pub ipv6: crate::models::PublicNetLoadBalancerIpv6,
+    pub ipv6: Box<crate::models::PublicNetLoadBalancerIpv6>,
 }
 
 impl PublicNetLoadBalancer {
@@ -28,8 +28,8 @@ impl PublicNetLoadBalancer {
     pub fn new(enabled: bool, ipv4: crate::models::PublicNetLoadBalancerIpv4, ipv6: crate::models::PublicNetLoadBalancerIpv6) -> PublicNetLoadBalancer {
         PublicNetLoadBalancer {
             enabled,
-            ipv4,
-            ipv6,
+            ipv4: Box::new(ipv4),
+            ipv6: Box::new(ipv6),
         }
     }
 }

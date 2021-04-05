@@ -15,14 +15,14 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct DetachVolumeResponse {
     #[serde(rename = "action")]
-    pub action: crate::models::Action,
+    pub action: Box<crate::models::Action>,
 }
 
 impl DetachVolumeResponse {
     /// Response to POST https://api.hetzner.cloud/v1/volumes/{id}/actions/detach
     pub fn new(action: crate::models::Action) -> DetachVolumeResponse {
         DetachVolumeResponse {
-            action,
+            action: Box::new(action),
         }
     }
 }

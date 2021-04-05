@@ -35,7 +35,7 @@ pub struct Network {
     #[serde(rename = "load_balancers", skip_serializing_if = "Option::is_none")]
     pub load_balancers: Option<Vec<i32>>,
     #[serde(rename = "protection")]
-    pub protection: crate::models::NetworkProtection,
+    pub protection: Box<crate::models::NetworkProtection>,
     /// User-defined labels (key-value pairs)
     #[serde(rename = "labels")]
     pub labels: ::std::collections::HashMap<String, String>,
@@ -54,7 +54,7 @@ impl Network {
             routes,
             servers,
             load_balancers: None,
-            protection,
+            protection: Box::new(protection),
             labels,
             created,
         }

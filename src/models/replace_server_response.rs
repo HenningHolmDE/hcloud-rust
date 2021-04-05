@@ -15,7 +15,7 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ReplaceServerResponse {
     #[serde(rename = "server", skip_serializing_if = "Option::is_none")]
-    pub server: Option<crate::models::Server>,
+    pub server: Option<Box<crate::models::Server>>,
 }
 
 impl ReplaceServerResponse {

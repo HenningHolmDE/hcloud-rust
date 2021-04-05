@@ -15,14 +15,14 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct RetryIssuanceOrRenewalResponse {
     #[serde(rename = "action")]
-    pub action: crate::models::Action,
+    pub action: Box<crate::models::Action>,
 }
 
 impl RetryIssuanceOrRenewalResponse {
     /// Response to POST https://api.hetzner.cloud/v1/certificates/{id}/actions/retry
     pub fn new(action: crate::models::Action) -> RetryIssuanceOrRenewalResponse {
         RetryIssuanceOrRenewalResponse {
-            action,
+            action: Box::new(action),
         }
     }
 }

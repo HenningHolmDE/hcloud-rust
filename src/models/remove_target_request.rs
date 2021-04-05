@@ -18,11 +18,11 @@ pub struct RemoveTargetRequest {
     #[serde(rename = "type")]
     pub _type: Type,
     #[serde(rename = "server", skip_serializing_if = "Option::is_none")]
-    pub server: Option<crate::models::AddTargetRequestServer>,
+    pub server: Option<Box<crate::models::AddTargetRequestServer>>,
     #[serde(rename = "label_selector", skip_serializing_if = "Option::is_none")]
-    pub label_selector: Option<crate::models::AddTargetRequestLabelSelector>,
+    pub label_selector: Option<Box<crate::models::AddTargetRequestLabelSelector>>,
     #[serde(rename = "ip", skip_serializing_if = "Option::is_none")]
-    pub ip: Option<crate::models::AddTargetRequestIp>,
+    pub ip: Option<Box<crate::models::AddTargetRequestIp>>,
 }
 
 impl RemoveTargetRequest {

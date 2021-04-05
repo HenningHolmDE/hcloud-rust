@@ -219,7 +219,7 @@ pub async fn attach_volume_to_server(configuration: &configuration::Configuratio
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<AttachVolumeToServerError> = serde_json::from_str(&local_var_content).ok();
@@ -254,7 +254,7 @@ pub async fn change_volume_protection(configuration: &configuration::Configurati
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ChangeVolumeProtectionError> = serde_json::from_str(&local_var_content).ok();
@@ -288,7 +288,7 @@ pub async fn create_volume(configuration: &configuration::Configuration, params:
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<CreateVolumeError> = serde_json::from_str(&local_var_content).ok();
@@ -321,7 +321,7 @@ pub async fn delete_volume(configuration: &configuration::Configuration, params:
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         Ok(())
     } else {
         let local_var_entity: Option<DeleteVolumeError> = serde_json::from_str(&local_var_content).ok();
@@ -354,7 +354,7 @@ pub async fn detach_volume(configuration: &configuration::Configuration, params:
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<DetachVolumeError> = serde_json::from_str(&local_var_content).ok();
@@ -388,7 +388,7 @@ pub async fn get_action_for_volume(configuration: &configuration::Configuration,
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<GetActionForVolumeError> = serde_json::from_str(&local_var_content).ok();
@@ -421,7 +421,7 @@ pub async fn get_volume(configuration: &configuration::Configuration, params: Ge
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<GetVolumeError> = serde_json::from_str(&local_var_content).ok();
@@ -470,7 +470,7 @@ pub async fn list_actions_for_volume(configuration: &configuration::Configuratio
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ListActionsForVolumeError> = serde_json::from_str(&local_var_content).ok();
@@ -526,7 +526,7 @@ pub async fn list_volumes(configuration: &configuration::Configuration, params: 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ListVolumesError> = serde_json::from_str(&local_var_content).ok();
@@ -561,7 +561,7 @@ pub async fn replace_volume(configuration: &configuration::Configuration, params
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ReplaceVolumeError> = serde_json::from_str(&local_var_content).ok();
@@ -596,7 +596,7 @@ pub async fn resize_volume(configuration: &configuration::Configuration, params:
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ResizeVolumeError> = serde_json::from_str(&local_var_content).ok();

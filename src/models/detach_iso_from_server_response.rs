@@ -15,14 +15,14 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct DetachIsoFromServerResponse {
     #[serde(rename = "action")]
-    pub action: crate::models::Action,
+    pub action: Box<crate::models::Action>,
 }
 
 impl DetachIsoFromServerResponse {
     /// Response to POST https://api.hetzner.cloud/v1/servers/{id}/actions/detach_iso
     pub fn new(action: crate::models::Action) -> DetachIsoFromServerResponse {
         DetachIsoFromServerResponse {
-            action,
+            action: Box::new(action),
         }
     }
 }

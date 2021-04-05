@@ -36,7 +36,7 @@ pub struct Action {
     #[serde(rename = "resources")]
     pub resources: Vec<crate::models::Resource>,
     #[serde(rename = "error")]
-    pub error: Option<crate::models::Error>,
+    pub error: Option<Box<crate::models::Error>>,
 }
 
 impl Action {
@@ -50,7 +50,7 @@ impl Action {
             started,
             finished,
             resources,
-            error,
+            error: error.map(Box::new),
         }
     }
 }

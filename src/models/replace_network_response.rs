@@ -15,7 +15,7 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ReplaceNetworkResponse {
     #[serde(rename = "network", skip_serializing_if = "Option::is_none")]
-    pub network: Option<crate::models::Network>,
+    pub network: Option<Box<crate::models::Network>>,
 }
 
 impl ReplaceNetworkResponse {

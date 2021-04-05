@@ -15,14 +15,14 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct DisableBackupsForServerResponse {
     #[serde(rename = "action")]
-    pub action: crate::models::Action,
+    pub action: Box<crate::models::Action>,
 }
 
 impl DisableBackupsForServerResponse {
     /// Response to POST https://api.hetzner.cloud/v1/servers/{id}/actions/disable_backup
     pub fn new(action: crate::models::Action) -> DisableBackupsForServerResponse {
         DisableBackupsForServerResponse {
-            action,
+            action: Box::new(action),
         }
     }
 }

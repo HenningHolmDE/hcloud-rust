@@ -121,7 +121,7 @@ pub async fn create_ssh_key(configuration: &configuration::Configuration, params
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<CreateSshKeyError> = serde_json::from_str(&local_var_content).ok();
@@ -154,7 +154,7 @@ pub async fn delete_ssh_key(configuration: &configuration::Configuration, params
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         Ok(())
     } else {
         let local_var_entity: Option<DeleteSshKeyError> = serde_json::from_str(&local_var_content).ok();
@@ -187,7 +187,7 @@ pub async fn get_ssh_key(configuration: &configuration::Configuration, params: G
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<GetSshKeyError> = serde_json::from_str(&local_var_content).ok();
@@ -243,7 +243,7 @@ pub async fn list_ssh_keys(configuration: &configuration::Configuration, params:
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ListSshKeysError> = serde_json::from_str(&local_var_content).ok();
@@ -278,7 +278,7 @@ pub async fn replace_ssh_key(configuration: &configuration::Configuration, param
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ReplaceSshKeyError> = serde_json::from_str(&local_var_content).ok();

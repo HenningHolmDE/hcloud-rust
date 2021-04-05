@@ -17,7 +17,7 @@ pub struct ListNetworksResponse {
     #[serde(rename = "networks")]
     pub networks: Vec<crate::models::Network>,
     #[serde(rename = "meta", skip_serializing_if = "Option::is_none")]
-    pub meta: Option<crate::models::Meta>,
+    pub meta: Option<Box<crate::models::Meta>>,
 }
 
 impl ListNetworksResponse {

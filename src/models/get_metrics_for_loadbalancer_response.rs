@@ -15,14 +15,14 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GetMetricsForLoadbalancerResponse {
     #[serde(rename = "metrics")]
-    pub metrics: crate::models::Metrics,
+    pub metrics: Box<crate::models::Metrics>,
 }
 
 impl GetMetricsForLoadbalancerResponse {
     /// Response to GET https://api.hetzner.cloud/v1/load_balancers/{id}/metrics
     pub fn new(metrics: crate::models::Metrics) -> GetMetricsForLoadbalancerResponse {
         GetMetricsForLoadbalancerResponse {
-            metrics,
+            metrics: Box::new(metrics),
         }
     }
 }

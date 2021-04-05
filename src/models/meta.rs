@@ -15,7 +15,7 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Meta {
     #[serde(rename = "pagination", skip_serializing_if = "Option::is_none")]
-    pub pagination: Option<crate::models::Pagination>,
+    pub pagination: Option<Box<crate::models::Pagination>>,
 }
 
 impl Meta {

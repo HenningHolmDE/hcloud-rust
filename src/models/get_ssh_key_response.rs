@@ -15,14 +15,14 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GetSshKeyResponse {
     #[serde(rename = "ssh_key")]
-    pub ssh_key: crate::models::SshKey,
+    pub ssh_key: Box<crate::models::SshKey>,
 }
 
 impl GetSshKeyResponse {
     /// Response to GET https://api.hetzner.cloud/v1/ssh_keys/{id}
     pub fn new(ssh_key: crate::models::SshKey) -> GetSshKeyResponse {
         GetSshKeyResponse {
-            ssh_key,
+            ssh_key: Box::new(ssh_key),
         }
     }
 }

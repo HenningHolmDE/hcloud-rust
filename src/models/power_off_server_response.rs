@@ -15,14 +15,14 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct PowerOffServerResponse {
     #[serde(rename = "action")]
-    pub action: crate::models::Action,
+    pub action: Box<crate::models::Action>,
 }
 
 impl PowerOffServerResponse {
     /// Response to POST https://api.hetzner.cloud/v1/servers/{id}/actions/poweroff
     pub fn new(action: crate::models::Action) -> PowerOffServerResponse {
         PowerOffServerResponse {
-            action,
+            action: Box::new(action),
         }
     }
 }

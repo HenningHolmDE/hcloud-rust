@@ -20,16 +20,16 @@ pub struct LoadBalancer {
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "public_net")]
-    pub public_net: crate::models::PublicNetLoadBalancer,
+    pub public_net: Box<crate::models::PublicNetLoadBalancer>,
     /// Private networks information
     #[serde(rename = "private_net")]
     pub private_net: Vec<crate::models::PrivateNetLoadBalancer>,
     #[serde(rename = "location")]
-    pub location: crate::models::Location,
+    pub location: Box<crate::models::Location>,
     #[serde(rename = "load_balancer_type")]
-    pub load_balancer_type: crate::models::LoadBalancerType,
+    pub load_balancer_type: Box<crate::models::LoadBalancerType>,
     #[serde(rename = "protection")]
-    pub protection: crate::models::LoadBalancerProtection,
+    pub protection: Box<crate::models::LoadBalancerProtection>,
     /// User-defined labels (key-value pairs)
     #[serde(rename = "labels")]
     pub labels: ::std::collections::HashMap<String, String>,
@@ -43,7 +43,7 @@ pub struct LoadBalancer {
     #[serde(rename = "targets")]
     pub targets: Vec<crate::models::Target>,
     #[serde(rename = "algorithm")]
-    pub algorithm: crate::models::LoadBalancerAlgorithm,
+    pub algorithm: Box<crate::models::LoadBalancerAlgorithm>,
     /// Outbound Traffic for the current billing period in bytes
     #[serde(rename = "outgoing_traffic")]
     pub outgoing_traffic: Option<i64>,
@@ -60,16 +60,16 @@ impl LoadBalancer {
         LoadBalancer {
             id,
             name,
-            public_net,
+            public_net: Box::new(public_net),
             private_net,
-            location,
-            load_balancer_type,
-            protection,
+            location: Box::new(location),
+            load_balancer_type: Box::new(load_balancer_type),
+            protection: Box::new(protection),
             labels,
             created,
             services,
             targets,
-            algorithm,
+            algorithm: Box::new(algorithm),
             outgoing_traffic,
             ingoing_traffic,
             included_traffic,

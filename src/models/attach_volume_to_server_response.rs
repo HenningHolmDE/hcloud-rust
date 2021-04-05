@@ -15,14 +15,14 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct AttachVolumeToServerResponse {
     #[serde(rename = "action")]
-    pub action: crate::models::Action,
+    pub action: Box<crate::models::Action>,
 }
 
 impl AttachVolumeToServerResponse {
     /// Response to POST https://api.hetzner.cloud/v1/volumes/{id}/actions/attach
     pub fn new(action: crate::models::Action) -> AttachVolumeToServerResponse {
         AttachVolumeToServerResponse {
-            action,
+            action: Box::new(action),
         }
     }
 }

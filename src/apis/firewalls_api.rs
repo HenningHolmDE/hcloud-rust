@@ -203,7 +203,7 @@ pub async fn apply_to_resources(configuration: &configuration::Configuration, pa
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ApplyToResourcesError> = serde_json::from_str(&local_var_content).ok();
@@ -237,7 +237,7 @@ pub async fn create_firewall(configuration: &configuration::Configuration, param
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<CreateFirewallError> = serde_json::from_str(&local_var_content).ok();
@@ -270,7 +270,7 @@ pub async fn delete_firewall(configuration: &configuration::Configuration, param
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         Ok(())
     } else {
         let local_var_entity: Option<DeleteFirewallError> = serde_json::from_str(&local_var_content).ok();
@@ -304,7 +304,7 @@ pub async fn get_action_for_firewall(configuration: &configuration::Configuratio
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<GetActionForFirewallError> = serde_json::from_str(&local_var_content).ok();
@@ -337,7 +337,7 @@ pub async fn get_firewall(configuration: &configuration::Configuration, params: 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<GetFirewallError> = serde_json::from_str(&local_var_content).ok();
@@ -386,7 +386,7 @@ pub async fn list_actions_for_firewall(configuration: &configuration::Configurat
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ListActionsForFirewallError> = serde_json::from_str(&local_var_content).ok();
@@ -438,7 +438,7 @@ pub async fn list_firewalls(configuration: &configuration::Configuration, params
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ListFirewallsError> = serde_json::from_str(&local_var_content).ok();
@@ -473,7 +473,7 @@ pub async fn remove_from_resources(configuration: &configuration::Configuration,
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<RemoveFromResourcesError> = serde_json::from_str(&local_var_content).ok();
@@ -508,7 +508,7 @@ pub async fn replace_firewall(configuration: &configuration::Configuration, para
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ReplaceFirewallError> = serde_json::from_str(&local_var_content).ok();
@@ -543,7 +543,7 @@ pub async fn set_rules(configuration: &configuration::Configuration, params: Set
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<SetRulesError> = serde_json::from_str(&local_var_content).ok();

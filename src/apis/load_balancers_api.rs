@@ -358,7 +358,7 @@ pub async fn add_service(configuration: &configuration::Configuration, params: A
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<AddServiceError> = serde_json::from_str(&local_var_content).ok();
@@ -393,7 +393,7 @@ pub async fn add_target(configuration: &configuration::Configuration, params: Ad
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<AddTargetError> = serde_json::from_str(&local_var_content).ok();
@@ -428,7 +428,7 @@ pub async fn attach_load_balancer_to_network(configuration: &configuration::Conf
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<AttachLoadBalancerToNetworkError> = serde_json::from_str(&local_var_content).ok();
@@ -463,7 +463,7 @@ pub async fn change_algorithm(configuration: &configuration::Configuration, para
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ChangeAlgorithmError> = serde_json::from_str(&local_var_content).ok();
@@ -498,7 +498,7 @@ pub async fn change_load_balancer_protection(configuration: &configuration::Conf
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ChangeLoadBalancerProtectionError> = serde_json::from_str(&local_var_content).ok();
@@ -533,7 +533,7 @@ pub async fn change_type_of_load_balancer(configuration: &configuration::Configu
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ChangeTypeOfLoadBalancerError> = serde_json::from_str(&local_var_content).ok();
@@ -567,7 +567,7 @@ pub async fn create_load_balancer(configuration: &configuration::Configuration, 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<CreateLoadBalancerError> = serde_json::from_str(&local_var_content).ok();
@@ -600,7 +600,7 @@ pub async fn delete_load_balancer(configuration: &configuration::Configuration, 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         Ok(())
     } else {
         let local_var_entity: Option<DeleteLoadBalancerError> = serde_json::from_str(&local_var_content).ok();
@@ -635,7 +635,7 @@ pub async fn delete_service(configuration: &configuration::Configuration, params
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<DeleteServiceError> = serde_json::from_str(&local_var_content).ok();
@@ -670,7 +670,7 @@ pub async fn detach_load_balancer_from_network(configuration: &configuration::Co
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<DetachLoadBalancerFromNetworkError> = serde_json::from_str(&local_var_content).ok();
@@ -703,7 +703,7 @@ pub async fn disable_public_interface_of_load_balancer(configuration: &configura
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<DisablePublicInterfaceOfLoadBalancerError> = serde_json::from_str(&local_var_content).ok();
@@ -736,7 +736,7 @@ pub async fn enable_public_interface_of_load_balancer(configuration: &configurat
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<EnablePublicInterfaceOfLoadBalancerError> = serde_json::from_str(&local_var_content).ok();
@@ -770,7 +770,7 @@ pub async fn get_action_for_load_balancer(configuration: &configuration::Configu
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<GetActionForLoadBalancerError> = serde_json::from_str(&local_var_content).ok();
@@ -803,7 +803,7 @@ pub async fn get_load_balancer(configuration: &configuration::Configuration, par
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<GetLoadBalancerError> = serde_json::from_str(&local_var_content).ok();
@@ -846,7 +846,7 @@ pub async fn get_metrics_for_loadbalancer(configuration: &configuration::Configu
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<GetMetricsForLoadbalancerError> = serde_json::from_str(&local_var_content).ok();
@@ -895,7 +895,7 @@ pub async fn list_actions_for_load_balancer(configuration: &configuration::Confi
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ListActionsForLoadBalancerError> = serde_json::from_str(&local_var_content).ok();
@@ -947,7 +947,7 @@ pub async fn list_load_balancers(configuration: &configuration::Configuration, p
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ListLoadBalancersError> = serde_json::from_str(&local_var_content).ok();
@@ -982,7 +982,7 @@ pub async fn remove_target(configuration: &configuration::Configuration, params:
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<RemoveTargetError> = serde_json::from_str(&local_var_content).ok();
@@ -1017,7 +1017,7 @@ pub async fn replace_load_balancer(configuration: &configuration::Configuration,
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ReplaceLoadBalancerError> = serde_json::from_str(&local_var_content).ok();
@@ -1052,7 +1052,7 @@ pub async fn update_service(configuration: &configuration::Configuration, params
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<UpdateServiceError> = serde_json::from_str(&local_var_content).ok();

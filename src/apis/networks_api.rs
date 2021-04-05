@@ -246,7 +246,7 @@ pub async fn add_route_to_network(configuration: &configuration::Configuration, 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<AddRouteToNetworkError> = serde_json::from_str(&local_var_content).ok();
@@ -281,7 +281,7 @@ pub async fn add_subnet_to_network(configuration: &configuration::Configuration,
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<AddSubnetToNetworkError> = serde_json::from_str(&local_var_content).ok();
@@ -316,7 +316,7 @@ pub async fn change_ip_range_of_network(configuration: &configuration::Configura
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ChangeIpRangeOfNetworkError> = serde_json::from_str(&local_var_content).ok();
@@ -351,7 +351,7 @@ pub async fn change_network_protection(configuration: &configuration::Configurat
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ChangeNetworkProtectionError> = serde_json::from_str(&local_var_content).ok();
@@ -385,7 +385,7 @@ pub async fn create_network(configuration: &configuration::Configuration, params
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<CreateNetworkError> = serde_json::from_str(&local_var_content).ok();
@@ -418,7 +418,7 @@ pub async fn delete_network(configuration: &configuration::Configuration, params
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         Ok(())
     } else {
         let local_var_entity: Option<DeleteNetworkError> = serde_json::from_str(&local_var_content).ok();
@@ -453,7 +453,7 @@ pub async fn delete_route_from_network(configuration: &configuration::Configurat
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<DeleteRouteFromNetworkError> = serde_json::from_str(&local_var_content).ok();
@@ -488,7 +488,7 @@ pub async fn delete_subnet_from_network(configuration: &configuration::Configura
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<DeleteSubnetFromNetworkError> = serde_json::from_str(&local_var_content).ok();
@@ -522,7 +522,7 @@ pub async fn get_action_for_network(configuration: &configuration::Configuration
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<GetActionForNetworkError> = serde_json::from_str(&local_var_content).ok();
@@ -555,7 +555,7 @@ pub async fn get_network(configuration: &configuration::Configuration, params: G
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<GetNetworkError> = serde_json::from_str(&local_var_content).ok();
@@ -604,7 +604,7 @@ pub async fn list_actions_for_network(configuration: &configuration::Configurati
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ListActionsForNetworkError> = serde_json::from_str(&local_var_content).ok();
@@ -652,7 +652,7 @@ pub async fn list_networks(configuration: &configuration::Configuration, params:
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ListNetworksError> = serde_json::from_str(&local_var_content).ok();
@@ -687,7 +687,7 @@ pub async fn replace_network(configuration: &configuration::Configuration, param
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ReplaceNetworkError> = serde_json::from_str(&local_var_content).ok();

@@ -24,9 +24,9 @@ pub struct Datacenter {
     #[serde(rename = "description")]
     pub description: String,
     #[serde(rename = "location")]
-    pub location: crate::models::Location,
+    pub location: Box<crate::models::Location>,
     #[serde(rename = "server_types")]
-    pub server_types: crate::models::DatacenterServerTypes,
+    pub server_types: Box<crate::models::DatacenterServerTypes>,
 }
 
 impl Datacenter {
@@ -36,8 +36,8 @@ impl Datacenter {
             id,
             name,
             description,
-            location,
-            server_types,
+            location: Box::new(location),
+            server_types: Box::new(server_types),
         }
     }
 }

@@ -15,14 +15,14 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ChangeLoadBalancerProtectionResponse {
     #[serde(rename = "action")]
-    pub action: crate::models::Action,
+    pub action: Box<crate::models::Action>,
 }
 
 impl ChangeLoadBalancerProtectionResponse {
     /// Response to POST https://api.hetzner.cloud/v1/load_balancers/{id}/actions/change_protection
     pub fn new(action: crate::models::Action) -> ChangeLoadBalancerProtectionResponse {
         ChangeLoadBalancerProtectionResponse {
-            action,
+            action: Box::new(action),
         }
     }
 }

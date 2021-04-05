@@ -15,9 +15,9 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CreateVolumeResponse {
     #[serde(rename = "volume")]
-    pub volume: crate::models::Volume,
+    pub volume: Box<crate::models::Volume>,
     #[serde(rename = "action")]
-    pub action: crate::models::Action,
+    pub action: Box<crate::models::Action>,
     #[serde(rename = "next_actions")]
     pub next_actions: Vec<crate::models::Action>,
 }
@@ -26,8 +26,8 @@ impl CreateVolumeResponse {
     /// Response to POST https://api.hetzner.cloud/v1/volumes
     pub fn new(volume: crate::models::Volume, action: crate::models::Action, next_actions: Vec<crate::models::Action>) -> CreateVolumeResponse {
         CreateVolumeResponse {
-            volume,
-            action,
+            volume: Box::new(volume),
+            action: Box::new(action),
             next_actions,
         }
     }

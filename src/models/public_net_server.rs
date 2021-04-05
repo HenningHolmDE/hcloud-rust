@@ -15,9 +15,9 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct PublicNetServer {
     #[serde(rename = "ipv4")]
-    pub ipv4: crate::models::Ipv4,
+    pub ipv4: Box<crate::models::Ipv4>,
     #[serde(rename = "ipv6")]
-    pub ipv6: crate::models::Ipv6,
+    pub ipv6: Box<crate::models::Ipv6>,
     /// IDs of Floating IPs assigned to this Server
     #[serde(rename = "floating_ips")]
     pub floating_ips: Vec<i32>,
@@ -30,8 +30,8 @@ impl PublicNetServer {
     /// Public network information. The Server's IPv4 address can be found in `public_net->ipv4->ip`
     pub fn new(ipv4: crate::models::Ipv4, ipv6: crate::models::Ipv6, floating_ips: Vec<i32>) -> PublicNetServer {
         PublicNetServer {
-            ipv4,
-            ipv6,
+            ipv4: Box::new(ipv4),
+            ipv6: Box::new(ipv6),
             floating_ips,
             firewalls: None,
         }

@@ -21,7 +21,7 @@ pub struct CreateLoadBalancerRequest {
     #[serde(rename = "load_balancer_type")]
     pub load_balancer_type: String,
     #[serde(rename = "algorithm")]
-    pub algorithm: crate::models::LoadBalancerAlgorithm,
+    pub algorithm: Box<crate::models::LoadBalancerAlgorithm>,
     /// Array of services
     #[serde(rename = "services", skip_serializing_if = "Option::is_none")]
     pub services: Option<Vec<crate::models::Service>>,
@@ -51,7 +51,7 @@ impl CreateLoadBalancerRequest {
         CreateLoadBalancerRequest {
             name,
             load_balancer_type,
-            algorithm,
+            algorithm: Box::new(algorithm),
             services: None,
             targets: None,
             labels: None,

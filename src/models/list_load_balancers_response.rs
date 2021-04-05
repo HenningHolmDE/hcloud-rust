@@ -17,7 +17,7 @@ pub struct ListLoadBalancersResponse {
     #[serde(rename = "load_balancers")]
     pub load_balancers: Vec<crate::models::LoadBalancer>,
     #[serde(rename = "meta", skip_serializing_if = "Option::is_none")]
-    pub meta: Option<crate::models::Meta>,
+    pub meta: Option<Box<crate::models::Meta>>,
 }
 
 impl ListLoadBalancersResponse {

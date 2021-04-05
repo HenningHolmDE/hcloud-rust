@@ -18,7 +18,7 @@ pub struct FirewallResource {
     #[serde(rename = "type")]
     pub _type: Type,
     #[serde(rename = "server", skip_serializing_if = "Option::is_none")]
-    pub server: Option<crate::models::FirewallResourceServer>,
+    pub server: Option<Box<crate::models::FirewallResourceServer>>,
 }
 
 impl FirewallResource {

@@ -15,14 +15,14 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ChangeAliasIpsOfNetworkResponse {
     #[serde(rename = "action")]
-    pub action: crate::models::Action,
+    pub action: Box<crate::models::Action>,
 }
 
 impl ChangeAliasIpsOfNetworkResponse {
     /// Response to POST https://api.hetzner.cloud/v1/servers/{id}/actions/change_alias_ips
     pub fn new(action: crate::models::Action) -> ChangeAliasIpsOfNetworkResponse {
         ChangeAliasIpsOfNetworkResponse {
-            action,
+            action: Box::new(action),
         }
     }
 }

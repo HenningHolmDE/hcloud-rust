@@ -173,7 +173,7 @@ pub async fn create_certificate(configuration: &configuration::Configuration, pa
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<CreateCertificateError> = serde_json::from_str(&local_var_content).ok();
@@ -206,7 +206,7 @@ pub async fn delete_certificate(configuration: &configuration::Configuration, pa
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         Ok(())
     } else {
         let local_var_entity: Option<DeleteCertificateError> = serde_json::from_str(&local_var_content).ok();
@@ -240,7 +240,7 @@ pub async fn get_action_for_certificate(configuration: &configuration::Configura
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<GetActionForCertificateError> = serde_json::from_str(&local_var_content).ok();
@@ -273,7 +273,7 @@ pub async fn get_certificate(configuration: &configuration::Configuration, param
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<GetCertificateError> = serde_json::from_str(&local_var_content).ok();
@@ -322,7 +322,7 @@ pub async fn list_actions_for_certificate(configuration: &configuration::Configu
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ListActionsForCertificateError> = serde_json::from_str(&local_var_content).ok();
@@ -378,7 +378,7 @@ pub async fn list_certificates(configuration: &configuration::Configuration, par
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ListCertificatesError> = serde_json::from_str(&local_var_content).ok();
@@ -413,7 +413,7 @@ pub async fn replace_certificate(configuration: &configuration::Configuration, p
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ReplaceCertificateError> = serde_json::from_str(&local_var_content).ok();
@@ -446,7 +446,7 @@ pub async fn retry_issuance_or_renewal(configuration: &configuration::Configurat
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text().await?;
 
-    if local_var_status.is_success() {
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<RetryIssuanceOrRenewalError> = serde_json::from_str(&local_var_content).ok();

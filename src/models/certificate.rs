@@ -45,7 +45,7 @@ pub struct Certificate {
     #[serde(rename = "fingerprint")]
     pub fingerprint: Option<String>,
     #[serde(rename = "status", skip_serializing_if = "Option::is_none")]
-    pub status: Option<crate::models::CertificateStatus>,
+    pub status: Option<Box<crate::models::CertificateStatus>>,
     /// Resources currently using the Certificate
     #[serde(rename = "used_by")]
     pub used_by: Vec<crate::models::Resource>,

@@ -15,14 +15,14 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ReplaceFloatingIpResponse {
     #[serde(rename = "floating_ip")]
-    pub floating_ip: crate::models::FloatingIp,
+    pub floating_ip: Box<crate::models::FloatingIp>,
 }
 
 impl ReplaceFloatingIpResponse {
     /// Response to PUT https://api.hetzner.cloud/v1/floating_ips/{id}
     pub fn new(floating_ip: crate::models::FloatingIp) -> ReplaceFloatingIpResponse {
         ReplaceFloatingIpResponse {
-            floating_ip,
+            floating_ip: Box::new(floating_ip),
         }
     }
 }

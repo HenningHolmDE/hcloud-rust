@@ -21,7 +21,7 @@ pub struct RequestConsoleForServerResponse {
     #[serde(rename = "password")]
     pub password: String,
     #[serde(rename = "action")]
-    pub action: crate::models::Action,
+    pub action: Box<crate::models::Action>,
 }
 
 impl RequestConsoleForServerResponse {
@@ -30,7 +30,7 @@ impl RequestConsoleForServerResponse {
         RequestConsoleForServerResponse {
             wss_url,
             password,
-            action,
+            action: Box::new(action),
         }
     }
 }

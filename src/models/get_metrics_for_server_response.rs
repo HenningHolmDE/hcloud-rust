@@ -15,14 +15,14 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GetMetricsForServerResponse {
     #[serde(rename = "metrics")]
-    pub metrics: crate::models::Metrics,
+    pub metrics: Box<crate::models::Metrics>,
 }
 
 impl GetMetricsForServerResponse {
     /// Response to GET https://api.hetzner.cloud/v1/servers/{id}/metrics
     pub fn new(metrics: crate::models::Metrics) -> GetMetricsForServerResponse {
         GetMetricsForServerResponse {
-            metrics,
+            metrics: Box::new(metrics),
         }
     }
 }

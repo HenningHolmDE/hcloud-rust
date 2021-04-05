@@ -15,14 +15,14 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GetServerTypeResponse {
     #[serde(rename = "server_type")]
-    pub server_type: crate::models::ServerType,
+    pub server_type: Box<crate::models::ServerType>,
 }
 
 impl GetServerTypeResponse {
     /// Response to GET https://api.hetzner.cloud/v1/server_types/{id}
     pub fn new(server_type: crate::models::ServerType) -> GetServerTypeResponse {
         GetServerTypeResponse {
-            server_type,
+            server_type: Box::new(server_type),
         }
     }
 }

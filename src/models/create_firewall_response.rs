@@ -15,7 +15,7 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CreateFirewallResponse {
     #[serde(rename = "firewall", skip_serializing_if = "Option::is_none")]
-    pub firewall: Option<crate::models::Firewall>,
+    pub firewall: Option<Box<crate::models::Firewall>>,
     #[serde(rename = "actions", skip_serializing_if = "Option::is_none")]
     pub actions: Option<Vec<crate::models::Action>>,
 }

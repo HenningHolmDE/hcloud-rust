@@ -27,7 +27,7 @@ pub struct Volume {
     #[serde(rename = "server")]
     pub server: Option<i32>,
     #[serde(rename = "location")]
-    pub location: serde_json::Value,
+    pub location: Box<serde_json::Value>,
     /// Size in GB of the Volume
     #[serde(rename = "size")]
     pub size: f32,
@@ -35,7 +35,7 @@ pub struct Volume {
     #[serde(rename = "linux_device")]
     pub linux_device: String,
     #[serde(rename = "protection")]
-    pub protection: crate::models::VolumeProtection,
+    pub protection: Box<crate::models::VolumeProtection>,
     /// User-defined labels (key-value pairs)
     #[serde(rename = "labels")]
     pub labels: ::std::collections::HashMap<String, String>,
@@ -55,10 +55,10 @@ impl Volume {
             created,
             name,
             server,
-            location,
+            location: Box::new(location),
             size,
             linux_device,
-            protection,
+            protection: Box::new(protection),
             labels,
             status,
             format,

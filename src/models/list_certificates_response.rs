@@ -17,7 +17,7 @@ pub struct ListCertificatesResponse {
     #[serde(rename = "certificates")]
     pub certificates: Vec<crate::models::Certificate>,
     #[serde(rename = "meta", skip_serializing_if = "Option::is_none")]
-    pub meta: Option<crate::models::Meta>,
+    pub meta: Option<Box<crate::models::Meta>>,
 }
 
 impl ListCertificatesResponse {

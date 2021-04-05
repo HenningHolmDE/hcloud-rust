@@ -15,14 +15,14 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct DisablePublicInterfaceOfLoadBalancerResponse {
     #[serde(rename = "action")]
-    pub action: crate::models::Action,
+    pub action: Box<crate::models::Action>,
 }
 
 impl DisablePublicInterfaceOfLoadBalancerResponse {
     /// Response to POST https://api.hetzner.cloud/v1/load_balancers/{id}/actions/disable_public_interface
     pub fn new(action: crate::models::Action) -> DisablePublicInterfaceOfLoadBalancerResponse {
         DisablePublicInterfaceOfLoadBalancerResponse {
-            action,
+            action: Box::new(action),
         }
     }
 }
