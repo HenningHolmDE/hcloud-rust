@@ -64,6 +64,7 @@ async fn main() -> Result<(), String> {
             ssh_keys: Some(ssh_keys.clone()),
             volumes: None,
             networks: None,
+            firewalls: None,
             user_data: None,
             labels: None,
             automount: None,
