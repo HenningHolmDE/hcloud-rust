@@ -38,6 +38,16 @@ echo "Running OpenAPI generator..."
 # replace references to non-existing OneOf types with serde_json::Value
 sed -ri "s/crate::models::OneOf\w+/serde_json::Value/g" src/models/*.rs
 
+# Remove *Optional models, as they result from JSON spec limitations
+# (nullable being part of object) and are not necessary in Rust.
+for names in action,Action iso,Iso; do
+    IFS=","
+    set -- $names
+    rm src/models/$1_optional.rs
+    sed -i "s/$2Optional/$2/g" src/models/*.rs
+    sed -i "/$1_optional/d" src/models/mod.rs
+done
+
 # restore CRLF line endings on Windows
 if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then
     unix2dos -k -q src/apis/*.rs

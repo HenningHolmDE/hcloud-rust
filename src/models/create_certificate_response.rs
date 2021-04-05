@@ -17,7 +17,7 @@ pub struct CreateCertificateResponse {
     #[serde(rename = "certificate")]
     pub certificate: crate::models::Certificate,
     #[serde(rename = "action", skip_serializing_if = "Option::is_none")]
-    pub action: Option<crate::models::ActionOptional>,
+    pub action: Option<crate::models::Action>,
 }
 
 impl CreateCertificateResponse {

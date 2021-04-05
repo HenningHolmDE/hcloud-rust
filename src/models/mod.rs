@@ -1,7 +1,5 @@
 pub mod action;
 pub use self::action::Action;
-pub mod action_optional;
-pub use self::action_optional::ActionOptional;
 pub mod add_route_to_network_response;
 pub use self::add_route_to_network_response::AddRouteToNetworkResponse;
 pub mod add_service_response;
@@ -262,8 +260,6 @@ pub mod ipv6;
 pub use self::ipv6::Ipv6;
 pub mod iso;
 pub use self::iso::Iso;
-pub mod iso_optional;
-pub use self::iso_optional::IsoOptional;
 pub mod list_actions_for_certificate_response;
 pub use self::list_actions_for_certificate_response::ListActionsForCertificateResponse;
 pub mod list_actions_for_firewall_response;

@@ -38,7 +38,7 @@ pub struct Server {
     #[serde(rename = "image")]
     pub image: crate::models::Image,
     #[serde(rename = "iso")]
-    pub iso: Option<crate::models::IsoOptional>,
+    pub iso: Option<crate::models::Iso>,
     /// True if rescue mode is enabled. Server will then boot into rescue system on next reboot
     #[serde(rename = "rescue_enabled")]
     pub rescue_enabled: bool,
@@ -74,7 +74,7 @@ pub struct Server {
 
 impl Server {
     /// Servers are virtual machines that can be provisioned.
-    pub fn new(id: i32, name: String, status: Status, created: String, public_net: crate::models::PublicNetServer, private_net: Vec<crate::models::PrivateNetServer>, server_type: crate::models::ServerType, datacenter: crate::models::Datacenter, image: crate::models::Image, iso: Option<crate::models::IsoOptional>, rescue_enabled: bool, locked: bool, backup_window: Option<String>, outgoing_traffic: Option<i64>, ingoing_traffic: Option<i64>, included_traffic: Option<i64>, protection: crate::models::Protection, labels: ::std::collections::HashMap<String, String>, primary_disk_size: i32) -> Server {
+    pub fn new(id: i32, name: String, status: Status, created: String, public_net: crate::models::PublicNetServer, private_net: Vec<crate::models::PrivateNetServer>, server_type: crate::models::ServerType, datacenter: crate::models::Datacenter, image: crate::models::Image, iso: Option<crate::models::Iso>, rescue_enabled: bool, locked: bool, backup_window: Option<String>, outgoing_traffic: Option<i64>, ingoing_traffic: Option<i64>, included_traffic: Option<i64>, protection: crate::models::Protection, labels: ::std::collections::HashMap<String, String>, primary_disk_size: i32) -> Server {
         Server {
             id,
             name,
