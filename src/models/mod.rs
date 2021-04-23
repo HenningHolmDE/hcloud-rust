@@ -258,8 +258,6 @@ pub mod http;
 pub use self::http::Http;
 pub mod image;
 pub use self::image::Image;
-pub mod image_optional;
-pub use self::image_optional::ImageOptional;
 pub mod image_protection;
 pub use self::image_protection::ImageProtection;
 pub mod ipv4;

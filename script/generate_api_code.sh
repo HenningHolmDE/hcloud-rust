@@ -40,7 +40,7 @@ sed -ri "s/crate::models::OneOf\w+/serde_json::Value/g" src/models/*.rs
 
 # Remove *Optional models, as they result from JSON spec limitations
 # (nullable being part of object) and are not necessary in Rust.
-for names in action,Action iso,Iso; do
+for names in action,Action image,Image iso,Iso; do
     IFS=","
     set -- $names
     rm src/models/$1_optional.rs
