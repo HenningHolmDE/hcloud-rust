@@ -8,7 +8,7 @@
 //!
 //!# Current state of development
 //!
-//!- supported API endpoints (complete as of March 2021): `actions`, `certificates`, `datacenters`, `firewalls`, `floating_ips`, `images`, `isos`, `load_balancer_types`, `load_balancers`, `locations`, `networks`, `pricing`, `server_types`, `servers`, `ssh_keys`, `volumes`
+//!- supported API endpoints (complete as of April 2021): `actions`, `certificates`, `datacenters`, `firewalls`, `floating_ips`, `images`, `isos`, `load_balancer_types`, `load_balancers`, `locations`, `networks`, `pricing`, `server_types`, `servers`, `ssh_keys`, `volumes`
 //!- asynchronous API functions
 //!- pagination support
 //!- documentation and tests are still WIP
