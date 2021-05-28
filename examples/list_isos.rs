@@ -34,7 +34,7 @@ async fn main() -> Result<(), String> {
         // proceed with next page (if existing)
         next_page = response
             .meta
-            .and_then(|meta| meta.pagination)
+            .map(|meta| meta.pagination)
             .and_then(|pagination| pagination.next_page);
     }
 

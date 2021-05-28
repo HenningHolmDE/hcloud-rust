@@ -135,9 +135,7 @@ async fn main() -> Result<(), String> {
     println!("Deleting servers...");
     for server_info in &created_servers {
         println!(" Deleting server {}...", server_info.name);
-        let params = servers_api::DeleteServerParams {
-            id: server_info.id.to_string(),
-        };
+        let params = servers_api::DeleteServerParams { id: server_info.id };
         servers_api::delete_server(&configuration, params)
             .await
             .map_err(|err| format!("API call to delete_server failed: {:?}", err))?;
