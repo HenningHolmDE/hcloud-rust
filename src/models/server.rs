@@ -50,7 +50,7 @@ pub struct Server {
     #[serde(rename = "outgoing_traffic")]
     pub outgoing_traffic: Option<i64>,
     #[serde(rename = "placement_group", skip_serializing_if = "Option::is_none")]
-    pub placement_group: Option<Box<crate::models::PlacementGroupNullable>>,
+    pub placement_group: Option<Box<crate::models::PlacementGroup>>,
     /// Size of the primary Disk
     #[serde(rename = "primary_disk_size")]
     pub primary_disk_size: i32,

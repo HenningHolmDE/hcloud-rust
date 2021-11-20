@@ -374,8 +374,6 @@ pub mod pagination;
 pub use self::pagination::Pagination;
 pub mod placement_group;
 pub use self::placement_group::PlacementGroup;
-pub mod placement_group_nullable;
-pub use self::placement_group_nullable::PlacementGroupNullable;
 pub mod power_off_server_response;
 pub use self::power_off_server_response::PowerOffServerResponse;
 pub mod power_on_server_response;

@@ -38,14 +38,20 @@ echo "Running OpenAPI generator..."
 # replace references to non-existing OneOf types with serde_json::Value
 sed -ri "s/crate::models::OneOf\w+/serde_json::Value/g" src/models/*.rs
 
-# Remove *Optional models, as they result from JSON spec limitations
+# Remove *Optional and *Nullable models, as they result from JSON spec limitations
 # (nullable being part of object) and are not necessary in Rust.
-for names in action,Action image,Image iso,Iso; do
+for names in action,Action image,Image iso,Iso placement_group,PlacementGroup; do
     IFS=","
     set -- $names
-    rm src/models/$1_optional.rs
-    sed -i "s/$2Optional/$2/g" src/models/*.rs
-    sed -i "/$1_optional/d" src/models/mod.rs
+    if [ -e src/models/$1_optional.rs ]; then
+        rm src/models/$1_optional.rs
+        sed -i "s/$2Optional/$2/g" src/models/*.rs
+        sed -i "/$1_optional/d" src/models/mod.rs
+    elif [ -e src/models/$1_nullable.rs ]; then
+        rm src/models/$1_nullable.rs
+        sed -i "s/$2Nullable/$2/g" src/models/*.rs
+        sed -i "/$1_nullable/d" src/models/mod.rs
+    fi
 done
 
 # restore CRLF line endings on Windows
