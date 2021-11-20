@@ -11,6 +11,7 @@ src/apis/load_balancers_api.rs
 src/apis/locations_api.rs
 src/apis/mod.rs
 src/apis/networks_api.rs
+src/apis/placement_groups_api.rs
 src/apis/pricing_api.rs
 src/apis/server_types_api.rs
 src/apis/servers_api.rs
@@ -19,6 +20,8 @@ src/apis/volumes_api.rs
 src/models/action.rs
 src/models/action_optional.rs
 src/models/add_route_to_network_response.rs
+src/models/add_server_to_placement_group_request.rs
+src/models/add_server_to_placement_group_response.rs
 src/models/add_service_response.rs
 src/models/add_subnet_to_network_response.rs
 src/models/add_target_request.rs
@@ -55,6 +58,8 @@ src/models/change_network_protection_request.rs
 src/models/change_network_protection_response.rs
 src/models/change_reverse_dns_entry_for_floating_ip_request.rs
 src/models/change_reverse_dns_entry_for_floating_ip_response.rs
+src/models/change_reverse_dns_entry_for_this_load_balancer_request.rs
+src/models/change_reverse_dns_entry_for_this_load_balancer_response.rs
 src/models/change_reverse_dns_entry_for_this_server_request.rs
 src/models/change_reverse_dns_entry_for_this_server_response.rs
 src/models/change_server_protection_request.rs
@@ -77,6 +82,8 @@ src/models/create_load_balancer_request.rs
 src/models/create_load_balancer_response.rs
 src/models/create_network_request.rs
 src/models/create_network_response.rs
+src/models/create_placementgroup_request.rs
+src/models/create_placementgroup_response.rs
 src/models/create_server_request.rs
 src/models/create_server_request_firewalls.rs
 src/models/create_server_response.rs
@@ -135,6 +142,7 @@ src/models/get_location_response.rs
 src/models/get_metrics_for_loadbalancer_response.rs
 src/models/get_metrics_for_server_response.rs
 src/models/get_network_response.rs
+src/models/get_placementgroup_response.rs
 src/models/get_server_response.rs
 src/models/get_server_type_response.rs
 src/models/get_ssh_key_response.rs
@@ -167,11 +175,14 @@ src/models/list_load_balancer_types_response.rs
 src/models/list_load_balancers_response.rs
 src/models/list_locations_response.rs
 src/models/list_networks_response.rs
+src/models/list_placementgroups_response.rs
 src/models/list_prices_response.rs
 src/models/list_prices_response_pricing.rs
 src/models/list_prices_response_pricing_floating_ip.rs
+src/models/list_prices_response_pricing_floating_ips.rs
 src/models/list_prices_response_pricing_image.rs
 src/models/list_prices_response_pricing_load_balancer_types.rs
+src/models/list_prices_response_pricing_prices.rs
 src/models/list_prices_response_pricing_server_backup.rs
 src/models/list_prices_response_pricing_server_types.rs
 src/models/list_prices_response_pricing_traffic.rs
@@ -197,6 +208,8 @@ src/models/metrics_time_series.rs
 src/models/mod.rs
 src/models/network.rs
 src/models/pagination.rs
+src/models/placement_group.rs
+src/models/placement_group_nullable.rs
 src/models/power_off_server_response.rs
 src/models/power_on_server_response.rs
 src/models/price.rs
@@ -204,6 +217,7 @@ src/models/price_per_time.rs
 src/models/protection.rs
 src/models/rebuild_server_from_image_request.rs
 src/models/rebuild_server_from_image_response.rs
+src/models/remove_from_placement_group_response.rs
 src/models/remove_from_resources_request.rs
 src/models/remove_from_resources_response.rs
 src/models/remove_target_request.rs
@@ -220,6 +234,8 @@ src/models/replace_load_balancer_request.rs
 src/models/replace_load_balancer_response.rs
 src/models/replace_network_request.rs
 src/models/replace_network_response.rs
+src/models/replace_placementgroup_request.rs
+src/models/replace_placementgroup_response.rs
 src/models/replace_server_request.rs
 src/models/replace_server_response.rs
 src/models/replace_ssh_key_request.rs

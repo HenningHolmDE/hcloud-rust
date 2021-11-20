@@ -72,6 +72,7 @@ pub mod load_balancer_types_api;
 pub mod load_balancers_api;
 pub mod locations_api;
 pub mod networks_api;
+pub mod placement_groups_api;
 pub mod pricing_api;
 pub mod server_types_api;
 pub mod servers_api;
