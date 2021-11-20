@@ -11,7 +11,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct DnsPtr {
     /// Single IPv4 or IPv6 address | Single IPv6 address of this Server for which the reverse DNS entry has been set up
     #[serde(rename = "ip")]

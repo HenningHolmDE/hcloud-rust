@@ -14,7 +14,7 @@ use reqwest;
 use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
-/// struct for passing parameters to the method `attach_volume_to_server`
+/// struct for passing parameters to the method [`attach_volume_to_server`]
 #[derive(Clone, Debug, Default)]
 pub struct AttachVolumeToServerParams {
     /// ID of the Volume
@@ -22,7 +22,7 @@ pub struct AttachVolumeToServerParams {
     pub attach_volume_to_server_request: Option<crate::models::AttachVolumeToServerRequest>
 }
 
-/// struct for passing parameters to the method `change_volume_protection`
+/// struct for passing parameters to the method [`change_volume_protection`]
 #[derive(Clone, Debug, Default)]
 pub struct ChangeVolumeProtectionParams {
     /// ID of the Volume
@@ -30,27 +30,27 @@ pub struct ChangeVolumeProtectionParams {
     pub change_volume_protection_request: Option<crate::models::ChangeVolumeProtectionRequest>
 }
 
-/// struct for passing parameters to the method `create_volume`
+/// struct for passing parameters to the method [`create_volume`]
 #[derive(Clone, Debug, Default)]
 pub struct CreateVolumeParams {
     pub create_volume_request: Option<crate::models::CreateVolumeRequest>
 }
 
-/// struct for passing parameters to the method `delete_volume`
+/// struct for passing parameters to the method [`delete_volume`]
 #[derive(Clone, Debug, Default)]
 pub struct DeleteVolumeParams {
     /// ID of the Volume
     pub id: String
 }
 
-/// struct for passing parameters to the method `detach_volume`
+/// struct for passing parameters to the method [`detach_volume`]
 #[derive(Clone, Debug, Default)]
 pub struct DetachVolumeParams {
     /// ID of the Volume
     pub id: i32
 }
 
-/// struct for passing parameters to the method `get_action_for_volume`
+/// struct for passing parameters to the method [`get_action_for_volume`]
 #[derive(Clone, Debug, Default)]
 pub struct GetActionForVolumeParams {
     /// ID of the Volume
@@ -59,14 +59,14 @@ pub struct GetActionForVolumeParams {
     pub action_id: i32
 }
 
-/// struct for passing parameters to the method `get_volume`
+/// struct for passing parameters to the method [`get_volume`]
 #[derive(Clone, Debug, Default)]
 pub struct GetVolumeParams {
     /// ID of the Volume
     pub id: i32
 }
 
-/// struct for passing parameters to the method `list_actions_for_volume`
+/// struct for passing parameters to the method [`list_actions_for_volume`]
 #[derive(Clone, Debug, Default)]
 pub struct ListActionsForVolumeParams {
     /// ID of the Volume
@@ -81,7 +81,7 @@ pub struct ListActionsForVolumeParams {
     pub per_page: Option<i32>
 }
 
-/// struct for passing parameters to the method `list_volumes`
+/// struct for passing parameters to the method [`list_volumes`]
 #[derive(Clone, Debug, Default)]
 pub struct ListVolumesParams {
     /// Can be used multiple times. The response will only contain Volumes matching the status.
@@ -98,7 +98,7 @@ pub struct ListVolumesParams {
     pub per_page: Option<i32>
 }
 
-/// struct for passing parameters to the method `replace_volume`
+/// struct for passing parameters to the method [`replace_volume`]
 #[derive(Clone, Debug, Default)]
 pub struct ReplaceVolumeParams {
     /// ID of the Volume to update
@@ -106,7 +106,7 @@ pub struct ReplaceVolumeParams {
     pub replace_volume_request: Option<crate::models::ReplaceVolumeRequest>
 }
 
-/// struct for passing parameters to the method `resize_volume`
+/// struct for passing parameters to the method [`resize_volume`]
 #[derive(Clone, Debug, Default)]
 pub struct ResizeVolumeParams {
     /// ID of the Volume
@@ -115,77 +115,77 @@ pub struct ResizeVolumeParams {
 }
 
 
-/// struct for typed errors of method `attach_volume_to_server`
+/// struct for typed errors of method [`attach_volume_to_server`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AttachVolumeToServerError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `change_volume_protection`
+/// struct for typed errors of method [`change_volume_protection`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ChangeVolumeProtectionError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `create_volume`
+/// struct for typed errors of method [`create_volume`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateVolumeError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `delete_volume`
+/// struct for typed errors of method [`delete_volume`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteVolumeError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `detach_volume`
+/// struct for typed errors of method [`detach_volume`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DetachVolumeError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_action_for_volume`
+/// struct for typed errors of method [`get_action_for_volume`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetActionForVolumeError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_volume`
+/// struct for typed errors of method [`get_volume`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetVolumeError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `list_actions_for_volume`
+/// struct for typed errors of method [`list_actions_for_volume`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListActionsForVolumeError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `list_volumes`
+/// struct for typed errors of method [`list_volumes`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListVolumesError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `replace_volume`
+/// struct for typed errors of method [`replace_volume`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ReplaceVolumeError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `resize_volume`
+/// struct for typed errors of method [`resize_volume`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ResizeVolumeError {
@@ -195,20 +195,22 @@ pub enum ResizeVolumeError {
 
 /// Attaches a Volume to a Server. Works only if the Server is in the same Location as the Volume.
 pub async fn attach_volume_to_server(configuration: &configuration::Configuration, params: AttachVolumeToServerParams) -> Result<crate::models::AttachVolumeToServerResponse, Error<AttachVolumeToServerError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let attach_volume_to_server_request = params.attach_volume_to_server_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/volumes/{id}/actions/attach", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/volumes/{id}/actions/attach", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&attach_volume_to_server_request);
@@ -230,20 +232,22 @@ pub async fn attach_volume_to_server(configuration: &configuration::Configuratio
 
 /// Changes the protection configuration of a Volume.
 pub async fn change_volume_protection(configuration: &configuration::Configuration, params: ChangeVolumeProtectionParams) -> Result<crate::models::ChangeVolumeProtectionResponse, Error<ChangeVolumeProtectionError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let change_volume_protection_request = params.change_volume_protection_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/volumes/{id}/actions/change_protection", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/volumes/{id}/actions/change_protection", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&change_volume_protection_request);
@@ -265,19 +269,21 @@ pub async fn change_volume_protection(configuration: &configuration::Configurati
 
 /// Creates a new Volume attached to a Server. If you want to create a Volume that is not attached to a Server, you need to provide the `location` key instead of `server`. This can be either the ID or the name of the Location this Volume will be created in. Note that a Volume can be attached to a Server only in the same Location as the Volume itself.  Specifying the Server during Volume creation will automatically attach the Volume to that Server after it has been initialized. In that case, the `next_actions` key in the response is an array which contains a single `attach_volume` action.  The minimum Volume size is 10GB and the maximum size is 10TB (10240GB).  A volume’s name can consist of alphanumeric characters, dashes, underscores, and dots, but has to start and end with an alphanumeric character. The total length is limited to 64 characters. Volume names must be unique per Project.  #### Call specific error codes  | Code                                | Description                                         | |-------------------------------------|-----------------------------------------------------| | `no_space_left_in_location`         | There is no volume space left in the given location | 
 pub async fn create_volume(configuration: &configuration::Configuration, params: CreateVolumeParams) -> Result<crate::models::CreateVolumeResponse, Error<CreateVolumeError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let create_volume_request = params.create_volume_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/volumes", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/volumes", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&create_volume_request);
@@ -299,19 +305,21 @@ pub async fn create_volume(configuration: &configuration::Configuration, params:
 
 /// Deletes a volume. All Volume data is irreversibly destroyed. The Volume must not be attached to a Server and it must not have delete protection enabled.
 pub async fn delete_volume(configuration: &configuration::Configuration, params: DeleteVolumeParams) -> Result<(), Error<DeleteVolumeError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/volumes/{id}", configuration.base_path, id=crate::apis::urlencode(id));
-    let mut local_var_req_builder = local_var_client.delete(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/volumes/{id}", local_var_configuration.base_path, id=crate::apis::urlencode(id));
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -332,19 +340,21 @@ pub async fn delete_volume(configuration: &configuration::Configuration, params:
 
 /// Detaches a Volume from the Server it’s attached to. You may attach it to a Server again at a later time.
 pub async fn detach_volume(configuration: &configuration::Configuration, params: DetachVolumeParams) -> Result<crate::models::DetachVolumeResponse, Error<DetachVolumeError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/volumes/{id}/actions/detach", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/volumes/{id}/actions/detach", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -365,20 +375,22 @@ pub async fn detach_volume(configuration: &configuration::Configuration, params:
 
 /// Returns a specific Action for a Volume.
 pub async fn get_action_for_volume(configuration: &configuration::Configuration, params: GetActionForVolumeParams) -> Result<crate::models::GetActionForVolumeResponse, Error<GetActionForVolumeError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let action_id = params.action_id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/volumes/{id}/actions/{action_id}", configuration.base_path, id=id, action_id=action_id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/volumes/{id}/actions/{action_id}", local_var_configuration.base_path, id=id, action_id=action_id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -399,19 +411,21 @@ pub async fn get_action_for_volume(configuration: &configuration::Configuration,
 
 /// Gets a specific Volume object.
 pub async fn get_volume(configuration: &configuration::Configuration, params: GetVolumeParams) -> Result<crate::models::GetVolumeResponse, Error<GetVolumeError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/volumes/{id}", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/volumes/{id}", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -432,6 +446,8 @@ pub async fn get_volume(configuration: &configuration::Configuration, params: Ge
 
 /// Returns all Action objects for a Volume. You can `sort` the results by using the sort URI parameter, and filter them with the `status` parameter.
 pub async fn list_actions_for_volume(configuration: &configuration::Configuration, params: ListActionsForVolumeParams) -> Result<crate::models::ListActionsForVolumeResponse, Error<ListActionsForVolumeError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let sort = params.sort;
@@ -440,10 +456,10 @@ pub async fn list_actions_for_volume(configuration: &configuration::Configuratio
     let per_page = params.per_page;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/volumes/{id}/actions", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/volumes/{id}/actions", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = sort {
         local_var_req_builder = local_var_req_builder.query(&[("sort", &local_var_str.to_string())]);
@@ -457,10 +473,10 @@ pub async fn list_actions_for_volume(configuration: &configuration::Configuratio
     if let Some(ref local_var_str) = per_page {
         local_var_req_builder = local_var_req_builder.query(&[("per_page", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -481,6 +497,8 @@ pub async fn list_actions_for_volume(configuration: &configuration::Configuratio
 
 /// Gets all existing Volumes that you have available.
 pub async fn list_volumes(configuration: &configuration::Configuration, params: ListVolumesParams) -> Result<crate::models::ListVolumesResponse, Error<ListVolumesError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let status = params.status;
     let sort = params.sort;
@@ -490,10 +508,10 @@ pub async fn list_volumes(configuration: &configuration::Configuration, params: 
     let per_page = params.per_page;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/volumes", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/volumes", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = status {
         local_var_req_builder = local_var_req_builder.query(&[("status", &local_var_str.to_string())]);
@@ -513,10 +531,10 @@ pub async fn list_volumes(configuration: &configuration::Configuration, params: 
     if let Some(ref local_var_str) = per_page {
         local_var_req_builder = local_var_req_builder.query(&[("per_page", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -537,20 +555,22 @@ pub async fn list_volumes(configuration: &configuration::Configuration, params: 
 
 /// Updates the Volume properties.  Note that when updating labels, the volume’s current set of labels will be replaced with the labels provided in the request body. So, for example, if you want to add a new label, you have to provide all existing labels plus the new label in the request body. 
 pub async fn replace_volume(configuration: &configuration::Configuration, params: ReplaceVolumeParams) -> Result<crate::models::ReplaceVolumeResponse, Error<ReplaceVolumeError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let replace_volume_request = params.replace_volume_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/volumes/{id}", configuration.base_path, id=crate::apis::urlencode(id));
-    let mut local_var_req_builder = local_var_client.put(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/volumes/{id}", local_var_configuration.base_path, id=crate::apis::urlencode(id));
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&replace_volume_request);
@@ -572,20 +592,22 @@ pub async fn replace_volume(configuration: &configuration::Configuration, params
 
 /// Changes the size of a Volume. Note that downsizing a Volume is not possible.
 pub async fn resize_volume(configuration: &configuration::Configuration, params: ResizeVolumeParams) -> Result<crate::models::ResizeVolumeResponse, Error<ResizeVolumeError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let resize_volume_request = params.resize_volume_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/volumes/{id}/actions/resize", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/volumes/{id}/actions/resize", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&resize_volume_request);

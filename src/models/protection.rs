@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Protection {
     /// If true, prevents the Resource from being deleted | If true, prevents the Network from being deleted
     #[serde(rename = "delete")]

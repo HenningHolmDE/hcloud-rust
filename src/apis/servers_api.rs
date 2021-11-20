@@ -14,7 +14,7 @@ use reqwest;
 use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
-/// struct for passing parameters to the method `attach_iso_to_server`
+/// struct for passing parameters to the method [`attach_iso_to_server`]
 #[derive(Clone, Debug, Default)]
 pub struct AttachIsoToServerParams {
     /// ID of the Server
@@ -22,7 +22,7 @@ pub struct AttachIsoToServerParams {
     pub attach_iso_to_server_request: Option<crate::models::AttachIsoToServerRequest>
 }
 
-/// struct for passing parameters to the method `attach_server_to_network`
+/// struct for passing parameters to the method [`attach_server_to_network`]
 #[derive(Clone, Debug, Default)]
 pub struct AttachServerToNetworkParams {
     /// ID of the Server
@@ -30,7 +30,7 @@ pub struct AttachServerToNetworkParams {
     pub attach_server_to_network_request: Option<crate::models::AttachServerToNetworkRequest>
 }
 
-/// struct for passing parameters to the method `change_alias_ips_of_network`
+/// struct for passing parameters to the method [`change_alias_ips_of_network`]
 #[derive(Clone, Debug, Default)]
 pub struct ChangeAliasIpsOfNetworkParams {
     /// ID of the Server
@@ -38,7 +38,7 @@ pub struct ChangeAliasIpsOfNetworkParams {
     pub change_alias_ips_of_network_request: Option<crate::models::ChangeAliasIpsOfNetworkRequest>
 }
 
-/// struct for passing parameters to the method `change_reverse_dns_entry_for_this_server`
+/// struct for passing parameters to the method [`change_reverse_dns_entry_for_this_server`]
 #[derive(Clone, Debug, Default)]
 pub struct ChangeReverseDnsEntryForThisServerParams {
     /// ID of the Server
@@ -47,7 +47,7 @@ pub struct ChangeReverseDnsEntryForThisServerParams {
     pub change_reverse_dns_entry_for_this_server_request: Option<crate::models::ChangeReverseDnsEntryForThisServerRequest>
 }
 
-/// struct for passing parameters to the method `change_server_protection`
+/// struct for passing parameters to the method [`change_server_protection`]
 #[derive(Clone, Debug, Default)]
 pub struct ChangeServerProtectionParams {
     /// ID of the Server
@@ -55,7 +55,7 @@ pub struct ChangeServerProtectionParams {
     pub change_server_protection_request: Option<crate::models::ChangeServerProtectionRequest>
 }
 
-/// struct for passing parameters to the method `change_type_of_server`
+/// struct for passing parameters to the method [`change_type_of_server`]
 #[derive(Clone, Debug, Default)]
 pub struct ChangeTypeOfServerParams {
     /// ID of the Server
@@ -63,7 +63,7 @@ pub struct ChangeTypeOfServerParams {
     pub change_type_of_server_request: Option<crate::models::ChangeTypeOfServerRequest>
 }
 
-/// struct for passing parameters to the method `create_image_from_server`
+/// struct for passing parameters to the method [`create_image_from_server`]
 #[derive(Clone, Debug, Default)]
 pub struct CreateImageFromServerParams {
     /// ID of the Server
@@ -71,28 +71,28 @@ pub struct CreateImageFromServerParams {
     pub create_image_from_server_request: Option<crate::models::CreateImageFromServerRequest>
 }
 
-/// struct for passing parameters to the method `create_server`
+/// struct for passing parameters to the method [`create_server`]
 #[derive(Clone, Debug, Default)]
 pub struct CreateServerParams {
     /// Please note that Server names must be unique per Project and valid hostnames as per RFC 1123 (i.e. may only contain letters, digits, periods, and dashes).  For `server_type` you can either use the ID as listed in `/server_types` or its name.  For `image` you can either use the ID as listed in `/images` or its name.  If you want to create the Server in a Location, you must set `location` to the ID or name as listed in `/locations`. This is the recommended way. You can be even more specific by setting `datacenter` to the ID or name as listed in `/datacenters`. However directly specifying the Datacenter is discouraged since supply availability in Datacenters varies greatly and Datacenters may be out of stock for extended periods of time or not serve certain Server types at all.  Some properties like `start_after_create` or `automount` will trigger Actions after the Server is created. Those Actions are listed in the `next_actions` field in the response.  For accessing your Server we strongly recommend to use SSH keys by passing the respective key IDs in `ssh_keys`. If you do not specify any `ssh_keys` we will generate a root password for you and return it in the response.  Please note that provided user-data is stored in our systems. While we take measures to protect it we highly recommend that you don’t use it to store passwords or other sensitive information.  #### Call specific error codes  | Code                          | Description                              | |-------------------------------|------------------------------------------| | `placement_error`             | An error during the placement occurred   | 
     pub create_server_request: Option<crate::models::CreateServerRequest>
 }
 
-/// struct for passing parameters to the method `delete_server`
+/// struct for passing parameters to the method [`delete_server`]
 #[derive(Clone, Debug, Default)]
 pub struct DeleteServerParams {
     /// ID of the Server
     pub id: i32
 }
 
-/// struct for passing parameters to the method `detach_iso_from_server`
+/// struct for passing parameters to the method [`detach_iso_from_server`]
 #[derive(Clone, Debug, Default)]
 pub struct DetachIsoFromServerParams {
     /// ID of the Server
     pub id: i32
 }
 
-/// struct for passing parameters to the method `detach_server_from_network`
+/// struct for passing parameters to the method [`detach_server_from_network`]
 #[derive(Clone, Debug, Default)]
 pub struct DetachServerFromNetworkParams {
     /// ID of the Server
@@ -100,28 +100,28 @@ pub struct DetachServerFromNetworkParams {
     pub detach_server_from_network_request: Option<crate::models::DetachServerFromNetworkRequest>
 }
 
-/// struct for passing parameters to the method `disable_backups_for_server`
+/// struct for passing parameters to the method [`disable_backups_for_server`]
 #[derive(Clone, Debug, Default)]
 pub struct DisableBackupsForServerParams {
     /// ID of the Server
     pub id: i32
 }
 
-/// struct for passing parameters to the method `disable_rescue_mode_for_server`
+/// struct for passing parameters to the method [`disable_rescue_mode_for_server`]
 #[derive(Clone, Debug, Default)]
 pub struct DisableRescueModeForServerParams {
     /// ID of the Server
     pub id: i32
 }
 
-/// struct for passing parameters to the method `enable_and_configure_backups_for_server`
+/// struct for passing parameters to the method [`enable_and_configure_backups_for_server`]
 #[derive(Clone, Debug, Default)]
 pub struct EnableAndConfigureBackupsForServerParams {
     /// ID of the Server
     pub id: i32
 }
 
-/// struct for passing parameters to the method `enable_rescue_mode_for_server`
+/// struct for passing parameters to the method [`enable_rescue_mode_for_server`]
 #[derive(Clone, Debug, Default)]
 pub struct EnableRescueModeForServerParams {
     /// ID of the Server
@@ -129,7 +129,7 @@ pub struct EnableRescueModeForServerParams {
     pub enable_rescue_mode_for_server_request: Option<crate::models::EnableRescueModeForServerRequest>
 }
 
-/// struct for passing parameters to the method `get_action_for_server`
+/// struct for passing parameters to the method [`get_action_for_server`]
 #[derive(Clone, Debug, Default)]
 pub struct GetActionForServerParams {
     /// ID of the Server
@@ -138,7 +138,7 @@ pub struct GetActionForServerParams {
     pub action_id: i32
 }
 
-/// struct for passing parameters to the method `get_metrics_for_server`
+/// struct for passing parameters to the method [`get_metrics_for_server`]
 #[derive(Clone, Debug, Default)]
 pub struct GetMetricsForServerParams {
     /// ID of the Server
@@ -153,14 +153,14 @@ pub struct GetMetricsForServerParams {
     pub step: Option<String>
 }
 
-/// struct for passing parameters to the method `get_server`
+/// struct for passing parameters to the method [`get_server`]
 #[derive(Clone, Debug, Default)]
 pub struct GetServerParams {
     /// ID of the Server
     pub id: i32
 }
 
-/// struct for passing parameters to the method `list_actions_for_server`
+/// struct for passing parameters to the method [`list_actions_for_server`]
 #[derive(Clone, Debug, Default)]
 pub struct ListActionsForServerParams {
     /// ID of the Resource
@@ -175,7 +175,7 @@ pub struct ListActionsForServerParams {
     pub per_page: Option<i32>
 }
 
-/// struct for passing parameters to the method `list_servers`
+/// struct for passing parameters to the method [`list_servers`]
 #[derive(Clone, Debug, Default)]
 pub struct ListServersParams {
     /// Can be used to filter resources by their name. The response will only contain the resources matching the specified name
@@ -192,21 +192,21 @@ pub struct ListServersParams {
     pub per_page: Option<i32>
 }
 
-/// struct for passing parameters to the method `power_off_server`
+/// struct for passing parameters to the method [`power_off_server`]
 #[derive(Clone, Debug, Default)]
 pub struct PowerOffServerParams {
     /// ID of the Server
     pub id: i32
 }
 
-/// struct for passing parameters to the method `power_on_server`
+/// struct for passing parameters to the method [`power_on_server`]
 #[derive(Clone, Debug, Default)]
 pub struct PowerOnServerParams {
     /// ID of the Server
     pub id: i32
 }
 
-/// struct for passing parameters to the method `rebuild_server_from_image`
+/// struct for passing parameters to the method [`rebuild_server_from_image`]
 #[derive(Clone, Debug, Default)]
 pub struct RebuildServerFromImageParams {
     /// ID of the Server
@@ -215,7 +215,7 @@ pub struct RebuildServerFromImageParams {
     pub rebuild_server_from_image_request: Option<crate::models::RebuildServerFromImageRequest>
 }
 
-/// struct for passing parameters to the method `replace_server`
+/// struct for passing parameters to the method [`replace_server`]
 #[derive(Clone, Debug, Default)]
 pub struct ReplaceServerParams {
     /// ID of the Server
@@ -223,35 +223,35 @@ pub struct ReplaceServerParams {
     pub replace_server_request: Option<crate::models::ReplaceServerRequest>
 }
 
-/// struct for passing parameters to the method `request_console_for_server`
+/// struct for passing parameters to the method [`request_console_for_server`]
 #[derive(Clone, Debug, Default)]
 pub struct RequestConsoleForServerParams {
     /// ID of the Server
     pub id: i32
 }
 
-/// struct for passing parameters to the method `reset_root_password_of_server`
+/// struct for passing parameters to the method [`reset_root_password_of_server`]
 #[derive(Clone, Debug, Default)]
 pub struct ResetRootPasswordOfServerParams {
     /// ID of the Server
     pub id: i32
 }
 
-/// struct for passing parameters to the method `reset_server`
+/// struct for passing parameters to the method [`reset_server`]
 #[derive(Clone, Debug, Default)]
 pub struct ResetServerParams {
     /// ID of the Server
     pub id: i32
 }
 
-/// struct for passing parameters to the method `shutdown_server`
+/// struct for passing parameters to the method [`shutdown_server`]
 #[derive(Clone, Debug, Default)]
 pub struct ShutdownServerParams {
     /// ID of the Server
     pub id: i32
 }
 
-/// struct for passing parameters to the method `soft_reboot_server`
+/// struct for passing parameters to the method [`soft_reboot_server`]
 #[derive(Clone, Debug, Default)]
 pub struct SoftRebootServerParams {
     /// ID of the Server
@@ -259,203 +259,203 @@ pub struct SoftRebootServerParams {
 }
 
 
-/// struct for typed errors of method `attach_iso_to_server`
+/// struct for typed errors of method [`attach_iso_to_server`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AttachIsoToServerError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `attach_server_to_network`
+/// struct for typed errors of method [`attach_server_to_network`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AttachServerToNetworkError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `change_alias_ips_of_network`
+/// struct for typed errors of method [`change_alias_ips_of_network`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ChangeAliasIpsOfNetworkError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `change_reverse_dns_entry_for_this_server`
+/// struct for typed errors of method [`change_reverse_dns_entry_for_this_server`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ChangeReverseDnsEntryForThisServerError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `change_server_protection`
+/// struct for typed errors of method [`change_server_protection`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ChangeServerProtectionError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `change_type_of_server`
+/// struct for typed errors of method [`change_type_of_server`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ChangeTypeOfServerError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `create_image_from_server`
+/// struct for typed errors of method [`create_image_from_server`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateImageFromServerError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `create_server`
+/// struct for typed errors of method [`create_server`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateServerError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `delete_server`
+/// struct for typed errors of method [`delete_server`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteServerError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `detach_iso_from_server`
+/// struct for typed errors of method [`detach_iso_from_server`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DetachIsoFromServerError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `detach_server_from_network`
+/// struct for typed errors of method [`detach_server_from_network`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DetachServerFromNetworkError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `disable_backups_for_server`
+/// struct for typed errors of method [`disable_backups_for_server`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DisableBackupsForServerError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `disable_rescue_mode_for_server`
+/// struct for typed errors of method [`disable_rescue_mode_for_server`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DisableRescueModeForServerError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `enable_and_configure_backups_for_server`
+/// struct for typed errors of method [`enable_and_configure_backups_for_server`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum EnableAndConfigureBackupsForServerError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `enable_rescue_mode_for_server`
+/// struct for typed errors of method [`enable_rescue_mode_for_server`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum EnableRescueModeForServerError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_action_for_server`
+/// struct for typed errors of method [`get_action_for_server`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetActionForServerError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_metrics_for_server`
+/// struct for typed errors of method [`get_metrics_for_server`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetMetricsForServerError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_server`
+/// struct for typed errors of method [`get_server`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetServerError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `list_actions_for_server`
+/// struct for typed errors of method [`list_actions_for_server`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListActionsForServerError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `list_servers`
+/// struct for typed errors of method [`list_servers`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListServersError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `power_off_server`
+/// struct for typed errors of method [`power_off_server`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PowerOffServerError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `power_on_server`
+/// struct for typed errors of method [`power_on_server`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PowerOnServerError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `rebuild_server_from_image`
+/// struct for typed errors of method [`rebuild_server_from_image`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum RebuildServerFromImageError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `replace_server`
+/// struct for typed errors of method [`replace_server`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ReplaceServerError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `request_console_for_server`
+/// struct for typed errors of method [`request_console_for_server`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum RequestConsoleForServerError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `reset_root_password_of_server`
+/// struct for typed errors of method [`reset_root_password_of_server`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ResetRootPasswordOfServerError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `reset_server`
+/// struct for typed errors of method [`reset_server`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ResetServerError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `shutdown_server`
+/// struct for typed errors of method [`shutdown_server`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ShutdownServerError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `soft_reboot_server`
+/// struct for typed errors of method [`soft_reboot_server`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SoftRebootServerError {
@@ -465,20 +465,22 @@ pub enum SoftRebootServerError {
 
 /// Attaches an ISO to a Server. The Server will immediately see it as a new disk. An already attached ISO will automatically be detached before the new ISO is attached.  Servers with attached ISOs have a modified boot order: They will try to boot from the ISO first before falling back to hard disk. 
 pub async fn attach_iso_to_server(configuration: &configuration::Configuration, params: AttachIsoToServerParams) -> Result<crate::models::AttachIsoToServerResponse, Error<AttachIsoToServerError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let attach_iso_to_server_request = params.attach_iso_to_server_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/servers/{id}/actions/attach_iso", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/servers/{id}/actions/attach_iso", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&attach_iso_to_server_request);
@@ -500,20 +502,22 @@ pub async fn attach_iso_to_server(configuration: &configuration::Configuration, 
 
 /// Attaches a Server to a network. This will complement the fixed public Server interface by adding an additional ethernet interface to the Server which is connected to the specified network.  The Server will get an IP auto assigned from a subnet of type `server` in the same `network_zone`.  Using the `alias_ips` attribute you can also define one or more additional IPs to the Servers. Please note that you will have to configure these IPs by hand on your Server since only the primary IP will be given out by DHCP.  **Call specific error codes**  | Code                             | Description                                                           | |----------------------------------|-----------------------------------------------------------------------| | `server_already_attached`        | The server is already attached to the network                         | | `ip_not_available`               | The provided Network IP is not available                              | | `no_subnet_available`            | No Subnet or IP is available for the Server within the network        | | `networks_overlap`               | The network IP range overlaps with one of the server networks         | 
 pub async fn attach_server_to_network(configuration: &configuration::Configuration, params: AttachServerToNetworkParams) -> Result<crate::models::AttachServerToNetworkResponse, Error<AttachServerToNetworkError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let attach_server_to_network_request = params.attach_server_to_network_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/servers/{id}/actions/attach_to_network", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/servers/{id}/actions/attach_to_network", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&attach_server_to_network_request);
@@ -535,20 +539,22 @@ pub async fn attach_server_to_network(configuration: &configuration::Configurati
 
 /// Changes the alias IPs of an already attached Network. Note that the existing aliases for the specified Network will be replaced with these provided in the request body. So if you want to add an alias IP, you have to provide the existing ones from the Network plus the new alias IP in the request body.
 pub async fn change_alias_ips_of_network(configuration: &configuration::Configuration, params: ChangeAliasIpsOfNetworkParams) -> Result<crate::models::ChangeAliasIpsOfNetworkResponse, Error<ChangeAliasIpsOfNetworkError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let change_alias_ips_of_network_request = params.change_alias_ips_of_network_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/servers/{id}/actions/change_alias_ips", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/servers/{id}/actions/change_alias_ips", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&change_alias_ips_of_network_request);
@@ -570,20 +576,22 @@ pub async fn change_alias_ips_of_network(configuration: &configuration::Configur
 
 /// Changes the hostname that will appear when getting the hostname belonging to the primary IPs (IPv4 and IPv6) of this Server.  Floating IPs assigned to the Server are not affected by this. 
 pub async fn change_reverse_dns_entry_for_this_server(configuration: &configuration::Configuration, params: ChangeReverseDnsEntryForThisServerParams) -> Result<crate::models::ChangeReverseDnsEntryForThisServerResponse, Error<ChangeReverseDnsEntryForThisServerError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let change_reverse_dns_entry_for_this_server_request = params.change_reverse_dns_entry_for_this_server_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/servers/{id}/actions/change_dns_ptr", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/servers/{id}/actions/change_dns_ptr", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&change_reverse_dns_entry_for_this_server_request);
@@ -605,20 +613,22 @@ pub async fn change_reverse_dns_entry_for_this_server(configuration: &configurat
 
 /// Changes the protection configuration of the Server.
 pub async fn change_server_protection(configuration: &configuration::Configuration, params: ChangeServerProtectionParams) -> Result<crate::models::ChangeServerProtectionResponse, Error<ChangeServerProtectionError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let change_server_protection_request = params.change_server_protection_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/servers/{id}/actions/change_protection", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/servers/{id}/actions/change_protection", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&change_server_protection_request);
@@ -640,20 +650,22 @@ pub async fn change_server_protection(configuration: &configuration::Configurati
 
 /// Changes the type (Cores, RAM and disk sizes) of a Server.  Server must be powered off for this command to succeed.  This copies the content of its disk, and starts it again.  You can only migrate to Server types with the same `storage_type` and equal or bigger disks. Shrinking disks is not possible as it might destroy data.  If the disk gets upgraded, the Server type can not be downgraded any more. If you plan to downgrade the Server type, set `upgrade_disk` to `false`.  #### Call specific error codes  | Code                          | Description                                                          | |-------------------------------|----------------------------------------------------------------------| | `invalid_server_type`         | The server type does not fit for the given server or is deprecated   | | `server_not_stopped`          | The action requires a stopped server                                 | 
 pub async fn change_type_of_server(configuration: &configuration::Configuration, params: ChangeTypeOfServerParams) -> Result<crate::models::ChangeTypeOfServerResponse, Error<ChangeTypeOfServerError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let change_type_of_server_request = params.change_type_of_server_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/servers/{id}/actions/change_type", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/servers/{id}/actions/change_type", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&change_type_of_server_request);
@@ -675,20 +687,22 @@ pub async fn change_type_of_server(configuration: &configuration::Configuration,
 
 /// Creates an Image (snapshot) from a Server by copying the contents of its disks. This creates a snapshot of the current state of the disk and copies it into an Image. If the Server is currently running you must make sure that its disk content is consistent. Otherwise, the created Image may not be readable.  To make sure disk content is consistent, we recommend to shut down the Server prior to creating an Image.  You can either create a `backup` Image that is bound to the Server and therefore will be deleted when the Server is deleted, or you can create an `snapshot` Image which is completely independent of the Server it was created from and will survive Server deletion. Backup Images are only available when the backup option is enabled for the Server. Snapshot Images are billed on a per GB basis. 
 pub async fn create_image_from_server(configuration: &configuration::Configuration, params: CreateImageFromServerParams) -> Result<crate::models::CreateImageFromServerResponse, Error<CreateImageFromServerError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let create_image_from_server_request = params.create_image_from_server_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/servers/{id}/actions/create_image", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/servers/{id}/actions/create_image", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&create_image_from_server_request);
@@ -710,19 +724,21 @@ pub async fn create_image_from_server(configuration: &configuration::Configurati
 
 /// Creates a new Server. Returns preliminary information about the Server as well as an Action that covers progress of creation.
 pub async fn create_server(configuration: &configuration::Configuration, params: CreateServerParams) -> Result<crate::models::CreateServerResponse, Error<CreateServerError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let create_server_request = params.create_server_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/servers", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/servers", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&create_server_request);
@@ -744,19 +760,21 @@ pub async fn create_server(configuration: &configuration::Configuration, params:
 
 /// Deletes a Server. This immediately removes the Server from your account, and it is no longer accessible.
 pub async fn delete_server(configuration: &configuration::Configuration, params: DeleteServerParams) -> Result<crate::models::DeleteServerResponse, Error<DeleteServerError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/servers/{id}", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.delete(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/servers/{id}", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -777,19 +795,21 @@ pub async fn delete_server(configuration: &configuration::Configuration, params:
 
 /// Detaches an ISO from a Server. In case no ISO Image is attached to the Server, the status of the returned Action is immediately set to `success`
 pub async fn detach_iso_from_server(configuration: &configuration::Configuration, params: DetachIsoFromServerParams) -> Result<crate::models::DetachIsoFromServerResponse, Error<DetachIsoFromServerError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/servers/{id}/actions/detach_iso", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/servers/{id}/actions/detach_iso", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -810,20 +830,22 @@ pub async fn detach_iso_from_server(configuration: &configuration::Configuration
 
 /// Detaches a Server from a network. The interface for this network will vanish.
 pub async fn detach_server_from_network(configuration: &configuration::Configuration, params: DetachServerFromNetworkParams) -> Result<crate::models::DetachServerFromNetworkResponse, Error<DetachServerFromNetworkError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let detach_server_from_network_request = params.detach_server_from_network_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/servers/{id}/actions/detach_from_network", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/servers/{id}/actions/detach_from_network", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&detach_server_from_network_request);
@@ -845,19 +867,21 @@ pub async fn detach_server_from_network(configuration: &configuration::Configura
 
 /// Disables the automatic backup option and deletes all existing Backups for a Server. No more additional charges for backups will be made.  Caution: This immediately removes all existing backups for the Server! 
 pub async fn disable_backups_for_server(configuration: &configuration::Configuration, params: DisableBackupsForServerParams) -> Result<crate::models::DisableBackupsForServerResponse, Error<DisableBackupsForServerError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/servers/{id}/actions/disable_backup", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/servers/{id}/actions/disable_backup", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -878,19 +902,21 @@ pub async fn disable_backups_for_server(configuration: &configuration::Configura
 
 /// Disables the Hetzner Rescue System for a Server. This makes a Server start from its disks on next reboot.  Rescue Mode is automatically disabled when you first boot into it or if you do not use it for 60 minutes.  Disabling rescue mode will not reboot your Server — you will have to do this yourself. 
 pub async fn disable_rescue_mode_for_server(configuration: &configuration::Configuration, params: DisableRescueModeForServerParams) -> Result<crate::models::DisableRescueModeForServerResponse, Error<DisableRescueModeForServerError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/servers/{id}/actions/disable_rescue", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/servers/{id}/actions/disable_rescue", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -911,19 +937,21 @@ pub async fn disable_rescue_mode_for_server(configuration: &configuration::Confi
 
 /// Enables and configures the automatic daily backup option for the Server. Enabling automatic backups will increase the price of the Server by 20%. In return, you will get seven slots where Images of type backup can be stored.  Backups are automatically created daily. 
 pub async fn enable_and_configure_backups_for_server(configuration: &configuration::Configuration, params: EnableAndConfigureBackupsForServerParams) -> Result<crate::models::EnableAndConfigureBackupsForServerResponse, Error<EnableAndConfigureBackupsForServerError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/servers/{id}/actions/enable_backup", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/servers/{id}/actions/enable_backup", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -944,20 +972,22 @@ pub async fn enable_and_configure_backups_for_server(configuration: &configurati
 
 /// Enable the Hetzner Rescue System for this Server. The next time a Server with enabled rescue mode boots it will start a special minimal Linux distribution designed for repair and reinstall.  In case a Server cannot boot on its own you can use this to access a Server’s disks.  Rescue Mode is automatically disabled when you first boot into it or if you do not use it for 60 minutes.  Enabling rescue mode will not [reboot](https://docs.hetzner.cloud/#server-actions-soft-reboot-a-server) your Server — you will have to do this yourself. 
 pub async fn enable_rescue_mode_for_server(configuration: &configuration::Configuration, params: EnableRescueModeForServerParams) -> Result<crate::models::EnableRescueModeForServerResponse, Error<EnableRescueModeForServerError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let enable_rescue_mode_for_server_request = params.enable_rescue_mode_for_server_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/servers/{id}/actions/enable_rescue", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/servers/{id}/actions/enable_rescue", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&enable_rescue_mode_for_server_request);
@@ -979,20 +1009,22 @@ pub async fn enable_rescue_mode_for_server(configuration: &configuration::Config
 
 /// Returns a specific Action object for a Server.
 pub async fn get_action_for_server(configuration: &configuration::Configuration, params: GetActionForServerParams) -> Result<crate::models::GetActionForServerResponse, Error<GetActionForServerError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let action_id = params.action_id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/servers/{id}/actions/{action_id}", configuration.base_path, id=id, action_id=action_id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/servers/{id}/actions/{action_id}", local_var_configuration.base_path, id=id, action_id=action_id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -1013,6 +1045,8 @@ pub async fn get_action_for_server(configuration: &configuration::Configuration,
 
 /// Get Metrics for specified Server.  You must specify the type of metric to get: cpu, disk or network. You can also specify more than one type by comma separation, e.g. cpu,disk.  Depending on the type you will get different time series data  | Type    | Timeseries              | Unit      | Description                                          | |---------|-------------------------|-----------|------------------------------------------------------| | cpu     | cpu                     | percent   | Percent CPU usage                                    | | disk    | disk.0.iops.read        | iop/s     | Number of read IO operations per second              | |         | disk.0.iops.write       | iop/s     | Number of write IO operations per second             | |         | disk.0.bandwidth.read   | bytes/s   | Bytes read per second                                | |         | disk.0.bandwidth.write  | bytes/s   | Bytes written per second                             | | network | network.0.pps.in        | packets/s | Public Network interface packets per second received | |         | network.0.pps.out       | packets/s | Public Network interface packets per second sent     | |         | network.0.bandwidth.in  | bytes/s   | Public Network interface bytes/s received            | |         | network.0.bandwidth.out | bytes/s   | Public Network interface bytes/s sent                |  Metrics are available for the last 30 days only.  If you do not provide the step argument we will automatically adjust it so that a maximum of 200 samples are returned.  We limit the number of samples returned to a maximum of 500 and will adjust the step parameter accordingly. 
 pub async fn get_metrics_for_server(configuration: &configuration::Configuration, params: GetMetricsForServerParams) -> Result<crate::models::GetMetricsForServerResponse, Error<GetMetricsForServerError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let _type = params._type;
@@ -1021,10 +1055,10 @@ pub async fn get_metrics_for_server(configuration: &configuration::Configuration
     let step = params.step;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/servers/{id}/metrics", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/servers/{id}/metrics", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     local_var_req_builder = local_var_req_builder.query(&[("type", &_type.to_string())]);
     local_var_req_builder = local_var_req_builder.query(&[("start", &start.to_string())]);
@@ -1032,10 +1066,10 @@ pub async fn get_metrics_for_server(configuration: &configuration::Configuration
     if let Some(ref local_var_str) = step {
         local_var_req_builder = local_var_req_builder.query(&[("step", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -1056,19 +1090,21 @@ pub async fn get_metrics_for_server(configuration: &configuration::Configuration
 
 /// Returns a specific Server object. The Server must exist inside the Project
 pub async fn get_server(configuration: &configuration::Configuration, params: GetServerParams) -> Result<crate::models::GetServerResponse, Error<GetServerError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/servers/{id}", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/servers/{id}", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -1089,6 +1125,8 @@ pub async fn get_server(configuration: &configuration::Configuration, params: Ge
 
 /// Returns all Action objects for a Server. You can `sort` the results by using the sort URI parameter, and filter them with the `status` parameter.
 pub async fn list_actions_for_server(configuration: &configuration::Configuration, params: ListActionsForServerParams) -> Result<crate::models::ListActionsForServerResponse, Error<ListActionsForServerError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let sort = params.sort;
@@ -1097,10 +1135,10 @@ pub async fn list_actions_for_server(configuration: &configuration::Configuratio
     let per_page = params.per_page;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/servers/{id}/actions", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/servers/{id}/actions", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = sort {
         local_var_req_builder = local_var_req_builder.query(&[("sort", &local_var_str.to_string())]);
@@ -1114,10 +1152,10 @@ pub async fn list_actions_for_server(configuration: &configuration::Configuratio
     if let Some(ref local_var_str) = per_page {
         local_var_req_builder = local_var_req_builder.query(&[("per_page", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -1138,6 +1176,8 @@ pub async fn list_actions_for_server(configuration: &configuration::Configuratio
 
 /// Returns all existing Server objects
 pub async fn list_servers(configuration: &configuration::Configuration, params: ListServersParams) -> Result<crate::models::ListServersResponse, Error<ListServersError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let name = params.name;
     let label_selector = params.label_selector;
@@ -1147,10 +1187,10 @@ pub async fn list_servers(configuration: &configuration::Configuration, params: 
     let per_page = params.per_page;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/servers", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/servers", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = name {
         local_var_req_builder = local_var_req_builder.query(&[("name", &local_var_str.to_string())]);
@@ -1170,10 +1210,10 @@ pub async fn list_servers(configuration: &configuration::Configuration, params: 
     if let Some(ref local_var_str) = per_page {
         local_var_req_builder = local_var_req_builder.query(&[("per_page", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -1194,19 +1234,21 @@ pub async fn list_servers(configuration: &configuration::Configuration, params: 
 
 /// Cuts power to the Server. This forcefully stops it without giving the Server operating system time to gracefully stop. May lead to data loss, equivalent to pulling the power cord. Power off should only be used when shutdown does not work.
 pub async fn power_off_server(configuration: &configuration::Configuration, params: PowerOffServerParams) -> Result<crate::models::PowerOffServerResponse, Error<PowerOffServerError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/servers/{id}/actions/poweroff", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/servers/{id}/actions/poweroff", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -1227,19 +1269,21 @@ pub async fn power_off_server(configuration: &configuration::Configuration, para
 
 /// Starts a Server by turning its power on.
 pub async fn power_on_server(configuration: &configuration::Configuration, params: PowerOnServerParams) -> Result<crate::models::PowerOnServerResponse, Error<PowerOnServerError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/servers/{id}/actions/poweron", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/servers/{id}/actions/poweron", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -1260,20 +1304,22 @@ pub async fn power_on_server(configuration: &configuration::Configuration, param
 
 /// Rebuilds a Server overwriting its disk with the content of an Image, thereby **destroying all data** on the target Server  The Image can either be one you have created earlier (`backup` or `snapshot` Image) or it can be a completely fresh `system` Image provided by us. You can get a list of all available Images with `GET /images`.  Your Server will automatically be powered off before the rebuild command executes. 
 pub async fn rebuild_server_from_image(configuration: &configuration::Configuration, params: RebuildServerFromImageParams) -> Result<crate::models::RebuildServerFromImageResponse, Error<RebuildServerFromImageError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let rebuild_server_from_image_request = params.rebuild_server_from_image_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/servers/{id}/actions/rebuild", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/servers/{id}/actions/rebuild", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&rebuild_server_from_image_request);
@@ -1295,20 +1341,22 @@ pub async fn rebuild_server_from_image(configuration: &configuration::Configurat
 
 /// Updates a Server. You can update a Server’s name and a Server’s labels. Please note that Server names must be unique per Project and valid hostnames as per RFC 1123 (i.e. may only contain letters, digits, periods, and dashes). Also note that when updating labels, the Server’s current set of labels will be replaced with the labels provided in the request body. So, for example, if you want to add a new label, you have to provide all existing labels plus the new label in the request body.
 pub async fn replace_server(configuration: &configuration::Configuration, params: ReplaceServerParams) -> Result<crate::models::ReplaceServerResponse, Error<ReplaceServerError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let replace_server_request = params.replace_server_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/servers/{id}", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.put(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/servers/{id}", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&replace_server_request);
@@ -1330,19 +1378,21 @@ pub async fn replace_server(configuration: &configuration::Configuration, params
 
 /// Requests credentials for remote access via VNC over websocket to keyboard, monitor, and mouse for a Server. The provided URL is valid for 1 minute, after this period a new url needs to be created to connect to the Server. How long the connection is open after the initial connect is not subject to this timeout.
 pub async fn request_console_for_server(configuration: &configuration::Configuration, params: RequestConsoleForServerParams) -> Result<crate::models::RequestConsoleForServerResponse, Error<RequestConsoleForServerError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/servers/{id}/actions/request_console", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/servers/{id}/actions/request_console", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -1363,19 +1413,21 @@ pub async fn request_console_for_server(configuration: &configuration::Configura
 
 /// Resets the root password. Only works for Linux systems that are running the qemu guest agent. Server must be powered on (state `on`) in order for this operation to succeed.  This will generate a new password for this Server and return it.  If this does not succeed you can use the rescue system to netboot the Server and manually change your Server password by hand. 
 pub async fn reset_root_password_of_server(configuration: &configuration::Configuration, params: ResetRootPasswordOfServerParams) -> Result<crate::models::ResetRootPasswordOfServerResponse, Error<ResetRootPasswordOfServerError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/servers/{id}/actions/reset_password", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/servers/{id}/actions/reset_password", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -1396,19 +1448,21 @@ pub async fn reset_root_password_of_server(configuration: &configuration::Config
 
 /// Cuts power to a Server and starts it again. This forcefully stops it without giving the Server operating system time to gracefully stop. This may lead to data loss, it’s equivalent to pulling the power cord and plugging it in again. Reset should only be used when reboot does not work.
 pub async fn reset_server(configuration: &configuration::Configuration, params: ResetServerParams) -> Result<crate::models::ResetServerResponse, Error<ResetServerError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/servers/{id}/actions/reset", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/servers/{id}/actions/reset", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -1429,19 +1483,21 @@ pub async fn reset_server(configuration: &configuration::Configuration, params: 
 
 /// Shuts down a Server gracefully by sending an ACPI shutdown request. The Server operating system must support ACPI and react to the request, otherwise the Server will not shut down.
 pub async fn shutdown_server(configuration: &configuration::Configuration, params: ShutdownServerParams) -> Result<crate::models::ShutdownServerResponse, Error<ShutdownServerError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/servers/{id}/actions/shutdown", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/servers/{id}/actions/shutdown", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -1462,19 +1518,21 @@ pub async fn shutdown_server(configuration: &configuration::Configuration, param
 
 /// Reboots a Server gracefully by sending an ACPI request. The Server operating system must support ACPI and react to the request, otherwise the Server will not reboot.
 pub async fn soft_reboot_server(configuration: &configuration::Configuration, params: SoftRebootServerParams) -> Result<crate::models::SoftRebootServerResponse, Error<SoftRebootServerError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/servers/{id}/actions/reboot", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/servers/{id}/actions/reboot", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 

@@ -11,7 +11,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Iso {
     /// ID of the Resource
     #[serde(rename = "id")]
@@ -49,5 +49,11 @@ pub enum Type {
     Private,
     #[serde(rename = "public")]
     Public,
+}
+
+impl Default for Type {
+    fn default() -> Type {
+        Self::Private
+    }
 }
 

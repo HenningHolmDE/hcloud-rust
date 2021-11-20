@@ -14,14 +14,14 @@ use reqwest;
 use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
-/// struct for passing parameters to the method `get_location`
+/// struct for passing parameters to the method [`get_location`]
 #[derive(Clone, Debug, Default)]
 pub struct GetLocationParams {
     /// ID of Location
     pub id: i32
 }
 
-/// struct for passing parameters to the method `list_locations`
+/// struct for passing parameters to the method [`list_locations`]
 #[derive(Clone, Debug, Default)]
 pub struct ListLocationsParams {
     /// Can be used to filter Locations by their name. The response will only contain the Location matching the specified name.
@@ -33,14 +33,14 @@ pub struct ListLocationsParams {
 }
 
 
-/// struct for typed errors of method `get_location`
+/// struct for typed errors of method [`get_location`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetLocationError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `list_locations`
+/// struct for typed errors of method [`list_locations`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListLocationsError {
@@ -50,19 +50,21 @@ pub enum ListLocationsError {
 
 /// Returns a specific Location object.
 pub async fn get_location(configuration: &configuration::Configuration, params: GetLocationParams) -> Result<crate::models::GetLocationResponse, Error<GetLocationError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/locations/{id}", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/locations/{id}", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -83,16 +85,18 @@ pub async fn get_location(configuration: &configuration::Configuration, params: 
 
 /// Returns all Location objects.
 pub async fn list_locations(configuration: &configuration::Configuration, params: ListLocationsParams) -> Result<crate::models::ListLocationsResponse, Error<ListLocationsError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let name = params.name;
     let page = params.page;
     let per_page = params.per_page;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/locations", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/locations", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = name {
         local_var_req_builder = local_var_req_builder.query(&[("name", &local_var_str.to_string())]);
@@ -103,10 +107,10 @@ pub async fn list_locations(configuration: &configuration::Configuration, params
     if let Some(ref local_var_str) = per_page {
         local_var_req_builder = local_var_req_builder.query(&[("per_page", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 

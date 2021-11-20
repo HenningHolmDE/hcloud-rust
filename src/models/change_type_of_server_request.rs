@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ChangeTypeOfServerRequest {
     /// If false, do not upgrade the disk (this allows downgrading the Server type later)
     #[serde(rename = "upgrade_disk")]

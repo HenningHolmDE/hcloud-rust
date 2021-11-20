@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ApplyToResourcesRequest {
     /// Resources the Firewall should be applied to
     #[serde(rename = "apply_to")]

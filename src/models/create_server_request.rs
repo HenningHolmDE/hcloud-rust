@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct CreateServerRequest {
     /// Name of the Server to create (must be unique per Project and a valid hostname as per RFC 1123)
     #[serde(rename = "name")]

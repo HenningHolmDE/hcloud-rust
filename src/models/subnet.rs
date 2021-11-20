@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Subnet {
     /// Type of Subnetwork
     #[serde(rename = "type")]
@@ -49,5 +49,11 @@ pub enum Type {
     Server,
     #[serde(rename = "vswitch")]
     Vswitch,
+}
+
+impl Default for Type {
+    fn default() -> Type {
+        Self::Cloud
+    }
 }
 

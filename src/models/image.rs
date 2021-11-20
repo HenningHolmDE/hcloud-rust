@@ -11,7 +11,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Image {
     /// ID of the Resource
     #[serde(rename = "id")]
@@ -96,6 +96,12 @@ pub enum Type {
     #[serde(rename = "temporary")]
     Temporary,
 }
+
+impl Default for Type {
+    fn default() -> Type {
+        Self::Backup
+    }
+}
 /// Whether the Image can be used or if it's still being created
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum Status {
@@ -103,6 +109,12 @@ pub enum Status {
     Available,
     #[serde(rename = "creating")]
     Creating,
+}
+
+impl Default for Status {
+    fn default() -> Status {
+        Self::Available
+    }
 }
 /// Flavor of operating system contained in the Image
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
@@ -117,5 +129,11 @@ pub enum OsFlavor {
     Ubuntu,
     #[serde(rename = "unknown")]
     Unknown,
+}
+
+impl Default for OsFlavor {
+    fn default() -> OsFlavor {
+        Self::Centos
+    }
 }
 

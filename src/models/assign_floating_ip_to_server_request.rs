@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct AssignFloatingIpToServerRequest {
     /// ID of the Server the Floating IP shall be assigned to
     #[serde(rename = "server")]

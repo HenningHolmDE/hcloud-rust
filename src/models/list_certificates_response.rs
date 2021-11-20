@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ListCertificatesResponse {
     #[serde(rename = "certificates")]
     pub certificates: Vec<crate::models::Certificate>,

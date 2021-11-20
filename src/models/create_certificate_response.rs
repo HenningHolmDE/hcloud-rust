@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct CreateCertificateResponse {
     #[serde(rename = "certificate")]
     pub certificate: Box<crate::models::Certificate>,

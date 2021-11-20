@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct LoadBalancerServiceHealthCheck {
     /// Type of the health check
     #[serde(rename = "protocol")]
@@ -54,5 +54,11 @@ pub enum Protocol {
     Http,
     #[serde(rename = "tcp")]
     Tcp,
+}
+
+impl Default for Protocol {
+    fn default() -> Protocol {
+        Self::Http
+    }
 }
 

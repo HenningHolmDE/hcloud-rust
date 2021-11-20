@@ -11,7 +11,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct FirewallResourceIdAppliedToResources {
     /// Type of resource referenced
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
@@ -34,5 +34,11 @@ impl FirewallResourceIdAppliedToResources {
 pub enum Type {
     #[serde(rename = "server")]
     Server,
+}
+
+impl Default for Type {
+    fn default() -> Type {
+        Self::Server
+    }
 }
 

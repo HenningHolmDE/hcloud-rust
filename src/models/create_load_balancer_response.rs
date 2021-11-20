@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct CreateLoadBalancerResponse {
     #[serde(rename = "load_balancer")]
     pub load_balancer: Box<crate::models::LoadBalancer>,

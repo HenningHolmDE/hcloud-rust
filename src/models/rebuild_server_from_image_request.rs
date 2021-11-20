@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct RebuildServerFromImageRequest {
     /// ID or name of Image to rebuilt from.
     #[serde(rename = "image")]

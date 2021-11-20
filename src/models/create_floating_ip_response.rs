@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct CreateFloatingIpResponse {
     #[serde(rename = "floating_ip")]
     pub floating_ip: Box<crate::models::FloatingIp>,

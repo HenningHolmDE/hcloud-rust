@@ -14,7 +14,7 @@ use reqwest;
 use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
-/// struct for passing parameters to the method `apply_to_resources`
+/// struct for passing parameters to the method [`apply_to_resources`]
 #[derive(Clone, Debug, Default)]
 pub struct ApplyToResourcesParams {
     /// ID of the Firewall
@@ -22,20 +22,20 @@ pub struct ApplyToResourcesParams {
     pub apply_to_resources_request: Option<crate::models::ApplyToResourcesRequest>
 }
 
-/// struct for passing parameters to the method `create_firewall`
+/// struct for passing parameters to the method [`create_firewall`]
 #[derive(Clone, Debug, Default)]
 pub struct CreateFirewallParams {
     pub create_firewall_request: Option<crate::models::CreateFirewallRequest>
 }
 
-/// struct for passing parameters to the method `delete_firewall`
+/// struct for passing parameters to the method [`delete_firewall`]
 #[derive(Clone, Debug, Default)]
 pub struct DeleteFirewallParams {
     /// ID of the resource
     pub id: i32
 }
 
-/// struct for passing parameters to the method `get_action_for_firewall`
+/// struct for passing parameters to the method [`get_action_for_firewall`]
 #[derive(Clone, Debug, Default)]
 pub struct GetActionForFirewallParams {
     /// ID of the Firewall
@@ -44,14 +44,14 @@ pub struct GetActionForFirewallParams {
     pub action_id: i32
 }
 
-/// struct for passing parameters to the method `get_firewall`
+/// struct for passing parameters to the method [`get_firewall`]
 #[derive(Clone, Debug, Default)]
 pub struct GetFirewallParams {
     /// ID of the resource
     pub id: i32
 }
 
-/// struct for passing parameters to the method `list_actions_for_firewall`
+/// struct for passing parameters to the method [`list_actions_for_firewall`]
 #[derive(Clone, Debug, Default)]
 pub struct ListActionsForFirewallParams {
     /// ID of the Resource
@@ -66,7 +66,7 @@ pub struct ListActionsForFirewallParams {
     pub per_page: Option<i32>
 }
 
-/// struct for passing parameters to the method `list_firewalls`
+/// struct for passing parameters to the method [`list_firewalls`]
 #[derive(Clone, Debug, Default)]
 pub struct ListFirewallsParams {
     /// Can be used multiple times.
@@ -81,7 +81,7 @@ pub struct ListFirewallsParams {
     pub per_page: Option<i32>
 }
 
-/// struct for passing parameters to the method `remove_from_resources`
+/// struct for passing parameters to the method [`remove_from_resources`]
 #[derive(Clone, Debug, Default)]
 pub struct RemoveFromResourcesParams {
     /// ID of the Firewall
@@ -89,7 +89,7 @@ pub struct RemoveFromResourcesParams {
     pub remove_from_resources_request: Option<crate::models::RemoveFromResourcesRequest>
 }
 
-/// struct for passing parameters to the method `replace_firewall`
+/// struct for passing parameters to the method [`replace_firewall`]
 #[derive(Clone, Debug, Default)]
 pub struct ReplaceFirewallParams {
     /// ID of the resource
@@ -97,7 +97,7 @@ pub struct ReplaceFirewallParams {
     pub replace_firewall_request: Option<crate::models::ReplaceFirewallRequest>
 }
 
-/// struct for passing parameters to the method `set_rules`
+/// struct for passing parameters to the method [`set_rules`]
 #[derive(Clone, Debug, Default)]
 pub struct SetRulesParams {
     /// ID of the Firewall
@@ -106,70 +106,70 @@ pub struct SetRulesParams {
 }
 
 
-/// struct for typed errors of method `apply_to_resources`
+/// struct for typed errors of method [`apply_to_resources`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ApplyToResourcesError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `create_firewall`
+/// struct for typed errors of method [`create_firewall`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateFirewallError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `delete_firewall`
+/// struct for typed errors of method [`delete_firewall`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteFirewallError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_action_for_firewall`
+/// struct for typed errors of method [`get_action_for_firewall`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetActionForFirewallError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_firewall`
+/// struct for typed errors of method [`get_firewall`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetFirewallError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `list_actions_for_firewall`
+/// struct for typed errors of method [`list_actions_for_firewall`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListActionsForFirewallError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `list_firewalls`
+/// struct for typed errors of method [`list_firewalls`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListFirewallsError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `remove_from_resources`
+/// struct for typed errors of method [`remove_from_resources`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum RemoveFromResourcesError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `replace_firewall`
+/// struct for typed errors of method [`replace_firewall`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ReplaceFirewallError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `set_rules`
+/// struct for typed errors of method [`set_rules`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SetRulesError {
@@ -179,20 +179,22 @@ pub enum SetRulesError {
 
 /// Applies one Firewall to multiple resources.  Currently servers (public network interface) and label selectors are supported.  #### Call specific error codes  | Code                        | Description                                             | |-----------------------------|---------------------------------------------------------| | `firewall_already_applied`  | Firewall was already applied on resource                | | `incompatible_network_type` | The Network type is incompatible for the given resource | 
 pub async fn apply_to_resources(configuration: &configuration::Configuration, params: ApplyToResourcesParams) -> Result<crate::models::ApplyToResourcesResponse, Error<ApplyToResourcesError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let apply_to_resources_request = params.apply_to_resources_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/firewalls/{id}/actions/apply_to_resources", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/firewalls/{id}/actions/apply_to_resources", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&apply_to_resources_request);
@@ -214,19 +216,21 @@ pub async fn apply_to_resources(configuration: &configuration::Configuration, pa
 
 /// Creates a new Firewall.  #### Call specific error codes  | Code                        | Description                                             | |-----------------------------|---------------------------------------------------------| | `server_already_added`      | Server added more than one time to resource             | | `incompatible_network_type` | The Network type is incompatible for the given resource | 
 pub async fn create_firewall(configuration: &configuration::Configuration, params: CreateFirewallParams) -> Result<crate::models::CreateFirewallResponse, Error<CreateFirewallError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let create_firewall_request = params.create_firewall_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/firewalls", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/firewalls", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&create_firewall_request);
@@ -248,19 +252,21 @@ pub async fn create_firewall(configuration: &configuration::Configuration, param
 
 /// Deletes a Firewall.  #### Call specific error codes  | Code              | Description                               | |-------------------|-------------------------------------------| | `resource_in_use` | Firewall must not be in use to be deleted | 
 pub async fn delete_firewall(configuration: &configuration::Configuration, params: DeleteFirewallParams) -> Result<(), Error<DeleteFirewallError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/firewalls/{id}", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.delete(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/firewalls/{id}", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -281,20 +287,22 @@ pub async fn delete_firewall(configuration: &configuration::Configuration, param
 
 /// Returns a specific Action for a Firewall.
 pub async fn get_action_for_firewall(configuration: &configuration::Configuration, params: GetActionForFirewallParams) -> Result<crate::models::GetActionForFirewallResponse, Error<GetActionForFirewallError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let action_id = params.action_id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/firewalls/{id}/actions/{action_id}", configuration.base_path, id=id, action_id=action_id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/firewalls/{id}/actions/{action_id}", local_var_configuration.base_path, id=id, action_id=action_id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -315,19 +323,21 @@ pub async fn get_action_for_firewall(configuration: &configuration::Configuratio
 
 /// Gets a specific Firewall object.
 pub async fn get_firewall(configuration: &configuration::Configuration, params: GetFirewallParams) -> Result<crate::models::GetFirewallResponse, Error<GetFirewallError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/firewalls/{id}", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/firewalls/{id}", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -348,6 +358,8 @@ pub async fn get_firewall(configuration: &configuration::Configuration, params: 
 
 /// Returns all Action objects for a Firewall. You can sort the results by using the `sort` URI parameter, and filter them with the `status` parameter.
 pub async fn list_actions_for_firewall(configuration: &configuration::Configuration, params: ListActionsForFirewallParams) -> Result<crate::models::ListActionsForFirewallResponse, Error<ListActionsForFirewallError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let sort = params.sort;
@@ -356,10 +368,10 @@ pub async fn list_actions_for_firewall(configuration: &configuration::Configurat
     let per_page = params.per_page;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/firewalls/{id}/actions", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/firewalls/{id}/actions", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = sort {
         local_var_req_builder = local_var_req_builder.query(&[("sort", &local_var_str.to_string())]);
@@ -373,10 +385,10 @@ pub async fn list_actions_for_firewall(configuration: &configuration::Configurat
     if let Some(ref local_var_str) = per_page {
         local_var_req_builder = local_var_req_builder.query(&[("per_page", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -397,6 +409,8 @@ pub async fn list_actions_for_firewall(configuration: &configuration::Configurat
 
 /// Returns all Firewall objects.
 pub async fn list_firewalls(configuration: &configuration::Configuration, params: ListFirewallsParams) -> Result<crate::models::ListFirewallsResponse, Error<ListFirewallsError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let sort = params.sort;
     let name = params.name;
@@ -405,10 +419,10 @@ pub async fn list_firewalls(configuration: &configuration::Configuration, params
     let per_page = params.per_page;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/firewalls", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/firewalls", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = sort {
         local_var_req_builder = local_var_req_builder.query(&[("sort", &local_var_str.to_string())]);
@@ -425,10 +439,10 @@ pub async fn list_firewalls(configuration: &configuration::Configuration, params
     if let Some(ref local_var_str) = per_page {
         local_var_req_builder = local_var_req_builder.query(&[("per_page", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -449,20 +463,22 @@ pub async fn list_firewalls(configuration: &configuration::Configuration, params
 
 /// Removes one Firewall from multiple resources.  Currently only Servers (and their public network interfaces) are supported.  #### Call specific error codes  | Code                       | Description                                    | |----------------------------|------------------------------------------------| | `firewall_already_removed` | Firewall was already removed from the resource | 
 pub async fn remove_from_resources(configuration: &configuration::Configuration, params: RemoveFromResourcesParams) -> Result<crate::models::RemoveFromResourcesResponse, Error<RemoveFromResourcesError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let remove_from_resources_request = params.remove_from_resources_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/firewalls/{id}/actions/remove_from_resources", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/firewalls/{id}/actions/remove_from_resources", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&remove_from_resources_request);
@@ -484,20 +500,22 @@ pub async fn remove_from_resources(configuration: &configuration::Configuration,
 
 /// Updates the Firewall.  Note that when updating labels, the Firewall's current set of labels will be replaced with the labels provided in the request body. So, for example, if you want to add a new label, you have to provide all existing labels plus the new label in the request body.  Note: if the Firewall object changes during the request, the response will be a “conflict” error. 
 pub async fn replace_firewall(configuration: &configuration::Configuration, params: ReplaceFirewallParams) -> Result<crate::models::ReplaceFirewallResponse, Error<ReplaceFirewallError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let replace_firewall_request = params.replace_firewall_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/firewalls/{id}", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.put(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/firewalls/{id}", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&replace_firewall_request);
@@ -519,20 +537,22 @@ pub async fn replace_firewall(configuration: &configuration::Configuration, para
 
 /// Sets the rules of a Firewall.  All existing rules will be overwritten. Pass an empty `rules` array to remove all rules. 
 pub async fn set_rules(configuration: &configuration::Configuration, params: SetRulesParams) -> Result<crate::models::SetRulesResponse, Error<SetRulesError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let set_rules_request = params.set_rules_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/firewalls/{id}/actions/set_rules", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/firewalls/{id}/actions/set_rules", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&set_rules_request);

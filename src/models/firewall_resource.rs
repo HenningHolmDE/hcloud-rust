@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct FirewallResource {
     /// Type of the resource
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
@@ -41,5 +41,11 @@ pub enum Type {
     LabelSelector,
     #[serde(rename = "server")]
     Server,
+}
+
+impl Default for Type {
+    fn default() -> Type {
+        Self::LabelSelector
+    }
 }
 

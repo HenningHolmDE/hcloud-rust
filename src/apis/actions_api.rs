@@ -14,14 +14,14 @@ use reqwest;
 use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
-/// struct for passing parameters to the method `get_action`
+/// struct for passing parameters to the method [`get_action`]
 #[derive(Clone, Debug, Default)]
 pub struct GetActionParams {
     /// ID of the Resource
     pub id: i32
 }
 
-/// struct for passing parameters to the method `list_actions`
+/// struct for passing parameters to the method [`list_actions`]
 #[derive(Clone, Debug, Default)]
 pub struct ListActionsParams {
     /// Can be used multiple times, the response will contain only Actions with specified IDs
@@ -37,14 +37,14 @@ pub struct ListActionsParams {
 }
 
 
-/// struct for typed errors of method `get_action`
+/// struct for typed errors of method [`get_action`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetActionError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `list_actions`
+/// struct for typed errors of method [`list_actions`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListActionsError {
@@ -54,19 +54,21 @@ pub enum ListActionsError {
 
 /// Returns a specific Action object.
 pub async fn get_action(configuration: &configuration::Configuration, params: GetActionParams) -> Result<crate::models::GetActionResponse, Error<GetActionError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/actions/{id}", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/actions/{id}", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -87,6 +89,8 @@ pub async fn get_action(configuration: &configuration::Configuration, params: Ge
 
 /// Returns all Action objects. You can `sort` the results by using the sort URI parameter, and filter them with the `status` parameter.
 pub async fn list_actions(configuration: &configuration::Configuration, params: ListActionsParams) -> Result<crate::models::ListActionsResponse, Error<ListActionsError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let sort = params.sort;
@@ -95,10 +99,10 @@ pub async fn list_actions(configuration: &configuration::Configuration, params: 
     let per_page = params.per_page;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/actions", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/actions", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = id {
         local_var_req_builder = local_var_req_builder.query(&[("id", &local_var_str.to_string())]);
@@ -115,10 +119,10 @@ pub async fn list_actions(configuration: &configuration::Configuration, params: 
     if let Some(ref local_var_str) = per_page {
         local_var_req_builder = local_var_req_builder.query(&[("per_page", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 

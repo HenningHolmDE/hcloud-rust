@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct CreateSshKeyResponse {
     #[serde(rename = "ssh_key")]
     pub ssh_key: Box<crate::models::SshKey>,

@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct CreateCertificateRequest {
     /// Name of the Certificate
     #[serde(rename = "name")]
@@ -55,5 +55,11 @@ pub enum Type {
     Managed,
     #[serde(rename = "uploaded")]
     Uploaded,
+}
+
+impl Default for Type {
+    fn default() -> Type {
+        Self::Managed
+    }
 }
 

@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ChangeAliasIpsOfNetworkRequest {
     /// ID of an existing Network already attached to the Server
     #[serde(rename = "network")]

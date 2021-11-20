@@ -11,7 +11,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct FloatingIp {
     /// ID of the Resource
     #[serde(rename = "id")]
@@ -75,5 +75,11 @@ pub enum Type {
     Ipv4,
     #[serde(rename = "ipv6")]
     Ipv6,
+}
+
+impl Default for Type {
+    fn default() -> Type {
+        Self::Ipv4
+    }
 }
 

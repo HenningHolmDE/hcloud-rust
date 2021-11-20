@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ServerType {
     /// ID of the Server type
     #[serde(rename = "id")]
@@ -72,6 +72,12 @@ pub enum StorageType {
     #[serde(rename = "network")]
     Network,
 }
+
+impl Default for StorageType {
+    fn default() -> StorageType {
+        Self::Local
+    }
+}
 /// Type of cpu
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum CpuType {
@@ -79,5 +85,11 @@ pub enum CpuType {
     Dedicated,
     #[serde(rename = "shared")]
     Shared,
+}
+
+impl Default for CpuType {
+    fn default() -> CpuType {
+        Self::Dedicated
+    }
 }
 

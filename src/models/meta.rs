@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Meta {
     #[serde(rename = "pagination")]
     pub pagination: Box<crate::models::Pagination>,

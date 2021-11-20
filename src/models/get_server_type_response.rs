@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct GetServerTypeResponse {
     #[serde(rename = "server_type")]
     pub server_type: Box<crate::models::ServerType>,

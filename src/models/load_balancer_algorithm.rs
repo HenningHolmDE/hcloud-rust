@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct LoadBalancerAlgorithm {
     /// Type of the algorithm | Algorithm of the Load Balancer
     #[serde(rename = "type")]
@@ -35,5 +35,11 @@ pub enum Type {
     LeastConnections,
     #[serde(rename = "round_robin")]
     RoundRobin,
+}
+
+impl Default for Type {
+    fn default() -> Type {
+        Self::LeastConnections
+    }
 }
 

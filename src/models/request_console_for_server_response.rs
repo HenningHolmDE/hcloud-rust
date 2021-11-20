@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct RequestConsoleForServerResponse {
     /// URL of websocket proxy to use; this includes a token which is valid for a limited time only
     #[serde(rename = "wss_url")]

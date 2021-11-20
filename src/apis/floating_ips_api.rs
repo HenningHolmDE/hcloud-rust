@@ -14,7 +14,7 @@ use reqwest;
 use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
-/// struct for passing parameters to the method `assign_floating_ip_to_server`
+/// struct for passing parameters to the method [`assign_floating_ip_to_server`]
 #[derive(Clone, Debug, Default)]
 pub struct AssignFloatingIpToServerParams {
     /// ID of the Floating IP
@@ -22,7 +22,7 @@ pub struct AssignFloatingIpToServerParams {
     pub assign_floating_ip_to_server_request: Option<crate::models::AssignFloatingIpToServerRequest>
 }
 
-/// struct for passing parameters to the method `change_floating_ip_protection`
+/// struct for passing parameters to the method [`change_floating_ip_protection`]
 #[derive(Clone, Debug, Default)]
 pub struct ChangeFloatingIpProtectionParams {
     /// ID of the Floating IP
@@ -30,7 +30,7 @@ pub struct ChangeFloatingIpProtectionParams {
     pub change_floating_ip_protection_request: Option<crate::models::ChangeFloatingIpProtectionRequest>
 }
 
-/// struct for passing parameters to the method `change_reverse_dns_entry_for_floating_ip`
+/// struct for passing parameters to the method [`change_reverse_dns_entry_for_floating_ip`]
 #[derive(Clone, Debug, Default)]
 pub struct ChangeReverseDnsEntryForFloatingIpParams {
     /// ID of the Floating IP
@@ -39,21 +39,21 @@ pub struct ChangeReverseDnsEntryForFloatingIpParams {
     pub change_reverse_dns_entry_for_floating_ip_request: Option<crate::models::ChangeReverseDnsEntryForFloatingIpRequest>
 }
 
-/// struct for passing parameters to the method `create_floating_ip`
+/// struct for passing parameters to the method [`create_floating_ip`]
 #[derive(Clone, Debug, Default)]
 pub struct CreateFloatingIpParams {
     /// The `type` argument is required while `home_location` and `server` are mutually exclusive.
     pub create_floating_ip_request: Option<crate::models::CreateFloatingIpRequest>
 }
 
-/// struct for passing parameters to the method `delete_floating_ip`
+/// struct for passing parameters to the method [`delete_floating_ip`]
 #[derive(Clone, Debug, Default)]
 pub struct DeleteFloatingIpParams {
     /// ID of the Floating IP
     pub id: i32
 }
 
-/// struct for passing parameters to the method `get_action_for_floating_ip`
+/// struct for passing parameters to the method [`get_action_for_floating_ip`]
 #[derive(Clone, Debug, Default)]
 pub struct GetActionForFloatingIpParams {
     /// ID of the Floating IP
@@ -62,14 +62,14 @@ pub struct GetActionForFloatingIpParams {
     pub action_id: i32
 }
 
-/// struct for passing parameters to the method `get_floating_ip`
+/// struct for passing parameters to the method [`get_floating_ip`]
 #[derive(Clone, Debug, Default)]
 pub struct GetFloatingIpParams {
     /// ID of the Floating IP
     pub id: i32
 }
 
-/// struct for passing parameters to the method `list_actions_for_floating_ip`
+/// struct for passing parameters to the method [`list_actions_for_floating_ip`]
 #[derive(Clone, Debug, Default)]
 pub struct ListActionsForFloatingIpParams {
     /// ID of the Floating IP
@@ -84,7 +84,7 @@ pub struct ListActionsForFloatingIpParams {
     pub per_page: Option<i32>
 }
 
-/// struct for passing parameters to the method `list_floating_ips`
+/// struct for passing parameters to the method [`list_floating_ips`]
 #[derive(Clone, Debug, Default)]
 pub struct ListFloatingIpsParams {
     /// Can be used to filter Floating IPs by their name. The response will only contain the Floating IP matching the specified name.
@@ -99,7 +99,7 @@ pub struct ListFloatingIpsParams {
     pub per_page: Option<i32>
 }
 
-/// struct for passing parameters to the method `replace_floating_ip`
+/// struct for passing parameters to the method [`replace_floating_ip`]
 #[derive(Clone, Debug, Default)]
 pub struct ReplaceFloatingIpParams {
     /// ID of the Floating IP
@@ -107,7 +107,7 @@ pub struct ReplaceFloatingIpParams {
     pub replace_floating_ip_request: Option<crate::models::ReplaceFloatingIpRequest>
 }
 
-/// struct for passing parameters to the method `unassign_floating_ip`
+/// struct for passing parameters to the method [`unassign_floating_ip`]
 #[derive(Clone, Debug, Default)]
 pub struct UnassignFloatingIpParams {
     /// ID of the Floating IP
@@ -115,77 +115,77 @@ pub struct UnassignFloatingIpParams {
 }
 
 
-/// struct for typed errors of method `assign_floating_ip_to_server`
+/// struct for typed errors of method [`assign_floating_ip_to_server`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AssignFloatingIpToServerError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `change_floating_ip_protection`
+/// struct for typed errors of method [`change_floating_ip_protection`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ChangeFloatingIpProtectionError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `change_reverse_dns_entry_for_floating_ip`
+/// struct for typed errors of method [`change_reverse_dns_entry_for_floating_ip`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ChangeReverseDnsEntryForFloatingIpError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `create_floating_ip`
+/// struct for typed errors of method [`create_floating_ip`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateFloatingIpError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `delete_floating_ip`
+/// struct for typed errors of method [`delete_floating_ip`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteFloatingIpError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_action_for_floating_ip`
+/// struct for typed errors of method [`get_action_for_floating_ip`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetActionForFloatingIpError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_floating_ip`
+/// struct for typed errors of method [`get_floating_ip`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetFloatingIpError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `list_actions_for_floating_ip`
+/// struct for typed errors of method [`list_actions_for_floating_ip`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListActionsForFloatingIpError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `list_floating_ips`
+/// struct for typed errors of method [`list_floating_ips`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListFloatingIpsError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `replace_floating_ip`
+/// struct for typed errors of method [`replace_floating_ip`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ReplaceFloatingIpError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `unassign_floating_ip`
+/// struct for typed errors of method [`unassign_floating_ip`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UnassignFloatingIpError {
@@ -195,20 +195,22 @@ pub enum UnassignFloatingIpError {
 
 /// Assigns a Floating IP to a Server.
 pub async fn assign_floating_ip_to_server(configuration: &configuration::Configuration, params: AssignFloatingIpToServerParams) -> Result<crate::models::AssignFloatingIpToServerResponse, Error<AssignFloatingIpToServerError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let assign_floating_ip_to_server_request = params.assign_floating_ip_to_server_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/floating_ips/{id}/actions/assign", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/floating_ips/{id}/actions/assign", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&assign_floating_ip_to_server_request);
@@ -230,20 +232,22 @@ pub async fn assign_floating_ip_to_server(configuration: &configuration::Configu
 
 /// Changes the protection configuration of the Floating IP.
 pub async fn change_floating_ip_protection(configuration: &configuration::Configuration, params: ChangeFloatingIpProtectionParams) -> Result<crate::models::ChangeFloatingIpProtectionResponse, Error<ChangeFloatingIpProtectionError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let change_floating_ip_protection_request = params.change_floating_ip_protection_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/floating_ips/{id}/actions/change_protection", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/floating_ips/{id}/actions/change_protection", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&change_floating_ip_protection_request);
@@ -265,20 +269,22 @@ pub async fn change_floating_ip_protection(configuration: &configuration::Config
 
 /// Changes the hostname that will appear when getting the hostname belonging to this Floating IP.
 pub async fn change_reverse_dns_entry_for_floating_ip(configuration: &configuration::Configuration, params: ChangeReverseDnsEntryForFloatingIpParams) -> Result<crate::models::ChangeReverseDnsEntryForFloatingIpResponse, Error<ChangeReverseDnsEntryForFloatingIpError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let change_reverse_dns_entry_for_floating_ip_request = params.change_reverse_dns_entry_for_floating_ip_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/floating_ips/{id}/actions/change_dns_ptr", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/floating_ips/{id}/actions/change_dns_ptr", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&change_reverse_dns_entry_for_floating_ip_request);
@@ -300,19 +306,21 @@ pub async fn change_reverse_dns_entry_for_floating_ip(configuration: &configurat
 
 /// Creates a new Floating IP assigned to a Server. If you want to create a Floating IP that is not bound to a Server, you need to provide the `home_location` key instead of `server`. This can be either the ID or the name of the Location this IP shall be created in. Note that a Floating IP can be assigned to a Server in any Location later on. For optimal routing it is advised to use the Floating IP in the same Location it was created in.
 pub async fn create_floating_ip(configuration: &configuration::Configuration, params: CreateFloatingIpParams) -> Result<crate::models::CreateFloatingIpResponse, Error<CreateFloatingIpError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let create_floating_ip_request = params.create_floating_ip_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/floating_ips", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/floating_ips", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&create_floating_ip_request);
@@ -334,19 +342,21 @@ pub async fn create_floating_ip(configuration: &configuration::Configuration, pa
 
 /// Deletes a Floating IP. If it is currently assigned to a Server it will automatically get unassigned.
 pub async fn delete_floating_ip(configuration: &configuration::Configuration, params: DeleteFloatingIpParams) -> Result<(), Error<DeleteFloatingIpError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/floating_ips/{id}", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.delete(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/floating_ips/{id}", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -367,20 +377,22 @@ pub async fn delete_floating_ip(configuration: &configuration::Configuration, pa
 
 /// Returns a specific Action object for a Floating IP.
 pub async fn get_action_for_floating_ip(configuration: &configuration::Configuration, params: GetActionForFloatingIpParams) -> Result<crate::models::GetActionForFloatingIpResponse, Error<GetActionForFloatingIpError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let action_id = params.action_id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/floating_ips/{id}/actions/{action_id}", configuration.base_path, id=id, action_id=action_id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/floating_ips/{id}/actions/{action_id}", local_var_configuration.base_path, id=id, action_id=action_id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -401,19 +413,21 @@ pub async fn get_action_for_floating_ip(configuration: &configuration::Configura
 
 /// Returns a specific Floating IP object.
 pub async fn get_floating_ip(configuration: &configuration::Configuration, params: GetFloatingIpParams) -> Result<crate::models::GetFloatingIpResponse, Error<GetFloatingIpError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/floating_ips/{id}", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/floating_ips/{id}", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -434,6 +448,8 @@ pub async fn get_floating_ip(configuration: &configuration::Configuration, param
 
 /// Returns all Action objects for a Floating IP. You can sort the results by using the `sort` URI parameter, and filter them with the `status` parameter.
 pub async fn list_actions_for_floating_ip(configuration: &configuration::Configuration, params: ListActionsForFloatingIpParams) -> Result<crate::models::ListActionsForFloatingIpResponse, Error<ListActionsForFloatingIpError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let sort = params.sort;
@@ -442,10 +458,10 @@ pub async fn list_actions_for_floating_ip(configuration: &configuration::Configu
     let per_page = params.per_page;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/floating_ips/{id}/actions", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/floating_ips/{id}/actions", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = sort {
         local_var_req_builder = local_var_req_builder.query(&[("sort", &local_var_str.to_string())]);
@@ -459,10 +475,10 @@ pub async fn list_actions_for_floating_ip(configuration: &configuration::Configu
     if let Some(ref local_var_str) = per_page {
         local_var_req_builder = local_var_req_builder.query(&[("per_page", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -483,6 +499,8 @@ pub async fn list_actions_for_floating_ip(configuration: &configuration::Configu
 
 /// Returns all Floating IP objects.
 pub async fn list_floating_ips(configuration: &configuration::Configuration, params: ListFloatingIpsParams) -> Result<crate::models::ListFloatingIpsResponse, Error<ListFloatingIpsError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let name = params.name;
     let label_selector = params.label_selector;
@@ -491,10 +509,10 @@ pub async fn list_floating_ips(configuration: &configuration::Configuration, par
     let per_page = params.per_page;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/floating_ips", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/floating_ips", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = name {
         local_var_req_builder = local_var_req_builder.query(&[("name", &local_var_str.to_string())]);
@@ -511,10 +529,10 @@ pub async fn list_floating_ips(configuration: &configuration::Configuration, par
     if let Some(ref local_var_str) = per_page {
         local_var_req_builder = local_var_req_builder.query(&[("per_page", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -535,20 +553,22 @@ pub async fn list_floating_ips(configuration: &configuration::Configuration, par
 
 /// Updates the description or labels of a Floating IP. Also note that when updating labels, the Floating IP’s current set of labels will be replaced with the labels provided in the request body. So, for example, if you want to add a new label, you have to provide all existing labels plus the new label in the request body.
 pub async fn replace_floating_ip(configuration: &configuration::Configuration, params: ReplaceFloatingIpParams) -> Result<crate::models::ReplaceFloatingIpResponse, Error<ReplaceFloatingIpError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let replace_floating_ip_request = params.replace_floating_ip_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/floating_ips/{id}", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.put(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/floating_ips/{id}", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&replace_floating_ip_request);
@@ -570,19 +590,21 @@ pub async fn replace_floating_ip(configuration: &configuration::Configuration, p
 
 /// Unassigns a Floating IP, resulting in it being unreachable. You may assign it to a Server again at a later time.
 pub async fn unassign_floating_ip(configuration: &configuration::Configuration, params: UnassignFloatingIpParams) -> Result<crate::models::UnassignFloatingIpResponse, Error<UnassignFloatingIpError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/floating_ips/{id}/actions/unassign", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/floating_ips/{id}/actions/unassign", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 

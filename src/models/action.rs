@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Action {
     /// ID of the Resource
     #[serde(rename = "id")]
@@ -64,5 +64,11 @@ pub enum Status {
     Running,
     #[serde(rename = "success")]
     Success,
+}
+
+impl Default for Status {
+    fn default() -> Status {
+        Self::Error
+    }
 }
 

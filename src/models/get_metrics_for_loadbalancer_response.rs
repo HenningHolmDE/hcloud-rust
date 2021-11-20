@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct GetMetricsForLoadbalancerResponse {
     #[serde(rename = "metrics")]
     pub metrics: Box<crate::models::Metrics>,

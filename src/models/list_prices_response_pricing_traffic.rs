@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ListPricesResponsePricingTraffic {
     #[serde(rename = "price_per_tb")]
     pub price_per_tb: Box<crate::models::Price>,

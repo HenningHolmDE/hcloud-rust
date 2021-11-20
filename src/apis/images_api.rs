@@ -14,7 +14,7 @@ use reqwest;
 use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
-/// struct for passing parameters to the method `change_image_protection`
+/// struct for passing parameters to the method [`change_image_protection`]
 #[derive(Clone, Debug, Default)]
 pub struct ChangeImageProtectionParams {
     /// ID of the Image
@@ -22,14 +22,14 @@ pub struct ChangeImageProtectionParams {
     pub change_image_protection_request: Option<crate::models::ChangeImageProtectionRequest>
 }
 
-/// struct for passing parameters to the method `delete_image`
+/// struct for passing parameters to the method [`delete_image`]
 #[derive(Clone, Debug, Default)]
 pub struct DeleteImageParams {
     /// ID of the Image
     pub id: i32
 }
 
-/// struct for passing parameters to the method `get_action_for_image`
+/// struct for passing parameters to the method [`get_action_for_image`]
 #[derive(Clone, Debug, Default)]
 pub struct GetActionForImageParams {
     /// ID of the Image
@@ -38,14 +38,14 @@ pub struct GetActionForImageParams {
     pub action_id: i32
 }
 
-/// struct for passing parameters to the method `get_image`
+/// struct for passing parameters to the method [`get_image`]
 #[derive(Clone, Debug, Default)]
 pub struct GetImageParams {
     /// ID of the Image
     pub id: i32
 }
 
-/// struct for passing parameters to the method `list_actions_for_image`
+/// struct for passing parameters to the method [`list_actions_for_image`]
 #[derive(Clone, Debug, Default)]
 pub struct ListActionsForImageParams {
     /// ID of the Image
@@ -60,7 +60,7 @@ pub struct ListActionsForImageParams {
     pub per_page: Option<i32>
 }
 
-/// struct for passing parameters to the method `list_images`
+/// struct for passing parameters to the method [`list_images`]
 #[derive(Clone, Debug, Default)]
 pub struct ListImagesParams {
     /// Can be used multiple times.
@@ -83,7 +83,7 @@ pub struct ListImagesParams {
     pub per_page: Option<i32>
 }
 
-/// struct for passing parameters to the method `replace_image`
+/// struct for passing parameters to the method [`replace_image`]
 #[derive(Clone, Debug, Default)]
 pub struct ReplaceImageParams {
     /// ID of the Image
@@ -92,49 +92,49 @@ pub struct ReplaceImageParams {
 }
 
 
-/// struct for typed errors of method `change_image_protection`
+/// struct for typed errors of method [`change_image_protection`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ChangeImageProtectionError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `delete_image`
+/// struct for typed errors of method [`delete_image`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteImageError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_action_for_image`
+/// struct for typed errors of method [`get_action_for_image`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetActionForImageError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_image`
+/// struct for typed errors of method [`get_image`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetImageError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `list_actions_for_image`
+/// struct for typed errors of method [`list_actions_for_image`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListActionsForImageError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `list_images`
+/// struct for typed errors of method [`list_images`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListImagesError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `replace_image`
+/// struct for typed errors of method [`replace_image`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ReplaceImageError {
@@ -144,20 +144,22 @@ pub enum ReplaceImageError {
 
 /// Changes the protection configuration of the Image. Can only be used on snapshots.
 pub async fn change_image_protection(configuration: &configuration::Configuration, params: ChangeImageProtectionParams) -> Result<crate::models::ChangeImageProtectionResponse, Error<ChangeImageProtectionError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let change_image_protection_request = params.change_image_protection_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/images/{id}/actions/change_protection", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/images/{id}/actions/change_protection", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&change_image_protection_request);
@@ -179,19 +181,21 @@ pub async fn change_image_protection(configuration: &configuration::Configuratio
 
 /// Deletes an Image. Only Images of type `snapshot` and `backup` can be deleted.
 pub async fn delete_image(configuration: &configuration::Configuration, params: DeleteImageParams) -> Result<(), Error<DeleteImageError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/images/{id}", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.delete(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/images/{id}", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -212,20 +216,22 @@ pub async fn delete_image(configuration: &configuration::Configuration, params: 
 
 /// Returns a specific Action for an Image.
 pub async fn get_action_for_image(configuration: &configuration::Configuration, params: GetActionForImageParams) -> Result<crate::models::GetActionForImageResponse, Error<GetActionForImageError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let action_id = params.action_id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/images/{id}/actions/{action_id}", configuration.base_path, id=id, action_id=action_id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/images/{id}/actions/{action_id}", local_var_configuration.base_path, id=id, action_id=action_id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -246,19 +252,21 @@ pub async fn get_action_for_image(configuration: &configuration::Configuration, 
 
 /// Returns a specific Image object.
 pub async fn get_image(configuration: &configuration::Configuration, params: GetImageParams) -> Result<crate::models::GetImageResponse, Error<GetImageError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/images/{id}", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/images/{id}", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -279,6 +287,8 @@ pub async fn get_image(configuration: &configuration::Configuration, params: Get
 
 /// Returns all Action objects for an Image. You can sort the results by using the `sort` URI parameter, and filter them with the `status` parameter.
 pub async fn list_actions_for_image(configuration: &configuration::Configuration, params: ListActionsForImageParams) -> Result<crate::models::ListActionsForImageResponse, Error<ListActionsForImageError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let sort = params.sort;
@@ -287,10 +297,10 @@ pub async fn list_actions_for_image(configuration: &configuration::Configuration
     let per_page = params.per_page;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/images/{id}/actions", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/images/{id}/actions", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = sort {
         local_var_req_builder = local_var_req_builder.query(&[("sort", &local_var_str.to_string())]);
@@ -304,10 +314,10 @@ pub async fn list_actions_for_image(configuration: &configuration::Configuration
     if let Some(ref local_var_str) = per_page {
         local_var_req_builder = local_var_req_builder.query(&[("per_page", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -328,6 +338,8 @@ pub async fn list_actions_for_image(configuration: &configuration::Configuration
 
 /// Returns all Image objects. You can select specific Image types only and sort the results by using URI parameters.
 pub async fn list_images(configuration: &configuration::Configuration, params: ListImagesParams) -> Result<crate::models::ListImagesResponse, Error<ListImagesError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let sort = params.sort;
     let _type = params._type;
@@ -340,10 +352,10 @@ pub async fn list_images(configuration: &configuration::Configuration, params: L
     let per_page = params.per_page;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/images", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/images", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = sort {
         local_var_req_builder = local_var_req_builder.query(&[("sort", &local_var_str.to_string())]);
@@ -372,10 +384,10 @@ pub async fn list_images(configuration: &configuration::Configuration, params: L
     if let Some(ref local_var_str) = per_page {
         local_var_req_builder = local_var_req_builder.query(&[("per_page", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -396,20 +408,22 @@ pub async fn list_images(configuration: &configuration::Configuration, params: L
 
 /// Updates the Image. You may change the description, convert a Backup Image to a Snapshot Image or change the Image labels. Only Images of type `snapshot` and `backup` can be updated.  Note that when updating labels, the current set of labels will be replaced with the labels provided in the request body. So, for example, if you want to add a new label, you have to provide all existing labels plus the new label in the request body. 
 pub async fn replace_image(configuration: &configuration::Configuration, params: ReplaceImageParams) -> Result<crate::models::ReplaceImageResponse, Error<ReplaceImageError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let replace_image_request = params.replace_image_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/images/{id}", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.put(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/images/{id}", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&replace_image_request);

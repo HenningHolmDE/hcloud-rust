@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct GetNetworkResponse {
     #[serde(rename = "network", skip_serializing_if = "Option::is_none")]
     pub network: Option<Box<crate::models::Network>>,

@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct AttachVolumeToServerRequest {
     /// ID of the Server the Volume will be attached to
     #[serde(rename = "server")]

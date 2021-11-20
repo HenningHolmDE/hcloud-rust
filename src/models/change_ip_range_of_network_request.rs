@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ChangeIpRangeOfNetworkRequest {
     /// The new prefix for the whole Network
     #[serde(rename = "ip_range")]

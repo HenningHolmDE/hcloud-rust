@@ -11,7 +11,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct HealthStatus {
     #[serde(rename = "listen_port", skip_serializing_if = "Option::is_none")]
     pub listen_port: Option<i32>,

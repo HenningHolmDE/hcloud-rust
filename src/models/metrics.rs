@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Metrics {
     /// Start of period of metrics reported (in ISO-8601 format)
     #[serde(rename = "start")]

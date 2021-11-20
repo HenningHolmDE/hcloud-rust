@@ -14,7 +14,7 @@ use reqwest;
 use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
-/// struct for passing parameters to the method `add_service`
+/// struct for passing parameters to the method [`add_service`]
 #[derive(Clone, Debug, Default)]
 pub struct AddServiceParams {
     /// ID of the Load Balancer
@@ -22,7 +22,7 @@ pub struct AddServiceParams {
     pub body: Option<crate::models::LoadBalancerService>
 }
 
-/// struct for passing parameters to the method `add_target`
+/// struct for passing parameters to the method [`add_target`]
 #[derive(Clone, Debug, Default)]
 pub struct AddTargetParams {
     /// ID of the Load Balancer
@@ -30,7 +30,7 @@ pub struct AddTargetParams {
     pub add_target_request: Option<crate::models::AddTargetRequest>
 }
 
-/// struct for passing parameters to the method `attach_load_balancer_to_network`
+/// struct for passing parameters to the method [`attach_load_balancer_to_network`]
 #[derive(Clone, Debug, Default)]
 pub struct AttachLoadBalancerToNetworkParams {
     /// ID of the Load Balancer
@@ -38,7 +38,7 @@ pub struct AttachLoadBalancerToNetworkParams {
     pub attach_load_balancer_to_network_request: Option<crate::models::AttachLoadBalancerToNetworkRequest>
 }
 
-/// struct for passing parameters to the method `change_algorithm`
+/// struct for passing parameters to the method [`change_algorithm`]
 #[derive(Clone, Debug, Default)]
 pub struct ChangeAlgorithmParams {
     /// ID of the Load Balancer
@@ -46,7 +46,7 @@ pub struct ChangeAlgorithmParams {
     pub body: Option<crate::models::LoadBalancerAlgorithm>
 }
 
-/// struct for passing parameters to the method `change_load_balancer_protection`
+/// struct for passing parameters to the method [`change_load_balancer_protection`]
 #[derive(Clone, Debug, Default)]
 pub struct ChangeLoadBalancerProtectionParams {
     /// ID of the Load Balancer
@@ -54,7 +54,7 @@ pub struct ChangeLoadBalancerProtectionParams {
     pub change_load_balancer_protection_request: Option<crate::models::ChangeLoadBalancerProtectionRequest>
 }
 
-/// struct for passing parameters to the method `change_type_of_load_balancer`
+/// struct for passing parameters to the method [`change_type_of_load_balancer`]
 #[derive(Clone, Debug, Default)]
 pub struct ChangeTypeOfLoadBalancerParams {
     /// ID of the Load Balancer
@@ -62,20 +62,20 @@ pub struct ChangeTypeOfLoadBalancerParams {
     pub change_type_of_load_balancer_request: Option<crate::models::ChangeTypeOfLoadBalancerRequest>
 }
 
-/// struct for passing parameters to the method `create_load_balancer`
+/// struct for passing parameters to the method [`create_load_balancer`]
 #[derive(Clone, Debug, Default)]
 pub struct CreateLoadBalancerParams {
     pub create_load_balancer_request: Option<crate::models::CreateLoadBalancerRequest>
 }
 
-/// struct for passing parameters to the method `delete_load_balancer`
+/// struct for passing parameters to the method [`delete_load_balancer`]
 #[derive(Clone, Debug, Default)]
 pub struct DeleteLoadBalancerParams {
     /// ID of the Load Balancer
     pub id: i32
 }
 
-/// struct for passing parameters to the method `delete_service`
+/// struct for passing parameters to the method [`delete_service`]
 #[derive(Clone, Debug, Default)]
 pub struct DeleteServiceParams {
     /// ID of the Load Balancer
@@ -83,7 +83,7 @@ pub struct DeleteServiceParams {
     pub delete_service_request: Option<crate::models::DeleteServiceRequest>
 }
 
-/// struct for passing parameters to the method `detach_load_balancer_from_network`
+/// struct for passing parameters to the method [`detach_load_balancer_from_network`]
 #[derive(Clone, Debug, Default)]
 pub struct DetachLoadBalancerFromNetworkParams {
     /// ID of the Load Balancer
@@ -91,21 +91,21 @@ pub struct DetachLoadBalancerFromNetworkParams {
     pub detach_load_balancer_from_network_request: Option<crate::models::DetachLoadBalancerFromNetworkRequest>
 }
 
-/// struct for passing parameters to the method `disable_public_interface_of_load_balancer`
+/// struct for passing parameters to the method [`disable_public_interface_of_load_balancer`]
 #[derive(Clone, Debug, Default)]
 pub struct DisablePublicInterfaceOfLoadBalancerParams {
     /// ID of the Load Balancer
     pub id: i32
 }
 
-/// struct for passing parameters to the method `enable_public_interface_of_load_balancer`
+/// struct for passing parameters to the method [`enable_public_interface_of_load_balancer`]
 #[derive(Clone, Debug, Default)]
 pub struct EnablePublicInterfaceOfLoadBalancerParams {
     /// ID of the Load Balancer
     pub id: i32
 }
 
-/// struct for passing parameters to the method `get_action_for_load_balancer`
+/// struct for passing parameters to the method [`get_action_for_load_balancer`]
 #[derive(Clone, Debug, Default)]
 pub struct GetActionForLoadBalancerParams {
     /// ID of the Load Balancer
@@ -114,14 +114,14 @@ pub struct GetActionForLoadBalancerParams {
     pub action_id: i32
 }
 
-/// struct for passing parameters to the method `get_load_balancer`
+/// struct for passing parameters to the method [`get_load_balancer`]
 #[derive(Clone, Debug, Default)]
 pub struct GetLoadBalancerParams {
     /// ID of the Load Balancer
     pub id: i32
 }
 
-/// struct for passing parameters to the method `get_metrics_for_loadbalancer`
+/// struct for passing parameters to the method [`get_metrics_for_loadbalancer`]
 #[derive(Clone, Debug, Default)]
 pub struct GetMetricsForLoadbalancerParams {
     /// ID of the Load Balancer
@@ -136,7 +136,7 @@ pub struct GetMetricsForLoadbalancerParams {
     pub step: Option<String>
 }
 
-/// struct for passing parameters to the method `list_actions_for_load_balancer`
+/// struct for passing parameters to the method [`list_actions_for_load_balancer`]
 #[derive(Clone, Debug, Default)]
 pub struct ListActionsForLoadBalancerParams {
     /// ID of the Load Balancer
@@ -151,7 +151,7 @@ pub struct ListActionsForLoadBalancerParams {
     pub per_page: Option<i32>
 }
 
-/// struct for passing parameters to the method `list_load_balancers`
+/// struct for passing parameters to the method [`list_load_balancers`]
 #[derive(Clone, Debug, Default)]
 pub struct ListLoadBalancersParams {
     /// Can be used multiple times.
@@ -166,7 +166,7 @@ pub struct ListLoadBalancersParams {
     pub per_page: Option<i32>
 }
 
-/// struct for passing parameters to the method `remove_target`
+/// struct for passing parameters to the method [`remove_target`]
 #[derive(Clone, Debug, Default)]
 pub struct RemoveTargetParams {
     /// ID of the Load Balancer
@@ -174,7 +174,7 @@ pub struct RemoveTargetParams {
     pub remove_target_request: Option<crate::models::RemoveTargetRequest>
 }
 
-/// struct for passing parameters to the method `replace_load_balancer`
+/// struct for passing parameters to the method [`replace_load_balancer`]
 #[derive(Clone, Debug, Default)]
 pub struct ReplaceLoadBalancerParams {
     /// ID of the Load Balancer
@@ -182,7 +182,7 @@ pub struct ReplaceLoadBalancerParams {
     pub replace_load_balancer_request: Option<crate::models::ReplaceLoadBalancerRequest>
 }
 
-/// struct for passing parameters to the method `update_service`
+/// struct for passing parameters to the method [`update_service`]
 #[derive(Clone, Debug, Default)]
 pub struct UpdateServiceParams {
     /// ID of the Load Balancer
@@ -191,140 +191,140 @@ pub struct UpdateServiceParams {
 }
 
 
-/// struct for typed errors of method `add_service`
+/// struct for typed errors of method [`add_service`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AddServiceError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `add_target`
+/// struct for typed errors of method [`add_target`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AddTargetError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `attach_load_balancer_to_network`
+/// struct for typed errors of method [`attach_load_balancer_to_network`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AttachLoadBalancerToNetworkError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `change_algorithm`
+/// struct for typed errors of method [`change_algorithm`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ChangeAlgorithmError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `change_load_balancer_protection`
+/// struct for typed errors of method [`change_load_balancer_protection`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ChangeLoadBalancerProtectionError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `change_type_of_load_balancer`
+/// struct for typed errors of method [`change_type_of_load_balancer`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ChangeTypeOfLoadBalancerError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `create_load_balancer`
+/// struct for typed errors of method [`create_load_balancer`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateLoadBalancerError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `delete_load_balancer`
+/// struct for typed errors of method [`delete_load_balancer`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteLoadBalancerError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `delete_service`
+/// struct for typed errors of method [`delete_service`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteServiceError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `detach_load_balancer_from_network`
+/// struct for typed errors of method [`detach_load_balancer_from_network`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DetachLoadBalancerFromNetworkError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `disable_public_interface_of_load_balancer`
+/// struct for typed errors of method [`disable_public_interface_of_load_balancer`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DisablePublicInterfaceOfLoadBalancerError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `enable_public_interface_of_load_balancer`
+/// struct for typed errors of method [`enable_public_interface_of_load_balancer`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum EnablePublicInterfaceOfLoadBalancerError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_action_for_load_balancer`
+/// struct for typed errors of method [`get_action_for_load_balancer`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetActionForLoadBalancerError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_load_balancer`
+/// struct for typed errors of method [`get_load_balancer`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetLoadBalancerError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_metrics_for_loadbalancer`
+/// struct for typed errors of method [`get_metrics_for_loadbalancer`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetMetricsForLoadbalancerError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `list_actions_for_load_balancer`
+/// struct for typed errors of method [`list_actions_for_load_balancer`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListActionsForLoadBalancerError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `list_load_balancers`
+/// struct for typed errors of method [`list_load_balancers`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListLoadBalancersError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `remove_target`
+/// struct for typed errors of method [`remove_target`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum RemoveTargetError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `replace_load_balancer`
+/// struct for typed errors of method [`replace_load_balancer`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ReplaceLoadBalancerError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `update_service`
+/// struct for typed errors of method [`update_service`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateServiceError {
@@ -334,20 +334,22 @@ pub enum UpdateServiceError {
 
 /// Adds a service to a Load Balancer.  #### Call specific error codes  | Code                       | Description                                             | |----------------------------|---------------------------------------------------------| | `source_port_already_used` | The source port you are trying to add is already in use | 
 pub async fn add_service(configuration: &configuration::Configuration, params: AddServiceParams) -> Result<crate::models::AddServiceResponse, Error<AddServiceError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let body = params.body;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/load_balancers/{id}/actions/add_service", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/load_balancers/{id}/actions/add_service", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&body);
@@ -369,20 +371,22 @@ pub async fn add_service(configuration: &configuration::Configuration, params: A
 
 /// Adds a target to a Load Balancer.  #### Call specific error codes  | Code                                    | Description                                                                                           | |-----------------------------------------|-------------------------------------------------------------------------------------------------------| | `cloud_resource_ip_not_allowed`         | The IP you are trying to add as a target belongs to a Hetzner Cloud resource                          | | `ip_not_owned`                          | The IP you are trying to add as a target is not owned by the Project owner                            | | `load_balancer_not_attached_to_network` | The Load Balancer is not attached to a network                                                        | | `robot_unavailable`                     | Robot was not available. The caller may retry the operation after a short delay.                      | | `server_not_attached_to_network`        | The server you are trying to add as a target is not attached to the same network as the Load Balancer | | `target_already_defined`                | The Load Balancer target you are trying to define is already defined                                  | 
 pub async fn add_target(configuration: &configuration::Configuration, params: AddTargetParams) -> Result<crate::models::AddTargetResponse, Error<AddTargetError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let add_target_request = params.add_target_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/load_balancers/{id}/actions/add_target", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/load_balancers/{id}/actions/add_target", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&add_target_request);
@@ -404,20 +408,22 @@ pub async fn add_target(configuration: &configuration::Configuration, params: Ad
 
 /// Attach a Load Balancer to a Network.  **Call specific error codes**  | Code                             | Description                                                           | |----------------------------------|-----------------------------------------------------------------------| | `load_balancer_already_attached` | The Load Balancer is already attached to a network                    | | `ip_not_available`               | The provided Network IP is not available                              | | `no_subnet_available`            | No Subnet or IP is available for the Load Balancer within the network | 
 pub async fn attach_load_balancer_to_network(configuration: &configuration::Configuration, params: AttachLoadBalancerToNetworkParams) -> Result<crate::models::AttachLoadBalancerToNetworkResponse, Error<AttachLoadBalancerToNetworkError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let attach_load_balancer_to_network_request = params.attach_load_balancer_to_network_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/load_balancers/{id}/actions/attach_to_network", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/load_balancers/{id}/actions/attach_to_network", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&attach_load_balancer_to_network_request);
@@ -439,20 +445,22 @@ pub async fn attach_load_balancer_to_network(configuration: &configuration::Conf
 
 /// Change the algorithm that determines to which target new requests are sent.
 pub async fn change_algorithm(configuration: &configuration::Configuration, params: ChangeAlgorithmParams) -> Result<crate::models::ChangeAlgorithmResponse, Error<ChangeAlgorithmError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let body = params.body;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/load_balancers/{id}/actions/change_algorithm", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/load_balancers/{id}/actions/change_algorithm", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&body);
@@ -474,20 +482,22 @@ pub async fn change_algorithm(configuration: &configuration::Configuration, para
 
 /// Changes the protection configuration of a Load Balancer.
 pub async fn change_load_balancer_protection(configuration: &configuration::Configuration, params: ChangeLoadBalancerProtectionParams) -> Result<crate::models::ChangeLoadBalancerProtectionResponse, Error<ChangeLoadBalancerProtectionError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let change_load_balancer_protection_request = params.change_load_balancer_protection_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/load_balancers/{id}/actions/change_protection", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/load_balancers/{id}/actions/change_protection", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&change_load_balancer_protection_request);
@@ -509,20 +519,22 @@ pub async fn change_load_balancer_protection(configuration: &configuration::Conf
 
 /// Changes the type (Max Services, Max Targets and Max Connections) of a Load Balancer.  **Call specific error codes**  | Code                         | Description                                                     | |------------------------------|-----------------------------------------------------------------| | `invalid_load_balancer_type` | The Load Balancer type does not fit for the given Load Balancer | 
 pub async fn change_type_of_load_balancer(configuration: &configuration::Configuration, params: ChangeTypeOfLoadBalancerParams) -> Result<crate::models::ChangeTypeOfLoadBalancerResponse, Error<ChangeTypeOfLoadBalancerError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let change_type_of_load_balancer_request = params.change_type_of_load_balancer_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/load_balancers/{id}/actions/change_type", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/load_balancers/{id}/actions/change_type", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&change_type_of_load_balancer_request);
@@ -544,19 +556,21 @@ pub async fn change_type_of_load_balancer(configuration: &configuration::Configu
 
 /// Creates a Load Balancer.  #### Call specific error codes  | Code                                    | Description                                                                                           | |-----------------------------------------|-------------------------------------------------------------------------------------------------------| | `cloud_resource_ip_not_allowed`         | The IP you are trying to add as a target belongs to a Hetzner Cloud resource                          | | `ip_not_owned`                          | The IP is not owned by the owner of the project of the Load Balancer                                  | | `load_balancer_not_attached_to_network` | The Load Balancer is not attached to a network                                                        | | `robot_unavailable`                     | Robot was not available. The caller may retry the operation after a short delay.                      | | `server_not_attached_to_network`        | The server you are trying to add as a target is not attached to the same network as the Load Balancer | | `source_port_already_used`              | The source port you are trying to add is already in use                                               | | `target_already_defined`                | The Load Balancer target you are trying to define is already defined                                  | 
 pub async fn create_load_balancer(configuration: &configuration::Configuration, params: CreateLoadBalancerParams) -> Result<crate::models::CreateLoadBalancerResponse, Error<CreateLoadBalancerError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let create_load_balancer_request = params.create_load_balancer_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/load_balancers", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/load_balancers", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&create_load_balancer_request);
@@ -578,19 +592,21 @@ pub async fn create_load_balancer(configuration: &configuration::Configuration, 
 
 /// Deletes a Load Balancer.
 pub async fn delete_load_balancer(configuration: &configuration::Configuration, params: DeleteLoadBalancerParams) -> Result<(), Error<DeleteLoadBalancerError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/load_balancers/{id}", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.delete(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/load_balancers/{id}", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -611,20 +627,22 @@ pub async fn delete_load_balancer(configuration: &configuration::Configuration, 
 
 /// Delete a service of a Load Balancer.
 pub async fn delete_service(configuration: &configuration::Configuration, params: DeleteServiceParams) -> Result<crate::models::DeleteServiceResponse, Error<DeleteServiceError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let delete_service_request = params.delete_service_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/load_balancers/{id}/actions/delete_service", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/load_balancers/{id}/actions/delete_service", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&delete_service_request);
@@ -646,20 +664,22 @@ pub async fn delete_service(configuration: &configuration::Configuration, params
 
 /// Detaches a Load Balancer from a network.
 pub async fn detach_load_balancer_from_network(configuration: &configuration::Configuration, params: DetachLoadBalancerFromNetworkParams) -> Result<crate::models::DetachLoadBalancerFromNetworkResponse, Error<DetachLoadBalancerFromNetworkError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let detach_load_balancer_from_network_request = params.detach_load_balancer_from_network_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/load_balancers/{id}/actions/detach_from_network", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/load_balancers/{id}/actions/detach_from_network", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&detach_load_balancer_from_network_request);
@@ -681,19 +701,21 @@ pub async fn detach_load_balancer_from_network(configuration: &configuration::Co
 
 /// Disable the public interface of a Load Balancer. The Load Balancer will be not accessible from the internet via its public IPs.  #### Call specific error codes  | Code                                      | Description                                                                    | |-------------------------------------------|--------------------------------------------------------------------------------| | `load_balancer_not_attached_to_network`   |  The Load Balancer is not attached to a network                                | | `targets_without_use_private_ip`          | The Load Balancer has targets that use the public IP instead of the private IP | 
 pub async fn disable_public_interface_of_load_balancer(configuration: &configuration::Configuration, params: DisablePublicInterfaceOfLoadBalancerParams) -> Result<crate::models::DisablePublicInterfaceOfLoadBalancerResponse, Error<DisablePublicInterfaceOfLoadBalancerError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/load_balancers/{id}/actions/disable_public_interface", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/load_balancers/{id}/actions/disable_public_interface", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -714,19 +736,21 @@ pub async fn disable_public_interface_of_load_balancer(configuration: &configura
 
 /// Enable the public interface of a Load Balancer. The Load Balancer will be accessible from the internet via its public IPs.
 pub async fn enable_public_interface_of_load_balancer(configuration: &configuration::Configuration, params: EnablePublicInterfaceOfLoadBalancerParams) -> Result<crate::models::EnablePublicInterfaceOfLoadBalancerResponse, Error<EnablePublicInterfaceOfLoadBalancerError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/load_balancers/{id}/actions/enable_public_interface", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/load_balancers/{id}/actions/enable_public_interface", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -747,20 +771,22 @@ pub async fn enable_public_interface_of_load_balancer(configuration: &configurat
 
 /// Returns a specific Action for a Load Balancer.
 pub async fn get_action_for_load_balancer(configuration: &configuration::Configuration, params: GetActionForLoadBalancerParams) -> Result<crate::models::GetActionForLoadBalancerResponse, Error<GetActionForLoadBalancerError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let action_id = params.action_id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/load_balancers/{id}/actions/{action_id}", configuration.base_path, id=id, action_id=action_id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/load_balancers/{id}/actions/{action_id}", local_var_configuration.base_path, id=id, action_id=action_id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -781,19 +807,21 @@ pub async fn get_action_for_load_balancer(configuration: &configuration::Configu
 
 /// Gets a specific Load Balancer object.
 pub async fn get_load_balancer(configuration: &configuration::Configuration, params: GetLoadBalancerParams) -> Result<crate::models::GetLoadBalancerResponse, Error<GetLoadBalancerError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/load_balancers/{id}", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/load_balancers/{id}", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -814,6 +842,8 @@ pub async fn get_load_balancer(configuration: &configuration::Configuration, par
 
 /// You must specify the type of metric to get: `open_connections`, `connections_per_second`, `requests_per_second` or `bandwidth`. You can also specify more than one type by comma separation, e.g. `requests_per_second,bandwidth`.  Depending on the type you will get different time series data:  |Type | Timeseries | Unit | Description | |---- |------------|------|-------------| | open_connections | open_connections | number | Open connections | | connections_per_second | connections_per_second | connections/s | Connections per second | | requests_per_second | requests_per_second | requests/s | Requests per second | | bandwidth | bandwidth.in | bytes/s | Ingress bandwidth | || bandwidth.out | bytes/s | Egress bandwidth |  Metrics are available for the last 30 days only.  If you do not provide the step argument we will automatically adjust it so that 200 samples are returned.  We limit the number of samples to a maximum of 500 and will adjust the step parameter accordingly. 
 pub async fn get_metrics_for_loadbalancer(configuration: &configuration::Configuration, params: GetMetricsForLoadbalancerParams) -> Result<crate::models::GetMetricsForLoadbalancerResponse, Error<GetMetricsForLoadbalancerError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let _type = params._type;
@@ -822,10 +852,10 @@ pub async fn get_metrics_for_loadbalancer(configuration: &configuration::Configu
     let step = params.step;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/load_balancers/{id}/metrics", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/load_balancers/{id}/metrics", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     local_var_req_builder = local_var_req_builder.query(&[("type", &_type.to_string())]);
     local_var_req_builder = local_var_req_builder.query(&[("start", &start.to_string())]);
@@ -833,10 +863,10 @@ pub async fn get_metrics_for_loadbalancer(configuration: &configuration::Configu
     if let Some(ref local_var_str) = step {
         local_var_req_builder = local_var_req_builder.query(&[("step", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -857,6 +887,8 @@ pub async fn get_metrics_for_loadbalancer(configuration: &configuration::Configu
 
 /// Returns all Action objects for a Load Balancer. You can sort the results by using the `sort` URI parameter, and filter them with the `status` parameter.
 pub async fn list_actions_for_load_balancer(configuration: &configuration::Configuration, params: ListActionsForLoadBalancerParams) -> Result<crate::models::ListActionsForLoadBalancerResponse, Error<ListActionsForLoadBalancerError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let sort = params.sort;
@@ -865,10 +897,10 @@ pub async fn list_actions_for_load_balancer(configuration: &configuration::Confi
     let per_page = params.per_page;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/load_balancers/{id}/actions", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/load_balancers/{id}/actions", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = sort {
         local_var_req_builder = local_var_req_builder.query(&[("sort", &local_var_str.to_string())]);
@@ -882,10 +914,10 @@ pub async fn list_actions_for_load_balancer(configuration: &configuration::Confi
     if let Some(ref local_var_str) = per_page {
         local_var_req_builder = local_var_req_builder.query(&[("per_page", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -906,6 +938,8 @@ pub async fn list_actions_for_load_balancer(configuration: &configuration::Confi
 
 /// Gets all existing Load Balancers that you have available.
 pub async fn list_load_balancers(configuration: &configuration::Configuration, params: ListLoadBalancersParams) -> Result<crate::models::ListLoadBalancersResponse, Error<ListLoadBalancersError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let sort = params.sort;
     let name = params.name;
@@ -914,10 +948,10 @@ pub async fn list_load_balancers(configuration: &configuration::Configuration, p
     let per_page = params.per_page;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/load_balancers", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/load_balancers", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = sort {
         local_var_req_builder = local_var_req_builder.query(&[("sort", &local_var_str.to_string())]);
@@ -934,10 +968,10 @@ pub async fn list_load_balancers(configuration: &configuration::Configuration, p
     if let Some(ref local_var_str) = per_page {
         local_var_req_builder = local_var_req_builder.query(&[("per_page", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -958,20 +992,22 @@ pub async fn list_load_balancers(configuration: &configuration::Configuration, p
 
 /// Removes a target from a Load Balancer.
 pub async fn remove_target(configuration: &configuration::Configuration, params: RemoveTargetParams) -> Result<crate::models::RemoveTargetResponse, Error<RemoveTargetError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let remove_target_request = params.remove_target_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/load_balancers/{id}/actions/remove_target", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/load_balancers/{id}/actions/remove_target", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&remove_target_request);
@@ -993,20 +1029,22 @@ pub async fn remove_target(configuration: &configuration::Configuration, params:
 
 /// Updates a Load Balancer. You can update a Load Balancer’s name and a Load Balancer’s labels.  Note that when updating labels, the Load Balancer’s current set of labels will be replaced with the labels provided in the request body. So, for example, if you want to add a new label, you have to provide all existing labels plus the new label in the request body.  Note: if the Load Balancer object changes during the request, the response will be a “conflict” error. 
 pub async fn replace_load_balancer(configuration: &configuration::Configuration, params: ReplaceLoadBalancerParams) -> Result<crate::models::ReplaceLoadBalancerResponse, Error<ReplaceLoadBalancerError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let replace_load_balancer_request = params.replace_load_balancer_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/load_balancers/{id}", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.put(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/load_balancers/{id}", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&replace_load_balancer_request);
@@ -1028,20 +1066,22 @@ pub async fn replace_load_balancer(configuration: &configuration::Configuration,
 
 /// Updates a Load Balancer Service.  #### Call specific error codes  | Code                       | Description                                             | |----------------------------|---------------------------------------------------------| | `source_port_already_used` | The source port you are trying to add is already in use | 
 pub async fn update_service(configuration: &configuration::Configuration, params: UpdateServiceParams) -> Result<crate::models::UpdateServiceResponse, Error<UpdateServiceError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let body = params.body;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/load_balancers/{id}/actions/update_service", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/load_balancers/{id}/actions/update_service", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&body);

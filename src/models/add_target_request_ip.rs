@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct AddTargetRequestIp {
     /// IP of a server that belongs to the same customer (public IPv4/IPv6).
     #[serde(rename = "ip")]

@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ListSshKeysResponse {
     #[serde(rename = "ssh_keys")]
     pub ssh_keys: Vec<crate::models::SshKey>,

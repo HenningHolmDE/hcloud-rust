@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ChangeLoadBalancerProtectionRequest {
     /// If true, prevents the Load Balancer from being deleted
     #[serde(rename = "delete", skip_serializing_if = "Option::is_none")]

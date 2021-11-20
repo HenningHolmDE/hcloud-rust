@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct DetachServerFromNetworkRequest {
     /// ID of an existing network to detach the Server from
     #[serde(rename = "network")]

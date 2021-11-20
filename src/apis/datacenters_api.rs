@@ -14,14 +14,14 @@ use reqwest;
 use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
-/// struct for passing parameters to the method `get_datacenter`
+/// struct for passing parameters to the method [`get_datacenter`]
 #[derive(Clone, Debug, Default)]
 pub struct GetDatacenterParams {
     /// ID of Datacenter
     pub id: i32
 }
 
-/// struct for passing parameters to the method `list_datacenters`
+/// struct for passing parameters to the method [`list_datacenters`]
 #[derive(Clone, Debug, Default)]
 pub struct ListDatacentersParams {
     /// Can be used to filter Datacenters by their name. The response will only contain the Datacenter matching the specified name. When the name does not match the Datacenter name format, an `invalid_input` error is returned.
@@ -29,14 +29,14 @@ pub struct ListDatacentersParams {
 }
 
 
-/// struct for typed errors of method `get_datacenter`
+/// struct for typed errors of method [`get_datacenter`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetDatacenterError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `list_datacenters`
+/// struct for typed errors of method [`list_datacenters`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListDatacentersError {
@@ -46,19 +46,21 @@ pub enum ListDatacentersError {
 
 /// Returns a specific Datacenter object.
 pub async fn get_datacenter(configuration: &configuration::Configuration, params: GetDatacenterParams) -> Result<crate::models::GetDatacenterResponse, Error<GetDatacenterError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/datacenters/{id}", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/datacenters/{id}", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -79,22 +81,24 @@ pub async fn get_datacenter(configuration: &configuration::Configuration, params
 
 /// Returns all Datacenter objects.
 pub async fn list_datacenters(configuration: &configuration::Configuration, params: ListDatacentersParams) -> Result<crate::models::ListDatacentersResponse, Error<ListDatacentersError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let name = params.name;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/datacenters", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/datacenters", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = name {
         local_var_req_builder = local_var_req_builder.query(&[("name", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 

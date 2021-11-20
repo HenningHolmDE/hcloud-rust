@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct EnableRescueModeForServerRequest {
     /// Type of rescue system to boot (default: `linux64`)
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
@@ -41,5 +41,11 @@ pub enum Type {
     Linux32,
     #[serde(rename = "linux64")]
     Linux64,
+}
+
+impl Default for Type {
+    fn default() -> Type {
+        Self::Freebsd64
+    }
 }
 

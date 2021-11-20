@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct CreateImageFromServerRequest {
     /// Description of the Image, will be auto-generated if not set
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
@@ -43,5 +43,11 @@ pub enum Type {
     Backup,
     #[serde(rename = "snapshot")]
     Snapshot,
+}
+
+impl Default for Type {
+    fn default() -> Type {
+        Self::Backup
+    }
 }
 

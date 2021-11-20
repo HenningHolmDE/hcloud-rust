@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct GetActionForVolumeResponse {
     #[serde(rename = "action")]
     pub action: Box<crate::models::Action>,

@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ServerPublicNet {
     #[serde(rename = "ipv4")]
     pub ipv4: Box<crate::models::Ipv4>,

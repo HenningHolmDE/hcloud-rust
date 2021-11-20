@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct LoadBalancerPublicNetIpv4 {
     /// IP address (v4) of this Load Balancer
     #[serde(rename = "ip", skip_serializing_if = "Option::is_none")]

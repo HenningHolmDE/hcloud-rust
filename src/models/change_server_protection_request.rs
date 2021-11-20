@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ChangeServerProtectionRequest {
     /// If true, prevents the Server from being deleted (currently delete and rebuild attribute needs to have the same value)
     #[serde(rename = "delete", skip_serializing_if = "Option::is_none")]

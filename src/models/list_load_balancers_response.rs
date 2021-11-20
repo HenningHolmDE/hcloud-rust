@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ListLoadBalancersResponse {
     #[serde(rename = "load_balancers")]
     pub load_balancers: Vec<crate::models::LoadBalancer>,

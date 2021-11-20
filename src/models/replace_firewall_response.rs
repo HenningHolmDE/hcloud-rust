@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ReplaceFirewallResponse {
     #[serde(rename = "firewall")]
     pub firewall: Box<crate::models::Firewall>,

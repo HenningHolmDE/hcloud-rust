@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Certificate {
     /// ID of the Resource
     #[serde(rename = "id")]
@@ -78,5 +78,11 @@ pub enum Type {
     Managed,
     #[serde(rename = "uploaded")]
     Uploaded,
+}
+
+impl Default for Type {
+    fn default() -> Type {
+        Self::Managed
+    }
 }
 

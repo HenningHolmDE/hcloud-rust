@@ -11,7 +11,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ListPricesResponsePricing {
     /// Currency the returned prices are expressed in, coded according to ISO 4217
     #[serde(rename = "currency")]

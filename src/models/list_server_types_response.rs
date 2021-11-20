@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ListServerTypesResponse {
     #[serde(rename = "server_types")]
     pub server_types: Vec<crate::models::ServerType>,

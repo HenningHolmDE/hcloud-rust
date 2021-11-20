@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct GetDatacenterResponse {
     #[serde(rename = "datacenter")]
     pub datacenter: Box<crate::models::Datacenter>,

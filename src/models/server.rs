@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Server {
     /// ID of the Resource
     #[serde(rename = "id")]
@@ -122,5 +122,11 @@ pub enum Status {
     Stopping,
     #[serde(rename = "unknown")]
     Unknown,
+}
+
+impl Default for Status {
+    fn default() -> Status {
+        Self::Deleting
+    }
 }
 

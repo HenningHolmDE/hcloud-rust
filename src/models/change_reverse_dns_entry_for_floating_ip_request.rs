@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ChangeReverseDnsEntryForFloatingIpRequest {
     /// IP address for which to set the reverse DNS entry
     #[serde(rename = "ip")]

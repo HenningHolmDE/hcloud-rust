@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ChangeReverseDnsEntryForThisServerRequest {
     /// Primary IP address for which the reverse DNS entry should be set
     #[serde(rename = "ip")]

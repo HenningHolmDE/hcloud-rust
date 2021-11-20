@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct AttachServerToNetworkRequest {
     /// ID of an existing network to attach the Server to
     #[serde(rename = "network")]

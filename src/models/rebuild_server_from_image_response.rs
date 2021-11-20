@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct RebuildServerFromImageResponse {
     /// New root password when not using SSH keys
     #[serde(rename = "root_password", skip_serializing_if = "Option::is_none")]

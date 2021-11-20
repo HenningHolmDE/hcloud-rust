@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ListDatacentersResponse {
     #[serde(rename = "datacenters")]
     pub datacenters: Vec<crate::models::Datacenter>,

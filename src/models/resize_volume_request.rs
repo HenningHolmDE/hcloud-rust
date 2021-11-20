@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ResizeVolumeRequest {
     /// New Volume size in GB (must be greater than current size)
     #[serde(rename = "size")]

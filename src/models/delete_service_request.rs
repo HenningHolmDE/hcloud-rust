@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct DeleteServiceRequest {
     /// The listen port of the service you want to delete
     #[serde(rename = "listen_port")]

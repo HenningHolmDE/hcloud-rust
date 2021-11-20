@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Volume {
     /// ID of the Resource
     #[serde(rename = "id")]
@@ -73,5 +73,11 @@ pub enum Status {
     Available,
     #[serde(rename = "creating")]
     Creating,
+}
+
+impl Default for Status {
+    fn default() -> Status {
+        Self::Available
+    }
 }
 

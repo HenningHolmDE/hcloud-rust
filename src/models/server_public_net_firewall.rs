@@ -11,7 +11,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ServerPublicNetFirewall {
     /// ID of the Resource
     #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
@@ -37,5 +37,11 @@ pub enum Status {
     Applied,
     #[serde(rename = "pending")]
     Pending,
+}
+
+impl Default for Status {
+    fn default() -> Status {
+        Self::Applied
+    }
 }
 

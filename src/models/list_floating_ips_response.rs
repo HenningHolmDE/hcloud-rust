@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ListFloatingIpsResponse {
     #[serde(rename = "floating_ips")]
     pub floating_ips: Vec<crate::models::FloatingIp>,

@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct CertificateStatus {
     /// Status of the issuance process of the Certificate
     #[serde(rename = "issuance", skip_serializing_if = "Option::is_none")]
@@ -45,6 +45,12 @@ pub enum Issuance {
     #[serde(rename = "pending")]
     Pending,
 }
+
+impl Default for Issuance {
+    fn default() -> Issuance {
+        Self::Completed
+    }
+}
 /// Status of the renewal process of the Certificate.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum Renewal {
@@ -56,5 +62,11 @@ pub enum Renewal {
     Scheduled,
     #[serde(rename = "unavailable")]
     Unavailable,
+}
+
+impl Default for Renewal {
+    fn default() -> Renewal {
+        Self::Failed
+    }
 }
 

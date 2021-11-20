@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ChangeFloatingIpProtectionRequest {
     /// If true, prevents the Floating IP from being deleted
     #[serde(rename = "delete", skip_serializing_if = "Option::is_none")]

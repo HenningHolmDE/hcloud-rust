@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct DetachLoadBalancerFromNetworkRequest {
     /// ID of an existing network to detach the Load Balancer from
     #[serde(rename = "network")]

@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Rule {
     /// Select traffic direction on which rule should be applied. Use `source_ips` for direction `in` and `destination_ips` for direction `out`.
     #[serde(rename = "direction")]
@@ -52,6 +52,12 @@ pub enum Direction {
     #[serde(rename = "out")]
     Out,
 }
+
+impl Default for Direction {
+    fn default() -> Direction {
+        Self::_In
+    }
+}
 /// Type of traffic to allow
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum Protocol {
@@ -61,5 +67,11 @@ pub enum Protocol {
     Tcp,
     #[serde(rename = "udp")]
     Udp,
+}
+
+impl Default for Protocol {
+    fn default() -> Protocol {
+        Self::Icmp
+    }
 }
 

@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ChangeTypeOfLoadBalancerRequest {
     /// ID or name of Load Balancer type the Load Balancer should migrate to
     #[serde(rename = "load_balancer_type")]

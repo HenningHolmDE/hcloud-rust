@@ -14,27 +14,27 @@ use reqwest;
 use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
-/// struct for passing parameters to the method `create_ssh_key`
+/// struct for passing parameters to the method [`create_ssh_key`]
 #[derive(Clone, Debug, Default)]
 pub struct CreateSshKeyParams {
     pub create_ssh_key_request: Option<crate::models::CreateSshKeyRequest>
 }
 
-/// struct for passing parameters to the method `delete_ssh_key`
+/// struct for passing parameters to the method [`delete_ssh_key`]
 #[derive(Clone, Debug, Default)]
 pub struct DeleteSshKeyParams {
     /// ID of the SSH key
     pub id: String
 }
 
-/// struct for passing parameters to the method `get_ssh_key`
+/// struct for passing parameters to the method [`get_ssh_key`]
 #[derive(Clone, Debug, Default)]
 pub struct GetSshKeyParams {
     /// ID of the SSH key
     pub id: i32
 }
 
-/// struct for passing parameters to the method `list_ssh_keys`
+/// struct for passing parameters to the method [`list_ssh_keys`]
 #[derive(Clone, Debug, Default)]
 pub struct ListSshKeysParams {
     /// Can be used multiple times.
@@ -51,7 +51,7 @@ pub struct ListSshKeysParams {
     pub per_page: Option<i32>
 }
 
-/// struct for passing parameters to the method `replace_ssh_key`
+/// struct for passing parameters to the method [`replace_ssh_key`]
 #[derive(Clone, Debug, Default)]
 pub struct ReplaceSshKeyParams {
     /// ID of the SSH key
@@ -60,35 +60,35 @@ pub struct ReplaceSshKeyParams {
 }
 
 
-/// struct for typed errors of method `create_ssh_key`
+/// struct for typed errors of method [`create_ssh_key`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateSshKeyError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `delete_ssh_key`
+/// struct for typed errors of method [`delete_ssh_key`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteSshKeyError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_ssh_key`
+/// struct for typed errors of method [`get_ssh_key`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetSshKeyError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `list_ssh_keys`
+/// struct for typed errors of method [`list_ssh_keys`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListSshKeysError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `replace_ssh_key`
+/// struct for typed errors of method [`replace_ssh_key`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ReplaceSshKeyError {
@@ -98,19 +98,21 @@ pub enum ReplaceSshKeyError {
 
 /// Creates a new SSH key with the given `name` and `public_key`. Once an SSH key is created, it can be used in other calls such as creating Servers.
 pub async fn create_ssh_key(configuration: &configuration::Configuration, params: CreateSshKeyParams) -> Result<crate::models::CreateSshKeyResponse, Error<CreateSshKeyError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let create_ssh_key_request = params.create_ssh_key_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/ssh_keys", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/ssh_keys", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&create_ssh_key_request);
@@ -132,19 +134,21 @@ pub async fn create_ssh_key(configuration: &configuration::Configuration, params
 
 /// Deletes an SSH key. It cannot be used anymore.
 pub async fn delete_ssh_key(configuration: &configuration::Configuration, params: DeleteSshKeyParams) -> Result<(), Error<DeleteSshKeyError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/ssh_keys/{id}", configuration.base_path, id=crate::apis::urlencode(id));
-    let mut local_var_req_builder = local_var_client.delete(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/ssh_keys/{id}", local_var_configuration.base_path, id=crate::apis::urlencode(id));
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -165,19 +169,21 @@ pub async fn delete_ssh_key(configuration: &configuration::Configuration, params
 
 /// Returns a specific SSH key object.
 pub async fn get_ssh_key(configuration: &configuration::Configuration, params: GetSshKeyParams) -> Result<crate::models::GetSshKeyResponse, Error<GetSshKeyError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/ssh_keys/{id}", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/ssh_keys/{id}", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -198,6 +204,8 @@ pub async fn get_ssh_key(configuration: &configuration::Configuration, params: G
 
 /// Returns all SSH key objects.
 pub async fn list_ssh_keys(configuration: &configuration::Configuration, params: ListSshKeysParams) -> Result<crate::models::ListSshKeysResponse, Error<ListSshKeysError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let sort = params.sort;
     let name = params.name;
@@ -207,10 +215,10 @@ pub async fn list_ssh_keys(configuration: &configuration::Configuration, params:
     let per_page = params.per_page;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/ssh_keys", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/ssh_keys", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = sort {
         local_var_req_builder = local_var_req_builder.query(&[("sort", &local_var_str.to_string())]);
@@ -230,10 +238,10 @@ pub async fn list_ssh_keys(configuration: &configuration::Configuration, params:
     if let Some(ref local_var_str) = per_page {
         local_var_req_builder = local_var_req_builder.query(&[("per_page", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -254,20 +262,22 @@ pub async fn list_ssh_keys(configuration: &configuration::Configuration, params:
 
 /// Updates an SSH key. You can update an SSH key name and an SSH key labels.  Please note that when updating labels, the SSH key current set of labels will be replaced with the labels provided in the request body. So, for example, if you want to add a new label, you have to provide all existing labels plus the new label in the request body. 
 pub async fn replace_ssh_key(configuration: &configuration::Configuration, params: ReplaceSshKeyParams) -> Result<crate::models::ReplaceSshKeyResponse, Error<ReplaceSshKeyError>> {
+    let local_var_configuration = configuration;
+
     // unbox the parameters
     let id = params.id;
     let replace_ssh_key_request = params.replace_ssh_key_request;
 
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/ssh_keys/{id}", configuration.base_path, id=crate::apis::urlencode(id));
-    let mut local_var_req_builder = local_var_client.put(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/ssh_keys/{id}", local_var_configuration.base_path, id=crate::apis::urlencode(id));
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&replace_ssh_key_request);

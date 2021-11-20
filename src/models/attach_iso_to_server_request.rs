@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct AttachIsoToServerRequest {
     /// ID or name of ISO to attach to the Server as listed in GET `/isos`
     #[serde(rename = "iso")]
