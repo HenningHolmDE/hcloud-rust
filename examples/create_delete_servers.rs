@@ -17,6 +17,7 @@ struct ServerInfo {
     id: i32,
     name: String,
     ipv4: String,
+    ipv6: String,
 }
 
 #[tokio::main]
@@ -84,15 +85,24 @@ async fn main() -> Result<(), String> {
         created_servers.push(ServerInfo {
             id: server.id,
             name: server.name,
-            ipv4: server.public_net.ipv4.ip,
+            ipv4: server
+                .public_net
+                .ipv4
+                .map(|ipv4| ipv4.ip)
+                .unwrap_or("None".to_string()),
+            ipv6: server
+                .public_net
+                .ipv6
+                .map(|ipv6| ipv6.ip)
+                .unwrap_or("None".to_string()),
         });
     }
     println!();
     println!("Server info of created servers:");
     for server_info in &created_servers {
         println!(
-            " id: {}, name: {}, ipv4: {}",
-            server_info.id, server_info.name, server_info.ipv4
+            " id: {}, name: {}, ipv4: {}, ipv6: {}",
+            server_info.id, server_info.name, server_info.ipv4, server_info.ipv6
         );
     }
     println!();
