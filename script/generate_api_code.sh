@@ -36,7 +36,7 @@ echo "Running OpenAPI generator..."
     -t templates
 
 # replace references to non-existing OneOf types with serde_json::Value
-sed -ri "s/crate::models::OneOf\w+/serde_json::Value/g" src/models/*.rs
+sed -ri".bak" "s/crate::models::OneOf[[:alnum:]]+/serde_json::Value/g" src/models/*.rs
 
 # Remove *Optional and *Nullable models, as they result from JSON spec limitations
 # (nullable being part of object) and are not necessary in Rust.
@@ -45,14 +45,21 @@ for names in action,Action image,Image iso,Iso placement_group,PlacementGroup; d
     set -- $names
     if [ -e src/models/$1_optional.rs ]; then
         rm src/models/$1_optional.rs
-        sed -i "s/$2Optional/$2/g" src/models/*.rs
-        sed -i "/$1_optional/d" src/models/mod.rs
+        sed -i".bak" "s/$2Optional/$2/g" src/models/*.rs
+        sed -i".bak" "/$1_optional/d" src/models/mod.rs
     elif [ -e src/models/$1_nullable.rs ]; then
         rm src/models/$1_nullable.rs
-        sed -i "s/$2Nullable/$2/g" src/models/*.rs
-        sed -i "/$1_nullable/d" src/models/mod.rs
+        sed -i".bak" "s/$2Nullable/$2/g" src/models/*.rs
+        sed -i".bak" "/$1_nullable/d" src/models/mod.rs
     fi
 done
+
+# The extension parameter (`sed -i EXTENSION`) is required on macOS while it is
+# optional for the GNU version of `sed`. Additionally, while it would be ok to
+# leave the parameter blank for `sed` on macOS to skip backups, an empty
+# extension is not valid for the the GNU version.
+# Thus, backups in .bak files are created in the steps above and deleted here.
+rm src/models/*.bak
 
 # restore CRLF line endings on Windows
 if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then
