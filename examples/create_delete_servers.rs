@@ -54,6 +54,7 @@ async fn main() -> Result<(), String> {
             &thread_rng()
                 .sample_iter(distributions::Alphanumeric)
                 .take(8)
+                .map(char::from)
                 .collect::<String>(),
         );
         println!(" Creating server \"{}\"...", name);
