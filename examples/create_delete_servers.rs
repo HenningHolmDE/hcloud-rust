@@ -64,14 +64,8 @@ async fn main() -> Result<(), String> {
             start_after_create: Some(true),
             image: IMAGE.to_string(),
             ssh_keys: Some(ssh_keys.clone()),
-            volumes: None,
-            networks: None,
-            firewalls: None,
-            user_data: None,
-            labels: None,
-            automount: None,
             location: Some(LOCATION.to_string()),
-            datacenter: None,
+            ..Default::default()
         };
 
         // execute request and store server ID
