@@ -6,7 +6,7 @@ DOWNLOAD_DIR=generator_files
 mkdir -p ${DOWNLOAD_DIR}
 
 # OpenAPI Generator version and URL
-GENERATOR_VERSION=5.3.1
+GENERATOR_VERSION=5.4.0
 GENERATOR_URL=https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/${GENERATOR_VERSION}/openapi-generator-cli-${GENERATOR_VERSION}.jar
 GENERATOR_JAR=${DOWNLOAD_DIR}/openapi-generator-cli-${GENERATOR_VERSION}.jar
 
