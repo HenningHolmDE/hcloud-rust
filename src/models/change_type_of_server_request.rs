@@ -23,6 +23,7 @@ pub struct ChangeTypeOfServerRequest {
 }
 
 impl ChangeTypeOfServerRequest {
+    #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/servers/{id}/actions/change_type
     pub fn new(server_type: String, upgrade_disk: bool) -> ChangeTypeOfServerRequest {
         ChangeTypeOfServerRequest {

@@ -19,6 +19,7 @@ pub struct AssignFloatingIpToServerResponse {
 }
 
 impl AssignFloatingIpToServerResponse {
+    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/floating_ips/{id}/actions/assign
     pub fn new(action: crate::models::Action) -> AssignFloatingIpToServerResponse {
         AssignFloatingIpToServerResponse {

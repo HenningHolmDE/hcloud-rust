@@ -22,6 +22,7 @@ pub struct ListPricesResponsePricingFloatingIps {
 }
 
 impl ListPricesResponsePricingFloatingIps {
+    #![allow(clippy::too_many_arguments)]
     pub fn new(prices: Vec<crate::models::ListPricesResponsePricingPrices>, _type: Type) -> ListPricesResponsePricingFloatingIps {
         ListPricesResponsePricingFloatingIps {
             prices,

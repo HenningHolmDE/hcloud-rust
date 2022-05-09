@@ -30,6 +30,7 @@ pub struct Datacenter {
 }
 
 impl Datacenter {
+    #![allow(clippy::too_many_arguments)]
     /// Datacenter this Resource is located at
     pub fn new(description: String, id: i32, location: crate::models::Location, name: String, server_types: crate::models::DatacenterServerTypes) -> Datacenter {
         Datacenter {

@@ -27,6 +27,7 @@ pub struct ServerPublicNet {
 }
 
 impl ServerPublicNet {
+    #![allow(clippy::too_many_arguments)]
     /// Public network information. The Server's IPv4 address can be found in `public_net->ipv4->ip`
     pub fn new(floating_ips: Vec<i32>, ipv4: Option<crate::models::Ipv4>, ipv6: Option<crate::models::Ipv6>) -> ServerPublicNet {
         ServerPublicNet {

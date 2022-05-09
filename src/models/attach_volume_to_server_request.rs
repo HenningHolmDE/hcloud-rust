@@ -23,6 +23,7 @@ pub struct AttachVolumeToServerRequest {
 }
 
 impl AttachVolumeToServerRequest {
+    #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/volumes/{id}/actions/attach
     pub fn new(server: i32) -> AttachVolumeToServerRequest {
         AttachVolumeToServerRequest {

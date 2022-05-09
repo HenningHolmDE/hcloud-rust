@@ -19,6 +19,7 @@ pub struct ChangeLoadBalancerProtectionResponse {
 }
 
 impl ChangeLoadBalancerProtectionResponse {
+    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/load_balancers/{id}/actions/change_protection
     pub fn new(action: crate::models::Action) -> ChangeLoadBalancerProtectionResponse {
         ChangeLoadBalancerProtectionResponse {

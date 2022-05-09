@@ -19,6 +19,7 @@ pub struct EnablePublicInterfaceOfLoadBalancerResponse {
 }
 
 impl EnablePublicInterfaceOfLoadBalancerResponse {
+    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/load_balancers/{id}/actions/enable_public_interface
     pub fn new(action: crate::models::Action) -> EnablePublicInterfaceOfLoadBalancerResponse {
         EnablePublicInterfaceOfLoadBalancerResponse {

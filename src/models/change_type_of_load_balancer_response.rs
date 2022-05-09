@@ -19,6 +19,7 @@ pub struct ChangeTypeOfLoadBalancerResponse {
 }
 
 impl ChangeTypeOfLoadBalancerResponse {
+    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/load_balancers/{id}/actions/change_type
     pub fn new(action: crate::models::Action) -> ChangeTypeOfLoadBalancerResponse {
         ChangeTypeOfLoadBalancerResponse {

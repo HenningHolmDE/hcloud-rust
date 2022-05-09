@@ -50,6 +50,7 @@ pub struct FloatingIp {
 }
 
 impl FloatingIp {
+    #![allow(clippy::too_many_arguments)]
     pub fn new(blocked: bool, created: String, description: Option<String>, dns_ptr: Vec<crate::models::DnsPtr>, home_location: crate::models::Location, id: i32, ip: String, labels: ::std::collections::HashMap<String, String>, name: String, protection: crate::models::Protection, server: Option<i32>, _type: Type) -> FloatingIp {
         FloatingIp {
             blocked,

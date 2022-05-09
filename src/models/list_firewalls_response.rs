@@ -21,6 +21,7 @@ pub struct ListFirewallsResponse {
 }
 
 impl ListFirewallsResponse {
+    #![allow(clippy::too_many_arguments)]
     /// Response to GET https://api.hetzner.cloud/v1/firewalls
     pub fn new(firewalls: Vec<crate::models::Firewall>) -> ListFirewallsResponse {
         ListFirewallsResponse {

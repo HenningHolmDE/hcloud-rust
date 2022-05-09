@@ -38,6 +38,7 @@ pub struct CreateVolumeRequest {
 }
 
 impl CreateVolumeRequest {
+    #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/volumes
     pub fn new(name: String, size: i32) -> CreateVolumeRequest {
         CreateVolumeRequest {

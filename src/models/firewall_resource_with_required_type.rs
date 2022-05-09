@@ -24,6 +24,7 @@ pub struct FirewallResourceWithRequiredType {
 }
 
 impl FirewallResourceWithRequiredType {
+    #![allow(clippy::too_many_arguments)]
     /// Resource a Firewall should be applied to.
     pub fn new(_type: Type) -> FirewallResourceWithRequiredType {
         FirewallResourceWithRequiredType {

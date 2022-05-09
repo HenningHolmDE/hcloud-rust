@@ -21,6 +21,7 @@ pub struct CreateLoadBalancerResponse {
 }
 
 impl CreateLoadBalancerResponse {
+    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/load_balancers
     pub fn new(action: crate::models::Action, load_balancer: crate::models::LoadBalancer) -> CreateLoadBalancerResponse {
         CreateLoadBalancerResponse {

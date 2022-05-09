@@ -23,6 +23,7 @@ pub struct ReplaceSshKeyRequest {
 }
 
 impl ReplaceSshKeyRequest {
+    #![allow(clippy::too_many_arguments)]
     /// Request for PUT https://api.hetzner.cloud/v1/ssh_keys/{id}
     pub fn new() -> ReplaceSshKeyRequest {
         ReplaceSshKeyRequest {

@@ -19,6 +19,7 @@ pub struct GetMetricsForServerResponse {
 }
 
 impl GetMetricsForServerResponse {
+    #![allow(clippy::too_many_arguments)]
     /// Response to GET https://api.hetzner.cloud/v1/servers/{id}/metrics
     pub fn new(metrics: crate::models::Metrics) -> GetMetricsForServerResponse {
         GetMetricsForServerResponse {

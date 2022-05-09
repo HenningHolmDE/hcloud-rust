@@ -48,6 +48,7 @@ pub struct Volume {
 }
 
 impl Volume {
+    #![allow(clippy::too_many_arguments)]
     /// A Volume is a highly-available, scalable, and SSD-based block storage for Servers. Pricing for Volumes depends on the Volume size and Location, not the actual used storage. Please see [Hetzner Wiki](https://wiki.hetzner.de/index.php/CloudServer/en#Volumes) for more details about Volumes.
     pub fn new(created: String, format: Option<String>, id: i32, labels: ::std::collections::HashMap<String, String>, linux_device: String, location: crate::models::Location, name: String, protection: crate::models::Protection, server: Option<i32>, size: f32, status: Status) -> Volume {
         Volume {

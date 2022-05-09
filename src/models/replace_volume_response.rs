@@ -19,6 +19,7 @@ pub struct ReplaceVolumeResponse {
 }
 
 impl ReplaceVolumeResponse {
+    #![allow(clippy::too_many_arguments)]
     /// Response to PUT https://api.hetzner.cloud/v1/volumes/{id}
     pub fn new(volume: crate::models::Volume) -> ReplaceVolumeResponse {
         ReplaceVolumeResponse {

@@ -31,6 +31,7 @@ pub struct Iso {
 }
 
 impl Iso {
+    #![allow(clippy::too_many_arguments)]
     pub fn new(deprecated: Option<String>, description: String, id: i32, name: Option<String>, _type: Type) -> Iso {
         Iso {
             deprecated,

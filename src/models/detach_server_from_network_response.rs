@@ -19,6 +19,7 @@ pub struct DetachServerFromNetworkResponse {
 }
 
 impl DetachServerFromNetworkResponse {
+    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/servers/{id}/actions/detach_from_network
     pub fn new(action: crate::models::Action) -> DetachServerFromNetworkResponse {
         DetachServerFromNetworkResponse {

@@ -21,6 +21,7 @@ pub struct CreateCertificateResponse {
 }
 
 impl CreateCertificateResponse {
+    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/certificates
     pub fn new(certificate: crate::models::Certificate) -> CreateCertificateResponse {
         CreateCertificateResponse {

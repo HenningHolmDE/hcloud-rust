@@ -29,6 +29,7 @@ pub struct Metrics {
 }
 
 impl Metrics {
+    #![allow(clippy::too_many_arguments)]
     /// You must specify the type of metric to get: open_connections, requests_per_second or bandwidth. You can also specify more than one type by comma separation, e.g. requests_per_second,bandwidth. Depending on the type you will get different time series data.
     pub fn new(end: String, start: String, step: i32, time_series: ::std::collections::HashMap<String, crate::models::MetricsTimeSeries>) -> Metrics {
         Metrics {

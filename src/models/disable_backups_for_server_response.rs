@@ -19,6 +19,7 @@ pub struct DisableBackupsForServerResponse {
 }
 
 impl DisableBackupsForServerResponse {
+    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/servers/{id}/actions/disable_backup
     pub fn new(action: crate::models::Action) -> DisableBackupsForServerResponse {
         DisableBackupsForServerResponse {

@@ -56,6 +56,7 @@ pub struct LoadBalancer {
 }
 
 impl LoadBalancer {
+    #![allow(clippy::too_many_arguments)]
     pub fn new(algorithm: crate::models::LoadBalancerAlgorithm, created: String, id: i32, included_traffic: i64, ingoing_traffic: Option<i64>, labels: ::std::collections::HashMap<String, String>, load_balancer_type: crate::models::LoadBalancerType, location: crate::models::Location, name: String, outgoing_traffic: Option<i64>, private_net: Vec<crate::models::LoadBalancerPrivateNet>, protection: crate::models::Protection, public_net: crate::models::LoadBalancerPublicNet, services: Vec<crate::models::LoadBalancerService>, targets: Vec<crate::models::Target>) -> LoadBalancer {
         LoadBalancer {
             algorithm: Box::new(algorithm),

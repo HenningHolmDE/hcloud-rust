@@ -19,6 +19,7 @@ pub struct GetMetricsForLoadbalancerResponse {
 }
 
 impl GetMetricsForLoadbalancerResponse {
+    #![allow(clippy::too_many_arguments)]
     /// Response to GET https://api.hetzner.cloud/v1/load_balancers/{id}/metrics
     pub fn new(metrics: crate::models::Metrics) -> GetMetricsForLoadbalancerResponse {
         GetMetricsForLoadbalancerResponse {

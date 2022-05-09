@@ -47,6 +47,7 @@ pub struct ServerType {
 }
 
 impl ServerType {
+    #![allow(clippy::too_many_arguments)]
     /// Type of Server - determines how much ram, disk and cpu a Server has
     pub fn new(cores: i32, cpu_type: CpuType, deprecated: Option<bool>, description: String, disk: f32, id: i32, memory: f32, name: String, prices: Vec<crate::models::PricePerTime>, storage_type: StorageType) -> ServerType {
         ServerType {

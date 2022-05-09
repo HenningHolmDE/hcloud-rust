@@ -24,6 +24,7 @@ pub struct LoadBalancerPublicNet {
 }
 
 impl LoadBalancerPublicNet {
+    #![allow(clippy::too_many_arguments)]
     /// Public network information
     pub fn new(enabled: bool, ipv4: crate::models::LoadBalancerPublicNetIpv4, ipv6: crate::models::LoadBalancerPublicNetIpv6) -> LoadBalancerPublicNet {
         LoadBalancerPublicNet {

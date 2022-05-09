@@ -41,6 +41,7 @@ pub struct Location {
 }
 
 impl Location {
+    #![allow(clippy::too_many_arguments)]
     /// Location the Floating IP was created in. Routing is optimized for this Location. | Location of the Volume. Volume can only be attached to Servers in the same Location.
     pub fn new(city: String, country: String, description: String, id: i32, latitude: f32, longitude: f32, name: String, network_zone: String) -> Location {
         Location {

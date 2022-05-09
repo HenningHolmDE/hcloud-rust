@@ -43,6 +43,7 @@ pub struct LoadBalancerType {
 }
 
 impl LoadBalancerType {
+    #![allow(clippy::too_many_arguments)]
     pub fn new(deprecated: Option<String>, description: String, id: i32, max_assigned_certificates: i32, max_connections: i32, max_services: i32, max_targets: i32, name: String, prices: Vec<crate::models::PricePerTime>) -> LoadBalancerType {
         LoadBalancerType {
             deprecated,

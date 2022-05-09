@@ -25,6 +25,7 @@ pub struct RequestConsoleForServerResponse {
 }
 
 impl RequestConsoleForServerResponse {
+    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/servers/{id}/actions/request_console
     pub fn new(action: crate::models::Action, password: String, wss_url: String) -> RequestConsoleForServerResponse {
         RequestConsoleForServerResponse {

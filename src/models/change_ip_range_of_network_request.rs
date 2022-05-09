@@ -20,6 +20,7 @@ pub struct ChangeIpRangeOfNetworkRequest {
 }
 
 impl ChangeIpRangeOfNetworkRequest {
+    #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/networks/{id}/actions/change_ip_range
     pub fn new(ip_range: String) -> ChangeIpRangeOfNetworkRequest {
         ChangeIpRangeOfNetworkRequest {

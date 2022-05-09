@@ -20,6 +20,7 @@ pub struct ChangeLoadBalancerProtectionRequest {
 }
 
 impl ChangeLoadBalancerProtectionRequest {
+    #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/load_balancers/{id}/actions/change_protection
     pub fn new() -> ChangeLoadBalancerProtectionRequest {
         ChangeLoadBalancerProtectionRequest {

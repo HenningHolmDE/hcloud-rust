@@ -68,6 +68,7 @@ pub struct Image {
 }
 
 impl Image {
+    #![allow(clippy::too_many_arguments)]
     pub fn new(bound_to: Option<i32>, created: String, created_from: Option<crate::models::CreatedFrom>, deleted: Option<String>, deprecated: Option<String>, description: String, disk_size: f32, id: i32, image_size: Option<f32>, labels: ::std::collections::HashMap<String, String>, name: Option<String>, os_flavor: OsFlavor, os_version: Option<String>, protection: crate::models::Protection, status: Status, _type: Type) -> Image {
         Image {
             bound_to,

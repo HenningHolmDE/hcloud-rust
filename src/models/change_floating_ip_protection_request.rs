@@ -20,6 +20,7 @@ pub struct ChangeFloatingIpProtectionRequest {
 }
 
 impl ChangeFloatingIpProtectionRequest {
+    #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/floating_ips/{id}/actions/change_protection
     pub fn new() -> ChangeFloatingIpProtectionRequest {
         ChangeFloatingIpProtectionRequest {

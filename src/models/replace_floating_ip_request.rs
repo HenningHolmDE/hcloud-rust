@@ -26,6 +26,7 @@ pub struct ReplaceFloatingIpRequest {
 }
 
 impl ReplaceFloatingIpRequest {
+    #![allow(clippy::too_many_arguments)]
     /// Request for PUT https://api.hetzner.cloud/v1/floating_ips/{id}
     pub fn new() -> ReplaceFloatingIpRequest {
         ReplaceFloatingIpRequest {

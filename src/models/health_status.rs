@@ -20,6 +20,7 @@ pub struct HealthStatus {
 }
 
 impl HealthStatus {
+    #![allow(clippy::too_many_arguments)]
     pub fn new() -> HealthStatus {
         HealthStatus {
             listen_port: None,

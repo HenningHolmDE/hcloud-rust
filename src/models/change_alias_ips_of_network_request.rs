@@ -23,6 +23,7 @@ pub struct ChangeAliasIpsOfNetworkRequest {
 }
 
 impl ChangeAliasIpsOfNetworkRequest {
+    #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/servers/{id}/actions/change_alias_ips
     pub fn new(alias_ips: Vec<String>, network: i32) -> ChangeAliasIpsOfNetworkRequest {
         ChangeAliasIpsOfNetworkRequest {

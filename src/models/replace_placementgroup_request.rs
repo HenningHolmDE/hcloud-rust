@@ -23,6 +23,7 @@ pub struct ReplacePlacementgroupRequest {
 }
 
 impl ReplacePlacementgroupRequest {
+    #![allow(clippy::too_many_arguments)]
     /// Request for PUT https://api.hetzner.cloud/v1/placement_groups/{id}
     pub fn new() -> ReplacePlacementgroupRequest {
         ReplacePlacementgroupRequest {
