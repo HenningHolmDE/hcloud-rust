@@ -22,6 +22,7 @@ pub struct ServerPublicNetFirewall {
 }
 
 impl ServerPublicNetFirewall {
+    #![allow(clippy::too_many_arguments)]
     pub fn new() -> ServerPublicNetFirewall {
         ServerPublicNetFirewall {
             id: None,

@@ -19,6 +19,7 @@ pub struct ChangeReverseDnsEntryForFloatingIpResponse {
 }
 
 impl ChangeReverseDnsEntryForFloatingIpResponse {
+    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/floating_ips/{id}/actions/change_dns_ptr
     pub fn new(action: crate::models::Action) -> ChangeReverseDnsEntryForFloatingIpResponse {
         ChangeReverseDnsEntryForFloatingIpResponse {

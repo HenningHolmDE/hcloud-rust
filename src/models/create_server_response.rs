@@ -26,6 +26,7 @@ pub struct CreateServerResponse {
 }
 
 impl CreateServerResponse {
+    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/servers
     pub fn new(action: crate::models::Action, next_actions: Vec<crate::models::Action>, root_password: Option<String>, server: crate::models::Server) -> CreateServerResponse {
         CreateServerResponse {

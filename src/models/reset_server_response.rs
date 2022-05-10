@@ -19,6 +19,7 @@ pub struct ResetServerResponse {
 }
 
 impl ResetServerResponse {
+    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/servers/{id}/actions/reset
     pub fn new(action: crate::models::Action) -> ResetServerResponse {
         ResetServerResponse {

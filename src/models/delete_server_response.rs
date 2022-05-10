@@ -19,6 +19,7 @@ pub struct DeleteServerResponse {
 }
 
 impl DeleteServerResponse {
+    #![allow(clippy::too_many_arguments)]
     /// Response to DELETE https://api.hetzner.cloud/v1/servers/{id}
     pub fn new() -> DeleteServerResponse {
         DeleteServerResponse {

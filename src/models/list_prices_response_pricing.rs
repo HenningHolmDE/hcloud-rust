@@ -41,6 +41,7 @@ pub struct ListPricesResponsePricing {
 }
 
 impl ListPricesResponsePricing {
+    #![allow(clippy::too_many_arguments)]
     pub fn new(currency: String, floating_ip: crate::models::ListPricesResponsePricingFloatingIp, floating_ips: Vec<crate::models::ListPricesResponsePricingFloatingIps>, image: crate::models::ListPricesResponsePricingImage, load_balancer_types: Vec<crate::models::ListPricesResponsePricingLoadBalancerTypes>, server_backup: crate::models::ListPricesResponsePricingServerBackup, server_types: Vec<crate::models::ListPricesResponsePricingServerTypes>, traffic: crate::models::ListPricesResponsePricingTraffic, vat_rate: String, volume: crate::models::ListPricesResponsePricingVolume) -> ListPricesResponsePricing {
         ListPricesResponsePricing {
             currency,

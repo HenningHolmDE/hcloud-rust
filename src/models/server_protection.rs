@@ -23,6 +23,7 @@ pub struct ServerProtection {
 }
 
 impl ServerProtection {
+    #![allow(clippy::too_many_arguments)]
     /// Protection configuration for the Server
     pub fn new(delete: bool, rebuild: bool) -> ServerProtection {
         ServerProtection {

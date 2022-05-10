@@ -19,6 +19,7 @@ pub struct ChangeTypeOfServerResponse {
 }
 
 impl ChangeTypeOfServerResponse {
+    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/servers/{id}/actions/change_type
     pub fn new(action: crate::models::Action) -> ChangeTypeOfServerResponse {
         ChangeTypeOfServerResponse {

@@ -26,6 +26,7 @@ pub struct DatacenterServerTypes {
 }
 
 impl DatacenterServerTypes {
+    #![allow(clippy::too_many_arguments)]
     /// The Server types the Datacenter can handle
     pub fn new(available: Vec<i32>, available_for_migration: Vec<i32>, supported: Vec<i32>) -> DatacenterServerTypes {
         DatacenterServerTypes {

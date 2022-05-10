@@ -19,6 +19,7 @@ pub struct AttachServerToNetworkResponse {
 }
 
 impl AttachServerToNetworkResponse {
+    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/servers/{id}/actions/attach_to_network
     pub fn new(action: crate::models::Action) -> AttachServerToNetworkResponse {
         AttachServerToNetworkResponse {

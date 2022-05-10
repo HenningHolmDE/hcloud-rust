@@ -19,6 +19,7 @@ pub struct EnableAndConfigureBackupsForServerResponse {
 }
 
 impl EnableAndConfigureBackupsForServerResponse {
+    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/servers/{id}/actions/enable_backup
     pub fn new(action: crate::models::Action) -> EnableAndConfigureBackupsForServerResponse {
         EnableAndConfigureBackupsForServerResponse {

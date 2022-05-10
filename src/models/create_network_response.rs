@@ -19,6 +19,7 @@ pub struct CreateNetworkResponse {
 }
 
 impl CreateNetworkResponse {
+    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/networks
     pub fn new() -> CreateNetworkResponse {
         CreateNetworkResponse {

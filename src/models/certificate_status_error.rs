@@ -21,6 +21,7 @@ pub struct CertificateStatusError {
 }
 
 impl CertificateStatusError {
+    #![allow(clippy::too_many_arguments)]
     /// If issuance or renewal reports `failed`, this property contains information about what happened
     pub fn new() -> CertificateStatusError {
         CertificateStatusError {

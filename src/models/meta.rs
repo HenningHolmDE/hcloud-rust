@@ -19,6 +19,7 @@ pub struct Meta {
 }
 
 impl Meta {
+    #![allow(clippy::too_many_arguments)]
     /// Metadata contained in the response
     pub fn new(pagination: crate::models::Pagination) -> Meta {
         Meta {

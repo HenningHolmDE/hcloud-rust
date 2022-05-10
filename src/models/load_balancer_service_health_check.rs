@@ -34,6 +34,7 @@ pub struct LoadBalancerServiceHealthCheck {
 }
 
 impl LoadBalancerServiceHealthCheck {
+    #![allow(clippy::too_many_arguments)]
     /// Service health check
     pub fn new(interval: i32, port: i32, protocol: Protocol, retries: i32, timeout: i32) -> LoadBalancerServiceHealthCheck {
         LoadBalancerServiceHealthCheck {

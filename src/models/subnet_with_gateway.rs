@@ -28,6 +28,7 @@ pub struct SubnetWithGateway {
 }
 
 impl SubnetWithGateway {
+    #![allow(clippy::too_many_arguments)]
     pub fn new(gateway: String, network_zone: String, _type: Type) -> SubnetWithGateway {
         SubnetWithGateway {
             gateway,

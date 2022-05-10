@@ -19,6 +19,7 @@ pub struct DetachLoadBalancerFromNetworkResponse {
 }
 
 impl DetachLoadBalancerFromNetworkResponse {
+    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/load_balancers/{id}/actions/detach_from_network
     pub fn new(action: crate::models::Action) -> DetachLoadBalancerFromNetworkResponse {
         DetachLoadBalancerFromNetworkResponse {

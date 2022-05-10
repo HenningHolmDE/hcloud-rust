@@ -20,6 +20,7 @@ pub struct AssignFloatingIpToServerRequest {
 }
 
 impl AssignFloatingIpToServerRequest {
+    #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/floating_ips/{id}/actions/assign
     pub fn new(server: i32) -> AssignFloatingIpToServerRequest {
         AssignFloatingIpToServerRequest {

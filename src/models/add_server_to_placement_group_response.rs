@@ -19,6 +19,7 @@ pub struct AddServerToPlacementGroupResponse {
 }
 
 impl AddServerToPlacementGroupResponse {
+    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/servers/{id}/actions/add_to_placement_group
     pub fn new(action: crate::models::Action) -> AddServerToPlacementGroupResponse {
         AddServerToPlacementGroupResponse {

@@ -29,6 +29,7 @@ pub struct Ipv4 {
 }
 
 impl Ipv4 {
+    #![allow(clippy::too_many_arguments)]
     /// IP address (v4) and its reverse DNS entry of this Server
     pub fn new(blocked: bool, dns_ptr: String, ip: String) -> Ipv4 {
         Ipv4 {

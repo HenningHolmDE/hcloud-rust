@@ -21,6 +21,7 @@ pub struct CreateFirewallResponse {
 }
 
 impl CreateFirewallResponse {
+    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/firewalls
     pub fn new() -> CreateFirewallResponse {
         CreateFirewallResponse {

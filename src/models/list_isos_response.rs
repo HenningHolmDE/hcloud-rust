@@ -21,6 +21,7 @@ pub struct ListIsosResponse {
 }
 
 impl ListIsosResponse {
+    #![allow(clippy::too_many_arguments)]
     /// Response to GET https://api.hetzner.cloud/v1/isos
     pub fn new(isos: Vec<crate::models::Iso>) -> ListIsosResponse {
         ListIsosResponse {

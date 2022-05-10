@@ -23,6 +23,7 @@ pub struct Route {
 }
 
 impl Route {
+    #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/networks/{id}/actions/add_route | Request for POST https://api.hetzner.cloud/v1/networks/{id}/actions/delete_route
     pub fn new(destination: String, gateway: String) -> Route {
         Route {

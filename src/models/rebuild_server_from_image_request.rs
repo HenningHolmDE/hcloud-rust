@@ -20,6 +20,7 @@ pub struct RebuildServerFromImageRequest {
 }
 
 impl RebuildServerFromImageRequest {
+    #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/servers/{id}/actions/rebuild
     pub fn new(image: String) -> RebuildServerFromImageRequest {
         RebuildServerFromImageRequest {

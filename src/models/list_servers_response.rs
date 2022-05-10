@@ -21,6 +21,7 @@ pub struct ListServersResponse {
 }
 
 impl ListServersResponse {
+    #![allow(clippy::too_many_arguments)]
     /// Response to GET https://api.hetzner.cloud/v1/servers
     pub fn new(servers: Vec<crate::models::Server>) -> ListServersResponse {
         ListServersResponse {

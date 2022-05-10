@@ -40,6 +40,7 @@ pub struct Action {
 }
 
 impl Action {
+    #![allow(clippy::too_many_arguments)]
     /// Actions show the results and progress of asynchronous requests to the API.
     pub fn new(command: String, error: Option<crate::models::Error>, finished: Option<String>, id: i32, progress: f32, resources: Vec<crate::models::Resource>, started: String, status: Status) -> Action {
         Action {

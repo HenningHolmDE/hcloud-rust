@@ -32,6 +32,7 @@ pub struct LoadBalancerServiceHealthCheckHttp {
 }
 
 impl LoadBalancerServiceHealthCheckHttp {
+    #![allow(clippy::too_many_arguments)]
     /// Additional configuration for protocol http
     pub fn new(domain: Option<String>, path: String) -> LoadBalancerServiceHealthCheckHttp {
         LoadBalancerServiceHealthCheckHttp {

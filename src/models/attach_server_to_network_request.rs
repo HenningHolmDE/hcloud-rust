@@ -26,6 +26,7 @@ pub struct AttachServerToNetworkRequest {
 }
 
 impl AttachServerToNetworkRequest {
+    #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/servers/{id}/actions/attach_to_network
     pub fn new(network: i32) -> AttachServerToNetworkRequest {
         AttachServerToNetworkRequest {

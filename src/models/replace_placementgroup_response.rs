@@ -19,6 +19,7 @@ pub struct ReplacePlacementgroupResponse {
 }
 
 impl ReplacePlacementgroupResponse {
+    #![allow(clippy::too_many_arguments)]
     /// Response to PUT https://api.hetzner.cloud/v1/placement_groups/{id}
     pub fn new(placement_group: crate::models::PlacementGroup) -> ReplacePlacementgroupResponse {
         ReplacePlacementgroupResponse {

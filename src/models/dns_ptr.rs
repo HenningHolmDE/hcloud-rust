@@ -22,6 +22,7 @@ pub struct DnsPtr {
 }
 
 impl DnsPtr {
+    #![allow(clippy::too_many_arguments)]
     pub fn new(dns_ptr: String, ip: String) -> DnsPtr {
         DnsPtr {
             dns_ptr,

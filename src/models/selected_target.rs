@@ -24,6 +24,7 @@ pub struct SelectedTarget {
 }
 
 impl SelectedTarget {
+    #![allow(clippy::too_many_arguments)]
     pub fn new() -> SelectedTarget {
         SelectedTarget {
             health_status: None,

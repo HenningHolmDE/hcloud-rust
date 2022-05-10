@@ -23,6 +23,7 @@ pub struct ReplaceFirewallRequest {
 }
 
 impl ReplaceFirewallRequest {
+    #![allow(clippy::too_many_arguments)]
     /// Request for PUT https://api.hetzner.cloud/v1/firewalls/{id}
     pub fn new() -> ReplaceFirewallRequest {
         ReplaceFirewallRequest {

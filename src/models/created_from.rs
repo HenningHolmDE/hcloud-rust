@@ -23,6 +23,7 @@ pub struct CreatedFrom {
 }
 
 impl CreatedFrom {
+    #![allow(clippy::too_many_arguments)]
     /// Information about the Server the Image was created from
     pub fn new(id: i32, name: String) -> CreatedFrom {
         CreatedFrom {

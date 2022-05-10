@@ -20,6 +20,7 @@ pub struct LabelSelector {
 }
 
 impl LabelSelector {
+    #![allow(clippy::too_many_arguments)]
     /// Configuration for type LabelSelector, required if type is `label_selector`
     pub fn new(selector: String) -> LabelSelector {
         LabelSelector {

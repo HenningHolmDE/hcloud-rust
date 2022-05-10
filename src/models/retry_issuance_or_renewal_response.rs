@@ -19,6 +19,7 @@ pub struct RetryIssuanceOrRenewalResponse {
 }
 
 impl RetryIssuanceOrRenewalResponse {
+    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/certificates/{id}/actions/retry
     pub fn new(action: crate::models::Action) -> RetryIssuanceOrRenewalResponse {
         RetryIssuanceOrRenewalResponse {

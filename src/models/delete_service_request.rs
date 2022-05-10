@@ -20,6 +20,7 @@ pub struct DeleteServiceRequest {
 }
 
 impl DeleteServiceRequest {
+    #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/load_balancers/{id}/actions/delete_service
     pub fn new(listen_port: i32) -> DeleteServiceRequest {
         DeleteServiceRequest {

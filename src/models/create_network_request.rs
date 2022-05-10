@@ -32,6 +32,7 @@ pub struct CreateNetworkRequest {
 }
 
 impl CreateNetworkRequest {
+    #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/networks
     pub fn new(ip_range: String, name: String) -> CreateNetworkRequest {
         CreateNetworkRequest {

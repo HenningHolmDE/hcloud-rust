@@ -26,6 +26,7 @@ pub struct CreateImageFromServerRequest {
 }
 
 impl CreateImageFromServerRequest {
+    #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/servers/{id}/actions/create_image
     pub fn new() -> CreateImageFromServerRequest {
         CreateImageFromServerRequest {

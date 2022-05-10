@@ -75,6 +75,7 @@ pub struct Server {
 }
 
 impl Server {
+    #![allow(clippy::too_many_arguments)]
     /// Servers are virtual machines that can be provisioned.
     pub fn new(backup_window: Option<String>, created: String, datacenter: crate::models::Datacenter, id: i32, image: Option<crate::models::Image>, included_traffic: Option<i64>, ingoing_traffic: Option<i64>, iso: Option<crate::models::Iso>, labels: ::std::collections::HashMap<String, String>, locked: bool, name: String, outgoing_traffic: Option<i64>, primary_disk_size: i32, private_net: Vec<crate::models::ServerPrivateNet>, protection: crate::models::ServerProtection, public_net: crate::models::ServerPublicNet, rescue_enabled: bool, server_type: crate::models::ServerType, status: Status) -> Server {
         Server {

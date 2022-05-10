@@ -45,6 +45,7 @@ pub struct Network {
 }
 
 impl Network {
+    #![allow(clippy::too_many_arguments)]
     pub fn new(created: String, id: i32, ip_range: String, labels: ::std::collections::HashMap<String, String>, name: String, protection: crate::models::Protection, routes: Vec<crate::models::Route>, servers: Vec<i32>, subnets: Vec<crate::models::SubnetWithGateway>) -> Network {
         Network {
             created,

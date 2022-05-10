@@ -59,6 +59,7 @@ pub struct CreateServerRequest {
 }
 
 impl CreateServerRequest {
+    #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/servers
     pub fn new(image: String, name: String, server_type: String) -> CreateServerRequest {
         CreateServerRequest {

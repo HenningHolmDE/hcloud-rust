@@ -20,6 +20,7 @@ pub struct RemoveFromResourcesRequest {
 }
 
 impl RemoveFromResourcesRequest {
+    #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/firewalls/{id}/actions/remove_from_resources
     pub fn new(remove_from: Vec<crate::models::FirewallResource>) -> RemoveFromResourcesRequest {
         RemoveFromResourcesRequest {

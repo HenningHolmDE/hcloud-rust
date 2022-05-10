@@ -34,6 +34,7 @@ pub struct PlacementGroup {
 }
 
 impl PlacementGroup {
+    #![allow(clippy::too_many_arguments)]
     pub fn new(created: String, id: i32, labels: ::std::collections::HashMap<String, String>, name: String, servers: Vec<i32>, _type: Type) -> PlacementGroup {
         PlacementGroup {
             created,

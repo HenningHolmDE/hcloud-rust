@@ -23,6 +23,7 @@ pub struct ChangeReverseDnsEntryForThisServerRequest {
 }
 
 impl ChangeReverseDnsEntryForThisServerRequest {
+    #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/servers/{id}/actions/change_dns_ptr
     pub fn new(dns_ptr: Option<String>, ip: String) -> ChangeReverseDnsEntryForThisServerRequest {
         ChangeReverseDnsEntryForThisServerRequest {

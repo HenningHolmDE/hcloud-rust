@@ -19,6 +19,7 @@ pub struct DetachVolumeResponse {
 }
 
 impl DetachVolumeResponse {
+    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/volumes/{id}/actions/detach
     pub fn new(action: crate::models::Action) -> DetachVolumeResponse {
         DetachVolumeResponse {

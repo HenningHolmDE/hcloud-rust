@@ -23,6 +23,7 @@ pub struct ReplaceLoadBalancerRequest {
 }
 
 impl ReplaceLoadBalancerRequest {
+    #![allow(clippy::too_many_arguments)]
     /// Request for PUT https://api.hetzner.cloud/v1/load_balancers/{id}
     pub fn new() -> ReplaceLoadBalancerRequest {
         ReplaceLoadBalancerRequest {

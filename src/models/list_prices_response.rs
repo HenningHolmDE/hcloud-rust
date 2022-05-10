@@ -19,6 +19,7 @@ pub struct ListPricesResponse {
 }
 
 impl ListPricesResponse {
+    #![allow(clippy::too_many_arguments)]
     /// Response to GET https://api.hetzner.cloud/v1/pricing
     pub fn new(pricing: crate::models::ListPricesResponsePricing) -> ListPricesResponse {
         ListPricesResponse {

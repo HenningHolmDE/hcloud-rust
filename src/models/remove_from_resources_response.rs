@@ -21,6 +21,7 @@ pub struct RemoveFromResourcesResponse {
 }
 
 impl RemoveFromResourcesResponse {
+    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/firewalls/{id}/actions/remove_from_resources
     pub fn new(actions: Vec<crate::models::Action>) -> RemoveFromResourcesResponse {
         RemoveFromResourcesResponse {

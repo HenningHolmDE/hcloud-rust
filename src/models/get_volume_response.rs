@@ -19,6 +19,7 @@ pub struct GetVolumeResponse {
 }
 
 impl GetVolumeResponse {
+    #![allow(clippy::too_many_arguments)]
     /// Response to GET https://api.hetzner.cloud/v1/volumes/{id}
     pub fn new(volume: crate::models::Volume) -> GetVolumeResponse {
         GetVolumeResponse {

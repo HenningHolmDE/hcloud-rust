@@ -20,6 +20,7 @@ pub struct DeleteSubnetFromNetworkRequest {
 }
 
 impl DeleteSubnetFromNetworkRequest {
+    #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/networks/{id}/actions/delete_subnet
     pub fn new(ip_range: String) -> DeleteSubnetFromNetworkRequest {
         DeleteSubnetFromNetworkRequest {

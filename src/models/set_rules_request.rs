@@ -20,6 +20,7 @@ pub struct SetRulesRequest {
 }
 
 impl SetRulesRequest {
+    #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/firewalls/{id}/actions/set_rules
     pub fn new(rules: Vec<crate::models::Rule>) -> SetRulesRequest {
         SetRulesRequest {
