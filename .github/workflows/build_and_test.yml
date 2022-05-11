@@ -43,5 +43,4 @@ jobs:
         with:
           command: fmt
           args: --all -- --check
-        # "ignore" param in rustfmt.toml is only supported on nightly
-        if: ${{ matrix.rust == 'nightly' }}
+

@@ -66,3 +66,6 @@ if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then
     unix2dos -k -q src/apis/*.rs
     unix2dos -k -q src/models/*.rs
 fi
+
+echo "Formatting generated code..."
+cargo fmt
