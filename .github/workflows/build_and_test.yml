@@ -46,7 +46,7 @@ jobs:
         # "ignore" param in rustfmt.toml is only supported on nightly
         if: ${{ matrix.rust == 'nightly' }}
 
-      - name: Run clippy
-        uses: actions-rs/cargo@v1
+      - name: rust-clippy-check
+        uses: actions-rs/clippy-check@v1.0.7
         with:
-          command: clippy
+          token: ${{ secrets.GITHUB_TOKEN }}
