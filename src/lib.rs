@@ -67,3 +67,6 @@ extern crate url;
 
 pub mod apis;
 pub mod models;
+
+#[cfg(feature = "xshell")]
+pub mod config;

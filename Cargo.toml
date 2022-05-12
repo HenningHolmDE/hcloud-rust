@@ -16,12 +16,15 @@ default-tls = ["reqwest/default-tls"]
 native-tls = ["reqwest/native-tls"]
 native-tls-vendored = ["reqwest/native-tls-vendored"]
 rustls-tls = ["reqwest/rustls-tls"]
+xshell = ["dep:xshell", "dep:anyhow"]
 
 [dependencies]
 serde = "^1.0"
 serde_derive = "^1.0"
 serde_json = "^1.0"
 url = "^2.2"
+xshell = {version="^0.2", optional=true}
+anyhow = {version="^1.0", optional=true}
 
 [dependencies.reqwest]
 version = "^0.11"
