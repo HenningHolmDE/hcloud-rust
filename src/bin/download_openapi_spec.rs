@@ -4,8 +4,9 @@
 mod script {
     use anyhow::Result;
     use hcloud::config::Config;
-    use xshell::{cmd, Shell};
-    pub fn run() -> Result<()> {
+    use std::fs::{create_dir_all, OpenOptions};
+    use std::io::Write;
+    pub async fn run() -> Result<()> {
         let Config {
             download_dir,
             hcloud_openapi_version,
@@ -18,10 +19,19 @@ mod script {
             hcloud_openapi_version
         );
 
-        let sh = Shell::new()?;
-        cmd!(sh, "mkdir -p {download_dir}").run()?;
+        create_dir_all(download_dir)?;
 
-        cmd!(sh, "curl -L {hcloud_openapi_url} -o {hcloud_openapi_json}").run()?;
+        let mut file = OpenOptions::new()
+            .write(true)
+            .create(true)
+            .open(hcloud_openapi_json)?;
+        file.write_all(
+            reqwest::get(hcloud_openapi_url)
+                .await?
+                .bytes()
+                .await?
+                .as_ref(),
+        )?;
 
         Ok(())
     }
@@ -30,7 +40,7 @@ mod script {
 #[cfg_attr(feature = "generator_scripts", tokio::main)]
 #[cfg(feature = "generator_scripts")]
 async fn main() {
-    script::run().unwrap();
+    script::run().await.unwrap();
 }
 
 #[cfg(not(feature = "generator_scripts"))]
