@@ -1,6 +1,6 @@
 // Download OpenAPI spec for the Hetzner Cloud API
 
-#[cfg(feature = "xshell")]
+#[cfg(feature = "generator_scripts")]
 mod script {
     use anyhow::Result;
     use hcloud::config::Config;
@@ -27,10 +27,13 @@ mod script {
     }
 }
 
-fn main() {
-    #[cfg(feature = "xshell")]
+#[cfg_attr(feature = "generator_scripts", tokio::main)]
+#[cfg(feature = "generator_scripts")]
+async fn main() {
     script::run().unwrap();
+}
 
-    #[cfg(not(feature = "xshell"))]
-    panic!("This binary is only available when compiled with the `xshell` feature.");
+#[cfg(not(feature = "generator_scripts"))]
+fn main() {
+    panic!("This binary is only available when compiled with the `generator_scripts` feature.");
 }

@@ -1,4 +1,4 @@
-#[cfg(feature = "xshell")]
+#[cfg(feature = "generator_scripts")]
 pub struct Config {
     pub download_dir: &'static str,
 

@@ -68,5 +68,5 @@ extern crate url;
 pub mod apis;
 pub mod models;
 
-#[cfg(feature = "xshell")]
+#[cfg(feature = "generator_scripts")]
 pub mod config;
