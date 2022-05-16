@@ -61,6 +61,9 @@ done
 # Thus, backups in .bak files are created in the steps above and deleted here.
 rm src/models/*.bak
 
+echo "Formatting generated code..."
+cargo fmt
+
 # restore CRLF line endings on Windows
 if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then
     unix2dos -k -q src/apis/*.rs
