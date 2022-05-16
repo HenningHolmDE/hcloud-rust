@@ -18,7 +18,6 @@ pub struct ResizeVolumeRequest {
 }
 
 impl ResizeVolumeRequest {
-    #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/volumes/{id}/actions/resize
     pub fn new(size: f32) -> ResizeVolumeRequest {
         ResizeVolumeRequest { size }

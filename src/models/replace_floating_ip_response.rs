@@ -17,7 +17,6 @@ pub struct ReplaceFloatingIpResponse {
 }
 
 impl ReplaceFloatingIpResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to PUT https://api.hetzner.cloud/v1/floating_ips/{id}
     pub fn new(floating_ip: crate::models::FloatingIp) -> ReplaceFloatingIpResponse {
         ReplaceFloatingIpResponse {

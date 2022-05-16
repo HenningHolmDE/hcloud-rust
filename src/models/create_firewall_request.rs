@@ -27,7 +27,6 @@ pub struct CreateFirewallRequest {
 }
 
 impl CreateFirewallRequest {
-    #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/firewalls
     pub fn new(name: String) -> CreateFirewallRequest {
         CreateFirewallRequest {

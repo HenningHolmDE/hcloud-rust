@@ -17,7 +17,6 @@ pub struct RemoveFromPlacementGroupResponse {
 }
 
 impl RemoveFromPlacementGroupResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/servers/{id}/actions/remove_from_placement_group
     pub fn new(action: crate::models::Action) -> RemoveFromPlacementGroupResponse {
         RemoveFromPlacementGroupResponse {

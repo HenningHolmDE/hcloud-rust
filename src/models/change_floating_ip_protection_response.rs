@@ -17,7 +17,6 @@ pub struct ChangeFloatingIpProtectionResponse {
 }
 
 impl ChangeFloatingIpProtectionResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/floating_ips/{id}/actions/change_protection
     pub fn new(action: crate::models::Action) -> ChangeFloatingIpProtectionResponse {
         ChangeFloatingIpProtectionResponse {

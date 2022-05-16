@@ -22,7 +22,6 @@ pub struct ListPricesResponsePricingServerTypes {
 }
 
 impl ListPricesResponsePricingServerTypes {
-    #![allow(clippy::too_many_arguments)]
     pub fn new(
         id: i32,
         name: String,

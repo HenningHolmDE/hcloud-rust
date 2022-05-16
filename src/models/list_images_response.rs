@@ -19,7 +19,6 @@ pub struct ListImagesResponse {
 }
 
 impl ListImagesResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to GET https://api.hetzner.cloud/v1/images
     pub fn new(images: Vec<crate::models::Image>) -> ListImagesResponse {
         ListImagesResponse { images, meta: None }

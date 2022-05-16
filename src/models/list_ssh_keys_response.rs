@@ -19,7 +19,6 @@ pub struct ListSshKeysResponse {
 }
 
 impl ListSshKeysResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to GET https://api.hetzner.cloud/v1/ssh_keys
     pub fn new(ssh_keys: Vec<crate::models::SshKey>) -> ListSshKeysResponse {
         ListSshKeysResponse {

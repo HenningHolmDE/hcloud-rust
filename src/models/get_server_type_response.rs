@@ -17,7 +17,6 @@ pub struct GetServerTypeResponse {
 }
 
 impl GetServerTypeResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to GET https://api.hetzner.cloud/v1/server_types/{id}
     pub fn new(server_type: crate::models::ServerType) -> GetServerTypeResponse {
         GetServerTypeResponse {

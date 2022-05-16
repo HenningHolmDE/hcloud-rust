@@ -21,7 +21,6 @@ pub struct Price {
 }
 
 impl Price {
-    #![allow(clippy::too_many_arguments)]
     /// Hourly costs for a Resource in this Location | Monthly costs for a Resource in this Location | Monthly costs for a Floating IP type in this Location | Hourly costs for a Load Balancer type in this network zone | Monthly costs for a Load Balancer type in this network zone | Hourly costs for a Server type in this Location | Monthly costs for a Server type in this Location
     pub fn new(gross: String, net: String) -> Price {
         Price { gross, net }

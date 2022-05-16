@@ -17,7 +17,6 @@ pub struct ReplaceServerResponse {
 }
 
 impl ReplaceServerResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to PUT https://api.hetzner.cloud/v1/servers/{id}
     pub fn new() -> ReplaceServerResponse {
         ReplaceServerResponse { server: None }

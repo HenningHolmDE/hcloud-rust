@@ -27,7 +27,6 @@ pub struct Ipv6 {
 }
 
 impl Ipv6 {
-    #![allow(clippy::too_many_arguments)]
     /// IPv6 network assigned to this Server and its reverse DNS entry
     pub fn new(blocked: bool, dns_ptr: Option<Vec<crate::models::DnsPtr>>, ip: String) -> Ipv6 {
         Ipv6 {

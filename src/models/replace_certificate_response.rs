@@ -17,7 +17,6 @@ pub struct ReplaceCertificateResponse {
 }
 
 impl ReplaceCertificateResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to PUT https://api.hetzner.cloud/v1/certificates/{id}
     pub fn new(certificate: crate::models::Certificate) -> ReplaceCertificateResponse {
         ReplaceCertificateResponse {

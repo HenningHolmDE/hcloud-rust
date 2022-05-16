@@ -17,7 +17,6 @@ pub struct ReplaceFirewallResponse {
 }
 
 impl ReplaceFirewallResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to PUT https://api.hetzner.cloud/v1/firewalls/{id}
     pub fn new(firewall: crate::models::Firewall) -> ReplaceFirewallResponse {
         ReplaceFirewallResponse {

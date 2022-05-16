@@ -18,7 +18,6 @@ pub struct ListPricesResponsePricingPrices {
 }
 
 impl ListPricesResponsePricingPrices {
-    #![allow(clippy::too_many_arguments)]
     pub fn new(
         location: String,
         price_monthly: crate::models::Price,

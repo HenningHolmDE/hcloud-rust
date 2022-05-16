@@ -44,7 +44,6 @@ pub struct CreateLoadBalancerRequest {
 }
 
 impl CreateLoadBalancerRequest {
-    #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/load_balancers
     pub fn new(
         algorithm: crate::models::LoadBalancerAlgorithm,

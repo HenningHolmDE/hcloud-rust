@@ -17,7 +17,6 @@ pub struct ChangeIpRangeOfNetworkResponse {
 }
 
 impl ChangeIpRangeOfNetworkResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/networks/{id}/actions/change_ip_range
     pub fn new(action: crate::models::Action) -> ChangeIpRangeOfNetworkResponse {
         ChangeIpRangeOfNetworkResponse {

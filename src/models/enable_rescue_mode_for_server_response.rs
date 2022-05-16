@@ -20,7 +20,6 @@ pub struct EnableRescueModeForServerResponse {
 }
 
 impl EnableRescueModeForServerResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/servers/{id}/actions/enable_rescue
     pub fn new() -> EnableRescueModeForServerResponse {
         EnableRescueModeForServerResponse {

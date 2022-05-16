@@ -17,7 +17,6 @@ pub struct RemoveTargetResponse {
 }
 
 impl RemoveTargetResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/load_balancers/{id}/actions/remove_target
     pub fn new(action: crate::models::Action) -> RemoveTargetResponse {
         RemoveTargetResponse {

@@ -33,7 +33,6 @@ pub struct Rule {
 }
 
 impl Rule {
-    #![allow(clippy::too_many_arguments)]
     /// Rule of a firewall.
     pub fn new(direction: Direction, protocol: Protocol) -> Rule {
         Rule {

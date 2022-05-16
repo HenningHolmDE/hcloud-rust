@@ -17,7 +17,6 @@ pub struct GetIsoResponse {
 }
 
 impl GetIsoResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to GET https://api.hetzner.cloud/v1/isos/{id}
     pub fn new(iso: crate::models::Iso) -> GetIsoResponse {
         GetIsoResponse { iso: Box::new(iso) }

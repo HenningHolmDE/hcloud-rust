@@ -45,7 +45,6 @@ pub struct ServerType {
 }
 
 impl ServerType {
-    #![allow(clippy::too_many_arguments)]
     /// Type of Server - determines how much ram, disk and cpu a Server has
     pub fn new(
         cores: i32,

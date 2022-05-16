@@ -47,7 +47,6 @@ pub struct FloatingIp {
 }
 
 impl FloatingIp {
-    #![allow(clippy::too_many_arguments)]
     pub fn new(
         blocked: bool,
         created: String,

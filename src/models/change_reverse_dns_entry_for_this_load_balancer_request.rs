@@ -21,7 +21,6 @@ pub struct ChangeReverseDnsEntryForThisLoadBalancerRequest {
 }
 
 impl ChangeReverseDnsEntryForThisLoadBalancerRequest {
-    #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/load_balancers/{id}/actions/change_dns_ptr
     pub fn new(
         dns_ptr: Option<String>,

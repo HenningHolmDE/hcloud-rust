@@ -17,7 +17,6 @@ pub struct PowerOffServerResponse {
 }
 
 impl PowerOffServerResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/servers/{id}/actions/poweroff
     pub fn new(action: crate::models::Action) -> PowerOffServerResponse {
         PowerOffServerResponse {

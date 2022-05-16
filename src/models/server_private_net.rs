@@ -21,7 +21,6 @@ pub struct ServerPrivateNet {
 }
 
 impl ServerPrivateNet {
-    #![allow(clippy::too_many_arguments)]
     pub fn new() -> ServerPrivateNet {
         ServerPrivateNet {
             alias_ips: None,

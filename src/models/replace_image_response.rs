@@ -17,7 +17,6 @@ pub struct ReplaceImageResponse {
 }
 
 impl ReplaceImageResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to PUT https://api.hetzner.cloud/v1/images/{id}
     pub fn new() -> ReplaceImageResponse {
         ReplaceImageResponse { image: None }

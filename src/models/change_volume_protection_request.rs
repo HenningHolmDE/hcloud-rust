@@ -18,7 +18,6 @@ pub struct ChangeVolumeProtectionRequest {
 }
 
 impl ChangeVolumeProtectionRequest {
-    #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/volumes/{id}/actions/change_protection
     pub fn new() -> ChangeVolumeProtectionRequest {
         ChangeVolumeProtectionRequest { delete: None }

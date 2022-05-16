@@ -38,7 +38,6 @@ pub struct Action {
 }
 
 impl Action {
-    #![allow(clippy::too_many_arguments)]
     /// Actions show the results and progress of asynchronous requests to the API.
     pub fn new(
         command: String,
@@ -52,7 +51,7 @@ impl Action {
     ) -> Action {
         Action {
             command,
-            error: error.map(Box::new),
+            error: Box::new(error),
             finished,
             id,
             progress,

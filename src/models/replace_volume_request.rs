@@ -21,7 +21,6 @@ pub struct ReplaceVolumeRequest {
 }
 
 impl ReplaceVolumeRequest {
-    #![allow(clippy::too_many_arguments)]
     /// Request for PUT https://api.hetzner.cloud/v1/volumes/{id}
     pub fn new(name: String) -> ReplaceVolumeRequest {
         ReplaceVolumeRequest { labels: None, name }

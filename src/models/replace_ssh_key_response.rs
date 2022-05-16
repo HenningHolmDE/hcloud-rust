@@ -17,7 +17,6 @@ pub struct ReplaceSshKeyResponse {
 }
 
 impl ReplaceSshKeyResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to PUT https://api.hetzner.cloud/v1/ssh_keys/{id}
     pub fn new(ssh_key: crate::models::SshKey) -> ReplaceSshKeyResponse {
         ReplaceSshKeyResponse {

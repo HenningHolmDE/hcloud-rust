@@ -17,7 +17,6 @@ pub struct DisableRescueModeForServerResponse {
 }
 
 impl DisableRescueModeForServerResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/servers/{id}/actions/disable_rescue
     pub fn new(action: crate::models::Action) -> DisableRescueModeForServerResponse {
         DisableRescueModeForServerResponse {

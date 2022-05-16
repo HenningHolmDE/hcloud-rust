@@ -18,7 +18,6 @@ pub struct AddServerToPlacementGroupRequest {
 }
 
 impl AddServerToPlacementGroupRequest {
-    #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/servers/{id}/actions/add_to_placement_group
     pub fn new(placement_group: i32) -> AddServerToPlacementGroupRequest {
         AddServerToPlacementGroupRequest { placement_group }

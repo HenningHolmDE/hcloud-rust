@@ -28,7 +28,6 @@ pub struct Datacenter {
 }
 
 impl Datacenter {
-    #![allow(clippy::too_many_arguments)]
     /// Datacenter this Resource is located at
     pub fn new(
         description: String,

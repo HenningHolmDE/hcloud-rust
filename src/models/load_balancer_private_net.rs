@@ -17,7 +17,6 @@ pub struct LoadBalancerPrivateNet {
 }
 
 impl LoadBalancerPrivateNet {
-    #![allow(clippy::too_many_arguments)]
     pub fn new() -> LoadBalancerPrivateNet {
         LoadBalancerPrivateNet {
             ip: None,

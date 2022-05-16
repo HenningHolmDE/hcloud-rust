@@ -17,7 +17,6 @@ pub struct UnassignFloatingIpResponse {
 }
 
 impl UnassignFloatingIpResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/floating_ips/{id}/actions/unassign
     pub fn new(action: crate::models::Action) -> UnassignFloatingIpResponse {
         UnassignFloatingIpResponse {

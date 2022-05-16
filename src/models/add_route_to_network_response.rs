@@ -17,7 +17,6 @@ pub struct AddRouteToNetworkResponse {
 }
 
 impl AddRouteToNetworkResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/networks/{id}/actions/add_route
     pub fn new(action: crate::models::Action) -> AddRouteToNetworkResponse {
         AddRouteToNetworkResponse {

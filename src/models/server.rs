@@ -73,7 +73,6 @@ pub struct Server {
 }
 
 impl Server {
-    #![allow(clippy::too_many_arguments)]
     /// Servers are virtual machines that can be provisioned.
     pub fn new(
         backup_window: Option<String>,
@@ -101,10 +100,10 @@ impl Server {
             created,
             datacenter: Box::new(datacenter),
             id,
-            image: image.map(Box::new),
+            image: Box::new(image),
             included_traffic,
             ingoing_traffic,
-            iso: iso.map(Box::new),
+            iso: Box::new(iso),
             labels,
             load_balancers: None,
             locked,

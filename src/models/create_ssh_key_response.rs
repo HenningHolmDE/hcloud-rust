@@ -17,7 +17,6 @@ pub struct CreateSshKeyResponse {
 }
 
 impl CreateSshKeyResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/ssh_keys
     pub fn new(ssh_key: crate::models::SshKey) -> CreateSshKeyResponse {
         CreateSshKeyResponse {

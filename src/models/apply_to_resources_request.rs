@@ -18,7 +18,6 @@ pub struct ApplyToResourcesRequest {
 }
 
 impl ApplyToResourcesRequest {
-    #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/firewalls/{id}/actions/apply_to_resources
     pub fn new(apply_to: Vec<crate::models::FirewallResource>) -> ApplyToResourcesRequest {
         ApplyToResourcesRequest { apply_to }

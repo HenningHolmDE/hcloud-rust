@@ -50,7 +50,6 @@ pub struct Certificate {
 }
 
 impl Certificate {
-    #![allow(clippy::too_many_arguments)]
     /// TLS/SSL Certificates prove the identity of a Server and are used to encrypt client traffic.
     pub fn new(
         certificate: Option<String>,

@@ -18,7 +18,6 @@ pub struct ChangeTypeOfLoadBalancerRequest {
 }
 
 impl ChangeTypeOfLoadBalancerRequest {
-    #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/load_balancers/{id}/actions/change_type
     pub fn new(load_balancer_type: String) -> ChangeTypeOfLoadBalancerRequest {
         ChangeTypeOfLoadBalancerRequest { load_balancer_type }

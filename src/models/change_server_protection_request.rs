@@ -21,7 +21,6 @@ pub struct ChangeServerProtectionRequest {
 }
 
 impl ChangeServerProtectionRequest {
-    #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/servers/{id}/actions/change_protection
     pub fn new() -> ChangeServerProtectionRequest {
         ChangeServerProtectionRequest {

@@ -18,7 +18,6 @@ pub struct LoadBalancerAlgorithm {
 }
 
 impl LoadBalancerAlgorithm {
-    #![allow(clippy::too_many_arguments)]
     /// Algorithm of the Load Balancer | Request for POST https://api.hetzner.cloud/v1/load_balancers/{id}/actions/change_algorithm
     pub fn new(_type: Type) -> LoadBalancerAlgorithm {
         LoadBalancerAlgorithm { _type }

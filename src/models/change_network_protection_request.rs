@@ -18,7 +18,6 @@ pub struct ChangeNetworkProtectionRequest {
 }
 
 impl ChangeNetworkProtectionRequest {
-    #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/networks/{id}/actions/change_protection
     pub fn new() -> ChangeNetworkProtectionRequest {
         ChangeNetworkProtectionRequest { delete: None }

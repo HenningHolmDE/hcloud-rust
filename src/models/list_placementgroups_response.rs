@@ -19,7 +19,6 @@ pub struct ListPlacementgroupsResponse {
 }
 
 impl ListPlacementgroupsResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to GET https://api.hetzner.cloud/v1/placement_groups
     pub fn new(
         placement_groups: Vec<crate::models::PlacementGroup>,

@@ -21,7 +21,6 @@ pub struct AttachLoadBalancerToNetworkRequest {
 }
 
 impl AttachLoadBalancerToNetworkRequest {
-    #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/load_balancers/{id}/actions/attach_to_network
     pub fn new(network: i32) -> AttachLoadBalancerToNetworkRequest {
         AttachLoadBalancerToNetworkRequest { ip: None, network }

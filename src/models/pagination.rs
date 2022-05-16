@@ -33,7 +33,6 @@ pub struct Pagination {
 }
 
 impl Pagination {
-    #![allow(clippy::too_many_arguments)]
     /// Information about the current pagination. The keys previous_page, next_page, last_page, and total_entries may be null when on the first page, last page, or when the total number of entries is unknown
     pub fn new(
         last_page: Option<i32>,

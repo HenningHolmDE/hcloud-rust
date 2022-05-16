@@ -19,7 +19,6 @@ pub struct CreateFloatingIpResponse {
 }
 
 impl CreateFloatingIpResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/floating_ips
     pub fn new(floating_ip: crate::models::FloatingIp) -> CreateFloatingIpResponse {
         CreateFloatingIpResponse {

@@ -40,7 +40,6 @@ pub struct LoadBalancerType {
 }
 
 impl LoadBalancerType {
-    #![allow(clippy::too_many_arguments)]
     pub fn new(
         deprecated: Option<String>,
         description: String,

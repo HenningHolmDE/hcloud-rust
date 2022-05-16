@@ -19,7 +19,6 @@ pub struct Resource {
 }
 
 impl Resource {
-    #![allow(clippy::too_many_arguments)]
     pub fn new(id: i32, _type: String) -> Resource {
         Resource { id, _type }
     }

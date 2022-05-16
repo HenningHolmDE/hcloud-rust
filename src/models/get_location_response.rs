@@ -17,7 +17,6 @@ pub struct GetLocationResponse {
 }
 
 impl GetLocationResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to GET https://api.hetzner.cloud/v1/locations/{id}
     pub fn new(location: crate::models::Location) -> GetLocationResponse {
         GetLocationResponse {

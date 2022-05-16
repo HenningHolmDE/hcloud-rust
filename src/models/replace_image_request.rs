@@ -24,7 +24,6 @@ pub struct ReplaceImageRequest {
 }
 
 impl ReplaceImageRequest {
-    #![allow(clippy::too_many_arguments)]
     /// Request for PUT https://api.hetzner.cloud/v1/images/{id}
     pub fn new() -> ReplaceImageRequest {
         ReplaceImageRequest {

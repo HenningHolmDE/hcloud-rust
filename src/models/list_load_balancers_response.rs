@@ -19,7 +19,6 @@ pub struct ListLoadBalancersResponse {
 }
 
 impl ListLoadBalancersResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to GET https://api.hetzner.cloud/v1/load_balancers
     pub fn new(load_balancers: Vec<crate::models::LoadBalancer>) -> ListLoadBalancersResponse {
         ListLoadBalancersResponse {

@@ -19,7 +19,6 @@ pub struct ListLoadBalancerTypesResponse {
 }
 
 impl ListLoadBalancerTypesResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to GET https://api.hetzner.cloud/v1/load_balancer_types
     pub fn new(
         load_balancer_types: Vec<crate::models::LoadBalancerType>,

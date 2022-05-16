@@ -18,7 +18,6 @@ pub struct AddTargetRequestServer {
 }
 
 impl AddTargetRequestServer {
-    #![allow(clippy::too_many_arguments)]
     /// Configuration for type Server, required if type is `server`
     pub fn new(id: i32) -> AddTargetRequestServer {
         AddTargetRequestServer { id }

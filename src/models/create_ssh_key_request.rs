@@ -24,7 +24,6 @@ pub struct CreateSshKeyRequest {
 }
 
 impl CreateSshKeyRequest {
-    #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/ssh_keys
     pub fn new(name: String, public_key: String) -> CreateSshKeyRequest {
         CreateSshKeyRequest {

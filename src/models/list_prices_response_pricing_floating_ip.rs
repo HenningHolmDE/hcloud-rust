@@ -17,7 +17,6 @@ pub struct ListPricesResponsePricingFloatingIp {
 }
 
 impl ListPricesResponsePricingFloatingIp {
-    #![allow(clippy::too_many_arguments)]
     /// The cost of one Floating IP per month
     pub fn new(price_monthly: crate::models::Price) -> ListPricesResponsePricingFloatingIp {
         ListPricesResponsePricingFloatingIp {

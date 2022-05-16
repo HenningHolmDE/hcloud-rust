@@ -18,7 +18,6 @@ pub struct ResourceId {
 }
 
 impl ResourceId {
-    #![allow(clippy::too_many_arguments)]
     /// ID of the Resource
     pub fn new(id: i32) -> ResourceId {
         ResourceId { id }

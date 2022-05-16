@@ -18,7 +18,6 @@ pub struct ListPricesResponsePricingServerBackup {
 }
 
 impl ListPricesResponsePricingServerBackup {
-    #![allow(clippy::too_many_arguments)]
     /// Will increase base Server costs by specific percentage
     pub fn new(percentage: String) -> ListPricesResponsePricingServerBackup {
         ListPricesResponsePricingServerBackup { percentage }

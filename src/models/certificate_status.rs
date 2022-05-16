@@ -23,7 +23,6 @@ pub struct CertificateStatus {
 }
 
 impl CertificateStatus {
-    #![allow(clippy::too_many_arguments)]
     /// Current status of a type `managed` Certificate, always *null* for type `uploaded` Certificates
     pub fn new() -> CertificateStatus {
         CertificateStatus {

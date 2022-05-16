@@ -18,7 +18,6 @@ pub struct AttachIsoToServerRequest {
 }
 
 impl AttachIsoToServerRequest {
-    #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/servers/{id}/actions/attach_iso
     pub fn new(iso: String) -> AttachIsoToServerRequest {
         AttachIsoToServerRequest { iso }

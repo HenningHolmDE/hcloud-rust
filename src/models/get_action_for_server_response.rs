@@ -17,7 +17,6 @@ pub struct GetActionForServerResponse {
 }
 
 impl GetActionForServerResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to GET https://api.hetzner.cloud/v1/servers/{id}/actions/{action_id}
     pub fn new(action: crate::models::Action) -> GetActionForServerResponse {
         GetActionForServerResponse {

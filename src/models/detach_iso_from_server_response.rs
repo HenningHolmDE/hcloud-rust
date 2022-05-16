@@ -17,7 +17,6 @@ pub struct DetachIsoFromServerResponse {
 }
 
 impl DetachIsoFromServerResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/servers/{id}/actions/detach_iso
     pub fn new(action: crate::models::Action) -> DetachIsoFromServerResponse {
         DetachIsoFromServerResponse {

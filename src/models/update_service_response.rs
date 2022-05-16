@@ -17,7 +17,6 @@ pub struct UpdateServiceResponse {
 }
 
 impl UpdateServiceResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/load_balancers/{id}/actions/update_service
     pub fn new(action: crate::models::Action) -> UpdateServiceResponse {
         UpdateServiceResponse {

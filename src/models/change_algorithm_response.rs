@@ -17,7 +17,6 @@ pub struct ChangeAlgorithmResponse {
 }
 
 impl ChangeAlgorithmResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/load_balancers/{id}/actions/change_algorithm
     pub fn new(action: crate::models::Action) -> ChangeAlgorithmResponse {
         ChangeAlgorithmResponse {

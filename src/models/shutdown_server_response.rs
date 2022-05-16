@@ -17,7 +17,6 @@ pub struct ShutdownServerResponse {
 }
 
 impl ShutdownServerResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/servers/{id}/actions/shutdown
     pub fn new(action: crate::models::Action) -> ShutdownServerResponse {
         ShutdownServerResponse {

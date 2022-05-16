@@ -33,7 +33,6 @@ pub struct CreateCertificateRequest {
 }
 
 impl CreateCertificateRequest {
-    #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/certificates
     pub fn new(name: String) -> CreateCertificateRequest {
         CreateCertificateRequest {

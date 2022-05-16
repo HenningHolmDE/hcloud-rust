@@ -17,7 +17,6 @@ pub struct GetLoadBalancerResponse {
 }
 
 impl GetLoadBalancerResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to GET https://api.hetzner.cloud/v1/load_balancers/{id}
     pub fn new(load_balancer: crate::models::LoadBalancer) -> GetLoadBalancerResponse {
         GetLoadBalancerResponse {

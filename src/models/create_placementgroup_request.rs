@@ -24,7 +24,6 @@ pub struct CreatePlacementgroupRequest {
 }
 
 impl CreatePlacementgroupRequest {
-    #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/placement_groups
     pub fn new(name: String, _type: Type) -> CreatePlacementgroupRequest {
         CreatePlacementgroupRequest {

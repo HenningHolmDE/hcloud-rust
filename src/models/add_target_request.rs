@@ -27,7 +27,6 @@ pub struct AddTargetRequest {
 }
 
 impl AddTargetRequest {
-    #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/load_balancers/{id}/actions/add_target
     pub fn new(_type: Type) -> AddTargetRequest {
         AddTargetRequest {

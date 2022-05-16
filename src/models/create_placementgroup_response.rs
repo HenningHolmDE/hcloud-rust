@@ -19,7 +19,6 @@ pub struct CreatePlacementgroupResponse {
 }
 
 impl CreatePlacementgroupResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/placement_groups
     pub fn new(placement_group: crate::models::PlacementGroup) -> CreatePlacementgroupResponse {
         CreatePlacementgroupResponse {

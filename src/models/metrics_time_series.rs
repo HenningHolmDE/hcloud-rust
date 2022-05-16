@@ -16,7 +16,6 @@ pub struct MetricsTimeSeries {
 }
 
 impl MetricsTimeSeries {
-    #![allow(clippy::too_many_arguments)]
     pub fn new(values: Vec<Vec<serde_json::Value>>) -> MetricsTimeSeries {
         MetricsTimeSeries { values }
     }

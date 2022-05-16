@@ -65,7 +65,6 @@ pub struct Image {
 }
 
 impl Image {
-    #![allow(clippy::too_many_arguments)]
     pub fn new(
         bound_to: Option<i32>,
         created: String,
@@ -88,7 +87,7 @@ impl Image {
             bound_to,
             build_id: None,
             created,
-            created_from: created_from.map(Box::new),
+            created_from: Box::new(created_from),
             deleted,
             deprecated,
             description,

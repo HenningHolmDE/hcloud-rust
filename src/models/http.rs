@@ -30,7 +30,6 @@ pub struct Http {
 }
 
 impl Http {
-    #![allow(clippy::too_many_arguments)]
     /// Configuration option for protocols http and https
     pub fn new() -> Http {
         Http {

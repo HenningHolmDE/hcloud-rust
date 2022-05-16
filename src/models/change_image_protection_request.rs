@@ -18,7 +18,6 @@ pub struct ChangeImageProtectionRequest {
 }
 
 impl ChangeImageProtectionRequest {
-    #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/images/{id}/actions/change_protection
     pub fn new() -> ChangeImageProtectionRequest {
         ChangeImageProtectionRequest { delete: None }

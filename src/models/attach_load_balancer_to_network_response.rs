@@ -17,7 +17,6 @@ pub struct AttachLoadBalancerToNetworkResponse {
 }
 
 impl AttachLoadBalancerToNetworkResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/load_balancers/{id}/actions/attach_to_network
     pub fn new(action: crate::models::Action) -> AttachLoadBalancerToNetworkResponse {
         AttachLoadBalancerToNetworkResponse {

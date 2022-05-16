@@ -17,7 +17,6 @@ pub struct GetNetworkResponse {
 }
 
 impl GetNetworkResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to GET https://api.hetzner.cloud/v1/networks/{id}
     pub fn new() -> GetNetworkResponse {
         GetNetworkResponse { network: None }

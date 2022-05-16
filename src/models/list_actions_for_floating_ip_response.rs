@@ -19,7 +19,6 @@ pub struct ListActionsForFloatingIpResponse {
 }
 
 impl ListActionsForFloatingIpResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to GET https://api.hetzner.cloud/v1/floating_ips/{id}/actions
     pub fn new(actions: Vec<crate::models::Action>) -> ListActionsForFloatingIpResponse {
         ListActionsForFloatingIpResponse {

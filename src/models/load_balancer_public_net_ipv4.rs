@@ -21,7 +21,6 @@ pub struct LoadBalancerPublicNetIpv4 {
 }
 
 impl LoadBalancerPublicNetIpv4 {
-    #![allow(clippy::too_many_arguments)]
     /// IP address (v4)
     pub fn new() -> LoadBalancerPublicNetIpv4 {
         LoadBalancerPublicNetIpv4 {

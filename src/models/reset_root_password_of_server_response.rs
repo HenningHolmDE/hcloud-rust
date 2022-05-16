@@ -20,7 +20,6 @@ pub struct ResetRootPasswordOfServerResponse {
 }
 
 impl ResetRootPasswordOfServerResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/servers/{id}/actions/reset_password
     pub fn new() -> ResetRootPasswordOfServerResponse {
         ResetRootPasswordOfServerResponse {

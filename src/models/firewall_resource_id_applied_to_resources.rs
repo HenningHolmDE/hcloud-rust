@@ -18,7 +18,6 @@ pub struct FirewallResourceIdAppliedToResources {
 }
 
 impl FirewallResourceIdAppliedToResources {
-    #![allow(clippy::too_many_arguments)]
     pub fn new() -> FirewallResourceIdAppliedToResources {
         FirewallResourceIdAppliedToResources {
             server: None,

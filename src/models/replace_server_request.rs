@@ -21,7 +21,6 @@ pub struct ReplaceServerRequest {
 }
 
 impl ReplaceServerRequest {
-    #![allow(clippy::too_many_arguments)]
     /// Request for PUT https://api.hetzner.cloud/v1/servers/{id}
     pub fn new() -> ReplaceServerRequest {
         ReplaceServerRequest {

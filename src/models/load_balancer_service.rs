@@ -31,7 +31,6 @@ pub struct LoadBalancerService {
 }
 
 impl LoadBalancerService {
-    #![allow(clippy::too_many_arguments)]
     /// A service for a Load Balancer.
     pub fn new(
         destination_port: i32,

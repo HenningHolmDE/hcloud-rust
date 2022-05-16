@@ -17,7 +17,6 @@ pub struct ListPricesResponsePricingVolume {
 }
 
 impl ListPricesResponsePricingVolume {
-    #![allow(clippy::too_many_arguments)]
     /// The cost of Volume per GB/month
     pub fn new(price_per_gb_month: crate::models::Price) -> ListPricesResponsePricingVolume {
         ListPricesResponsePricingVolume {

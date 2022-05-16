@@ -19,7 +19,6 @@ pub struct SetRulesResponse {
 }
 
 impl SetRulesResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/firewalls/{id}/actions/set_rules
     pub fn new(actions: Vec<crate::models::Action>) -> SetRulesResponse {
         SetRulesResponse {

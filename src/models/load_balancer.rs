@@ -53,7 +53,6 @@ pub struct LoadBalancer {
 }
 
 impl LoadBalancer {
-    #![allow(clippy::too_many_arguments)]
     pub fn new(
         algorithm: crate::models::LoadBalancerAlgorithm,
         created: String,

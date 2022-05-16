@@ -38,7 +38,6 @@ pub struct ListPricesResponsePricing {
 }
 
 impl ListPricesResponsePricing {
-    #![allow(clippy::too_many_arguments)]
     pub fn new(
         currency: String,
         floating_ip: crate::models::ListPricesResponsePricingFloatingIp,

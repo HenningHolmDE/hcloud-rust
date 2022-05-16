@@ -27,7 +27,6 @@ pub struct Subnet {
 }
 
 impl Subnet {
-    #![allow(clippy::too_many_arguments)]
     /// Subnets divide the ip_range from the parent Network object into multiple Subnetworks that you can use for different specific purposes.
     pub fn new(network_zone: String, _type: Type) -> Subnet {
         Subnet {

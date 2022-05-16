@@ -17,7 +17,6 @@ pub struct SoftRebootServerResponse {
 }
 
 impl SoftRebootServerResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/servers/{id}/actions/reboot
     pub fn new(action: crate::models::Action) -> SoftRebootServerResponse {
         SoftRebootServerResponse {

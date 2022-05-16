@@ -19,7 +19,6 @@ pub struct ListFloatingIpsResponse {
 }
 
 impl ListFloatingIpsResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to GET https://api.hetzner.cloud/v1/floating_ips
     pub fn new(floating_ips: Vec<crate::models::FloatingIp>) -> ListFloatingIpsResponse {
         ListFloatingIpsResponse {

@@ -17,7 +17,6 @@ pub struct AddSubnetToNetworkResponse {
 }
 
 impl AddSubnetToNetworkResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to POST https://api.hetzner.cloud/v1/networks/{id}/actions/add_subnet
     pub fn new(action: crate::models::Action) -> AddSubnetToNetworkResponse {
         AddSubnetToNetworkResponse {

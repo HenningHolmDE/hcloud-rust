@@ -27,7 +27,6 @@ pub struct FirewallResourceId {
 }
 
 impl FirewallResourceId {
-    #![allow(clippy::too_many_arguments)]
     /// Resource a Firewall should be applied to.
     pub fn new(_type: Type) -> FirewallResourceId {
         FirewallResourceId {

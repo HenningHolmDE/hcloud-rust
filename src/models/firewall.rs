@@ -31,7 +31,6 @@ pub struct Firewall {
 }
 
 impl Firewall {
-    #![allow(clippy::too_many_arguments)]
     /// Firewalls can limit the network access to or from your resources.
     pub fn new(
         applied_to: Vec<crate::models::FirewallResourceId>,

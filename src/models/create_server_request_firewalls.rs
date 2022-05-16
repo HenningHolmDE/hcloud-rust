@@ -16,7 +16,6 @@ pub struct CreateServerRequestFirewalls {
 }
 
 impl CreateServerRequestFirewalls {
-    #![allow(clippy::too_many_arguments)]
     pub fn new(firewall: i32) -> CreateServerRequestFirewalls {
         CreateServerRequestFirewalls { firewall }
     }

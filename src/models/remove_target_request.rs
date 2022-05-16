@@ -24,7 +24,6 @@ pub struct RemoveTargetRequest {
 }
 
 impl RemoveTargetRequest {
-    #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/load_balancers/{id}/actions/remove_target
     pub fn new(_type: Type) -> RemoveTargetRequest {
         RemoveTargetRequest {

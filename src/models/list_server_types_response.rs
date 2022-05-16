@@ -19,7 +19,6 @@ pub struct ListServerTypesResponse {
 }
 
 impl ListServerTypesResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to GET https://api.hetzner.cloud/v1/server_types
     pub fn new(server_types: Vec<crate::models::ServerType>) -> ListServerTypesResponse {
         ListServerTypesResponse {

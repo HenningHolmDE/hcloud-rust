@@ -18,7 +18,6 @@ pub struct Protection {
 }
 
 impl Protection {
-    #![allow(clippy::too_many_arguments)]
     /// Protection configuration for the Resource
     pub fn new(delete: bool) -> Protection {
         Protection { delete }

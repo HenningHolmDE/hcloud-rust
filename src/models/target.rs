@@ -33,7 +33,6 @@ pub struct Target {
 }
 
 impl Target {
-    #![allow(clippy::too_many_arguments)]
     /// A target for a load balancer
     pub fn new(_type: Type) -> Target {
         Target {

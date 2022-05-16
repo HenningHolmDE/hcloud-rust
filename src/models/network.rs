@@ -42,7 +42,6 @@ pub struct Network {
 }
 
 impl Network {
-    #![allow(clippy::too_many_arguments)]
     pub fn new(
         created: String,
         id: i32,

@@ -17,7 +17,6 @@ pub struct ReplaceLoadBalancerResponse {
 }
 
 impl ReplaceLoadBalancerResponse {
-    #![allow(clippy::too_many_arguments)]
     /// Response to PUT https://api.hetzner.cloud/v1/load_balancers/{id}
     pub fn new(load_balancer: crate::models::LoadBalancer) -> ReplaceLoadBalancerResponse {
         ReplaceLoadBalancerResponse {

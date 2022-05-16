@@ -20,7 +20,6 @@ pub struct PricePerTime {
 }
 
 impl PricePerTime {
-    #![allow(clippy::too_many_arguments)]
     pub fn new(
         location: String,
         price_hourly: crate::models::Price,

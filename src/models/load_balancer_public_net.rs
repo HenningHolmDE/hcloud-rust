@@ -22,7 +22,6 @@ pub struct LoadBalancerPublicNet {
 }
 
 impl LoadBalancerPublicNet {
-    #![allow(clippy::too_many_arguments)]
     /// Public network information
     pub fn new(
         enabled: bool,

@@ -21,7 +21,6 @@ pub struct Error {
 }
 
 impl Error {
-    #![allow(clippy::too_many_arguments)]
     /// Error message for the Action if error occurred, otherwise null
     pub fn new(code: String, message: String) -> Error {
         Error { code, message }
