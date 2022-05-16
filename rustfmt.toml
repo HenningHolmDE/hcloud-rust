@@ -1,4 +1,0 @@
-ignore = [
-    "src/apis", # generated code
-    "src/models", # generated code
-]
