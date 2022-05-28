@@ -182,7 +182,6 @@ src/models/list_prices_response_pricing_floating_ip.rs
 src/models/list_prices_response_pricing_floating_ips.rs
 src/models/list_prices_response_pricing_image.rs
 src/models/list_prices_response_pricing_load_balancer_types.rs
-src/models/list_prices_response_pricing_prices.rs
 src/models/list_prices_response_pricing_server_backup.rs
 src/models/list_prices_response_pricing_server_types.rs
 src/models/list_prices_response_pricing_traffic.rs
@@ -214,6 +213,7 @@ src/models/power_off_server_response.rs
 src/models/power_on_server_response.rs
 src/models/price.rs
 src/models/price_per_time.rs
+src/models/price_per_time_monthly.rs
 src/models/protection.rs
 src/models/rebuild_server_from_image_request.rs
 src/models/rebuild_server_from_image_response.rs
