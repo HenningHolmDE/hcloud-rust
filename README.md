@@ -14,7 +14,7 @@ The API client code of this crate has been auto-generated from the [Unofficial O
 
 ## Current state of development
 
-- supported API endpoints (complete as of January 2022): `actions`, `certificates`, `datacenters`, `firewalls`, `floating_ips`, `images`, `isos`, `load_balancer_types`, `load_balancers`, `locations`, `networks`, `pricing`, `placement_groups`, `server_types`, `servers`, `ssh_keys`, `volumes`
+- supported API endpoints (complete as of May 2022): `actions`, `certificates`, `datacenters`, `firewalls`, `floating_ips`, `images`, `isos`, `load_balancer_types`, `load_balancers`, `locations`, `networks`, `placement_groups`, `pricing`, `placement_groups`, `server_types`, `servers`, `ssh_keys`, `volumes`
 - asynchronous API functions
 - pagination support
 - documentation and tests are still WIP
