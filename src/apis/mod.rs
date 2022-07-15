@@ -74,6 +74,7 @@ pub mod locations_api;
 pub mod networks_api;
 pub mod placement_groups_api;
 pub mod pricing_api;
+pub mod primary_ips_api;
 pub mod server_types_api;
 pub mod servers_api;
 pub mod ssh_keys_api;

@@ -13,6 +13,7 @@ src/apis/mod.rs
 src/apis/networks_api.rs
 src/apis/placement_groups_api.rs
 src/apis/pricing_api.rs
+src/apis/primary_ips_api.rs
 src/apis/server_types_api.rs
 src/apis/servers_api.rs
 src/apis/ssh_keys_api.rs
@@ -32,6 +33,8 @@ src/models/apply_to_resources_request.rs
 src/models/apply_to_resources_response.rs
 src/models/assign_floating_ip_to_server_request.rs
 src/models/assign_floating_ip_to_server_response.rs
+src/models/assign_primary_ip_to_resource_request.rs
+src/models/assign_primary_ip_to_resource_response.rs
 src/models/attach_iso_to_server_request.rs
 src/models/attach_iso_to_server_response.rs
 src/models/attach_load_balancer_to_network_request.rs
@@ -56,8 +59,12 @@ src/models/change_load_balancer_protection_request.rs
 src/models/change_load_balancer_protection_response.rs
 src/models/change_network_protection_request.rs
 src/models/change_network_protection_response.rs
+src/models/change_primary_ip_protection_request.rs
+src/models/change_primary_ip_protection_response.rs
 src/models/change_reverse_dns_entry_for_floating_ip_request.rs
 src/models/change_reverse_dns_entry_for_floating_ip_response.rs
+src/models/change_reverse_dns_entry_for_primary_ip_request.rs
+src/models/change_reverse_dns_entry_for_primary_ip_response.rs
 src/models/change_reverse_dns_entry_for_this_load_balancer_request.rs
 src/models/change_reverse_dns_entry_for_this_load_balancer_response.rs
 src/models/change_reverse_dns_entry_for_this_server_request.rs
@@ -84,8 +91,11 @@ src/models/create_network_request.rs
 src/models/create_network_response.rs
 src/models/create_placementgroup_request.rs
 src/models/create_placementgroup_response.rs
+src/models/create_primary_ip_request.rs
+src/models/create_primary_ip_response.rs
 src/models/create_server_request.rs
 src/models/create_server_request_firewalls.rs
+src/models/create_server_request_public_net.rs
 src/models/create_server_response.rs
 src/models/create_ssh_key_request.rs
 src/models/create_ssh_key_response.rs
@@ -143,6 +153,7 @@ src/models/get_metrics_for_loadbalancer_response.rs
 src/models/get_metrics_for_server_response.rs
 src/models/get_network_response.rs
 src/models/get_placementgroup_response.rs
+src/models/get_primary_ip_response.rs
 src/models/get_server_response.rs
 src/models/get_server_type_response.rs
 src/models/get_ssh_key_response.rs
@@ -151,6 +162,7 @@ src/models/health_status.rs
 src/models/http.rs
 src/models/image.rs
 src/models/image_optional.rs
+src/models/ip_type.rs
 src/models/ipv4.rs
 src/models/ipv6.rs
 src/models/iso.rs
@@ -182,10 +194,12 @@ src/models/list_prices_response_pricing_floating_ip.rs
 src/models/list_prices_response_pricing_floating_ips.rs
 src/models/list_prices_response_pricing_image.rs
 src/models/list_prices_response_pricing_load_balancer_types.rs
+src/models/list_prices_response_pricing_primary_ips.rs
 src/models/list_prices_response_pricing_server_backup.rs
 src/models/list_prices_response_pricing_server_types.rs
 src/models/list_prices_response_pricing_traffic.rs
 src/models/list_prices_response_pricing_volume.rs
+src/models/list_primary_ips_response.rs
 src/models/list_server_types_response.rs
 src/models/list_servers_response.rs
 src/models/list_ssh_keys_response.rs
@@ -214,6 +228,7 @@ src/models/power_on_server_response.rs
 src/models/price.rs
 src/models/price_per_time.rs
 src/models/price_per_time_monthly.rs
+src/models/primary_ip.rs
 src/models/protection.rs
 src/models/rebuild_server_from_image_request.rs
 src/models/rebuild_server_from_image_response.rs
@@ -236,6 +251,8 @@ src/models/replace_network_request.rs
 src/models/replace_network_response.rs
 src/models/replace_placementgroup_request.rs
 src/models/replace_placementgroup_response.rs
+src/models/replace_primary_ip_request.rs
+src/models/replace_primary_ip_response.rs
 src/models/replace_server_request.rs
 src/models/replace_server_response.rs
 src/models/replace_ssh_key_request.rs
@@ -268,5 +285,6 @@ src/models/subnet.rs
 src/models/subnet_with_gateway.rs
 src/models/target.rs
 src/models/unassign_floating_ip_response.rs
+src/models/unassign_primary_ip_from_resource_response.rs
 src/models/update_service_response.rs
 src/models/volume.rs
