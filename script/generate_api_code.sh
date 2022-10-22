@@ -35,9 +35,6 @@ echo "Running OpenAPI generator..."
     -c openapi-generator.yaml \
     -t templates
 
-# replace references to non-existing OneOf types with serde_json::Value
-sed -ri".bak" "s/crate::models::OneOf[[:alnum:]]+/serde_json::Value/g" src/models/*.rs
-
 # Remove *Optional and *Nullable models, as they result from JSON spec limitations
 # (nullable being part of object) and are not necessary in Rust.
 for names in action,Action image,Image iso,Iso placement_group,PlacementGroup; do

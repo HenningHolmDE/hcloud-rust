@@ -65,6 +65,7 @@ pub enum {{{classname}}} {
 {{!-- for non-enum schemas --}}
 {{^isEnum}}
 {{^discriminator}}
+{{^vars.empty}}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct {{{classname}}} {
@@ -90,6 +91,11 @@ impl {{{classname}}} {
         }
     }
 }
+{{/vars.empty}}
+{{#vars.empty}}
+{{!-- In case struct would be empty, fall back to using serde_json::Value. --}}
+pub use serde_json::Value as {{{classname}}};
+{{/vars.empty}}
 {{/discriminator}}
 {{/isEnum}}
 
