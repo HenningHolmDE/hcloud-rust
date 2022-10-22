@@ -10,6 +10,7 @@
 
 /// CertificateStatus : Current status of a type `managed` Certificate, always *null* for type `uploaded` Certificates
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct CertificateStatus {
     #[serde(rename = "error", skip_serializing_if = "Option::is_none")]

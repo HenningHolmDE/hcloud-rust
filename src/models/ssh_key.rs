@@ -10,6 +10,7 @@
 
 /// SshKey : SSH keys are public keys you provide to the cloud system. They can be injected into Servers at creation time. We highly recommend that you use keys instead of passwords to manage your Servers.
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct SshKey {
     /// Point in time when the Resource was created (in ISO-8601 format)

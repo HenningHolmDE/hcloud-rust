@@ -10,6 +10,7 @@
 
 /// GetLoadBalancerTypeResponse : Response to GET https://api.hetzner.cloud/v1/load_balancer_types/{id}
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct GetLoadBalancerTypeResponse {
     #[serde(rename = "load_balancer_type", skip_serializing_if = "Option::is_none")]

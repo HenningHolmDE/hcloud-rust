@@ -10,6 +10,7 @@
 
 /// ListPricesResponsePricingImage : The cost of Image per GB/month
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ListPricesResponsePricingImage {
     #[serde(rename = "price_per_gb_month")]

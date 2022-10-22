@@ -10,6 +10,7 @@
 
 /// ChangeReverseDnsEntryForThisServerRequest : Request for POST https://api.hetzner.cloud/v1/servers/{id}/actions/change_dns_ptr
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ChangeReverseDnsEntryForThisServerRequest {
     /// Hostname to set as a reverse DNS PTR entry, reset to original value if `null`

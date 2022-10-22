@@ -10,6 +10,7 @@
 
 /// GetActionForLoadBalancerResponse : Response to GET https://api.hetzner.cloud/v1/load_balancers/{id}/actions/{action_id}
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct GetActionForLoadBalancerResponse {
     #[serde(rename = "action")]

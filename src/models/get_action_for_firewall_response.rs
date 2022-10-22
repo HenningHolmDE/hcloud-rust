@@ -10,6 +10,7 @@
 
 /// GetActionForFirewallResponse : Response to GET https://api.hetzner.cloud/v1/firewalls/{id}/actions/{action_id}
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct GetActionForFirewallResponse {
     #[serde(rename = "action")]

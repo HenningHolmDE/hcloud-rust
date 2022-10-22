@@ -10,6 +10,7 @@
 
 /// LabelSelector : Configuration for type LabelSelector, required if type is `label_selector`
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct LabelSelector {
     /// Label selector

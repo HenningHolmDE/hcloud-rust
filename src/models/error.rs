@@ -10,6 +10,7 @@
 
 /// Error : Error message for the Action if error occurred, otherwise null
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Error {
     /// Fixed machine readable code

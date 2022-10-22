@@ -10,6 +10,7 @@
 
 /// Firewall : Firewalls can limit the network access to or from your resources.
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Firewall {
     #[serde(rename = "applied_to")]

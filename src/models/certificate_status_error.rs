@@ -10,6 +10,7 @@
 
 /// CertificateStatusError : If issuance or renewal reports `failed`, this property contains information about what happened
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct CertificateStatusError {
     #[serde(rename = "code", skip_serializing_if = "Option::is_none")]

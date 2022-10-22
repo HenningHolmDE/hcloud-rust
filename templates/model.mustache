@@ -40,6 +40,7 @@ impl Default for {{{classname}}} {
 
 {{!-- for schemas that have a discriminator --}}
 {{#discriminator}}
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(tag = "{{{vendorExtensions.x-tag-name}}}")]
 pub enum {{{classname}}} {
@@ -64,6 +65,7 @@ pub enum {{{classname}}} {
 {{!-- for non-enum schemas --}}
 {{^isEnum}}
 {{^discriminator}}
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct {{{classname}}} {
 {{#vars}}

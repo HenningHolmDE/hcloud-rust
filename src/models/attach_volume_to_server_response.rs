@@ -10,6 +10,7 @@
 
 /// AttachVolumeToServerResponse : Response to POST https://api.hetzner.cloud/v1/volumes/{id}/actions/attach
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct AttachVolumeToServerResponse {
     #[serde(rename = "action")]

@@ -10,6 +10,7 @@
 
 /// ChangeIpRangeOfNetworkRequest : Request for POST https://api.hetzner.cloud/v1/networks/{id}/actions/change_ip_range
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ChangeIpRangeOfNetworkRequest {
     /// The new prefix for the whole Network

@@ -10,6 +10,7 @@
 
 /// RemoveTargetResponse : Response to POST https://api.hetzner.cloud/v1/load_balancers/{id}/actions/remove_target
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct RemoveTargetResponse {
     #[serde(rename = "action")]

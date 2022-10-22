@@ -10,6 +10,7 @@
 
 /// ChangeTypeOfServerRequest : Request for POST https://api.hetzner.cloud/v1/servers/{id}/actions/change_type
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ChangeTypeOfServerRequest {
     /// ID or name of Server type the Server should migrate to

@@ -10,6 +10,7 @@
 
 /// ReplacePlacementgroupRequest : Request for PUT https://api.hetzner.cloud/v1/placement_groups/{id}
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ReplacePlacementgroupRequest {
     /// User-defined labels (key-value pairs)

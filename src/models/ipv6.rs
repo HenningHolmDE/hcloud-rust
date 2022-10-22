@@ -10,6 +10,7 @@
 
 /// Ipv6 : IPv6 network assigned to this Server and its reverse DNS entry
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Ipv6 {
     /// If the IP is blocked by our anti abuse dept

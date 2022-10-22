@@ -10,6 +10,7 @@
 
 /// CreateServerRequest : Request for POST https://api.hetzner.cloud/v1/servers
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct CreateServerRequest {
     /// Auto-mount Volumes after attach

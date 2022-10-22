@@ -10,6 +10,7 @@
 
 /// Certificate : TLS/SSL Certificates prove the identity of a Server and are used to encrypt client traffic.
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Certificate {
     /// Certificate and chain in PEM format, in order so that each record directly certifies the one preceding

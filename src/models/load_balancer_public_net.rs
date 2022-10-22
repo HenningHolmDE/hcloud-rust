@@ -10,6 +10,7 @@
 
 /// LoadBalancerPublicNet : Public network information
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct LoadBalancerPublicNet {
     /// Public Interface enabled or not

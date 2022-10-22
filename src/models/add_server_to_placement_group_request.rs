@@ -10,6 +10,7 @@
 
 /// AddServerToPlacementGroupRequest : Request for POST https://api.hetzner.cloud/v1/servers/{id}/actions/add_to_placement_group
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct AddServerToPlacementGroupRequest {
     /// ID of Placement Group the Server should be added to

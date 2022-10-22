@@ -10,6 +10,7 @@
 
 /// ChangeNetworkProtectionRequest : Request for POST https://api.hetzner.cloud/v1/networks/{id}/actions/change_protection
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ChangeNetworkProtectionRequest {
     /// If true, prevents the Network from being deleted

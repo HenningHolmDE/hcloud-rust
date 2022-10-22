@@ -10,6 +10,7 @@
 
 /// ServerPublicNet : Public network information. The Server's IPv4 address can be found in `public_net->ipv4->ip`
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ServerPublicNet {
     /// Firewalls applied to the public network interface of this Server

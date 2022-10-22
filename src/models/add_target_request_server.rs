@@ -10,6 +10,7 @@
 
 /// AddTargetRequestServer : Configuration for type Server, required if type is `server`
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct AddTargetRequestServer {
     /// ID of the Server

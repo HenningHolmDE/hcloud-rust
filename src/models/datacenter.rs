@@ -10,6 +10,7 @@
 
 /// Datacenter : Datacenter this Primary IP is located at | Datacenter this Resource is located at
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Datacenter {
     /// Description of the Datacenter

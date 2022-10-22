@@ -10,6 +10,7 @@
 
 /// AssignFloatingIpToServerRequest : Request for POST https://api.hetzner.cloud/v1/floating_ips/{id}/actions/assign
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct AssignFloatingIpToServerRequest {
     /// ID of the Server the Floating IP shall be assigned to

@@ -10,6 +10,7 @@
 
 /// DeleteServiceResponse : Response to POST https://api.hetzner.cloud/v1/load_balancers/{id}/actions/delete_service
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct DeleteServiceResponse {
     #[serde(rename = "action")]

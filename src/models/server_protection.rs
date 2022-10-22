@@ -10,6 +10,7 @@
 
 /// ServerProtection : Protection configuration for the Server
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ServerProtection {
     /// If true, prevents the Server from being deleted

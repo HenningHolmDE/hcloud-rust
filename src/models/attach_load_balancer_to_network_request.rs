@@ -10,6 +10,7 @@
 
 /// AttachLoadBalancerToNetworkRequest : Request for POST https://api.hetzner.cloud/v1/load_balancers/{id}/actions/attach_to_network
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct AttachLoadBalancerToNetworkRequest {
     /// IP to request to be assigned to this Load Balancer; if you do not provide this then you will be auto assigned an IP address

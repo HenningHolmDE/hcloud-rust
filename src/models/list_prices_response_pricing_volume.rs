@@ -10,6 +10,7 @@
 
 /// ListPricesResponsePricingVolume : The cost of Volume per GB/month
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ListPricesResponsePricingVolume {
     #[serde(rename = "price_per_gb_month")]

@@ -10,6 +10,7 @@
 
 /// LoadBalancerPublicNetIpv4 : IP address (v4)
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct LoadBalancerPublicNetIpv4 {
     /// Reverse DNS PTR entry for the IPv4 address of this Load Balancer

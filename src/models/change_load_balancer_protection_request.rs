@@ -10,6 +10,7 @@
 
 /// ChangeLoadBalancerProtectionRequest : Request for POST https://api.hetzner.cloud/v1/load_balancers/{id}/actions/change_protection
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ChangeLoadBalancerProtectionRequest {
     /// If true, prevents the Load Balancer from being deleted

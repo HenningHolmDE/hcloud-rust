@@ -10,6 +10,7 @@
 
 /// ChangeServerProtectionRequest : Request for POST https://api.hetzner.cloud/v1/servers/{id}/actions/change_protection
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ChangeServerProtectionRequest {
     /// If true, prevents the Server from being deleted (currently delete and rebuild attribute needs to have the same value)

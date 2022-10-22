@@ -10,6 +10,7 @@
 
 /// ReplaceImageResponse : Response to PUT https://api.hetzner.cloud/v1/images/{id}
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ReplaceImageResponse {
     #[serde(rename = "image", skip_serializing_if = "Option::is_none")]

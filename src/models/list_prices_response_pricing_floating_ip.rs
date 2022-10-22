@@ -10,6 +10,7 @@
 
 /// ListPricesResponsePricingFloatingIp : The cost of one Floating IP per month
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ListPricesResponsePricingFloatingIp {
     #[serde(rename = "price_monthly")]

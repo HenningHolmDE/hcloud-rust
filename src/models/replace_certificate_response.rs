@@ -10,6 +10,7 @@
 
 /// ReplaceCertificateResponse : Response to PUT https://api.hetzner.cloud/v1/certificates/{id}
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ReplaceCertificateResponse {
     #[serde(rename = "certificate")]

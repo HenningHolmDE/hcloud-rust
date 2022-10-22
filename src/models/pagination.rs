@@ -10,6 +10,7 @@
 
 /// Pagination : Information about the current pagination. The keys previous_page, next_page, last_page, and total_entries may be null when on the first page, last page, or when the total number of entries is unknown
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Pagination {
     /// ID of the last page available. Can be null if the current page is the last one. | The last page number

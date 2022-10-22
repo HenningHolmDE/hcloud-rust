@@ -10,6 +10,7 @@
 
 /// Server : Servers are virtual machines that can be provisioned.
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Server {
     /// Time window (UTC) in which the backup will run, or null if the backups are not enabled

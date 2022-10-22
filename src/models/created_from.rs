@@ -10,6 +10,7 @@
 
 /// CreatedFrom : Information about the Server the Image was created from
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct CreatedFrom {
     /// ID of the Server the Image was created from

@@ -10,6 +10,7 @@
 
 /// CreateImageFromServerResponse : Response to POST https://api.hetzner.cloud/v1/servers/{id}/actions/create_image
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct CreateImageFromServerResponse {
     #[serde(rename = "action", skip_serializing_if = "Option::is_none")]

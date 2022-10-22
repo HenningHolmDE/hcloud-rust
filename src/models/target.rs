@@ -10,6 +10,7 @@
 
 /// Target : A target for a load balancer
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Target {
     /// List of health statuses of the services on this target

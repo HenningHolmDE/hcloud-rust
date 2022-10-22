@@ -10,6 +10,7 @@
 
 /// ReplaceFloatingIpRequest : Request for PUT https://api.hetzner.cloud/v1/floating_ips/{id}
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ReplaceFloatingIpRequest {
     /// New Description to set

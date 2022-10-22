@@ -10,6 +10,7 @@
 
 /// FirewallResourceId : Resource a Firewall should be applied to.
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct FirewallResourceId {
     #[serde(

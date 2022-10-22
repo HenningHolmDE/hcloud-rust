@@ -10,6 +10,7 @@
 
 /// RebuildServerFromImageRequest : Request for POST https://api.hetzner.cloud/v1/servers/{id}/actions/rebuild
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct RebuildServerFromImageRequest {
     /// ID or name of Image to rebuilt from.

@@ -10,6 +10,7 @@
 
 /// EnableRescueModeForServerResponse : Response to POST https://api.hetzner.cloud/v1/servers/{id}/actions/enable_rescue
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct EnableRescueModeForServerResponse {
     #[serde(rename = "action", skip_serializing_if = "Option::is_none")]

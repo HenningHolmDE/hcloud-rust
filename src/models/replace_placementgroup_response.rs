@@ -10,6 +10,7 @@
 
 /// ReplacePlacementgroupResponse : Response to PUT https://api.hetzner.cloud/v1/placement_groups/{id}
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ReplacePlacementgroupResponse {
     #[serde(rename = "placement_group")]

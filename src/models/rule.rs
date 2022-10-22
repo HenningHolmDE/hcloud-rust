@@ -10,6 +10,7 @@
 
 /// Rule : Rule of a firewall.
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Rule {
     /// Description of the Rule

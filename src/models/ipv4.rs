@@ -10,6 +10,7 @@
 
 /// Ipv4 : IP address (v4) and its reverse DNS entry of this Server
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Ipv4 {
     /// If the IP is blocked by our anti abuse dept

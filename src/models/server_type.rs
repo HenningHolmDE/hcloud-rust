@@ -10,6 +10,7 @@
 
 /// ServerType : Type of Server - determines how much ram, disk and cpu a Server has
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ServerType {
     /// Number of cpu cores a Server of this type will have

@@ -10,6 +10,7 @@
 
 /// ListPricesResponsePricingTraffic : The cost of additional traffic per TB
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ListPricesResponsePricingTraffic {
     #[serde(rename = "price_per_tb")]

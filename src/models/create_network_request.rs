@@ -10,6 +10,7 @@
 
 /// CreateNetworkRequest : Request for POST https://api.hetzner.cloud/v1/networks
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct CreateNetworkRequest {
     /// IP range of the whole network which must span all included subnets. Must be one of the private IPv4 ranges of RFC1918. Minimum network size is /24. We highly recommend that you pick a larger network with a /16 netmask.

@@ -10,6 +10,7 @@
 
 /// Action : Actions show the results and progress of asynchronous requests to the API.
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Action {
     /// Command executed in the Action

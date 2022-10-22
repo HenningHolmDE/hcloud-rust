@@ -10,6 +10,7 @@
 
 /// ChangeReverseDnsEntryForFloatingIpResponse : Response to POST https://api.hetzner.cloud/v1/floating_ips/{id}/actions/change_dns_ptr
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ChangeReverseDnsEntryForFloatingIpResponse {
     #[serde(rename = "action")]

@@ -10,6 +10,7 @@
 
 /// FirewallResource : Resource a Firewall should be applied to.
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct FirewallResource {
     #[serde(rename = "label_selector", skip_serializing_if = "Option::is_none")]

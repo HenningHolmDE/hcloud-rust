@@ -10,6 +10,7 @@
 
 /// LoadBalancerServiceHealthCheckHttp : Additional configuration for protocol http
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct LoadBalancerServiceHealthCheckHttp {
     /// Host header to send in the HTTP request. May not contain spaces, percent or backslash symbols. Can be null, in that case no host header is sent.

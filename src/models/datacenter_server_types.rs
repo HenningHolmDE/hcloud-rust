@@ -10,6 +10,7 @@
 
 /// DatacenterServerTypes : The Server types the Datacenter can handle
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct DatacenterServerTypes {
     /// IDs of Server types that are supported and for which the Datacenter has enough resources left

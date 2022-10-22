@@ -10,6 +10,7 @@
 
 /// AttachIsoToServerResponse : Response to POST https://api.hetzner.cloud/v1/servers/{id}/actions/attach_iso
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct AttachIsoToServerResponse {
     #[serde(rename = "action")]

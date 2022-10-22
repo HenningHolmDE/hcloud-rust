@@ -10,6 +10,7 @@
 
 /// ListActionsForNetworkResponse : Response to GET https://api.hetzner.cloud/v1/networks/{id}/actions
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ListActionsForNetworkResponse {
     #[serde(rename = "actions")]

@@ -10,6 +10,7 @@
 
 /// DisableBackupsForServerResponse : Response to POST https://api.hetzner.cloud/v1/servers/{id}/actions/disable_backup
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct DisableBackupsForServerResponse {
     #[serde(rename = "action")]

@@ -10,6 +10,7 @@
 
 /// ResourceId : ID of the Resource
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ResourceId {
     /// ID of the Resource | ID of the Server

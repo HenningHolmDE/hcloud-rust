@@ -10,6 +10,7 @@
 
 /// CreateServerRequestPublicNet : Public Network options
 
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct CreateServerRequestPublicNet {
     /// Attach an IPv4 on the public NIC. If false, no IPv4 address will be attached. Defaults to true.
