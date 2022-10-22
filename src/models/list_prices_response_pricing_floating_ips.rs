@@ -15,15 +15,15 @@ pub struct ListPricesResponsePricingFloatingIps {
     #[serde(rename = "prices")]
     pub prices: Vec<crate::models::PricePerTimeMonthly>,
     #[serde(rename = "type")]
-    pub _type: crate::models::IpType,
+    pub r#type: crate::models::IpType,
 }
 
 impl ListPricesResponsePricingFloatingIps {
     #![allow(clippy::too_many_arguments)]
     pub fn new(
         prices: Vec<crate::models::PricePerTimeMonthly>,
-        _type: crate::models::IpType,
+        r#type: crate::models::IpType,
     ) -> ListPricesResponsePricingFloatingIps {
-        ListPricesResponsePricingFloatingIps { prices, _type }
+        ListPricesResponsePricingFloatingIps { prices, r#type }
     }
 }

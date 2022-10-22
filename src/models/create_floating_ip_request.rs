@@ -27,20 +27,20 @@ pub struct CreateFloatingIpRequest {
     #[serde(rename = "server", skip_serializing_if = "Option::is_none")]
     pub server: Option<i32>,
     #[serde(rename = "type")]
-    pub _type: crate::models::IpType,
+    pub r#type: crate::models::IpType,
 }
 
 impl CreateFloatingIpRequest {
     #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/floating_ips
-    pub fn new(_type: crate::models::IpType) -> CreateFloatingIpRequest {
+    pub fn new(r#type: crate::models::IpType) -> CreateFloatingIpRequest {
         CreateFloatingIpRequest {
             description: None,
             home_location: None,
             labels: None,
             name: None,
             server: None,
-            _type,
+            r#type,
         }
     }
 }

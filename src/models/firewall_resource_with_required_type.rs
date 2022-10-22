@@ -19,32 +19,32 @@ pub struct FirewallResourceWithRequiredType {
     pub server: Option<Box<crate::models::ResourceId>>,
     /// Type of the resource
     #[serde(rename = "type")]
-    pub _type: Type,
+    pub r#type: RHashType,
 }
 
 impl FirewallResourceWithRequiredType {
     #![allow(clippy::too_many_arguments)]
     /// Resource a Firewall should be applied to.
-    pub fn new(_type: Type) -> FirewallResourceWithRequiredType {
+    pub fn new(r#type: RHashType) -> FirewallResourceWithRequiredType {
         FirewallResourceWithRequiredType {
             label_selector: None,
             server: None,
-            _type,
+            r#type,
         }
     }
 }
 
 /// Type of the resource
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum Type {
+pub enum RHashType {
     #[serde(rename = "label_selector")]
     LabelSelector,
     #[serde(rename = "server")]
     Server,
 }
 
-impl Default for Type {
-    fn default() -> Type {
+impl Default for RHashType {
+    fn default() -> RHashType {
         Self::LabelSelector
     }
 }

@@ -21,25 +21,25 @@ pub struct RemoveTargetRequest {
     pub server: Option<Box<crate::models::AddTargetRequestServer>>,
     /// Type of the resource
     #[serde(rename = "type")]
-    pub _type: Type,
+    pub r#type: RHashType,
 }
 
 impl RemoveTargetRequest {
     #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/load_balancers/{id}/actions/remove_target
-    pub fn new(_type: Type) -> RemoveTargetRequest {
+    pub fn new(r#type: RHashType) -> RemoveTargetRequest {
         RemoveTargetRequest {
             ip: None,
             label_selector: None,
             server: None,
-            _type,
+            r#type,
         }
     }
 }
 
 /// Type of the resource
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum Type {
+pub enum RHashType {
     #[serde(rename = "ip")]
     Ip,
     #[serde(rename = "label_selector")]
@@ -48,8 +48,8 @@ pub enum Type {
     Server,
 }
 
-impl Default for Type {
-    fn default() -> Type {
+impl Default for RHashType {
+    fn default() -> RHashType {
         Self::Ip
     }
 }

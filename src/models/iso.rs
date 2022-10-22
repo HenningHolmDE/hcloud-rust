@@ -25,7 +25,7 @@ pub struct Iso {
     pub name: Option<String>,
     /// Type of the ISO
     #[serde(rename = "type")]
-    pub _type: Type,
+    pub r#type: RHashType,
 }
 
 impl Iso {
@@ -35,29 +35,29 @@ impl Iso {
         description: String,
         id: i32,
         name: Option<String>,
-        _type: Type,
+        r#type: RHashType,
     ) -> Iso {
         Iso {
             deprecated,
             description,
             id,
             name,
-            _type,
+            r#type,
         }
     }
 }
 
 /// Type of the ISO
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum Type {
+pub enum RHashType {
     #[serde(rename = "private")]
     Private,
     #[serde(rename = "public")]
     Public,
 }
 
-impl Default for Type {
-    fn default() -> Type {
+impl Default for RHashType {
+    fn default() -> RHashType {
         Self::Private
     }
 }

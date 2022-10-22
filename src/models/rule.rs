@@ -52,14 +52,14 @@ impl Rule {
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum Direction {
     #[serde(rename = "in")]
-    _In,
+    In,
     #[serde(rename = "out")]
     Out,
 }
 
 impl Default for Direction {
     fn default() -> Direction {
-        Self::_In
+        Self::In
     }
 }
 /// Type of traffic to allow

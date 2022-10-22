@@ -43,7 +43,7 @@ pub struct ListPlacementgroupsParams {
     /// Can be used to filter resources by labels. The response will only contain resources matching the label selector.
     pub label_selector: Option<String>,
     /// Can be used multiple times. The response will only contain PlacementGroups matching the type.
-    pub _type: Option<String>,
+    pub r#type: Option<String>,
     /// Specifies the page to fetch. The number of the first page is 1
     pub page: Option<i32>,
     /// Specifies the number of items returned per page. The default value is 25, the maximum value is 50 except otherwise specified in the documentation.
@@ -245,7 +245,7 @@ pub async fn list_placementgroups(
     let sort = params.sort;
     let name = params.name;
     let label_selector = params.label_selector;
-    let _type = params._type;
+    let r#type = params.r#type;
     let page = params.page;
     let per_page = params.per_page;
 
@@ -267,7 +267,7 @@ pub async fn list_placementgroups(
         local_var_req_builder =
             local_var_req_builder.query(&[("label_selector", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_str) = _type {
+    if let Some(ref local_var_str) = r#type {
         local_var_req_builder =
             local_var_req_builder.query(&[("type", &local_var_str.to_string())]);
     }

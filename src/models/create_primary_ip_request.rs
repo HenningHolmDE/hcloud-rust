@@ -31,7 +31,7 @@ pub struct CreatePrimaryIpRequest {
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "type")]
-    pub _type: crate::models::IpType,
+    pub r#type: crate::models::IpType,
 }
 
 impl CreatePrimaryIpRequest {
@@ -40,7 +40,7 @@ impl CreatePrimaryIpRequest {
     pub fn new(
         assignee_type: AssigneeType,
         name: String,
-        _type: crate::models::IpType,
+        r#type: crate::models::IpType,
     ) -> CreatePrimaryIpRequest {
         CreatePrimaryIpRequest {
             assignee_id: None,
@@ -49,7 +49,7 @@ impl CreatePrimaryIpRequest {
             datacenter: None,
             labels: None,
             name,
-            _type,
+            r#type,
         }
     }
 }

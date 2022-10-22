@@ -194,7 +194,7 @@ src/models/list_prices_response_pricing_floating_ip.rs
 src/models/list_prices_response_pricing_floating_ips.rs
 src/models/list_prices_response_pricing_image.rs
 src/models/list_prices_response_pricing_load_balancer_types.rs
-src/models/list_prices_response_pricing_primary_ips.rs
+src/models/list_prices_response_pricing_primary_ips_inner.rs
 src/models/list_prices_response_pricing_server_backup.rs
 src/models/list_prices_response_pricing_server_types.rs
 src/models/list_prices_response_pricing_traffic.rs
@@ -218,6 +218,7 @@ src/models/location.rs
 src/models/meta.rs
 src/models/metrics.rs
 src/models/metrics_time_series.rs
+src/models/metrics_time_series_value.rs
 src/models/mod.rs
 src/models/network.rs
 src/models/pagination.rs

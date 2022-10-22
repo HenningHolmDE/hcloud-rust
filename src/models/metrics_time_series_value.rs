@@ -10,15 +10,11 @@
 
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct MetricsTimeSeries {
-    /// Metrics Timestamps with values
-    #[serde(rename = "values")]
-    pub values: Vec<Vec<crate::models::MetricsTimeSeriesValue>>,
-}
+pub struct MetricsTimeSeriesValue {}
 
-impl MetricsTimeSeries {
+impl MetricsTimeSeriesValue {
     #![allow(clippy::too_many_arguments)]
-    pub fn new(values: Vec<Vec<crate::models::MetricsTimeSeriesValue>>) -> MetricsTimeSeries {
-        MetricsTimeSeries { values }
+    pub fn new() -> MetricsTimeSeriesValue {
+        MetricsTimeSeriesValue {}
     }
 }

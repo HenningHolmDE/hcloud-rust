@@ -19,7 +19,7 @@ pub struct FirewallResource {
     pub server: Option<Box<crate::models::ResourceId>>,
     /// Type of the resource
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
-    pub _type: Option<Type>,
+    pub r#type: Option<RHashType>,
 }
 
 impl FirewallResource {
@@ -29,22 +29,22 @@ impl FirewallResource {
         FirewallResource {
             label_selector: None,
             server: None,
-            _type: None,
+            r#type: None,
         }
     }
 }
 
 /// Type of the resource
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum Type {
+pub enum RHashType {
     #[serde(rename = "label_selector")]
     LabelSelector,
     #[serde(rename = "server")]
     Server,
 }
 
-impl Default for Type {
-    fn default() -> Type {
+impl Default for RHashType {
+    fn default() -> RHashType {
         Self::LabelSelector
     }
 }

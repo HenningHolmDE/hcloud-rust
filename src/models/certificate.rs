@@ -44,7 +44,7 @@ pub struct Certificate {
     pub status: Option<Box<crate::models::CertificateStatus>>,
     /// Type of the Certificate
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
-    pub _type: Option<Type>,
+    pub r#type: Option<RHashType>,
     /// Resources currently using the Certificate
     #[serde(rename = "used_by")]
     pub used_by: Vec<crate::models::Resource>,
@@ -76,7 +76,7 @@ impl Certificate {
             not_valid_after,
             not_valid_before,
             status: None,
-            _type: None,
+            r#type: None,
             used_by,
         }
     }
@@ -84,15 +84,15 @@ impl Certificate {
 
 /// Type of the Certificate
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum Type {
+pub enum RHashType {
     #[serde(rename = "managed")]
     Managed,
     #[serde(rename = "uploaded")]
     Uploaded,
 }
 
-impl Default for Type {
-    fn default() -> Type {
+impl Default for RHashType {
+    fn default() -> RHashType {
         Self::Managed
     }
 }

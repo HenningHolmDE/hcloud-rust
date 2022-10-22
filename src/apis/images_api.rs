@@ -65,7 +65,7 @@ pub struct ListImagesParams {
     /// Can be used multiple times.
     pub sort: Option<String>,
     /// Can be used multiple times.
-    pub _type: Option<String>,
+    pub r#type: Option<String>,
     /// Can be used multiple times. The response will only contain Images matching the status.
     pub status: Option<String>,
     /// Can be used multiple times. Server ID linked to the Image. Only available for Images of type `backup`
@@ -403,7 +403,7 @@ pub async fn list_images(
 
     // unbox the parameters
     let sort = params.sort;
-    let _type = params._type;
+    let r#type = params.r#type;
     let status = params.status;
     let bound_to = params.bound_to;
     let include_deprecated = params.include_deprecated;
@@ -422,7 +422,7 @@ pub async fn list_images(
         local_var_req_builder =
             local_var_req_builder.query(&[("sort", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_str) = _type {
+    if let Some(ref local_var_str) = r#type {
         local_var_req_builder =
             local_var_req_builder.query(&[("type", &local_var_str.to_string())]);
     }

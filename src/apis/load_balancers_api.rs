@@ -140,7 +140,7 @@ pub struct GetMetricsForLoadbalancerParams {
     /// ID of the Load Balancer
     pub id: i32,
     /// Type of metrics to get
-    pub _type: String,
+    pub r#type: String,
     /// Start of period to get Metrics for (in ISO-8601 format)
     pub start: String,
     /// End of period to get Metrics for (in ISO-8601 format)
@@ -1118,7 +1118,7 @@ pub async fn get_metrics_for_loadbalancer(
 
     // unbox the parameters
     let id = params.id;
-    let _type = params._type;
+    let r#type = params.r#type;
     let start = params.start;
     let end = params.end;
     let step = params.step;
@@ -1133,7 +1133,7 @@ pub async fn get_metrics_for_loadbalancer(
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    local_var_req_builder = local_var_req_builder.query(&[("type", &_type.to_string())]);
+    local_var_req_builder = local_var_req_builder.query(&[("type", &r#type.to_string())]);
     local_var_req_builder = local_var_req_builder.query(&[("start", &start.to_string())]);
     local_var_req_builder = local_var_req_builder.query(&[("end", &end.to_string())]);
     if let Some(ref local_var_str) = step {

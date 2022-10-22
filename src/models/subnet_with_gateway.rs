@@ -22,24 +22,24 @@ pub struct SubnetWithGateway {
     pub network_zone: String,
     /// Type of Subnetwork
     #[serde(rename = "type")]
-    pub _type: Type,
+    pub r#type: RHashType,
 }
 
 impl SubnetWithGateway {
     #![allow(clippy::too_many_arguments)]
-    pub fn new(gateway: String, network_zone: String, _type: Type) -> SubnetWithGateway {
+    pub fn new(gateway: String, network_zone: String, r#type: RHashType) -> SubnetWithGateway {
         SubnetWithGateway {
             gateway,
             ip_range: None,
             network_zone,
-            _type,
+            r#type,
         }
     }
 }
 
 /// Type of Subnetwork
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum Type {
+pub enum RHashType {
     #[serde(rename = "cloud")]
     Cloud,
     #[serde(rename = "server")]
@@ -48,8 +48,8 @@ pub enum Type {
     Vswitch,
 }
 
-impl Default for Type {
-    fn default() -> Type {
+impl Default for RHashType {
+    fn default() -> RHashType {
         Self::Cloud
     }
 }

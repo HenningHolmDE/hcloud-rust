@@ -46,7 +46,7 @@ pub struct PrimaryIp {
     #[serde(rename = "protection")]
     pub protection: Box<crate::models::Protection>,
     #[serde(rename = "type")]
-    pub _type: crate::models::IpType,
+    pub r#type: crate::models::IpType,
 }
 
 impl PrimaryIp {
@@ -64,7 +64,7 @@ impl PrimaryIp {
         labels: ::std::collections::HashMap<String, String>,
         name: String,
         protection: crate::models::Protection,
-        _type: crate::models::IpType,
+        r#type: crate::models::IpType,
     ) -> PrimaryIp {
         PrimaryIp {
             assignee_id,
@@ -79,7 +79,7 @@ impl PrimaryIp {
             labels,
             name,
             protection: Box::new(protection),
-            _type,
+            r#type,
         }
     }
 }

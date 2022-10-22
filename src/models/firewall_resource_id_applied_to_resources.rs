@@ -15,7 +15,7 @@ pub struct FirewallResourceIdAppliedToResources {
     pub server: Option<Box<crate::models::ResourceId>>,
     /// Type of resource referenced
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
-    pub _type: Option<Type>,
+    pub r#type: Option<RHashType>,
 }
 
 impl FirewallResourceIdAppliedToResources {
@@ -23,20 +23,20 @@ impl FirewallResourceIdAppliedToResources {
     pub fn new() -> FirewallResourceIdAppliedToResources {
         FirewallResourceIdAppliedToResources {
             server: None,
-            _type: None,
+            r#type: None,
         }
     }
 }
 
 /// Type of resource referenced
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum Type {
+pub enum RHashType {
     #[serde(rename = "server")]
     Server,
 }
 
-impl Default for Type {
-    fn default() -> Type {
+impl Default for RHashType {
+    fn default() -> RHashType {
         Self::Server
     }
 }

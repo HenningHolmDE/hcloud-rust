@@ -10,20 +10,20 @@
 
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct ListPricesResponsePricingPrimaryIps {
+pub struct ListPricesResponsePricingPrimaryIpsInner {
     /// Primary IP type costs per Location
     #[serde(rename = "prices")]
     pub prices: Vec<crate::models::PricePerTime>,
     #[serde(rename = "type")]
-    pub _type: crate::models::IpType,
+    pub r#type: crate::models::IpType,
 }
 
-impl ListPricesResponsePricingPrimaryIps {
+impl ListPricesResponsePricingPrimaryIpsInner {
     #![allow(clippy::too_many_arguments)]
     pub fn new(
         prices: Vec<crate::models::PricePerTime>,
-        _type: crate::models::IpType,
-    ) -> ListPricesResponsePricingPrimaryIps {
-        ListPricesResponsePricingPrimaryIps { prices, _type }
+        r#type: crate::models::IpType,
+    ) -> ListPricesResponsePricingPrimaryIpsInner {
+        ListPricesResponsePricingPrimaryIpsInner { prices, r#type }
     }
 }

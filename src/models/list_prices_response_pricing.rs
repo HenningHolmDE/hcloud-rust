@@ -26,7 +26,7 @@ pub struct ListPricesResponsePricing {
     pub load_balancer_types: Vec<crate::models::ListPricesResponsePricingLoadBalancerTypes>,
     /// Costs of Primary IPs types per Location
     #[serde(rename = "primary_ips")]
-    pub primary_ips: Vec<crate::models::ListPricesResponsePricingPrimaryIps>,
+    pub primary_ips: Vec<crate::models::ListPricesResponsePricingPrimaryIpsInner>,
     #[serde(rename = "server_backup")]
     pub server_backup: Box<crate::models::ListPricesResponsePricingServerBackup>,
     /// Costs of Server types per Location and type
@@ -49,7 +49,7 @@ impl ListPricesResponsePricing {
         floating_ips: Vec<crate::models::ListPricesResponsePricingFloatingIps>,
         image: crate::models::ListPricesResponsePricingImage,
         load_balancer_types: Vec<crate::models::ListPricesResponsePricingLoadBalancerTypes>,
-        primary_ips: Vec<crate::models::ListPricesResponsePricingPrimaryIps>,
+        primary_ips: Vec<crate::models::ListPricesResponsePricingPrimaryIpsInner>,
         server_backup: crate::models::ListPricesResponsePricingServerBackup,
         server_types: Vec<crate::models::ListPricesResponsePricingServerTypes>,
         traffic: crate::models::ListPricesResponsePricingTraffic,

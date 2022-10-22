@@ -16,7 +16,7 @@ pub struct SelectedTarget {
     #[serde(rename = "server", skip_serializing_if = "Option::is_none")]
     pub server: Option<Box<crate::models::ResourceId>>,
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
-    pub _type: Option<String>,
+    pub r#type: Option<String>,
     #[serde(rename = "use_private_ip", skip_serializing_if = "Option::is_none")]
     pub use_private_ip: Option<bool>,
 }
@@ -27,7 +27,7 @@ impl SelectedTarget {
         SelectedTarget {
             health_status: None,
             server: None,
-            _type: None,
+            r#type: None,
             use_private_ip: None,
         }
     }

@@ -43,7 +43,7 @@ pub struct FloatingIp {
     #[serde(rename = "server")]
     pub server: Option<i32>,
     #[serde(rename = "type")]
-    pub _type: crate::models::IpType,
+    pub r#type: crate::models::IpType,
 }
 
 impl FloatingIp {
@@ -60,7 +60,7 @@ impl FloatingIp {
         name: String,
         protection: crate::models::Protection,
         server: Option<i32>,
-        _type: crate::models::IpType,
+        r#type: crate::models::IpType,
     ) -> FloatingIp {
         FloatingIp {
             blocked,
@@ -74,7 +74,7 @@ impl FloatingIp {
             name,
             protection: Box::new(protection),
             server,
-            _type,
+            r#type,
         }
     }
 }

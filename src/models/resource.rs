@@ -16,12 +16,12 @@ pub struct Resource {
     pub id: i32,
     /// Type of resource referenced
     #[serde(rename = "type")]
-    pub _type: String,
+    pub r#type: String,
 }
 
 impl Resource {
     #![allow(clippy::too_many_arguments)]
-    pub fn new(id: i32, _type: String) -> Resource {
-        Resource { id, _type }
+    pub fn new(id: i32, r#type: String) -> Resource {
+        Resource { id, r#type }
     }
 }

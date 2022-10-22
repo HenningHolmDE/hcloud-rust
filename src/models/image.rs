@@ -59,7 +59,7 @@ pub struct Image {
     pub status: Status,
     /// Type of the Image
     #[serde(rename = "type")]
-    pub _type: Type,
+    pub r#type: RHashType,
 }
 
 impl Image {
@@ -80,7 +80,7 @@ impl Image {
         os_version: Option<String>,
         protection: crate::models::Protection,
         status: Status,
-        _type: Type,
+        r#type: RHashType,
     ) -> Image {
         Image {
             bound_to,
@@ -99,7 +99,7 @@ impl Image {
             protection: Box::new(protection),
             rapid_deploy: None,
             status,
-            _type,
+            r#type,
         }
     }
 }
@@ -144,7 +144,7 @@ impl Default for Status {
 }
 /// Type of the Image
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum Type {
+pub enum RHashType {
     #[serde(rename = "app")]
     App,
     #[serde(rename = "backup")]
@@ -157,8 +157,8 @@ pub enum Type {
     Temporary,
 }
 
-impl Default for Type {
-    fn default() -> Type {
+impl Default for RHashType {
+    fn default() -> RHashType {
         Self::App
     }
 }

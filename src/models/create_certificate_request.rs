@@ -30,7 +30,7 @@ pub struct CreateCertificateRequest {
     pub private_key: Option<String>,
     /// Choose between uploading a Certificate in PEM format or requesting a managed *Let's Encrypt* Certificate. If omitted defaults to `uploaded`.
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
-    pub _type: Option<Type>,
+    pub r#type: Option<RHashType>,
 }
 
 impl CreateCertificateRequest {
@@ -43,22 +43,22 @@ impl CreateCertificateRequest {
             labels: None,
             name,
             private_key: None,
-            _type: None,
+            r#type: None,
         }
     }
 }
 
 /// Choose between uploading a Certificate in PEM format or requesting a managed *Let's Encrypt* Certificate. If omitted defaults to `uploaded`.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum Type {
+pub enum RHashType {
     #[serde(rename = "managed")]
     Managed,
     #[serde(rename = "uploaded")]
     Uploaded,
 }
 
-impl Default for Type {
-    fn default() -> Type {
+impl Default for RHashType {
+    fn default() -> RHashType {
         Self::Managed
     }
 }

@@ -18,7 +18,7 @@ pub struct EnableRescueModeForServerRequest {
     pub ssh_keys: Option<Vec<i32>>,
     /// Type of rescue system to boot (default: `linux64`)
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
-    pub _type: Option<Type>,
+    pub r#type: Option<RHashType>,
 }
 
 impl EnableRescueModeForServerRequest {
@@ -27,22 +27,22 @@ impl EnableRescueModeForServerRequest {
     pub fn new() -> EnableRescueModeForServerRequest {
         EnableRescueModeForServerRequest {
             ssh_keys: None,
-            _type: None,
+            r#type: None,
         }
     }
 }
 
 /// Type of rescue system to boot (default: `linux64`)
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum Type {
+pub enum RHashType {
     #[serde(rename = "linux32")]
     Linux32,
     #[serde(rename = "linux64")]
     Linux64,
 }
 
-impl Default for Type {
-    fn default() -> Type {
+impl Default for RHashType {
+    fn default() -> RHashType {
         Self::Linux32
     }
 }

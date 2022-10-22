@@ -27,7 +27,7 @@ pub struct Target {
     pub targets: Option<Vec<crate::models::SelectedTarget>>,
     /// Type of the resource
     #[serde(rename = "type")]
-    pub _type: Type,
+    pub r#type: RHashType,
     /// Use the private network IP instead of the public IP. Default value is false.
     #[serde(rename = "use_private_ip", skip_serializing_if = "Option::is_none")]
     pub use_private_ip: Option<bool>,
@@ -36,14 +36,14 @@ pub struct Target {
 impl Target {
     #![allow(clippy::too_many_arguments)]
     /// A target for a load balancer
-    pub fn new(_type: Type) -> Target {
+    pub fn new(r#type: RHashType) -> Target {
         Target {
             health_status: None,
             ip: None,
             label_selector: None,
             server: None,
             targets: None,
-            _type,
+            r#type,
             use_private_ip: None,
         }
     }
@@ -51,7 +51,7 @@ impl Target {
 
 /// Type of the resource
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum Type {
+pub enum RHashType {
     #[serde(rename = "ip")]
     Ip,
     #[serde(rename = "label_selector")]
@@ -60,8 +60,8 @@ pub enum Type {
     Server,
 }
 
-impl Default for Type {
-    fn default() -> Type {
+impl Default for RHashType {
+    fn default() -> RHashType {
         Self::Ip
     }
 }
