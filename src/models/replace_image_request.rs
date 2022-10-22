@@ -21,7 +21,7 @@ pub struct ReplaceImageRequest {
     pub labels: Option<::std::collections::HashMap<String, String>>,
     /// Destination Image type to convert to
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
-    pub r#type: Option<RHashType>,
+    pub r#type: Option<Type>,
 }
 
 impl ReplaceImageRequest {
@@ -38,13 +38,13 @@ impl ReplaceImageRequest {
 
 /// Destination Image type to convert to
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum RHashType {
+pub enum Type {
     #[serde(rename = "snapshot")]
     Snapshot,
 }
 
-impl Default for RHashType {
-    fn default() -> RHashType {
+impl Default for Type {
+    fn default() -> Type {
         Self::Snapshot
     }
 }

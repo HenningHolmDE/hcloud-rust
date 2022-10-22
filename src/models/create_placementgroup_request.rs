@@ -21,13 +21,13 @@ pub struct CreatePlacementgroupRequest {
     pub name: String,
     /// Define the Placement Group Type.
     #[serde(rename = "type")]
-    pub r#type: RHashType,
+    pub r#type: Type,
 }
 
 impl CreatePlacementgroupRequest {
     #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/placement_groups
-    pub fn new(name: String, r#type: RHashType) -> CreatePlacementgroupRequest {
+    pub fn new(name: String, r#type: Type) -> CreatePlacementgroupRequest {
         CreatePlacementgroupRequest {
             labels: None,
             name,
@@ -38,13 +38,13 @@ impl CreatePlacementgroupRequest {
 
 /// Define the Placement Group Type.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum RHashType {
+pub enum Type {
     #[serde(rename = "spread")]
     Spread,
 }
 
-impl Default for RHashType {
-    fn default() -> RHashType {
+impl Default for Type {
+    fn default() -> Type {
         Self::Spread
     }
 }

@@ -21,7 +21,7 @@ pub struct AddTargetRequest {
     pub server: Option<Box<crate::models::AddTargetRequestServer>>,
     /// Type of the resource
     #[serde(rename = "type")]
-    pub r#type: RHashType,
+    pub r#type: Type,
     /// Use the private network IP instead of the public IP of the Server, requires the Server and Load Balancer to be in the same network. Default value is false.
     #[serde(rename = "use_private_ip", skip_serializing_if = "Option::is_none")]
     pub use_private_ip: Option<bool>,
@@ -30,7 +30,7 @@ pub struct AddTargetRequest {
 impl AddTargetRequest {
     #![allow(clippy::too_many_arguments)]
     /// Request for POST https://api.hetzner.cloud/v1/load_balancers/{id}/actions/add_target
-    pub fn new(r#type: RHashType) -> AddTargetRequest {
+    pub fn new(r#type: Type) -> AddTargetRequest {
         AddTargetRequest {
             ip: None,
             label_selector: None,
@@ -43,7 +43,7 @@ impl AddTargetRequest {
 
 /// Type of the resource
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum RHashType {
+pub enum Type {
     #[serde(rename = "ip")]
     Ip,
     #[serde(rename = "label_selector")]
@@ -52,8 +52,8 @@ pub enum RHashType {
     Server,
 }
 
-impl Default for RHashType {
-    fn default() -> RHashType {
+impl Default for Type {
+    fn default() -> Type {
         Self::Ip
     }
 }

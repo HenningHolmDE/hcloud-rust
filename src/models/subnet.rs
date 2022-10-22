@@ -21,7 +21,7 @@ pub struct Subnet {
     pub network_zone: String,
     /// Type of Subnetwork
     #[serde(rename = "type")]
-    pub r#type: RHashType,
+    pub r#type: Type,
     /// ID of the robot vSwitch. Must be supplied if the subnet is of type vswitch.
     #[serde(rename = "vswitch_id", skip_serializing_if = "Option::is_none")]
     pub vswitch_id: Option<i32>,
@@ -30,7 +30,7 @@ pub struct Subnet {
 impl Subnet {
     #![allow(clippy::too_many_arguments)]
     /// Subnets divide the ip_range from the parent Network object into multiple Subnetworks that you can use for different specific purposes.
-    pub fn new(network_zone: String, r#type: RHashType) -> Subnet {
+    pub fn new(network_zone: String, r#type: Type) -> Subnet {
         Subnet {
             ip_range: None,
             network_zone,
@@ -42,7 +42,7 @@ impl Subnet {
 
 /// Type of Subnetwork
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum RHashType {
+pub enum Type {
     #[serde(rename = "cloud")]
     Cloud,
     #[serde(rename = "server")]
@@ -51,8 +51,8 @@ pub enum RHashType {
     Vswitch,
 }
 
-impl Default for RHashType {
-    fn default() -> RHashType {
+impl Default for Type {
+    fn default() -> Type {
         Self::Cloud
     }
 }

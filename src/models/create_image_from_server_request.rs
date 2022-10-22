@@ -21,7 +21,7 @@ pub struct CreateImageFromServerRequest {
     pub labels: Option<::std::collections::HashMap<String, String>>,
     /// Type of Image to create (default: `snapshot`)
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
-    pub r#type: Option<RHashType>,
+    pub r#type: Option<Type>,
 }
 
 impl CreateImageFromServerRequest {
@@ -38,15 +38,15 @@ impl CreateImageFromServerRequest {
 
 /// Type of Image to create (default: `snapshot`)
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum RHashType {
+pub enum Type {
     #[serde(rename = "backup")]
     Backup,
     #[serde(rename = "snapshot")]
     Snapshot,
 }
 
-impl Default for RHashType {
-    fn default() -> RHashType {
+impl Default for Type {
+    fn default() -> Type {
         Self::Backup
     }
 }

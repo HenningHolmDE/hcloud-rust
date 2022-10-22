@@ -28,7 +28,7 @@ pub struct PlacementGroup {
     pub servers: Vec<i32>,
     /// Type of the Placement Group
     #[serde(rename = "type")]
-    pub r#type: RHashType,
+    pub r#type: Type,
 }
 
 impl PlacementGroup {
@@ -39,7 +39,7 @@ impl PlacementGroup {
         labels: ::std::collections::HashMap<String, String>,
         name: String,
         servers: Vec<i32>,
-        r#type: RHashType,
+        r#type: Type,
     ) -> PlacementGroup {
         PlacementGroup {
             created,
@@ -54,13 +54,13 @@ impl PlacementGroup {
 
 /// Type of the Placement Group
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum RHashType {
+pub enum Type {
     #[serde(rename = "spread")]
     Spread,
 }
 
-impl Default for RHashType {
-    fn default() -> RHashType {
+impl Default for Type {
+    fn default() -> Type {
         Self::Spread
     }
 }
