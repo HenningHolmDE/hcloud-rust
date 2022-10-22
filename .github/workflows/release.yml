@@ -34,7 +34,6 @@ jobs:
           tag_name: ${{ github.ref }}
           release_name: hcloud-rust v${{ steps.get_tag_version.outputs.version }}
           draft: true
-          prerelease: ${{ startsWith(steps.get_tag_version.outputs.version, '0.') }}
 
       - name: Publish crate to crates.io
         uses: actions-rs/cargo@v1
