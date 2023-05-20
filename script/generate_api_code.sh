@@ -40,7 +40,12 @@ sed -i".bak" "s/RHash//g" src/models/*.rs
 
 # Remove *Optional and *Nullable models, as they result from JSON spec limitations
 # (nullable being part of object) and are not necessary in Rust.
-for names in action,Action image,Image iso,Iso placement_group,PlacementGroup; do
+for names in \
+action,Action \
+architecture,Architecture \
+image,Image \
+iso,Iso \
+placement_group,PlacementGroup; do
     IFS=","
     set -- $names
     if [ -e src/models/$1_optional.rs ]; then

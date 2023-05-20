@@ -26,11 +26,12 @@ src/models/add_server_to_placement_group_response.rs
 src/models/add_service_response.rs
 src/models/add_subnet_to_network_response.rs
 src/models/add_target_request.rs
-src/models/add_target_request_ip.rs
 src/models/add_target_request_server.rs
 src/models/add_target_response.rs
 src/models/apply_to_resources_request.rs
 src/models/apply_to_resources_response.rs
+src/models/architecture.rs
+src/models/architecture_optional.rs
 src/models/assign_floating_ip_to_server_request.rs
 src/models/assign_floating_ip_to_server_response.rs
 src/models/assign_primary_ip_to_resource_request.rs
@@ -213,6 +214,7 @@ src/models/load_balancer_public_net_ipv6.rs
 src/models/load_balancer_service.rs
 src/models/load_balancer_service_health_check.rs
 src/models/load_balancer_service_health_check_http.rs
+src/models/load_balancer_target_ip.rs
 src/models/load_balancer_type.rs
 src/models/location.rs
 src/models/meta.rs
@@ -277,6 +279,7 @@ src/models/server_protection.rs
 src/models/server_public_net.rs
 src/models/server_public_net_firewall.rs
 src/models/server_type.rs
+src/models/server_type_no_architecture.rs
 src/models/set_rules_request.rs
 src/models/set_rules_response.rs
 src/models/shutdown_server_response.rs
