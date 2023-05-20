@@ -14,7 +14,7 @@ const NUMBER_OF_SERVERS: u32 = 2;
 
 // struct to track some information about our servers
 struct ServerInfo {
-    id: i32,
+    id: i64,
     name: String,
     ipv4: String,
     ipv6: String,
