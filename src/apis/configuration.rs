@@ -38,7 +38,7 @@ impl Default for Configuration {
     fn default() -> Self {
         Configuration {
             base_path: "https://api.hetzner.cloud/v1".to_owned(),
-            user_agent: Some("hcloud-rust/0.13.0".to_owned()),
+            user_agent: Some("hcloud-rust/0.14.0".to_owned()),
             client: reqwest::Client::new(),
             basic_auth: None,
             oauth_access_token: None,
