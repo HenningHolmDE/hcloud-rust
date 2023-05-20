@@ -12,7 +12,7 @@
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct PrimaryIp {
     /// ID of the resource the Primary IP is assigned to, null if it is not assigned at all
-    #[serde(rename = "assignee_id")]
+    #[serde(rename = "assignee_id", deserialize_with = "Option::deserialize")]
     pub assignee_id: Option<i32>,
     /// Resource type the Primary IP can be assigned to
     #[serde(rename = "assignee_type")]

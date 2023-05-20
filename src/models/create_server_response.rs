@@ -18,7 +18,7 @@ pub struct CreateServerResponse {
     #[serde(rename = "next_actions")]
     pub next_actions: Vec<crate::models::Action>,
     /// Root password when no SSH keys have been specified
-    #[serde(rename = "root_password")]
+    #[serde(rename = "root_password", deserialize_with = "Option::deserialize")]
     pub root_password: Option<String>,
     #[serde(rename = "server")]
     pub server: Box<crate::models::Server>,

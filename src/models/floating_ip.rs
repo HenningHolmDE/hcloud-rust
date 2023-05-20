@@ -18,7 +18,7 @@ pub struct FloatingIp {
     #[serde(rename = "created")]
     pub created: String,
     /// Description of the Resource
-    #[serde(rename = "description")]
+    #[serde(rename = "description", deserialize_with = "Option::deserialize")]
     pub description: Option<String>,
     /// Array of reverse DNS entries
     #[serde(rename = "dns_ptr")]
@@ -40,7 +40,7 @@ pub struct FloatingIp {
     #[serde(rename = "protection")]
     pub protection: Box<crate::models::Protection>,
     /// ID of the Server the Floating IP is assigned to, null if it is not assigned at all
-    #[serde(rename = "server")]
+    #[serde(rename = "server", deserialize_with = "Option::deserialize")]
     pub server: Option<i32>,
     #[serde(rename = "type")]
     pub r#type: crate::models::IpType,

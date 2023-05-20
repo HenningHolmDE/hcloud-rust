@@ -14,7 +14,7 @@
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct LoadBalancerServiceHealthCheckHttp {
     /// Host header to send in the HTTP request. May not contain spaces, percent or backslash symbols. Can be null, in that case no host header is sent.
-    #[serde(rename = "domain")]
+    #[serde(rename = "domain", deserialize_with = "Option::deserialize")]
     pub domain: Option<String>,
     /// HTTP path to use for health checks. May not contain literal spaces, use percent-encoding instead.
     #[serde(rename = "path")]

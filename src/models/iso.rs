@@ -12,7 +12,7 @@
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Iso {
     /// ISO 8601 timestamp of deprecation, null if ISO is still available. After the deprecation time it will no longer be possible to attach the ISO to Servers.
-    #[serde(rename = "deprecated")]
+    #[serde(rename = "deprecated", deserialize_with = "Option::deserialize")]
     pub deprecated: Option<String>,
     /// Description of the ISO
     #[serde(rename = "description")]
@@ -21,7 +21,7 @@ pub struct Iso {
     #[serde(rename = "id")]
     pub id: i32,
     /// Unique identifier of the ISO. Only set for public ISOs
-    #[serde(rename = "name")]
+    #[serde(rename = "name", deserialize_with = "Option::deserialize")]
     pub name: Option<String>,
     /// Type of the ISO
     #[serde(rename = "type")]

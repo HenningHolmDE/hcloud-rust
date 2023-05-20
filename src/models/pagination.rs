@@ -14,10 +14,10 @@
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Pagination {
     /// ID of the last page available. Can be null if the current page is the last one. | The last page number
-    #[serde(rename = "last_page")]
+    #[serde(rename = "last_page", deserialize_with = "Option::deserialize")]
     pub last_page: Option<i32>,
     /// ID of the next page. Can be null if the current page is the last one. | The next page number
-    #[serde(rename = "next_page")]
+    #[serde(rename = "next_page", deserialize_with = "Option::deserialize")]
     pub next_page: Option<i32>,
     /// Current page number | The current page number
     #[serde(rename = "page")]
@@ -26,10 +26,10 @@ pub struct Pagination {
     #[serde(rename = "per_page")]
     pub per_page: i32,
     /// ID of the previous page. Can be null if the current page is the first one. | The previous page number
-    #[serde(rename = "previous_page")]
+    #[serde(rename = "previous_page", deserialize_with = "Option::deserialize")]
     pub previous_page: Option<i32>,
     /// The total number of entries that exist in the database for this query. Nullable if unknown. | The total number of entries
-    #[serde(rename = "total_entries")]
+    #[serde(rename = "total_entries", deserialize_with = "Option::deserialize")]
     pub total_entries: Option<i32>,
 }
 

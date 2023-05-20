@@ -14,7 +14,7 @@
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ChangeReverseDnsEntryForThisLoadBalancerRequest {
     /// Hostname to set as a reverse DNS PTR entry
-    #[serde(rename = "dns_ptr")]
+    #[serde(rename = "dns_ptr", deserialize_with = "Option::deserialize")]
     pub dns_ptr: Option<String>,
     /// Public IP address for which the reverse DNS entry should be set
     #[serde(rename = "ip")]

@@ -20,7 +20,7 @@ pub struct ServerType {
     #[serde(rename = "cpu_type")]
     pub cpu_type: CpuType,
     /// True if Server type is deprecated
-    #[serde(rename = "deprecated")]
+    #[serde(rename = "deprecated", deserialize_with = "Option::deserialize")]
     pub deprecated: Option<bool>,
     /// Description of the Server type
     #[serde(rename = "description")]

@@ -16,8 +16,13 @@ pub struct RebuildServerFromImageResponse {
     #[serde(rename = "action", skip_serializing_if = "Option::is_none")]
     pub action: Option<Box<crate::models::Action>>,
     /// New root password when not using SSH keys
-    #[serde(rename = "root_password", skip_serializing_if = "Option::is_none")]
-    pub root_password: Option<String>,
+    #[serde(
+        rename = "root_password",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub root_password: Option<Option<String>>,
 }
 
 impl RebuildServerFromImageResponse {

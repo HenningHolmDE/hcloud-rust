@@ -16,10 +16,10 @@ pub struct Action {
     /// Command executed in the Action
     #[serde(rename = "command")]
     pub command: String,
-    #[serde(rename = "error")]
+    #[serde(rename = "error", deserialize_with = "Option::deserialize")]
     pub error: Option<Box<crate::models::Error>>,
     /// Point in time when the Action was finished (in ISO-8601 format). Only set if the Action is finished otherwise null.
-    #[serde(rename = "finished")]
+    #[serde(rename = "finished", deserialize_with = "Option::deserialize")]
     pub finished: Option<String>,
     /// ID of the Resource
     #[serde(rename = "id")]

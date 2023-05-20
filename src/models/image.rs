@@ -12,18 +12,18 @@
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Image {
     /// ID of Server the Image is bound to. Only set for Images of type `backup`.
-    #[serde(rename = "bound_to")]
+    #[serde(rename = "bound_to", deserialize_with = "Option::deserialize")]
     pub bound_to: Option<i32>,
     /// Point in time when the Resource was created (in ISO-8601 format)
     #[serde(rename = "created")]
     pub created: String,
-    #[serde(rename = "created_from")]
+    #[serde(rename = "created_from", deserialize_with = "Option::deserialize")]
     pub created_from: Option<Box<crate::models::CreatedFrom>>,
     /// Point in time where the Image was deleted (in ISO-8601 format)
-    #[serde(rename = "deleted")]
+    #[serde(rename = "deleted", deserialize_with = "Option::deserialize")]
     pub deleted: Option<String>,
     /// Point in time when the Image is considered to be deprecated (in ISO-8601 format)
-    #[serde(rename = "deprecated")]
+    #[serde(rename = "deprecated", deserialize_with = "Option::deserialize")]
     pub deprecated: Option<String>,
     /// Description of the Image
     #[serde(rename = "description")]
@@ -35,19 +35,19 @@ pub struct Image {
     #[serde(rename = "id")]
     pub id: i32,
     /// Size of the Image file in our storage in GB. For snapshot Images this is the value relevant for calculating costs for the Image.
-    #[serde(rename = "image_size")]
+    #[serde(rename = "image_size", deserialize_with = "Option::deserialize")]
     pub image_size: Option<f32>,
     /// User-defined labels (key-value pairs)
     #[serde(rename = "labels")]
     pub labels: ::std::collections::HashMap<String, String>,
     /// Unique identifier of the Image. This value is only set for system Images.
-    #[serde(rename = "name")]
+    #[serde(rename = "name", deserialize_with = "Option::deserialize")]
     pub name: Option<String>,
     /// Flavor of operating system contained in the Image
     #[serde(rename = "os_flavor")]
     pub os_flavor: OsFlavor,
     /// Operating system version
-    #[serde(rename = "os_version")]
+    #[serde(rename = "os_version", deserialize_with = "Option::deserialize")]
     pub os_version: Option<String>,
     #[serde(rename = "protection")]
     pub protection: Box<crate::models::Protection>,

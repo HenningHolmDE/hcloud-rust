@@ -14,11 +14,21 @@
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct LoadBalancerPublicNetIpv4 {
     /// Reverse DNS PTR entry for the IPv4 address of this Load Balancer
-    #[serde(rename = "dns_ptr", skip_serializing_if = "Option::is_none")]
-    pub dns_ptr: Option<String>,
+    #[serde(
+        rename = "dns_ptr",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub dns_ptr: Option<Option<String>>,
     /// IP address (v4) of this Load Balancer
-    #[serde(rename = "ip", skip_serializing_if = "Option::is_none")]
-    pub ip: Option<String>,
+    #[serde(
+        rename = "ip",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub ip: Option<Option<String>>,
 }
 
 impl LoadBalancerPublicNetIpv4 {

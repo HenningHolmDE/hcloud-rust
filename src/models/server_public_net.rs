@@ -19,9 +19,9 @@ pub struct ServerPublicNet {
     /// IDs of Floating IPs assigned to this Server
     #[serde(rename = "floating_ips")]
     pub floating_ips: Vec<i32>,
-    #[serde(rename = "ipv4")]
+    #[serde(rename = "ipv4", deserialize_with = "Option::deserialize")]
     pub ipv4: Option<Box<crate::models::Ipv4>>,
-    #[serde(rename = "ipv6")]
+    #[serde(rename = "ipv6", deserialize_with = "Option::deserialize")]
     pub ipv6: Option<Box<crate::models::Ipv6>>,
 }
 

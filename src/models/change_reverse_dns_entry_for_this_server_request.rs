@@ -14,7 +14,7 @@
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ChangeReverseDnsEntryForThisServerRequest {
     /// Hostname to set as a reverse DNS PTR entry, reset to original value if `null`
-    #[serde(rename = "dns_ptr")]
+    #[serde(rename = "dns_ptr", deserialize_with = "Option::deserialize")]
     pub dns_ptr: Option<String>,
     /// Primary IP address for which the reverse DNS entry should be set
     #[serde(rename = "ip")]

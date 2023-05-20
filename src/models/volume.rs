@@ -17,7 +17,7 @@ pub struct Volume {
     #[serde(rename = "created")]
     pub created: String,
     /// Filesystem of the Volume if formatted on creation, null if not formatted on creation
-    #[serde(rename = "format")]
+    #[serde(rename = "format", deserialize_with = "Option::deserialize")]
     pub format: Option<String>,
     /// ID of the Resource
     #[serde(rename = "id")]
@@ -36,7 +36,7 @@ pub struct Volume {
     #[serde(rename = "protection")]
     pub protection: Box<crate::models::Protection>,
     /// ID of the Server the Volume is attached to, null if it is not attached at all
-    #[serde(rename = "server")]
+    #[serde(rename = "server", deserialize_with = "Option::deserialize")]
     pub server: Option<i32>,
     /// Size in GB of the Volume
     #[serde(rename = "size")]

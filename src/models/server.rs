@@ -14,7 +14,7 @@
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Server {
     /// Time window (UTC) in which the backup will run, or null if the backups are not enabled
-    #[serde(rename = "backup_window")]
+    #[serde(rename = "backup_window", deserialize_with = "Option::deserialize")]
     pub backup_window: Option<String>,
     /// Point in time when the Resource was created (in ISO-8601 format)
     #[serde(rename = "created")]
@@ -24,15 +24,15 @@ pub struct Server {
     /// ID of the Resource
     #[serde(rename = "id")]
     pub id: i32,
-    #[serde(rename = "image")]
+    #[serde(rename = "image", deserialize_with = "Option::deserialize")]
     pub image: Option<Box<crate::models::Image>>,
     /// Free Traffic for the current billing period in bytes
-    #[serde(rename = "included_traffic")]
+    #[serde(rename = "included_traffic", deserialize_with = "Option::deserialize")]
     pub included_traffic: Option<i64>,
     /// Inbound Traffic for the current billing period in bytes
-    #[serde(rename = "ingoing_traffic")]
+    #[serde(rename = "ingoing_traffic", deserialize_with = "Option::deserialize")]
     pub ingoing_traffic: Option<i64>,
-    #[serde(rename = "iso")]
+    #[serde(rename = "iso", deserialize_with = "Option::deserialize")]
     pub iso: Option<Box<crate::models::Iso>>,
     /// User-defined labels (key-value pairs)
     #[serde(rename = "labels")]
@@ -46,10 +46,15 @@ pub struct Server {
     #[serde(rename = "name")]
     pub name: String,
     /// Outbound Traffic for the current billing period in bytes
-    #[serde(rename = "outgoing_traffic")]
+    #[serde(rename = "outgoing_traffic", deserialize_with = "Option::deserialize")]
     pub outgoing_traffic: Option<i64>,
-    #[serde(rename = "placement_group", skip_serializing_if = "Option::is_none")]
-    pub placement_group: Option<Box<crate::models::PlacementGroup>>,
+    #[serde(
+        rename = "placement_group",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub placement_group: Option<Option<Box<crate::models::PlacementGroup>>>,
     /// Size of the primary Disk
     #[serde(rename = "primary_disk_size")]
     pub primary_disk_size: i32,

@@ -13,8 +13,13 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct CertificateStatus {
-    #[serde(rename = "error", skip_serializing_if = "Option::is_none")]
-    pub error: Option<Box<crate::models::CertificateStatusError>>,
+    #[serde(
+        rename = "error",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub error: Option<Option<Box<crate::models::CertificateStatusError>>>,
     /// Status of the issuance process of the Certificate
     #[serde(rename = "issuance", skip_serializing_if = "Option::is_none")]
     pub issuance: Option<Issuance>,

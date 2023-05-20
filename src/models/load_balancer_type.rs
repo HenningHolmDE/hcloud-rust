@@ -12,7 +12,7 @@
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct LoadBalancerType {
     /// Point in time when the Load Balancer type is deprecated (in ISO-8601 format)
-    #[serde(rename = "deprecated")]
+    #[serde(rename = "deprecated", deserialize_with = "Option::deserialize")]
     pub deprecated: Option<String>,
     /// Description of the Load Balancer type
     #[serde(rename = "description")]

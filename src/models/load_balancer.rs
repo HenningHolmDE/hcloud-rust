@@ -23,7 +23,7 @@ pub struct LoadBalancer {
     #[serde(rename = "included_traffic")]
     pub included_traffic: i64,
     /// Inbound Traffic for the current billing period in bytes
-    #[serde(rename = "ingoing_traffic")]
+    #[serde(rename = "ingoing_traffic", deserialize_with = "Option::deserialize")]
     pub ingoing_traffic: Option<i64>,
     /// User-defined labels (key-value pairs)
     #[serde(rename = "labels")]
@@ -36,7 +36,7 @@ pub struct LoadBalancer {
     #[serde(rename = "name")]
     pub name: String,
     /// Outbound Traffic for the current billing period in bytes
-    #[serde(rename = "outgoing_traffic")]
+    #[serde(rename = "outgoing_traffic", deserialize_with = "Option::deserialize")]
     pub outgoing_traffic: Option<i64>,
     /// Private networks information
     #[serde(rename = "private_net")]

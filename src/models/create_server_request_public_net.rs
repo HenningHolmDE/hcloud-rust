@@ -20,11 +20,21 @@ pub struct CreateServerRequestPublicNet {
     #[serde(rename = "enable_ipv6", skip_serializing_if = "Option::is_none")]
     pub enable_ipv6: Option<bool>,
     /// ID of the ipv4 Primary IP to use. If omitted and enable_ipv4 is true, a new ipv4 Primary IP will automatically be created.
-    #[serde(rename = "ipv4", skip_serializing_if = "Option::is_none")]
-    pub ipv4: Option<i32>,
+    #[serde(
+        rename = "ipv4",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub ipv4: Option<Option<i32>>,
     /// ID of the ipv6 Primary IP to use. If omitted and enable_ipv6 is true, a new ipv6 Primary IP will automatically be created.
-    #[serde(rename = "ipv6", skip_serializing_if = "Option::is_none")]
-    pub ipv6: Option<i32>,
+    #[serde(
+        rename = "ipv6",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub ipv6: Option<Option<i32>>,
 }
 
 impl CreateServerRequestPublicNet {
