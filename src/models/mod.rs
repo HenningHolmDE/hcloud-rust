@@ -180,6 +180,8 @@ pub mod delete_subnet_from_network_request;
 pub use self::delete_subnet_from_network_request::DeleteSubnetFromNetworkRequest;
 pub mod delete_subnet_from_network_response;
 pub use self::delete_subnet_from_network_response::DeleteSubnetFromNetworkResponse;
+pub mod deprecation_info;
+pub use self::deprecation_info::DeprecationInfo;
 pub mod detach_iso_from_server_response;
 pub use self::detach_iso_from_server_response::DetachIsoFromServerResponse;
 pub mod detach_load_balancer_from_network_request;

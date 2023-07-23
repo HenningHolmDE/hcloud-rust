@@ -111,6 +111,7 @@ src/models/delete_service_request.rs
 src/models/delete_service_response.rs
 src/models/delete_subnet_from_network_request.rs
 src/models/delete_subnet_from_network_response.rs
+src/models/deprecation_info.rs
 src/models/detach_iso_from_server_response.rs
 src/models/detach_load_balancer_from_network_request.rs
 src/models/detach_load_balancer_from_network_response.rs
