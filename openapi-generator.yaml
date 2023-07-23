@@ -1,4 +1,4 @@
-httpUserAgent: hcloud-rust/0.14.0
+httpUserAgent: hcloud-rust/0.15.0
 library: reqwest
 supportAsync: true
 supportMultipleResponses: false
