@@ -7,7 +7,7 @@ use std::{env, thread, time};
 // server type and location to be used for creating the servers
 const SERVER_TYPE: &str = "cx11";
 const LOCATION: &str = "fsn1";
-const IMAGE: &str = "ubuntu-18.04";
+const IMAGE: &str = "ubuntu-22.04";
 
 // number of servers to create during the example
 const NUMBER_OF_SERVERS: u32 = 2;
