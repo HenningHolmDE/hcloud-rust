@@ -291,5 +291,8 @@ src/models/subnet_with_gateway.rs
 src/models/target.rs
 src/models/unassign_floating_ip_response.rs
 src/models/unassign_primary_ip_from_resource_response.rs
+src/models/update_load_balancer_service.rs
+src/models/update_load_balancer_service_health_check.rs
+src/models/update_load_balancer_service_health_check_http.rs
 src/models/update_service_response.rs
 src/models/volume.rs

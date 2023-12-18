@@ -11,6 +11,6 @@ GENERATOR_URL=https://repo1.maven.org/maven2/org/openapitools/openapi-generator-
 GENERATOR_JAR=${DOWNLOAD_DIR}/openapi-generator-cli-${GENERATOR_VERSION}.jar
 
 # hcloud-openapi version and URL
-HCLOUD_OPENAPI_VERSION=0.18.0
+HCLOUD_OPENAPI_VERSION=0.19.0
 HCLOUD_OPENAPI_URL=https://github.com/MaximilianKoestler/hcloud-openapi/releases/download/v${HCLOUD_OPENAPI_VERSION}/hcloud.json
 HCLOUD_OPENAPI_JSON=${DOWNLOAD_DIR}/hcloud_${HCLOUD_OPENAPI_VERSION}.json
