@@ -13,17 +13,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Get release version from tag
-        id: get_tag_version
-        run: echo ::set-output name=version::${GITHUB_REF#refs/tags/v}
-
-      - name: Get crate version from Cargo.toml
-        id: get_crate_version
-        run: echo ::set-output name=version::$(cargo read-manifest | jq -r .version)
-
       - name: Assert tag version matches crate version
-        run: echo ${{ steps.get_tag_version.outputs.version }} != ${{ steps.get_crate_version.outputs.version }} && exit 1
-        if: ${{ steps.get_tag_version.outputs.version != steps.get_crate_version.outputs.version }}
+        id: release_version
+        run: |
+          set -euo pipefail
+
+          # Get release version from Git tag
+          tag_version=${GITHUB_REF#refs/tags/v}
+
+          # Get crate version from Cargo.toml
+          crate_version=$(cargo read-manifest | jq -r .version)
+            
+          if [ "$tag_version" != "$crate_version" ]; then
+            echo "Error: Release version in Git tag (${tag_version}) does not match crate version in Cargo.toml (${crate_version})."
+            exit 1
+          fi
+          
+          echo "version=$crate_version" > "$GITHUB_OUTPUT"
 
       - name: Create GitHub release
         id: create_release
@@ -32,7 +38,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
-          release_name: hcloud-rust v${{ steps.get_tag_version.outputs.version }}
+          release_name: hcloud-rust v${{ steps.release_version.outputs.version }}
           draft: true
 
       - name: Publish crate to crates.io
