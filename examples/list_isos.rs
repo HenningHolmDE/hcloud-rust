@@ -32,10 +32,7 @@ async fn main() -> Result<(), String> {
         isos.extend(response.isos);
 
         // proceed with next page (if existing)
-        next_page = response
-            .meta
-            .map(|meta| meta.pagination)
-            .and_then(|pagination| pagination.next_page);
+        next_page = response.meta.pagination.next_page
     }
 
     println!("Found {} ISOs. Listing IDs and names:", isos.len());

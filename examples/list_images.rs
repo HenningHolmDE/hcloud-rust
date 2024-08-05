@@ -31,10 +31,7 @@ async fn main() -> Result<(), String> {
         images.extend(response.images);
 
         // proceed with next page (if existing)
-        next_page = response
-            .meta
-            .map(|meta| meta.pagination)
-            .and_then(|pagination| pagination.next_page);
+        next_page = response.meta.pagination.next_page
     }
 
     println!("Found {} images. Listing IDs and names:", images.len());
