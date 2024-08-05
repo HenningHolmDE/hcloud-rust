@@ -65,6 +65,10 @@ async fn main() -> Result<(), String> {
             image: IMAGE.to_string(),
             ssh_keys: Some(ssh_keys.clone()),
             location: Some(LOCATION.to_string()),
+            public_net: Some(Box::new(models::CreateServerRequestPublicNet {
+                enable_ipv4: Some(false),
+                ..Default::default()
+            })),
             ..Default::default()
         };
 
