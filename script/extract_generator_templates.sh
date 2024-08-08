@@ -20,10 +20,13 @@ if [[ ! -f "${GENERATOR_JAR}" ]]; then
     curl -L "${GENERATOR_URL}" -o "${GENERATOR_JAR}"
 fi
 
+# remove output directory first
+rm -rf templates_orig
+
 echo "Running OpenAPI Generator template extraction..."
 "$_JAVA" -jar "${GENERATOR_JAR}" author template \
     -g rust \
-    -o templates
+    -o templates_orig
 
 # restore CRLF line endings on Windows
 if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then

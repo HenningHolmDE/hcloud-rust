@@ -1,0 +1,53 @@
+diff --git a/templates_orig/model.mustache b/templates/model.mustache
+index b36ac2b..cf00bae 100644
+--- a/templates_orig/model.mustache
++++ b/templates/model.mustache
+@@ -64,7 +64,9 @@ pub enum {{{classname}}} {
+ {{!-- for non-enum schemas --}}
+ {{^isEnum}}
+ {{^discriminator}}
+-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
++{{^vars.empty}}
++#[allow(clippy::derive_partial_eq_without_eq)]
++#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+ pub struct {{{classname}}} {
+ {{#vars}}
+     {{#description}}
+@@ -76,17 +78,23 @@ pub struct {{{classname}}} {
+ }
+ 
+ impl {{{classname}}} {
++#![allow(clippy::too_many_arguments)]
+     {{#description}}
+     /// {{{.}}}
+     {{/description}}
+     pub fn new({{#requiredVars}}{{{name}}}: {{#isNullable}}Option<{{/isNullable}}{{#isEnum}}{{#isArray}}Vec<{{/isArray}}{{{enumName}}}{{#isArray}}>{{/isArray}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{#isNullable}}>{{/isNullable}}{{^-last}}, {{/-last}}{{/requiredVars}}) -> {{{classname}}} {
+         {{{classname}}} {
+             {{#vars}}
+-            {{{name}}}{{^required}}{{#isContainer}}{{#isArray}}: None{{/isArray}}{{#isMap}}: None{{/isMap}}{{^isArray}}{{^isMap}}{{#isNullable}}: None{{/isNullable}}{{/isMap}}{{/isArray}}{{/isContainer}}{{^isContainer}}: None{{/isContainer}}{{/required}}{{#required}}{{#isModel}}: {{^isNullable}}Box::new({{{name}}}){{/isNullable}}{{#isNullable}}if let Some(x) = {{{name}}} {Some(Box::new(x))} else {None}{{/isNullable}}{{/isModel}}{{/required}},
++            {{{name}}}{{^required}}{{#isContainer}}{{#isArray}}: None{{/isArray}}{{#isMap}}: None{{/isMap}}{{^isArray}}{{^isMap}}{{#isNullable}}: None{{/isNullable}}{{/isMap}}{{/isArray}}{{/isContainer}}{{^isContainer}}: None{{/isContainer}}{{/required}}{{#required}}{{#isModel}}: {{^isNullable}}Box::new({{{name}}}){{/isNullable}}{{#isNullable}}{{{name}}}.map(Box::new){{/isNullable}}{{/isModel}}{{/required}},
+             {{/vars}}
+         }
+     }
+ }
++{{/vars.empty}}
++{{#vars.empty}}
++{{!-- In case struct would be empty, fall back to using serde_json::Value. --}}
++pub use serde_json::Value as {{{classname}}};
++{{/vars.empty}}
+ {{/discriminator}}
+ {{/isEnum}}
+ 
+diff --git a/templates_orig/reqwest/api.mustache b/templates/reqwest/api.mustache
+index 3e130bb..0b153f1 100644
+--- a/templates_orig/reqwest/api.mustache
++++ b/templates/reqwest/api.mustache
+@@ -11,7 +11,7 @@ use super::{Error, configuration};
+ {{#allParams}}
+ {{#-first}}
+ /// struct for passing parameters to the method [`{{operationId}}`]
+-#[derive(Clone, Debug)]
++#[derive(Clone, Debug, Default)]
+ pub struct {{{operationIdCamelCase}}}Params {
+ {{/-first}}
+     {{#description}}
