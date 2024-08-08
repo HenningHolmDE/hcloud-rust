@@ -5,6 +5,9 @@ on:
   pull_request:
     branches:
       - '**'
+  schedule:
+    # At 03:45 on Friday. (Thanks, crontab.guru)
+    - cron: '45 3 * * 5'
 
 name: Build and test
 
