@@ -12,29 +12,6 @@ The `hcloud` crate can be used for managing the endpoints provided by the Hetzne
 
 The API client code of this crate has been auto-generated from the [Unofficial OpenAPI Description for the Hetzner Cloud API](https://github.com/MaximilianKoestler/hcloud-openapi) using [OpenAPI Generator](https://openapi-generator.tech/).
 
-## Current state of development
-
-- supported API endpoints (complete as of February 2024): `actions`, `certificates`, `datacenters`, `firewalls`, `floating_ips`, `images`, `isos`, `load_balancer_types`, `load_balancers`, `locations`, `networks`, `placement_groups`, `pricing`, `primary_ips`, `server_types`, `servers`, `ssh_keys`, `volumes`
-- asynchronous API functions
-- pagination support
-- documentation and tests are still WIP
-
-## Selecting TLS implementation
-
-The underlying TLS implementation for `reqwest` can be selected using [Cargo features](https://doc.rust-lang.org/stable/cargo/reference/manifest.html#the-features-section):
-- **default-tls** *(enabled by default)*: Provides TLS support to connect over HTTPS.
-- **native-tls**: Enables TLS functionality provided by `native-tls`.
-- **native-tls-vendored**: Enables the `vendored` feature of `native-tls`.
-- **rustls-tls**: Enables TLS functionality provided by `rustls`.
-
-(Refer to [Optional Features](https://docs.rs/reqwest/latest/reqwest/#optional-features) in the `reqwest` documentation.)
-
-Example for using the TLS functionality provided by `rustls`:
-```toml
-[dependencies]
-hcloud = { version = "*", default-features = false, features = ["rustls-tls"] }
-```
-
 ## Example
 
 A very basic example for listing all existing servers:
@@ -57,6 +34,24 @@ let servers = servers_api::list_servers(&configuration, Default::default())
 for server in servers {
    println!("{:?}", server);
 }
+```
+
+For more examples check out the [examples](https://github.com/HenningHolmDE/hcloud-rust/tree/master/examples) folder in the Git repository.
+
+## Selecting TLS implementation
+
+The underlying TLS implementation for `reqwest` can be selected using [Cargo features](https://doc.rust-lang.org/stable/cargo/reference/manifest.html#the-features-section):
+- **default-tls** *(enabled by default)*: Provides TLS support to connect over HTTPS.
+- **native-tls**: Enables TLS functionality provided by `native-tls`.
+- **native-tls-vendored**: Enables the `vendored` feature of `native-tls`.
+- **rustls-tls**: Enables TLS functionality provided by `rustls`.
+
+(Refer to [Optional Features](https://docs.rs/reqwest/latest/reqwest/#optional-features) in the `reqwest` documentation.)
+
+Example for using the TLS functionality provided by `rustls`:
+```toml
+[dependencies]
+hcloud = { version = "*", default-features = false, features = ["rustls-tls"] }
 ```
 
 ## License
