@@ -57,8 +57,8 @@
 //!# }
 //!```
 
-#[macro_use]
-extern crate serde_derive;
+#![allow(unused_imports)]
+#![allow(clippy::too_many_arguments)]
 
 extern crate reqwest;
 extern crate serde;
