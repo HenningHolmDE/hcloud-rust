@@ -30,7 +30,7 @@ jobs:
           components: rustfmt, clippy
 
       - name: Run build
-        run: cargo build
+        run: cargo build --all-targets
 
       - name: Run tests
         run: cargo test
