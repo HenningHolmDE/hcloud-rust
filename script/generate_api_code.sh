@@ -59,12 +59,16 @@ placement_group,PlacementGroup; do
     fi
 done
 
+# add deprecation notice for `GET /actions`` endpoint
+sed -i".bak" "/actions_api/i\#[deprecated = \"According to the [official docs](https://docs.hetzner.cloud/), the \`GET \/actions\` endpoint will be disabled from \`1 October 2023\` onwards. Users should switch to the new resource-specific endpoints ASAP.\"]" src/apis/mod.rs
+
 # The extension parameter (`sed -i EXTENSION`) is required on macOS while it is
 # optional for the GNU version of `sed`. Additionally, while it would be ok to
 # leave the parameter blank for `sed` on macOS to skip backups, an empty
 # extension is not valid for the the GNU version.
 # Thus, backups in .bak files are created in the steps above and deleted here.
-rm src/models/*.bak
+rm -rf src/apis/*.bak
+rm -rf src/models/*.bak
 
 echo "Formatting generated code..."
 cargo fmt
