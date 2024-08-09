@@ -50,7 +50,6 @@ src/models/certificate_status_error.rs
 src/models/change_algorithm_response.rs
 src/models/change_alias_ips_of_network_request.rs
 src/models/change_alias_ips_of_network_response.rs
-src/models/change_floating_ip_protection_request.rs
 src/models/change_floating_ip_protection_response.rs
 src/models/change_image_protection_request.rs
 src/models/change_image_protection_response.rs
@@ -62,14 +61,13 @@ src/models/change_network_protection_request.rs
 src/models/change_network_protection_response.rs
 src/models/change_primary_ip_protection_request.rs
 src/models/change_primary_ip_protection_response.rs
-src/models/change_reverse_dns_entry_for_floating_ip_request.rs
-src/models/change_reverse_dns_entry_for_floating_ip_response.rs
 src/models/change_reverse_dns_entry_for_primary_ip_request.rs
 src/models/change_reverse_dns_entry_for_primary_ip_response.rs
 src/models/change_reverse_dns_entry_for_this_load_balancer_request.rs
 src/models/change_reverse_dns_entry_for_this_load_balancer_response.rs
 src/models/change_reverse_dns_entry_for_this_server_request.rs
 src/models/change_reverse_dns_entry_for_this_server_response.rs
+src/models/change_reverse_dns_records_for_floating_ip_response.rs
 src/models/change_server_protection_request.rs
 src/models/change_server_protection_response.rs
 src/models/change_type_of_load_balancer_request.rs
@@ -131,7 +129,6 @@ src/models/firewall.rs
 src/models/firewall_resource.rs
 src/models/firewall_resource_id.rs
 src/models/firewall_resource_id_applied_to_resources.rs
-src/models/firewall_resource_with_required_type.rs
 src/models/floating_ip.rs
 src/models/get_action_for_certificate_response.rs
 src/models/get_action_for_firewall_response.rs
@@ -199,7 +196,6 @@ src/models/list_prices_response_pricing_load_balancer_types.rs
 src/models/list_prices_response_pricing_primary_ips.rs
 src/models/list_prices_response_pricing_server_backup.rs
 src/models/list_prices_response_pricing_server_types.rs
-src/models/list_prices_response_pricing_traffic.rs
 src/models/list_prices_response_pricing_volume.rs
 src/models/list_primary_ips_response.rs
 src/models/list_server_types_response.rs
@@ -232,6 +228,7 @@ src/models/power_on_server_response.rs
 src/models/price.rs
 src/models/price_per_time.rs
 src/models/price_per_time_monthly.rs
+src/models/price_per_time_without_traffic.rs
 src/models/primary_ip.rs
 src/models/protection.rs
 src/models/rebuild_server_from_image_request.rs
@@ -273,6 +270,7 @@ src/models/resource_id.rs
 src/models/retry_issuance_or_renewal_response.rs
 src/models/route.rs
 src/models/rule.rs
+src/models/rule_response.rs
 src/models/selected_target.rs
 src/models/server.rs
 src/models/server_private_net.rs
@@ -280,7 +278,6 @@ src/models/server_protection.rs
 src/models/server_public_net.rs
 src/models/server_public_net_firewall.rs
 src/models/server_type.rs
-src/models/server_type_no_architecture.rs
 src/models/set_rules_request.rs
 src/models/set_rules_response.rs
 src/models/shutdown_server_response.rs
