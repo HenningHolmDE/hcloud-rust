@@ -60,7 +60,8 @@ placement_group,PlacementGroup; do
 done
 
 # add deprecation notice for `GET /actions`` endpoint
-sed -i".bak" "/actions_api/i\#[deprecated = \"According to the [official docs](https://docs.hetzner.cloud/), the \`GET \/actions\` endpoint will be disabled from \`1 October 2023\` onwards. Users should switch to the new resource-specific endpoints ASAP.\"]" src/apis/mod.rs
+sed -i".bak" "/actions_api/i\\
+#[deprecated = \"According to the [official docs](https://docs.hetzner.cloud/), the \`GET /actions\` endpoint will be disabled from \`1 October 2023\` onwards. Users should switch to the new resource-specific endpoints ASAP.\"]" src/apis/mod.rs
 
 # The extension parameter (`sed -i EXTENSION`) is required on macOS while it is
 # optional for the GNU version of `sed`. Additionally, while it would be ok to
