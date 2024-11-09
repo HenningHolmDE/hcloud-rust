@@ -5,7 +5,7 @@ use rand::{distributions, thread_rng, Rng};
 use std::{env, thread, time};
 
 // server type and location to be used for creating the servers
-const SERVER_TYPE: &str = "cx11";
+const SERVER_TYPE: &str = "cx22";
 const LOCATION: &str = "fsn1";
 const IMAGE: &str = "ubuntu-22.04";
 
