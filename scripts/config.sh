@@ -11,6 +11,19 @@ GENERATOR_URL=https://repo1.maven.org/maven2/org/openapitools/openapi-generator-
 GENERATOR_JAR=${DOWNLOAD_DIR}/openapi-generator-cli-${GENERATOR_VERSION}.jar
 
 # hcloud-openapi version and URL
-HCLOUD_OPENAPI_VERSION=0.22.0
-HCLOUD_OPENAPI_URL=https://github.com/MaximilianKoestler/hcloud-openapi/releases/download/v${HCLOUD_OPENAPI_VERSION}/hcloud.json
-HCLOUD_OPENAPI_JSON=${DOWNLOAD_DIR}/hcloud_${HCLOUD_OPENAPI_VERSION}.json
+HCLOUD_OPENAPI_VERSION=v0.22.0
+
+HCLOUD_OPENAPI_REPO_URL=https://github.com/MaximilianKoestler/hcloud-openapi.git
+# select the download URL based on the version format (release, branch or commit)
+if [[ "${HCLOUD_OPENAPI_VERSION}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+  # assume it's a version tag, download from releases
+  HCLOUD_OPENAPI_URL=https://github.com/MaximilianKoestler/hcloud-openapi/releases/download/${HCLOUD_OPENAPI_VERSION}/hcloud.json
+else
+  # assume it's a branch name or commit hash, download from raw sources
+  HCLOUD_OPENAPI_URL=https://raw.githubusercontent.com/MaximilianKoestler/hcloud-openapi/${HCLOUD_OPENAPI_VERSION}/openapi/hcloud.json
+fi
+
+# only define HCLOUD_OPENAPI_JSON if not already set
+if [[ -z "${HCLOUD_OPENAPI_JSON:-}" ]]; then
+  HCLOUD_OPENAPI_JSON=${DOWNLOAD_DIR}/hcloud_${HCLOUD_OPENAPI_VERSION}.json
+fi
