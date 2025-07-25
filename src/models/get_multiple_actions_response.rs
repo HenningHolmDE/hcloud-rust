@@ -11,20 +11,20 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// ListFirewallsResponse : Response to GET https://api.hetzner.cloud/v1/firewalls
+/// GetMultipleActionsResponse : Response to GET https://api.hetzner.cloud/v1/actions
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct ListFirewallsResponse {
-    #[serde(rename = "firewalls")]
-    pub firewalls: Vec<models::Firewall>,
+pub struct GetMultipleActionsResponse {
+    #[serde(rename = "actions")]
+    pub actions: Vec<models::Action>,
     #[serde(rename = "meta")]
     pub meta: Box<models::Meta>,
 }
 
-impl ListFirewallsResponse {
-    /// Response to GET https://api.hetzner.cloud/v1/firewalls
-    pub fn new(firewalls: Vec<models::Firewall>, meta: models::Meta) -> ListFirewallsResponse {
-        ListFirewallsResponse {
-            firewalls,
+impl GetMultipleActionsResponse {
+    /// Response to GET https://api.hetzner.cloud/v1/actions
+    pub fn new(actions: Vec<models::Action>, meta: models::Meta) -> GetMultipleActionsResponse {
+        GetMultipleActionsResponse {
+            actions,
             meta: Box::new(meta),
         }
     }

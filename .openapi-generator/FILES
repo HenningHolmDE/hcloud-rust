@@ -146,6 +146,7 @@ src/models/get_load_balancer_type_response.rs
 src/models/get_location_response.rs
 src/models/get_metrics_for_loadbalancer_response.rs
 src/models/get_metrics_for_server_response.rs
+src/models/get_multiple_actions_response.rs
 src/models/get_network_response.rs
 src/models/get_placementgroup_response.rs
 src/models/get_primary_ip_response.rs
@@ -181,7 +182,7 @@ src/models/list_load_balancer_types_response.rs
 src/models/list_load_balancers_response.rs
 src/models/list_locations_response.rs
 src/models/list_networks_response.rs
-src/models/list_placementgroups_response.rs
+src/models/list_placement_groups_response.rs
 src/models/list_prices_response.rs
 src/models/list_prices_response_pricing.rs
 src/models/list_prices_response_pricing_floating_ip.rs
