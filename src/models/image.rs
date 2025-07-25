@@ -159,8 +159,6 @@ pub enum Type {
     Snapshot,
     #[serde(rename = "system")]
     System,
-    #[serde(rename = "temporary")]
-    Temporary,
 }
 
 impl Default for Type {
