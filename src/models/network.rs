@@ -22,7 +22,7 @@ pub struct Network {
     /// ID of the [Network](#networks).
     #[serde(rename = "id")]
     pub id: i64,
-    /// IP range of the [Network](#networks). Uses CIDR notation.
+    /// IP range of the [Network](#networks).  Uses CIDR notation.
     #[serde(rename = "ip_range")]
     pub ip_range: String,
     /// User-defined labels (`key/value` pairs) for the Resource. For more information, see \"[Labels](#labels)\".  | User-defined labels (`key/value` pairs) for the Resource.  Note that the set of [Labels](#labels) provided in the request will overwrite the existing one.  For more information, see \"[Labels](#labels)\".

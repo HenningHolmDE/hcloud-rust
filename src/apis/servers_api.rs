@@ -976,7 +976,7 @@ pub async fn create_server(
     }
 }
 
-/// Deletes a Server. This immediately removes the Server from your account, and it is no longer accessible. Any resources attached to the server (like Volumes, Primary IPs, Floating IPs, Firewalls, Placement Groups) are detached while the server is deleted.
+/// Deletes a Server.  This immediately removes the Server from your account, and it is no longer accessible. Any resources attached to the server (like Volumes, Primary IPs, Floating IPs, Firewalls, Placement Groups) are detached while the server is deleted.
 pub async fn delete_server(
     configuration: &configuration::Configuration,
     params: DeleteServerParams,
@@ -1926,7 +1926,7 @@ pub async fn remove_from_placement_group(
     }
 }
 
-/// Updates a Server. You can update a Server’s name and a Server’s labels. Please note that Server names must be unique per Project and valid hostnames as per RFC 1123 (i.e. may only contain letters, digits, periods, and dashes).
+/// Updates a Server. You can update a Server’s name and a Server’s labels.  Please note that Server names must be unique per Project and valid hostnames as per RFC 1123 (i.e. may only contain letters, digits, periods, and dashes).
 pub async fn replace_server(
     configuration: &configuration::Configuration,
     params: ReplaceServerParams,

@@ -35,7 +35,7 @@ pub struct Certificate {
     /// Name of the Resource. Must be unique per Project.
     #[serde(rename = "name")]
     pub name: String,
-    /// Point in time when the Certificate stops being valid (in ISO-8601 format)
+    /// Point in time when the Certificate stops being valid (in ISO-8601 format).
     #[serde(rename = "not_valid_after", deserialize_with = "Option::deserialize")]
     pub not_valid_after: Option<String>,
     /// Point in time when the Certificate becomes valid (in ISO-8601 format)
