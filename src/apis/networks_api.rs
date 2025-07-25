@@ -130,7 +130,9 @@ pub struct ListNetworkActionsParams {
 /// struct for passing parameters to the method [`list_networks`]
 #[derive(Clone, Debug, Default)]
 pub struct ListNetworksParams {
-    /// Filter resources by their name. The response will only contain the resources matching the specified name.
+    /// Sort resources by field and direction. Can be used multiple times. For more information, see \"[Sorting](#sorting)\".
+    pub sort: Option<String>,
+    /// Filter resources by their name. The response will only contain the resources matching exactly the specified name.
     pub name: Option<String>,
     /// Filter resources by labels. The response will only contain resources matching the label selector. For more information, see \"[Label Selector](#label-selector)\".
     pub label_selector: Option<String>,
@@ -935,6 +937,7 @@ pub async fn list_networks(
     let local_var_configuration = configuration;
 
     // unbox the parameters
+    let sort = params.sort;
     let name = params.name;
     let label_selector = params.label_selector;
     let page = params.page;
@@ -946,6 +949,10 @@ pub async fn list_networks(
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
+    if let Some(ref local_var_str) = sort {
+        local_var_req_builder =
+            local_var_req_builder.query(&[("sort", &local_var_str.to_string())]);
+    }
     if let Some(ref local_var_str) = name {
         local_var_req_builder =
             local_var_req_builder.query(&[("name", &local_var_str.to_string())]);
