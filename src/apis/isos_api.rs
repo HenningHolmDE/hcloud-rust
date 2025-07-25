@@ -25,7 +25,7 @@ pub struct GetIsoParams {
 pub struct ListIsosParams {
     /// Filter resources by their name. The response will only contain the resources matching exactly the specified name.
     pub name: Option<String>,
-    /// Return only ISOs with the given architecture.
+    /// Filter resources by cpu architecture. The response will only contain the resources with the specified cpu architecture.
     pub architecture: Option<String>,
     /// Include Images with wildcard architecture (architecture is null). Works only if architecture filter is specified.
     pub include_architecture_wildcard: Option<bool>,

@@ -98,7 +98,7 @@ pub struct ListImagesParams {
     pub name: Option<String>,
     /// Filter resources by labels. The response will only contain resources matching the label selector. For more information, see \"[Label Selector](#label-selector)\".
     pub label_selector: Option<String>,
-    /// Return only Images with the given architecture.
+    /// Filter resources by cpu architecture. The response will only contain the resources with the specified cpu architecture.
     pub architecture: Option<String>,
     /// Page number to return. For more information, see \"[Pagination](#pagination)\".
     pub page: Option<i64>,
