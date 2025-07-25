@@ -61,7 +61,7 @@ pub struct Image {
     /// Whether the Image can be used or if it's still being created or unavailable
     #[serde(rename = "status")]
     pub status: Status,
-    /// Type of the Image
+    /// Type of the Image.
     #[serde(rename = "type")]
     pub r#type: Type,
 }
@@ -148,7 +148,7 @@ impl Default for Status {
         Self::Available
     }
 }
-/// Type of the Image
+/// Type of the Image.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum Type {
     #[serde(rename = "app")]

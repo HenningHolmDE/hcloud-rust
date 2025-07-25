@@ -48,7 +48,7 @@ pub struct Certificate {
         skip_serializing_if = "Option::is_none"
     )]
     pub status: Option<Option<Box<models::CertificateStatus>>>,
-    /// Type of the Certificate
+    /// Type of the Certificate.
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
     pub r#type: Option<Type>,
     /// Resources currently using the Certificate
@@ -86,7 +86,7 @@ impl Certificate {
         }
     }
 }
-/// Type of the Certificate
+/// Type of the Certificate.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum Type {
     #[serde(rename = "managed")]

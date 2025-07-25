@@ -214,7 +214,7 @@ pub struct ListServersParams {
     pub label_selector: Option<String>,
     /// Sort resources by field and direction. Can be used multiple times. For more information, see \"[Sorting](#sorting)\".
     pub sort: Option<String>,
-    /// Can be used multiple times. The response will only contain Server matching the status
+    /// Filter resources by status. Can be used multiple times. The response will only contain the resources with the specified status.
     pub status: Option<String>,
     /// Page number to return. For more information, see \"[Pagination](#pagination)\".
     pub page: Option<i64>,

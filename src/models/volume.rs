@@ -42,7 +42,7 @@ pub struct Volume {
     /// Size in GB of the Volume
     #[serde(rename = "size")]
     pub size: f64,
-    /// Current status of the Volume
+    /// Status of the Volume.
     #[serde(rename = "status")]
     pub status: Status,
 }
@@ -77,7 +77,7 @@ impl Volume {
         }
     }
 }
-/// Current status of the Volume
+/// Status of the Volume.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum Status {
     #[serde(rename = "available")]

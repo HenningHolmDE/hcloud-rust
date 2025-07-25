@@ -88,7 +88,7 @@ pub struct ListCertificatesParams {
     pub name: Option<String>,
     /// Filter resources by labels. The response will only contain resources matching the label selector. For more information, see \"[Label Selector](#label-selector)\".
     pub label_selector: Option<String>,
-    /// Can be used multiple times. The response will only contain Certificates matching the type.
+    /// Filter resources by type. Can be used multiple times. The response will only contain the resources with the specified type.
     pub r#type: Option<String>,
     /// Page number to return. For more information, see \"[Pagination](#pagination)\".
     pub page: Option<i64>,

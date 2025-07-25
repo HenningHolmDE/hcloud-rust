@@ -86,9 +86,9 @@ pub struct ListImageActionsParams {
 pub struct ListImagesParams {
     /// Sort resources by field and direction. Can be used multiple times. For more information, see \"[Sorting](#sorting)\".
     pub sort: Option<String>,
-    /// Can be used multiple times.
+    /// Filter resources by type. Can be used multiple times. The response will only contain the resources with the specified type.
     pub r#type: Option<String>,
-    /// Can be used multiple times. The response will only contain Images matching the status.
+    /// Filter resources by status. Can be used multiple times. The response will only contain the resources with the specified status.
     pub status: Option<String>,
     /// Can be used multiple times. Server ID linked to the Image. Only available for Images of type `backup`
     pub bound_to: Option<String>,

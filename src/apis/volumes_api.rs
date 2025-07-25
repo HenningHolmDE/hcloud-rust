@@ -105,7 +105,7 @@ pub struct ListVolumeActionsParams {
 /// struct for passing parameters to the method [`list_volumes`]
 #[derive(Clone, Debug, Default)]
 pub struct ListVolumesParams {
-    /// Can be used multiple times. The response will only contain Volumes matching the status.
+    /// Filter resources by status. Can be used multiple times. The response will only contain the resources with the specified status.
     pub status: Option<String>,
     /// Sort resources by field and direction. Can be used multiple times. For more information, see \"[Sorting](#sorting)\".
     pub sort: Option<String>,

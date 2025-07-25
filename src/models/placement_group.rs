@@ -28,7 +28,7 @@ pub struct PlacementGroup {
     /// Array of IDs of Servers that are part of this Placement Group
     #[serde(rename = "servers")]
     pub servers: Vec<i64>,
-    /// Type of the Placement Group
+    /// Type of Placement Group.
     #[serde(rename = "type")]
     pub r#type: Type,
 }
@@ -52,7 +52,7 @@ impl PlacementGroup {
         }
     }
 }
-/// Type of the Placement Group
+/// Type of Placement Group.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum Type {
     #[serde(rename = "spread")]

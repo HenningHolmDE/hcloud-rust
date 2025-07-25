@@ -72,7 +72,7 @@ pub struct Server {
     pub rescue_enabled: bool,
     #[serde(rename = "server_type")]
     pub server_type: Box<models::ServerType>,
-    /// Status of the Server
+    /// Status of the Server.
     #[serde(rename = "status")]
     pub status: Status,
     /// IDs of Volumes assigned to this Server
@@ -129,7 +129,7 @@ impl Server {
         }
     }
 }
-/// Status of the Server
+/// Status of the Server.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum Status {
     #[serde(rename = "deleting")]
