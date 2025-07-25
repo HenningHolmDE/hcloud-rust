@@ -33,9 +33,9 @@ pub struct GetPlacementgroupParams {
     pub id: i64,
 }
 
-/// struct for passing parameters to the method [`list_placementgroups`]
+/// struct for passing parameters to the method [`list_placement_groups`]
 #[derive(Clone, Debug, Default)]
-pub struct ListPlacementgroupsParams {
+pub struct ListPlacementGroupsParams {
     /// Sort resources by field and direction. Can be used multiple times. For more information, see \"[Sorting](#sorting)\".
     pub sort: Option<String>,
     /// Filter resources by their name. The response will only contain the resources matching exactly the specified name.
@@ -79,10 +79,10 @@ pub enum GetPlacementgroupError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`list_placementgroups`]
+/// struct for typed errors of method [`list_placement_groups`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum ListPlacementgroupsError {
+pub enum ListPlacementGroupsError {
     UnknownValue(serde_json::Value),
 }
 
@@ -235,10 +235,10 @@ pub async fn get_placementgroup(
 }
 
 /// Returns all Placement Group objects.
-pub async fn list_placementgroups(
+pub async fn list_placement_groups(
     configuration: &configuration::Configuration,
-    params: ListPlacementgroupsParams,
-) -> Result<models::ListPlacementgroupsResponse, Error<ListPlacementgroupsError>> {
+    params: ListPlacementGroupsParams,
+) -> Result<models::ListPlacementGroupsResponse, Error<ListPlacementGroupsError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -296,7 +296,7 @@ pub async fn list_placementgroups(
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<ListPlacementgroupsError> =
+        let local_var_entity: Option<ListPlacementGroupsError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,

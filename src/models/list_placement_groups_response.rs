@@ -11,22 +11,22 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// ListPlacementgroupsResponse : Response to GET https://api.hetzner.cloud/v1/placement_groups
+/// ListPlacementGroupsResponse : Response to GET https://api.hetzner.cloud/v1/placement_groups
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct ListPlacementgroupsResponse {
+pub struct ListPlacementGroupsResponse {
     #[serde(rename = "meta")]
     pub meta: Box<models::Meta>,
     #[serde(rename = "placement_groups")]
     pub placement_groups: Vec<models::PlacementGroup>,
 }
 
-impl ListPlacementgroupsResponse {
+impl ListPlacementGroupsResponse {
     /// Response to GET https://api.hetzner.cloud/v1/placement_groups
     pub fn new(
         meta: models::Meta,
         placement_groups: Vec<models::PlacementGroup>,
-    ) -> ListPlacementgroupsResponse {
-        ListPlacementgroupsResponse {
+    ) -> ListPlacementGroupsResponse {
+        ListPlacementGroupsResponse {
             meta: Box::new(meta),
             placement_groups,
         }
