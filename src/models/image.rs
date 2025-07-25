@@ -119,6 +119,8 @@ pub enum OsFlavor {
     Debian,
     #[serde(rename = "fedora")]
     Fedora,
+    #[serde(rename = "opensuse")]
+    Opensuse,
     #[serde(rename = "rocky")]
     Rocky,
     #[serde(rename = "ubuntu")]
