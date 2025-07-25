@@ -11,7 +11,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// Location : [Location](#locations) the [Datacenter](#datacenters) is located at.  | [Location](#locations) the for the [Floating IP](#floating-ips) is located at.  Routing is optimized for this [Location](#locations).  | Location of the Volume. Volume can only be attached to Servers in the same Location.
+/// Location : [Location](#locations) the [Datacenter](#datacenters) is located at.  | Location of the Volume. Volume can only be attached to Servers in the same Location.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Location {
     /// Name of the closest city to the [Location](#locations).  City name or city name and state in short form. E.g. `Falkenstein` or `Ashburn, VA`.
@@ -41,7 +41,7 @@ pub struct Location {
 }
 
 impl Location {
-    /// [Location](#locations) the [Datacenter](#datacenters) is located at.  | [Location](#locations) the for the [Floating IP](#floating-ips) is located at.  Routing is optimized for this [Location](#locations).  | Location of the Volume. Volume can only be attached to Servers in the same Location.
+    /// [Location](#locations) the [Datacenter](#datacenters) is located at.  | Location of the Volume. Volume can only be attached to Servers in the same Location.
     pub fn new(
         city: String,
         country: String,

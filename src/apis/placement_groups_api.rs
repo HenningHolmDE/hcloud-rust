@@ -38,7 +38,7 @@ pub struct GetPlacementgroupParams {
 pub struct ListPlacementgroupsParams {
     /// Sort resources by field and direction. Can be used multiple times. For more information, see \"[Sorting](#sorting)\".
     pub sort: Option<String>,
-    /// Filter resources by their name. The response will only contain the resources matching the specified name.
+    /// Filter resources by their name. The response will only contain the resources matching exactly the specified name.
     pub name: Option<String>,
     /// Filter resources by labels. The response will only contain resources matching the label selector. For more information, see \"[Label Selector](#label-selector)\".
     pub label_selector: Option<String>,
@@ -307,7 +307,7 @@ pub async fn list_placementgroups(
     }
 }
 
-/// Updates the PlacementGroup properties.  Note that when updating labels, the PlacementGroup’s current set of labels will be replaced with the labels provided in the request body. So, for example, if you want to add a new label, you have to provide all existing labels plus the new label in the request body.  Note: if the PlacementGroup object changes during the request, the response will be a “conflict” error.
+/// Updates the PlacementGroup properties.  Note: if the PlacementGroup object changes during the request, the response will be a “conflict” error.
 pub async fn replace_placementgroup(
     configuration: &configuration::Configuration,
     params: ReplacePlacementgroupParams,

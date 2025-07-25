@@ -189,7 +189,7 @@ pub struct ListLoadBalancerActionsParams {
 pub struct ListLoadBalancersParams {
     /// Sort resources by field and direction. Can be used multiple times. For more information, see \"[Sorting](#sorting)\".
     pub sort: Option<String>,
-    /// Filter resources by their name. The response will only contain the resources matching the specified name.
+    /// Filter resources by their name. The response will only contain the resources matching exactly the specified name.
     pub name: Option<String>,
     /// Filter resources by labels. The response will only contain resources matching the label selector. For more information, see \"[Label Selector](#label-selector)\".
     pub label_selector: Option<String>,
@@ -1498,7 +1498,7 @@ pub async fn remove_target(
     }
 }
 
-/// Updates a Load Balancer. You can update a Load Balancer’s name and a Load Balancer’s labels.  Note that when updating labels, the Load Balancer’s current set of labels will be replaced with the labels provided in the request body. So, for example, if you want to add a new label, you have to provide all existing labels plus the new label in the request body.  Note: if the Load Balancer object changes during the request, the response will be a “conflict” error.
+/// Updates a Load Balancer. You can update a Load Balancer’s name and a Load Balancer’s labels.  Note: if the Load Balancer object changes during the request, the response will be a “conflict” error.
 pub async fn replace_load_balancer(
     configuration: &configuration::Configuration,
     params: ReplaceLoadBalancerParams,

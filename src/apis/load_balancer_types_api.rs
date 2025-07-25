@@ -23,7 +23,7 @@ pub struct GetLoadBalancerTypeParams {
 /// struct for passing parameters to the method [`list_load_balancer_types`]
 #[derive(Clone, Debug, Default)]
 pub struct ListLoadBalancerTypesParams {
-    /// Filter resources by their name. The response will only contain the resources matching the specified name.
+    /// Filter resources by their name. The response will only contain the resources matching exactly the specified name.
     pub name: Option<String>,
     /// Page number to return. For more information, see \"[Pagination](#pagination)\".
     pub page: Option<i64>,

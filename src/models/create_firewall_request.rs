@@ -17,7 +17,7 @@ pub struct CreateFirewallRequest {
     /// Resources to apply the [Firewall](#firewalls) to.  Resources added directly are taking precedence over those added via a [Label Selector](#label-selector).
     #[serde(rename = "apply_to", skip_serializing_if = "Option::is_none")]
     pub apply_to: Option<Vec<models::FirewallResource>>,
-    /// User-defined labels (`key/value` pairs) for the Resource. For more information, see \"[Labels](#labels)\".
+    /// User-defined labels (`key/value` pairs) for the Resource. For more information, see \"[Labels](#labels)\".  | User-defined labels (`key/value` pairs) for the Resource.  Note that the set of [Labels](#labels) provided in the request will overwrite the existing one.  For more information, see \"[Labels](#labels)\".
     #[serde(rename = "labels", skip_serializing_if = "Option::is_none")]
     pub labels: Option<std::collections::HashMap<String, String>>,
     /// Name of the [Firewall](#firewalls).  Limited to a maximum of 128 characters.  Must be unique per Project.

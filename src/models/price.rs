@@ -11,7 +11,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// Price : Hourly price in this [Location](#locations). | Monthly price in this [Location](#locations). | Additional traffic price per TB in this [Location](#locations). | Price of one [Floating IP](#floating-ips) per month. | Price of [Images](#images) per GB/month. | Price of [Volumes](#volumes) per GB/month.
+/// Price : Hourly price in this [Location](#locations). | Monthly price in this [Location](#locations). | Additional traffic price per TB in this [Location](#locations). | Price of [Images](#images) per GB/month. | Price of [Volumes](#volumes) per GB/month. | Price of one [Floating IP](#floating-ips) per month.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Price {
     /// Price with VAT added.
@@ -23,7 +23,7 @@ pub struct Price {
 }
 
 impl Price {
-    /// Hourly price in this [Location](#locations). | Monthly price in this [Location](#locations). | Additional traffic price per TB in this [Location](#locations). | Price of one [Floating IP](#floating-ips) per month. | Price of [Images](#images) per GB/month. | Price of [Volumes](#volumes) per GB/month.
+    /// Hourly price in this [Location](#locations). | Monthly price in this [Location](#locations). | Additional traffic price per TB in this [Location](#locations). | Price of [Images](#images) per GB/month. | Price of [Volumes](#volumes) per GB/month. | Price of one [Floating IP](#floating-ips) per month.
     pub fn new(gross: String, net: String) -> Price {
         Price { gross, net }
     }

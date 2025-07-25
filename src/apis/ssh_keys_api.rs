@@ -38,7 +38,7 @@ pub struct GetSshKeyParams {
 pub struct ListSshKeysParams {
     /// Sort resources by field and direction. Can be used multiple times. For more information, see \"[Sorting](#sorting)\".
     pub sort: Option<String>,
-    /// Filter resources by their name. The response will only contain the resources matching the specified name.
+    /// Filter resources by their name. The response will only contain the resources matching exactly the specified name.
     pub name: Option<String>,
     /// Can be used to filter SSH keys by their fingerprint. The response will only contain the SSH key matching the specified fingerprint.
     pub fingerprint: Option<String>,
@@ -307,7 +307,7 @@ pub async fn list_ssh_keys(
     }
 }
 
-/// Updates an SSH key. You can update an SSH key name and an SSH key labels.  Please note that when updating labels, the SSH key current set of labels will be replaced with the labels provided in the request body. So, for example, if you want to add a new label, you have to provide all existing labels plus the new label in the request body.
+/// Updates an SSH key. You can update an SSH key name and an SSH key labels.
 pub async fn replace_ssh_key(
     configuration: &configuration::Configuration,
     params: ReplaceSshKeyParams,

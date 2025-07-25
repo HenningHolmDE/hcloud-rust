@@ -109,7 +109,7 @@ pub struct ListVolumesParams {
     pub status: Option<String>,
     /// Sort resources by field and direction. Can be used multiple times. For more information, see \"[Sorting](#sorting)\".
     pub sort: Option<String>,
-    /// Filter resources by their name. The response will only contain the resources matching the specified name.
+    /// Filter resources by their name. The response will only contain the resources matching exactly the specified name.
     pub name: Option<String>,
     /// Filter resources by labels. The response will only contain resources matching the label selector. For more information, see \"[Label Selector](#label-selector)\".
     pub label_selector: Option<String>,
@@ -821,7 +821,7 @@ pub async fn list_volumes(
     }
 }
 
-/// Updates the Volume properties.  Note that when updating labels, the volume’s current set of labels will be replaced with the labels provided in the request body. So, for example, if you want to add a new label, you have to provide all existing labels plus the new label in the request body.
+/// Updates the Volume properties.
 pub async fn replace_volume(
     configuration: &configuration::Configuration,
     params: ReplaceVolumeParams,

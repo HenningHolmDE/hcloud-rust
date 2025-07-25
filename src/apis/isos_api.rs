@@ -23,7 +23,7 @@ pub struct GetIsoParams {
 /// struct for passing parameters to the method [`list_isos`]
 #[derive(Clone, Debug, Default)]
 pub struct ListIsosParams {
-    /// Filter resources by their name. The response will only contain the resources matching the specified name.
+    /// Filter resources by their name. The response will only contain the resources matching exactly the specified name.
     pub name: Option<String>,
     /// Return only ISOs with the given architecture.
     pub architecture: Option<String>,

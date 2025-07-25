@@ -23,7 +23,7 @@ pub struct GetDatacenterParams {
 /// struct for passing parameters to the method [`list_datacenters`]
 #[derive(Clone, Debug, Default)]
 pub struct ListDatacentersParams {
-    /// Filter resources by their name. The response will only contain the resources matching the specified name.
+    /// Filter resources by their name. The response will only contain the resources matching exactly the specified name.
     pub name: Option<String>,
     /// Sort resources by field and direction. Can be used multiple times. For more information, see \"[Sorting](#sorting)\".
     pub sort: Option<String>,

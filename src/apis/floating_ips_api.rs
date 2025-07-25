@@ -108,7 +108,7 @@ pub struct ListFloatingIpActionsParams {
 /// struct for passing parameters to the method [`list_floating_ips`]
 #[derive(Clone, Debug, Default)]
 pub struct ListFloatingIpsParams {
-    /// Filter resources by their name. The response will only contain the resources matching the specified name.
+    /// Filter resources by their name. The response will only contain the resources matching exactly the specified name.
     pub name: Option<String>,
     /// Filter resources by labels. The response will only contain resources matching the label selector. For more information, see \"[Label Selector](#label-selector)\".
     pub label_selector: Option<String>,
@@ -821,7 +821,7 @@ pub async fn list_floating_ips(
     }
 }
 
-/// Update the description or [Labels](#labels) of a [Floating IP](#floating-ips). Note that when updating [Labels](#labels), the [Floating IPs](#floating-ips) current set of [Labels](#labels) will be replaced with the [Labels](#labels) provided with the request. So, for example, if you want to add a new [Label](#labels), you have to provide all existing [Labels](#labels) plus the new [Label](#labels) in the request body.
+/// Update a [Floating IP](#floating-ips).
 pub async fn replace_floating_ip(
     configuration: &configuration::Configuration,
     params: ReplaceFloatingIpParams,

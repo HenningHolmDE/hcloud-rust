@@ -208,7 +208,7 @@ pub struct ListServerActionsParams {
 /// struct for passing parameters to the method [`list_servers`]
 #[derive(Clone, Debug, Default)]
 pub struct ListServersParams {
-    /// Filter resources by their name. The response will only contain the resources matching the specified name.
+    /// Filter resources by their name. The response will only contain the resources matching exactly the specified name.
     pub name: Option<String>,
     /// Filter resources by labels. The response will only contain resources matching the label selector. For more information, see \"[Label Selector](#label-selector)\".
     pub label_selector: Option<String>,
@@ -1926,7 +1926,7 @@ pub async fn remove_from_placement_group(
     }
 }
 
-/// Updates a Server. You can update a Server’s name and a Server’s labels. Please note that Server names must be unique per Project and valid hostnames as per RFC 1123 (i.e. may only contain letters, digits, periods, and dashes). Also note that when updating labels, the Server’s current set of labels will be replaced with the labels provided in the request body. So, for example, if you want to add a new label, you have to provide all existing labels plus the new label in the request body.
+/// Updates a Server. You can update a Server’s name and a Server’s labels. Please note that Server names must be unique per Project and valid hostnames as per RFC 1123 (i.e. may only contain letters, digits, periods, and dashes).
 pub async fn replace_server(
     configuration: &configuration::Configuration,
     params: ReplaceServerParams,

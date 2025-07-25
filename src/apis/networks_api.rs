@@ -990,7 +990,7 @@ pub async fn list_networks(
     }
 }
 
-/// Update a [Network](#networks).  Note that when updating [Labels](#labels), the [Networks](#networks) current set of [Labels](#labels) will be replaced with the [Labels](#labels) provided with the request. So, for example, if you want to add a new [Label](#labels), you have to provide all existing [Labels](#labels) plus the new [Label](#labels) in the request body.  If a change is currently being performed on this [Network](#networks), a error response with code `conflict` will be returned.
+/// Update a [Network](#networks).  If a change is currently being performed on this [Network](#networks), a error response with code `conflict` will be returned.
 pub async fn replace_network(
     configuration: &configuration::Configuration,
     params: ReplaceNetworkParams,
