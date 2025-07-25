@@ -11,7 +11,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// CertificateStatus : Current status of a type `managed` Certificate, always *null* for type `uploaded` Certificates
+/// CertificateStatus : Current status of a type `managed` Certificate, always *null* for type `uploaded` Certificates.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CertificateStatus {
     #[serde(
@@ -21,7 +21,7 @@ pub struct CertificateStatus {
         skip_serializing_if = "Option::is_none"
     )]
     pub error: Option<Option<Box<models::CertificateStatusError>>>,
-    /// Status of the issuance process of the Certificate
+    /// Status of the issuance process of the Certificate.
     #[serde(rename = "issuance", skip_serializing_if = "Option::is_none")]
     pub issuance: Option<Issuance>,
     /// Status of the renewal process of the Certificate.
@@ -30,7 +30,7 @@ pub struct CertificateStatus {
 }
 
 impl CertificateStatus {
-    /// Current status of a type `managed` Certificate, always *null* for type `uploaded` Certificates
+    /// Current status of a type `managed` Certificate, always *null* for type `uploaded` Certificates.
     pub fn new() -> CertificateStatus {
         CertificateStatus {
             error: None,
@@ -39,7 +39,7 @@ impl CertificateStatus {
         }
     }
 }
-/// Status of the issuance process of the Certificate
+/// Status of the issuance process of the Certificate.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum Issuance {
     #[serde(rename = "completed")]

@@ -16,7 +16,7 @@ pub struct ServerPublicNetFirewall {
     /// ID of the Firewall.
     #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
     pub id: Option<i64>,
-    /// Status of the Firewall on the Server
+    /// Status of the Firewall on the Server.
     #[serde(rename = "status", skip_serializing_if = "Option::is_none")]
     pub status: Option<Status>,
 }
@@ -29,7 +29,7 @@ impl ServerPublicNetFirewall {
         }
     }
 }
-/// Status of the Firewall on the Server
+/// Status of the Firewall on the Server.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum Status {
     #[serde(rename = "applied")]

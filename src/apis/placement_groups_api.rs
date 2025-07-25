@@ -93,7 +93,7 @@ pub enum ReplacePlacementgroupError {
     UnknownValue(serde_json::Value),
 }
 
-/// Creates a new PlacementGroup.
+/// Creates a new Placement Group.
 pub async fn create_placementgroup(
     configuration: &configuration::Configuration,
     params: CreatePlacementgroupParams,
@@ -138,7 +138,7 @@ pub async fn create_placementgroup(
     }
 }
 
-/// Deletes a PlacementGroup.
+/// Deletes a Placement Group.
 pub async fn delete_placementgroup(
     configuration: &configuration::Configuration,
     params: DeletePlacementgroupParams,
@@ -186,7 +186,7 @@ pub async fn delete_placementgroup(
     }
 }
 
-/// Gets a specific PlacementGroup object.
+/// Gets a specific Placement Group object.
 pub async fn get_placementgroup(
     configuration: &configuration::Configuration,
     params: GetPlacementgroupParams,
@@ -234,7 +234,7 @@ pub async fn get_placementgroup(
     }
 }
 
-/// Returns all PlacementGroup objects.
+/// Returns all Placement Group objects.
 pub async fn list_placementgroups(
     configuration: &configuration::Configuration,
     params: ListPlacementgroupsParams,
@@ -307,7 +307,7 @@ pub async fn list_placementgroups(
     }
 }
 
-/// Updates the PlacementGroup properties.  Note: if the PlacementGroup object changes during the request, the response will be a “conflict” error.
+/// Updates the Placement Group properties.  Note: if the Placement Group object changes during the request, the response will be a “conflict” error.
 pub async fn replace_placementgroup(
     configuration: &configuration::Configuration,
     params: ReplacePlacementgroupParams,

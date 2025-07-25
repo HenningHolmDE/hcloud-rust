@@ -151,13 +151,13 @@ pub struct GetActionForServerParams {
 pub struct GetMetricsForServerParams {
     /// ID of the Server.
     pub id: i64,
-    /// Type of metrics to get
+    /// Type of metrics to get.
     pub r#type: String,
-    /// Start of period to get Metrics for (in ISO-8601 format)
+    /// Start of period to get Metrics for (in ISO-8601 format).
     pub start: String,
-    /// End of period to get Metrics for (in ISO-8601 format)
+    /// End of period to get Metrics for (in ISO-8601 format).
     pub end: String,
-    /// Resolution of results in seconds
+    /// Resolution of results in seconds.
     pub step: Option<String>,
 }
 
@@ -1024,7 +1024,7 @@ pub async fn delete_server(
     }
 }
 
-/// Detaches an ISO from a Server. In case no ISO Image is attached to the Server, the status of the returned Action is immediately set to `success`
+/// Detaches an ISO from a Server. In case no ISO Image is attached to the Server, the status of the returned Action is immediately set to `success`.
 pub async fn detach_iso_from_server(
     configuration: &configuration::Configuration,
     params: DetachIsoFromServerParams,
@@ -1428,7 +1428,7 @@ pub async fn get_metrics_for_server(
     }
 }
 
-/// Returns a specific Server object. The Server must exist inside the Project
+/// Returns a specific Server object. The Server must exist inside the Project.
 pub async fn get_server(
     configuration: &configuration::Configuration,
     params: GetServerParams,
@@ -1659,7 +1659,7 @@ pub async fn list_server_actions(
     }
 }
 
-/// Returns all existing Server objects
+/// Returns all existing Server objects.
 pub async fn list_servers(
     configuration: &configuration::Configuration,
     params: ListServersParams,
@@ -2120,7 +2120,7 @@ pub async fn reset_server(
     }
 }
 
-/// Shuts down a Server gracefully by sending an ACPI shutdown request. The Server operating system must support ACPI and react to the request, otherwise the Server will not shut down. Please note that the `action` status in this case only reflects whether the action was sent to the server. It does not mean that the server actually shut down successfully. If you need to ensure that the server is off, use the `poweroff` action
+/// Shuts down a Server gracefully by sending an ACPI shutdown request. The Server operating system must support ACPI and react to the request, otherwise the Server will not shut down. Please note that the `action` status in this case only reflects whether the action was sent to the server. It does not mean that the server actually shut down successfully. If you need to ensure that the server is off, use the `poweroff` action.
 pub async fn shutdown_server(
     configuration: &configuration::Configuration,
     params: ShutdownServerParams,

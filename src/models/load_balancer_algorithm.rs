@@ -11,7 +11,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// LoadBalancerAlgorithm : Algorithm of the Load Balancer
+/// LoadBalancerAlgorithm : Algorithm of the Load Balancer.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct LoadBalancerAlgorithm {
     /// Type of the algorithm.
@@ -20,7 +20,7 @@ pub struct LoadBalancerAlgorithm {
 }
 
 impl LoadBalancerAlgorithm {
-    /// Algorithm of the Load Balancer
+    /// Algorithm of the Load Balancer.
     pub fn new(r#type: Type) -> LoadBalancerAlgorithm {
         LoadBalancerAlgorithm { r#type }
     }

@@ -16,7 +16,7 @@ use serde::{Deserialize, Serialize};
 pub struct ResetRootPasswordOfServerResponse {
     #[serde(rename = "action", skip_serializing_if = "Option::is_none")]
     pub action: Option<Box<models::Action>>,
-    /// Password that will be set for this Server once the Action succeeds
+    /// Password that will be set for this Server once the Action succeeds.
     #[serde(rename = "root_password", skip_serializing_if = "Option::is_none")]
     pub root_password: Option<String>,
 }

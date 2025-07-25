@@ -11,19 +11,19 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// ServerProtection : Protection configuration for the Server
+/// ServerProtection : Protection configuration for the Server.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ServerProtection {
-    /// If true, prevents the Server from being deleted
+    /// If true, prevents the Server from being deleted.
     #[serde(rename = "delete")]
     pub delete: bool,
-    /// If true, prevents the Server from being rebuilt
+    /// If true, prevents the Server from being rebuilt.
     #[serde(rename = "rebuild")]
     pub rebuild: bool,
 }
 
 impl ServerProtection {
-    /// Protection configuration for the Server
+    /// Protection configuration for the Server.
     pub fn new(delete: bool, rebuild: bool) -> ServerProtection {
         ServerProtection { delete, rebuild }
     }

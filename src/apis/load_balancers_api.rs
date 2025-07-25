@@ -144,13 +144,13 @@ pub struct GetLoadBalancerActionParams {
 pub struct GetMetricsForLoadbalancerParams {
     /// ID of the Load Balancer.
     pub id: i64,
-    /// Type of metrics to get
+    /// Type of metrics to get.
     pub r#type: String,
-    /// Start of period to get Metrics for (in ISO-8601 format)
+    /// Start of period to get Metrics for (in ISO-8601 format).
     pub start: String,
-    /// End of period to get Metrics for (in ISO-8601 format)
+    /// End of period to get Metrics for (in ISO-8601 format).
     pub end: String,
-    /// Resolution of results in seconds
+    /// Resolution of results in seconds.
     pub step: Option<String>,
 }
 

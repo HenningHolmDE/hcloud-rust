@@ -13,7 +13,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct MetricsTimeSeries {
-    /// Metrics Timestamps with values
+    /// Metrics Timestamps with values.
     #[serde(rename = "values")]
     pub values: Vec<Vec<models::MetricsTimeSeriesValue>>,
 }

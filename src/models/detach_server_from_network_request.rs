@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 /// DetachServerFromNetworkRequest : Request for POST https://api.hetzner.cloud/v1/servers/{id}/actions/detach_from_network
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct DetachServerFromNetworkRequest {
-    /// ID of an existing network to detach the Server from
+    /// ID of an existing network to detach the Server from.
     #[serde(rename = "network")]
     pub network: i64,
 }

@@ -14,16 +14,16 @@ use serde::{Deserialize, Serialize};
 /// Certificate : TLS/SSL Certificates prove the identity of a Server and are used to encrypt client traffic.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Certificate {
-    /// Certificate and chain in PEM format, in order so that each record directly certifies the one preceding
+    /// Certificate and chain in PEM format, in order so that each record directly certifies the one preceding.
     #[serde(rename = "certificate", deserialize_with = "Option::deserialize")]
     pub certificate: Option<String>,
     /// Point in time when the Resource was created (in ISO-8601 format).
     #[serde(rename = "created")]
     pub created: String,
-    /// Domains and subdomains covered by the Certificate
+    /// Domains and subdomains covered by the Certificate.
     #[serde(rename = "domain_names")]
     pub domain_names: Vec<String>,
-    /// SHA256 fingerprint of the Certificate
+    /// SHA256 fingerprint of the Certificate.
     #[serde(rename = "fingerprint", deserialize_with = "Option::deserialize")]
     pub fingerprint: Option<String>,
     /// ID of the Certificate.
@@ -38,7 +38,7 @@ pub struct Certificate {
     /// Point in time when the Certificate stops being valid (in ISO-8601 format).
     #[serde(rename = "not_valid_after", deserialize_with = "Option::deserialize")]
     pub not_valid_after: Option<String>,
-    /// Point in time when the Certificate becomes valid (in ISO-8601 format)
+    /// Point in time when the Certificate becomes valid (in ISO-8601 format).
     #[serde(rename = "not_valid_before", deserialize_with = "Option::deserialize")]
     pub not_valid_before: Option<String>,
     #[serde(
@@ -51,7 +51,7 @@ pub struct Certificate {
     /// Type of the Certificate.
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
     pub r#type: Option<Type>,
-    /// Resources currently using the Certificate
+    /// Resources currently using the Certificate.
     #[serde(rename = "used_by")]
     pub used_by: Vec<models::Resource>,
 }

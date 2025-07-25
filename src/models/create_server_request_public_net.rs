@@ -11,7 +11,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// CreateServerRequestPublicNet : Public Network options
+/// CreateServerRequestPublicNet : Public Network options.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CreateServerRequestPublicNet {
     /// Attach an IPv4 on the public NIC. If false, no IPv4 address will be attached.
@@ -39,7 +39,7 @@ pub struct CreateServerRequestPublicNet {
 }
 
 impl CreateServerRequestPublicNet {
-    /// Public Network options
+    /// Public Network options.
     pub fn new() -> CreateServerRequestPublicNet {
         CreateServerRequestPublicNet {
             enable_ipv4: None,

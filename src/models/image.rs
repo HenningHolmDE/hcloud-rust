@@ -23,16 +23,16 @@ pub struct Image {
     pub created: String,
     #[serde(rename = "created_from", deserialize_with = "Option::deserialize")]
     pub created_from: Option<Box<models::CreatedFrom>>,
-    /// Point in time where the Image was deleted (in ISO-8601 format)
+    /// Point in time where the Image was deleted (in ISO-8601 format).
     #[serde(rename = "deleted", deserialize_with = "Option::deserialize")]
     pub deleted: Option<String>,
-    /// Point in time when the Image is considered to be deprecated (in ISO-8601 format)
+    /// Point in time when the Image is considered to be deprecated (in ISO-8601 format).
     #[serde(rename = "deprecated", deserialize_with = "Option::deserialize")]
     pub deprecated: Option<String>,
-    /// Description of the Image
+    /// Description of the Image.
     #[serde(rename = "description")]
     pub description: String,
-    /// Size of the disk contained in the Image in GB
+    /// Size of the disk contained in the Image in GB.
     #[serde(rename = "disk_size")]
     pub disk_size: f64,
     /// ID of the Image.
@@ -47,18 +47,18 @@ pub struct Image {
     /// Unique identifier of the Image. This value is only set for system Images.
     #[serde(rename = "name", deserialize_with = "Option::deserialize")]
     pub name: Option<String>,
-    /// Flavor of operating system contained in the Image
+    /// Flavor of operating system contained in the Image.
     #[serde(rename = "os_flavor")]
     pub os_flavor: OsFlavor,
-    /// Operating system version
+    /// Operating system version.
     #[serde(rename = "os_version", deserialize_with = "Option::deserialize")]
     pub os_version: Option<String>,
     #[serde(rename = "protection")]
     pub protection: Box<models::Protection>,
-    /// Indicates that rapid deploy of the Image is available
+    /// Indicates that rapid deploy of the Image is available.
     #[serde(rename = "rapid_deploy", skip_serializing_if = "Option::is_none")]
     pub rapid_deploy: Option<bool>,
-    /// Whether the Image can be used or if it's still being created or unavailable
+    /// Whether the Image can be used or if it's still being created or unavailable.
     #[serde(rename = "status")]
     pub status: Status,
     /// Type of the Image.
@@ -108,7 +108,7 @@ impl Image {
         }
     }
 }
-/// Flavor of operating system contained in the Image
+/// Flavor of operating system contained in the Image.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum OsFlavor {
     #[serde(rename = "alma")]
@@ -132,7 +132,7 @@ impl Default for OsFlavor {
         Self::Alma
     }
 }
-/// Whether the Image can be used or if it's still being created or unavailable
+/// Whether the Image can be used or if it's still being created or unavailable.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum Status {
     #[serde(rename = "available")]

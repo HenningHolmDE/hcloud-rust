@@ -14,10 +14,10 @@ use serde::{Deserialize, Serialize};
 /// ChangeTypeOfServerRequest : Request for POST https://api.hetzner.cloud/v1/servers/{id}/actions/change_type
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ChangeTypeOfServerRequest {
-    /// ID or name of Server type the Server should migrate to
+    /// ID or name of Server type the Server should migrate to.
     #[serde(rename = "server_type")]
     pub server_type: String,
-    /// If false, do not upgrade the disk (this allows downgrading the Server type later)
+    /// If false, do not upgrade the disk (this allows downgrading the Server type later).
     #[serde(rename = "upgrade_disk")]
     pub upgrade_disk: bool,
 }

@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 /// ChangeTypeOfLoadBalancerRequest : Request for POST https://api.hetzner.cloud/v1/load_balancers/{id}/actions/change_type
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ChangeTypeOfLoadBalancerRequest {
-    /// ID or name of Load Balancer type the Load Balancer should migrate to
+    /// ID or name of Load Balancer type the Load Balancer should migrate to.
     #[serde(rename = "load_balancer_type")]
     pub load_balancer_type: String,
 }

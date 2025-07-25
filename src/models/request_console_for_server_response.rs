@@ -16,10 +16,10 @@ use serde::{Deserialize, Serialize};
 pub struct RequestConsoleForServerResponse {
     #[serde(rename = "action")]
     pub action: Box<models::Action>,
-    /// VNC password to use for this connection (this password only works in combination with a wss_url with valid token)
+    /// VNC password to use for this connection (this password only works in combination with a wss_url with valid token).
     #[serde(rename = "password")]
     pub password: String,
-    /// URL of websocket proxy to use; this includes a token which is valid for a limited time only
+    /// URL of websocket proxy to use; this includes a token which is valid for a limited time only.
     #[serde(rename = "wss_url")]
     pub wss_url: String,
 }

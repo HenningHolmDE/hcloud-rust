@@ -19,28 +19,28 @@ pub struct CreateLoadBalancerRequest {
     /// User-defined labels (`key/value` pairs) for the Resource. For more information, see \"[Labels](#labels)\".  | User-defined labels (`key/value` pairs) for the Resource.  Note that the set of [Labels](#labels) provided in the request will overwrite the existing one.  For more information, see \"[Labels](#labels)\".
     #[serde(rename = "labels", skip_serializing_if = "Option::is_none")]
     pub labels: Option<std::collections::HashMap<String, String>>,
-    /// ID or name of the Load Balancer type this Load Balancer should be created with
+    /// ID or name of the Load Balancer type this Load Balancer should be created with.
     #[serde(rename = "load_balancer_type")]
     pub load_balancer_type: String,
-    /// ID or name of Location to create Load Balancer in
+    /// ID or name of Location to create Load Balancer in.
     #[serde(rename = "location", skip_serializing_if = "Option::is_none")]
     pub location: Option<String>,
-    /// Name of the Load Balancer
+    /// Name of the Load Balancer.
     #[serde(rename = "name")]
     pub name: String,
-    /// ID of the network the Load Balancer should be attached to on creation
+    /// ID of the network the Load Balancer should be attached to on creation.
     #[serde(rename = "network", skip_serializing_if = "Option::is_none")]
     pub network: Option<i64>,
-    /// Name of network zone
+    /// Name of network zone.
     #[serde(rename = "network_zone", skip_serializing_if = "Option::is_none")]
     pub network_zone: Option<String>,
-    /// Enable or disable the public interface of the Load Balancer
+    /// Enable or disable the public interface of the Load Balancer.
     #[serde(rename = "public_interface", skip_serializing_if = "Option::is_none")]
     pub public_interface: Option<bool>,
-    /// Array of services
+    /// Array of services.
     #[serde(rename = "services", skip_serializing_if = "Option::is_none")]
     pub services: Option<Vec<models::LoadBalancerService>>,
-    /// Array of targets
+    /// Array of targets.
     #[serde(rename = "targets", skip_serializing_if = "Option::is_none")]
     pub targets: Option<Vec<models::LoadBalancerAddTarget>>,
 }

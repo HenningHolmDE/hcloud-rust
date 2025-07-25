@@ -26,7 +26,7 @@ pub struct LoadBalancerTarget {
     /// List of resolved label selector target Servers. Only present for type \"label_selector\".
     #[serde(rename = "targets", skip_serializing_if = "Option::is_none")]
     pub targets: Option<Vec<models::LoadBalancerSelectedTarget>>,
-    /// Type of the resource
+    /// Type of the resource.
     #[serde(rename = "type")]
     pub r#type: Type,
     /// Use the private network IP instead of the public IP. Only present for target types \"server\" and \"label_selector\".
@@ -48,7 +48,7 @@ impl LoadBalancerTarget {
         }
     }
 }
-/// Type of the resource
+/// Type of the resource.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum Type {
     #[serde(rename = "ip")]

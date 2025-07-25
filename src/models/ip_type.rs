@@ -11,8 +11,8 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// IpType : Floating IP type | Type of [Primary IP](#primary-ips) the price is for. | Type of [Floating IP](#floating-ips) the price is for. | [Primary IP](#primary-ips) type.
-/// Floating IP type | Type of [Primary IP](#primary-ips) the price is for. | Type of [Floating IP](#floating-ips) the price is for. | [Primary IP](#primary-ips) type.
+/// IpType : The Floating IP type. | Type of [Primary IP](#primary-ips) the price is for. | Type of [Floating IP](#floating-ips) the price is for. | [Primary IP](#primary-ips) type.
+/// The Floating IP type. | Type of [Primary IP](#primary-ips) the price is for. | Type of [Floating IP](#floating-ips) the price is for. | [Primary IP](#primary-ips) type.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum IpType {
     #[serde(rename = "ipv4")]

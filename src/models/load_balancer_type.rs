@@ -13,28 +13,28 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct LoadBalancerType {
-    /// Point in time when the Load Balancer type is deprecated (in ISO-8601 format)
+    /// Point in time when the Load Balancer type is deprecated (in ISO-8601 format).
     #[serde(rename = "deprecated", deserialize_with = "Option::deserialize")]
     pub deprecated: Option<String>,
-    /// Description of the Load Balancer type
+    /// Description of the Load Balancer type.
     #[serde(rename = "description")]
     pub description: String,
-    /// ID of the Load Balancer type
+    /// ID of the Load Balancer type.
     #[serde(rename = "id")]
     pub id: i64,
-    /// Number of SSL Certificates that can be assigned to a single Load Balancer
+    /// Number of SSL Certificates that can be assigned to a single Load Balancer.
     #[serde(rename = "max_assigned_certificates")]
     pub max_assigned_certificates: i64,
-    /// Number of maximum simultaneous open connections
+    /// Number of maximum simultaneous open connections.
     #[serde(rename = "max_connections")]
     pub max_connections: i64,
-    /// Number of services a Load Balancer of this type can have
+    /// Number of services a Load Balancer of this type can have.
     #[serde(rename = "max_services")]
     pub max_services: i64,
-    /// Number of targets a single Load Balancer can have
+    /// Number of targets a single Load Balancer can have.
     #[serde(rename = "max_targets")]
     pub max_targets: i64,
-    /// Unique identifier of the Load Balancer type
+    /// Unique identifier of the Load Balancer type.
     #[serde(rename = "name")]
     pub name: String,
     /// Price per [Location](#locations).

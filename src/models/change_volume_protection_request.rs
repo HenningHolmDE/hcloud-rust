@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 /// ChangeVolumeProtectionRequest : Request for POST https://api.hetzner.cloud/v1/volumes/{id}/actions/change_protection
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ChangeVolumeProtectionRequest {
-    /// If true, prevents the Volume from being deleted
+    /// If true, prevents the Volume from being deleted.
     #[serde(rename = "delete", skip_serializing_if = "Option::is_none")]
     pub delete: Option<bool>,
 }

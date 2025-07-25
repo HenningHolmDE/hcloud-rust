@@ -11,10 +11,10 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// LoadBalancerPublicNet : Public network information
+/// LoadBalancerPublicNet : Public network information.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct LoadBalancerPublicNet {
-    /// Public Interface enabled or not
+    /// Public Interface enabled or not.
     #[serde(rename = "enabled")]
     pub enabled: bool,
     #[serde(rename = "ipv4")]
@@ -24,7 +24,7 @@ pub struct LoadBalancerPublicNet {
 }
 
 impl LoadBalancerPublicNet {
-    /// Public network information
+    /// Public network information.
     pub fn new(
         enabled: bool,
         ipv4: models::LoadBalancerPublicNetIpv4,

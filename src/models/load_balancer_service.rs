@@ -14,20 +14,20 @@ use serde::{Deserialize, Serialize};
 /// LoadBalancerService : A service for a Load Balancer.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct LoadBalancerService {
-    /// Port the Load Balancer will balance to
+    /// Port the Load Balancer will balance to.
     #[serde(rename = "destination_port")]
     pub destination_port: i32,
     #[serde(rename = "health_check")]
     pub health_check: Box<models::LoadBalancerServiceHealthCheck>,
     #[serde(rename = "http", skip_serializing_if = "Option::is_none")]
     pub http: Option<Box<models::Http>>,
-    /// Port the Load Balancer listens on
+    /// Port the Load Balancer listens on.
     #[serde(rename = "listen_port")]
     pub listen_port: i32,
-    /// Protocol of the Load Balancer
+    /// Protocol of the Load Balancer.
     #[serde(rename = "protocol")]
     pub protocol: Protocol,
-    /// Is Proxyprotocol enabled or not
+    /// Is Proxyprotocol enabled or not.
     #[serde(rename = "proxyprotocol")]
     pub proxyprotocol: bool,
 }
@@ -51,7 +51,7 @@ impl LoadBalancerService {
         }
     }
 }
-/// Protocol of the Load Balancer
+/// Protocol of the Load Balancer.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum Protocol {
     #[serde(rename = "http")]

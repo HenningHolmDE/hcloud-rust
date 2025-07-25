@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 /// AttachIsoToServerRequest : Request for POST https://api.hetzner.cloud/v1/servers/{id}/actions/attach_iso
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct AttachIsoToServerRequest {
-    /// ID or name of ISO to attach to the Server as listed in GET `/isos`
+    /// ID or name of ISO to attach to the Server as listed in GET `/isos`.
     #[serde(rename = "iso")]
     pub iso: String,
 }

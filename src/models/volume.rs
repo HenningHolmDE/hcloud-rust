@@ -17,7 +17,7 @@ pub struct Volume {
     /// Point in time when the Resource was created (in ISO-8601 format).
     #[serde(rename = "created")]
     pub created: String,
-    /// Filesystem of the Volume if formatted on creation, null if not formatted on creation
+    /// Filesystem of the Volume if formatted on creation, null if not formatted on creation.
     #[serde(rename = "format", deserialize_with = "Option::deserialize")]
     pub format: Option<String>,
     /// ID of the Volume.
@@ -26,7 +26,7 @@ pub struct Volume {
     /// User-defined labels (`key/value` pairs) for the Resource. For more information, see \"[Labels](#labels)\".  | User-defined labels (`key/value` pairs) for the Resource.  Note that the set of [Labels](#labels) provided in the request will overwrite the existing one.  For more information, see \"[Labels](#labels)\".
     #[serde(rename = "labels")]
     pub labels: std::collections::HashMap<String, String>,
-    /// Device path on the file system for the Volume
+    /// Device path on the file system for the Volume.
     #[serde(rename = "linux_device")]
     pub linux_device: String,
     #[serde(rename = "location")]
@@ -36,10 +36,10 @@ pub struct Volume {
     pub name: String,
     #[serde(rename = "protection")]
     pub protection: Box<models::Protection>,
-    /// ID of the Server the Volume is attached to, null if it is not attached at all
+    /// ID of the Server the Volume is attached to, null if it is not attached at all.
     #[serde(rename = "server", deserialize_with = "Option::deserialize")]
     pub server: Option<i64>,
-    /// Size in GB of the Volume
+    /// Size in GB of the Volume.
     #[serde(rename = "size")]
     pub size: f64,
     /// Status of the Volume.

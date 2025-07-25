@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 /// DeleteServiceRequest : Request for POST https://api.hetzner.cloud/v1/load_balancers/{id}/actions/delete_service
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct DeleteServiceRequest {
-    /// The listen port of the service you want to delete
+    /// The listen port of the service you want to delete.
     #[serde(rename = "listen_port")]
     pub listen_port: i32,
 }

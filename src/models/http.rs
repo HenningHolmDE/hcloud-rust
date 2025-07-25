@@ -11,7 +11,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// Http : Configuration option for protocols http and https
+/// Http : Configuration option for protocols http and https.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Http {
     /// IDs of the Certificates to use for TLS/SSL termination by the Load Balancer; empty for TLS/SSL passthrough or if `protocol` is `http`.
@@ -32,7 +32,7 @@ pub struct Http {
 }
 
 impl Http {
-    /// Configuration option for protocols http and https
+    /// Configuration option for protocols http and https.
     pub fn new() -> Http {
         Http {
             certificates: None,

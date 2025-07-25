@@ -21,10 +21,10 @@ pub struct LoadBalancer {
     /// ID of the Load Balancer.
     #[serde(rename = "id")]
     pub id: i64,
-    /// Free Traffic for the current billing period in bytes
+    /// Free Traffic for the current billing period in bytes.
     #[serde(rename = "included_traffic")]
     pub included_traffic: i64,
-    /// Inbound Traffic for the current billing period in bytes
+    /// Inbound Traffic for the current billing period in bytes.
     #[serde(rename = "ingoing_traffic", deserialize_with = "Option::deserialize")]
     pub ingoing_traffic: Option<i64>,
     /// User-defined labels (`key/value` pairs) for the Resource. For more information, see \"[Labels](#labels)\".  | User-defined labels (`key/value` pairs) for the Resource.  Note that the set of [Labels](#labels) provided in the request will overwrite the existing one.  For more information, see \"[Labels](#labels)\".
@@ -37,20 +37,20 @@ pub struct LoadBalancer {
     /// Name of the Resource. Must be unique per Project.
     #[serde(rename = "name")]
     pub name: String,
-    /// Outbound Traffic for the current billing period in bytes
+    /// Outbound Traffic for the current billing period in bytes.
     #[serde(rename = "outgoing_traffic", deserialize_with = "Option::deserialize")]
     pub outgoing_traffic: Option<i64>,
-    /// Private networks information
+    /// Private networks information.
     #[serde(rename = "private_net")]
     pub private_net: Vec<models::LoadBalancerPrivateNet>,
     #[serde(rename = "protection")]
     pub protection: Box<models::Protection>,
     #[serde(rename = "public_net")]
     pub public_net: Box<models::LoadBalancerPublicNet>,
-    /// List of services that belong to this Load Balancer
+    /// List of services that belong to this Load Balancer.
     #[serde(rename = "services")]
     pub services: Vec<models::LoadBalancerService>,
-    /// List of targets that belong to this Load Balancer
+    /// List of targets that belong to this Load Balancer.
     #[serde(rename = "targets")]
     pub targets: Vec<models::LoadBalancerTarget>,
 }

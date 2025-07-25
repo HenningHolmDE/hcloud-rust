@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 /// Server : Servers are virtual machines that can be provisioned.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Server {
-    /// Time window (UTC) in which the backup will run, or null if the backups are not enabled
+    /// Time window (UTC) in which the backup will run, or null if the backups are not enabled.
     #[serde(rename = "backup_window", deserialize_with = "Option::deserialize")]
     pub backup_window: Option<String>,
     /// Point in time when the Resource was created (in ISO-8601 format).
@@ -27,10 +27,10 @@ pub struct Server {
     pub id: i64,
     #[serde(rename = "image", deserialize_with = "Option::deserialize")]
     pub image: Option<Box<models::Image>>,
-    /// Free Traffic for the current billing period in bytes
+    /// Free Traffic for the current billing period in bytes.
     #[serde(rename = "included_traffic", deserialize_with = "Option::deserialize")]
     pub included_traffic: Option<i64>,
-    /// Inbound Traffic for the current billing period in bytes
+    /// Inbound Traffic for the current billing period in bytes.
     #[serde(rename = "ingoing_traffic", deserialize_with = "Option::deserialize")]
     pub ingoing_traffic: Option<i64>,
     #[serde(rename = "iso", deserialize_with = "Option::deserialize")]
@@ -41,13 +41,13 @@ pub struct Server {
     /// Load Balancer IDs assigned to the server.
     #[serde(rename = "load_balancers", skip_serializing_if = "Option::is_none")]
     pub load_balancers: Option<Vec<i64>>,
-    /// True if Server has been locked and is not available to user
+    /// True if Server has been locked and is not available to user.
     #[serde(rename = "locked")]
     pub locked: bool,
-    /// Name of the Server (must be unique per Project and a valid hostname as per RFC 1123)
+    /// Name of the Server (must be unique per Project and a valid hostname as per RFC 1123).
     #[serde(rename = "name")]
     pub name: String,
-    /// Outbound Traffic for the current billing period in bytes
+    /// Outbound Traffic for the current billing period in bytes.
     #[serde(rename = "outgoing_traffic", deserialize_with = "Option::deserialize")]
     pub outgoing_traffic: Option<i64>,
     #[serde(
@@ -57,17 +57,17 @@ pub struct Server {
         skip_serializing_if = "Option::is_none"
     )]
     pub placement_group: Option<Option<Box<models::PlacementGroup>>>,
-    /// Size of the primary Disk
+    /// Size of the primary Disk.
     #[serde(rename = "primary_disk_size")]
     pub primary_disk_size: i32,
-    /// Private networks information
+    /// Private networks information.
     #[serde(rename = "private_net")]
     pub private_net: Vec<models::ServerPrivateNet>,
     #[serde(rename = "protection")]
     pub protection: Box<models::ServerProtection>,
     #[serde(rename = "public_net")]
     pub public_net: Box<models::ServerPublicNet>,
-    /// True if rescue mode is enabled. Server will then boot into rescue system on next reboot
+    /// True if rescue mode is enabled. Server will then boot into rescue system on next reboot.
     #[serde(rename = "rescue_enabled")]
     pub rescue_enabled: bool,
     #[serde(rename = "server_type")]
@@ -75,7 +75,7 @@ pub struct Server {
     /// Status of the Server.
     #[serde(rename = "status")]
     pub status: Status,
-    /// IDs of Volumes assigned to this Server
+    /// IDs of Volumes assigned to this Server.
     #[serde(rename = "volumes", skip_serializing_if = "Option::is_none")]
     pub volumes: Option<Vec<i64>>,
 }

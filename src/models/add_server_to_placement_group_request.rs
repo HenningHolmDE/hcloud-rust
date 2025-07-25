@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 /// AddServerToPlacementGroupRequest : Request for POST https://api.hetzner.cloud/v1/servers/{id}/actions/add_to_placement_group
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct AddServerToPlacementGroupRequest {
-    /// ID of Placement Group the Server should be added to
+    /// ID of Placement Group the Server should be added to.
     #[serde(rename = "placement_group")]
     pub placement_group: i64,
 }

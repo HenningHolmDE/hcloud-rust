@@ -16,7 +16,7 @@ use serde::{Deserialize, Serialize};
 pub struct RebuildServerFromImageResponse {
     #[serde(rename = "action", skip_serializing_if = "Option::is_none")]
     pub action: Option<Box<models::Action>>,
-    /// New root password when not using SSH keys
+    /// New root password when not using SSH keys.
     #[serde(
         rename = "root_password",
         default,

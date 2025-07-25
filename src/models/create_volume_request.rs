@@ -17,22 +17,22 @@ pub struct CreateVolumeRequest {
     /// Auto-mount Volume after attach. `server` must be provided.
     #[serde(rename = "automount", skip_serializing_if = "Option::is_none")]
     pub automount: Option<bool>,
-    /// Format Volume after creation. One of: `xfs`, `ext4`
+    /// Format Volume after creation. One of: `xfs`, `ext4`.
     #[serde(rename = "format", skip_serializing_if = "Option::is_none")]
     pub format: Option<String>,
     /// User-defined labels (`key/value` pairs) for the Resource. For more information, see \"[Labels](#labels)\".  | User-defined labels (`key/value` pairs) for the Resource.  Note that the set of [Labels](#labels) provided in the request will overwrite the existing one.  For more information, see \"[Labels](#labels)\".
     #[serde(rename = "labels", skip_serializing_if = "Option::is_none")]
     pub labels: Option<std::collections::HashMap<String, String>>,
-    /// Location to create the Volume in (can be omitted if Server is specified)
+    /// Location to create the Volume in (can be omitted if Server is specified).
     #[serde(rename = "location", skip_serializing_if = "Option::is_none")]
     pub location: Option<String>,
-    /// Name of the volume
+    /// Name of the volume.
     #[serde(rename = "name")]
     pub name: String,
-    /// Server to which to attach the Volume once it's created (Volume will be created in the same Location as the server)
+    /// Server to which to attach the Volume once it's created (Volume will be created in the same Location as the server).
     #[serde(rename = "server", skip_serializing_if = "Option::is_none")]
     pub server: Option<i64>,
-    /// Size of the Volume in GB
+    /// Size of the Volume in GB.
     #[serde(rename = "size")]
     pub size: i32,
 }

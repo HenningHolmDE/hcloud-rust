@@ -13,10 +13,10 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Resource {
-    /// ID of the Resource. | ID of resource referenced
+    /// ID of the Resource. | ID of resource referenced.
     #[serde(rename = "id")]
     pub id: i64,
-    /// Type of the Resource. | Type of resource referenced
+    /// Type of the Resource. | Type of resource referenced.
     #[serde(rename = "type")]
     pub r#type: String,
 }

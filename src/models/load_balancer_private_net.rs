@@ -13,10 +13,10 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct LoadBalancerPrivateNet {
-    /// IP address (v4) of this Load Balancer in this Network
+    /// IP address (v4) of this Load Balancer in this Network.
     #[serde(rename = "ip", skip_serializing_if = "Option::is_none")]
     pub ip: Option<String>,
-    /// ID of the Network
+    /// ID of the Network.
     #[serde(rename = "network", skip_serializing_if = "Option::is_none")]
     pub network: Option<i64>,
 }

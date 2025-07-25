@@ -11,7 +11,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// UpdateLoadBalancerServiceHealthCheckHttp : Additional configuration for protocol http
+/// UpdateLoadBalancerServiceHealthCheckHttp : Additional configuration for protocol http.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct UpdateLoadBalancerServiceHealthCheckHttp {
     /// Host header to send in the HTTP request. May not contain spaces, percent or backslash symbols. Can be null, in that case no host header is sent.
@@ -25,19 +25,19 @@ pub struct UpdateLoadBalancerServiceHealthCheckHttp {
     /// HTTP path to use for health checks. May not contain literal spaces, use percent-encoding instead.
     #[serde(rename = "path", skip_serializing_if = "Option::is_none")]
     pub path: Option<String>,
-    /// String that must be contained in HTTP response in order to pass the health check
+    /// String that must be contained in HTTP response in order to pass the health check.
     #[serde(rename = "response", skip_serializing_if = "Option::is_none")]
     pub response: Option<String>,
     /// List of returned HTTP status codes in order to pass the health check. Supports the wildcards `?` for exactly one character and `*` for multiple ones.
     #[serde(rename = "status_codes", skip_serializing_if = "Option::is_none")]
     pub status_codes: Option<Vec<String>>,
-    /// Use HTTPS for health check
+    /// Use HTTPS for health check.
     #[serde(rename = "tls", skip_serializing_if = "Option::is_none")]
     pub tls: Option<bool>,
 }
 
 impl UpdateLoadBalancerServiceHealthCheckHttp {
-    /// Additional configuration for protocol http
+    /// Additional configuration for protocol http.
     pub fn new() -> UpdateLoadBalancerServiceHealthCheckHttp {
         UpdateLoadBalancerServiceHealthCheckHttp {
             domain: None,

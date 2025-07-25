@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 /// ResourceId : ID of the Resource
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ResourceId {
-    /// ID of the Server. | ID of the [Server](#servers). | ID of the Server
+    /// ID of the Server. | ID of the [Server](#servers).
     #[serde(rename = "id")]
     pub id: i64,
 }

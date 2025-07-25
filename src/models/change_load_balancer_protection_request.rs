@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 /// ChangeLoadBalancerProtectionRequest : Request for POST https://api.hetzner.cloud/v1/load_balancers/{id}/actions/change_protection
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ChangeLoadBalancerProtectionRequest {
-    /// If true, prevents the Load Balancer from being deleted
+    /// If true, prevents the Load Balancer from being deleted.
     #[serde(rename = "delete", skip_serializing_if = "Option::is_none")]
     pub delete: Option<bool>,
 }

@@ -20,7 +20,7 @@ pub struct RemoveTargetRequest {
     pub label_selector: Option<Box<models::LabelSelector>>,
     #[serde(rename = "server", skip_serializing_if = "Option::is_none")]
     pub server: Option<Box<models::ResourceId>>,
-    /// Type of the resource
+    /// Type of the resource.
     #[serde(rename = "type")]
     pub r#type: Type,
 }
@@ -36,7 +36,7 @@ impl RemoveTargetRequest {
         }
     }
 }
-/// Type of the resource
+/// Type of the resource.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum Type {
     #[serde(rename = "ip")]

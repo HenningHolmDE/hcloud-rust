@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 /// CreateImageFromServerRequest : Request for POST https://api.hetzner.cloud/v1/servers/{id}/actions/create_image
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CreateImageFromServerRequest {
-    /// Description of the Image, will be auto-generated if not set
+    /// Description of the Image, will be auto-generated if not set.
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
     /// User-defined labels (`key/value` pairs) for the Resource. For more information, see \"[Labels](#labels)\".  | User-defined labels (`key/value` pairs) for the Resource.  Note that the set of [Labels](#labels) provided in the request will overwrite the existing one.  For more information, see \"[Labels](#labels)\".

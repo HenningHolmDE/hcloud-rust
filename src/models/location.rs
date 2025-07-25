@@ -20,7 +20,7 @@ pub struct Location {
     /// Country the [Location](#locations) resides in.  ISO 3166-1 alpha-2 code of the country.
     #[serde(rename = "country")]
     pub country: String,
-    /// Humand readable description of the [Location](#locations).
+    /// Human readable description of the [Location](#locations).
     #[serde(rename = "description")]
     pub description: String,
     /// ID of the Location.

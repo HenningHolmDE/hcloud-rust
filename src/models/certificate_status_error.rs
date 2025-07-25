@@ -11,7 +11,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// CertificateStatusError : If issuance or renewal reports `failed`, this property contains information about what happened
+/// CertificateStatusError : If issuance or renewal reports `failed`, this property contains information about what happened.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CertificateStatusError {
     #[serde(rename = "code", skip_serializing_if = "Option::is_none")]
@@ -21,7 +21,7 @@ pub struct CertificateStatusError {
 }
 
 impl CertificateStatusError {
-    /// If issuance or renewal reports `failed`, this property contains information about what happened
+    /// If issuance or renewal reports `failed`, this property contains information about what happened.
     pub fn new() -> CertificateStatusError {
         CertificateStatusError {
             code: None,

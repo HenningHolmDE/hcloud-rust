@@ -11,10 +11,10 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// LoadBalancerPublicNetIpv4 : IP address (v4)
+/// LoadBalancerPublicNetIpv4 : IP address (v4).
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct LoadBalancerPublicNetIpv4 {
-    /// Reverse DNS PTR entry for the IPv4 address of this Load Balancer
+    /// Reverse DNS PTR entry for the IPv4 address of this Load Balancer.
     #[serde(
         rename = "dns_ptr",
         default,
@@ -22,7 +22,7 @@ pub struct LoadBalancerPublicNetIpv4 {
         skip_serializing_if = "Option::is_none"
     )]
     pub dns_ptr: Option<Option<String>>,
-    /// IP address (v4) of this Load Balancer
+    /// IP address (v4) of this Load Balancer.
     #[serde(
         rename = "ip",
         default,
@@ -33,7 +33,7 @@ pub struct LoadBalancerPublicNetIpv4 {
 }
 
 impl LoadBalancerPublicNetIpv4 {
-    /// IP address (v4)
+    /// IP address (v4).
     pub fn new() -> LoadBalancerPublicNetIpv4 {
         LoadBalancerPublicNetIpv4 {
             dns_ptr: None,

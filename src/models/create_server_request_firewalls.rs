@@ -13,7 +13,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CreateServerRequestFirewalls {
-    /// ID of the Firewall
+    /// ID of the Firewall.
     #[serde(rename = "firewall")]
     pub firewall: i64,
 }

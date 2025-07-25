@@ -90,7 +90,7 @@ pub struct ListImagesParams {
     pub r#type: Option<String>,
     /// Filter resources by status. Can be used multiple times. The response will only contain the resources with the specified status.
     pub status: Option<String>,
-    /// Can be used multiple times. Server ID linked to the Image. Only available for Images of type `backup`
+    /// Can be used multiple times. Server ID linked to the Image. Only available for Images of type `backup`.
     pub bound_to: Option<String>,
     /// Can be used multiple times.
     pub include_deprecated: Option<bool>,

@@ -29,7 +29,7 @@ pub struct SshKey {
     /// Name of the Resource. Must be unique per Project.
     #[serde(rename = "name")]
     pub name: String,
-    /// Public key
+    /// Public key.
     #[serde(rename = "public_key")]
     pub public_key: String,
 }

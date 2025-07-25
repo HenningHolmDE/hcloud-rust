@@ -17,16 +17,16 @@ pub struct Iso {
     pub architecture: Option<models::Architecture>,
     #[serde(rename = "deprecation", deserialize_with = "Option::deserialize")]
     pub deprecation: Option<Box<models::DeprecationInfo>>,
-    /// Description of the ISO
+    /// Description of the ISO.
     #[serde(rename = "description")]
     pub description: String,
     /// ID of the ISO.
     #[serde(rename = "id")]
     pub id: i64,
-    /// Unique identifier of the ISO. Only set for public ISOs
+    /// Unique identifier of the ISO. Only set for public ISOs.
     #[serde(rename = "name", deserialize_with = "Option::deserialize")]
     pub name: Option<String>,
-    /// Type of the ISO
+    /// Type of the ISO.
     #[serde(rename = "type", deserialize_with = "Option::deserialize")]
     pub r#type: Option<Type>,
 }
@@ -50,7 +50,7 @@ impl Iso {
         }
     }
 }
-/// Type of the ISO
+/// Type of the ISO.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum Type {
     #[serde(rename = "private")]

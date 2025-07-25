@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 /// ResizeVolumeRequest : Request for POST https://api.hetzner.cloud/v1/volumes/{id}/actions/resize
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ResizeVolumeRequest {
-    /// New Volume size in GB (must be greater than current size)
+    /// New Volume size in GB (must be greater than current size).
     #[serde(rename = "size")]
     pub size: f64,
 }

@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 /// LabelSelector : Configuration for type LabelSelector, required if type is `label_selector`
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct LabelSelector {
-    /// Label selector | The selector.
+    /// The selector. | Label selector.
     #[serde(rename = "selector")]
     pub selector: String,
 }

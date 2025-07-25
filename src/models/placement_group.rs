@@ -25,7 +25,7 @@ pub struct PlacementGroup {
     /// Name of the Resource. Must be unique per Project.
     #[serde(rename = "name")]
     pub name: String,
-    /// Array of IDs of Servers that are part of this Placement Group
+    /// Array of IDs of Servers that are part of this Placement Group.
     #[serde(rename = "servers")]
     pub servers: Vec<i64>,
     /// Type of Placement Group.

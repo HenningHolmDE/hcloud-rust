@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 /// DetachLoadBalancerFromNetworkRequest : Request for POST https://api.hetzner.cloud/v1/load_balancers/{id}/actions/detach_from_network
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct DetachLoadBalancerFromNetworkRequest {
-    /// ID of an existing network to detach the Load Balancer from
+    /// ID of an existing network to detach the Load Balancer from.
     #[serde(rename = "network")]
     pub network: i64,
 }
