@@ -37,7 +37,7 @@ pub struct GetSshKeyParams {
 #[derive(Clone, Debug, Default)]
 pub struct ListSshKeysParams {
     /// Sort resources by field and direction. Can be used multiple times. For more information, see \"[Sorting](#sorting)\".
-    pub sort: Option<String>,
+    pub sort: Option<Vec<String>>,
     /// Filter resources by their name. The response will only contain the resources matching exactly the specified name.
     pub name: Option<String>,
     /// Can be used to filter SSH keys by their fingerprint. The response will only contain the SSH key matching the specified fingerprint.
@@ -256,8 +256,23 @@ pub async fn list_ssh_keys(
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = sort {
-        local_var_req_builder =
-            local_var_req_builder.query(&[("sort", &local_var_str.to_string())]);
+        local_var_req_builder = match "multi" {
+            "multi" => local_var_req_builder.query(
+                &local_var_str
+                    .into_iter()
+                    .map(|p| ("sort".to_owned(), p.to_string()))
+                    .collect::<Vec<(std::string::String, std::string::String)>>(),
+            ),
+            _ => local_var_req_builder.query(&[(
+                "sort",
+                &local_var_str
+                    .into_iter()
+                    .map(|p| p.to_string())
+                    .collect::<Vec<String>>()
+                    .join(",")
+                    .to_string(),
+            )]),
+        };
     }
     if let Some(ref local_var_str) = name {
         local_var_req_builder =

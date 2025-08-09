@@ -181,9 +181,9 @@ pub struct ListActionsForServerParams {
     /// ID of the Server
     pub id: i64,
     /// Sort actions by field and direction. Can be used multiple times. For more information, see \"[Sorting](#sorting)\".
-    pub sort: Option<String>,
+    pub sort: Option<Vec<String>>,
     /// Filter the actions by status. Can be used multiple times. The response will only contain actions matching the specified statuses.
-    pub status: Option<String>,
+    pub status: Option<Vec<String>>,
     /// Page number to return. For more information, see \"[Pagination](#pagination)\".
     pub page: Option<i64>,
     /// Maximum number of entries returned per page. For more information, see \"[Pagination](#pagination)\".
@@ -194,11 +194,11 @@ pub struct ListActionsForServerParams {
 #[derive(Clone, Debug, Default)]
 pub struct ListServerActionsParams {
     /// Filter the actions by ID. Can be used multiple times. The response will only contain actions matching the specified IDs.
-    pub id: Option<i64>,
+    pub id: Option<Vec<i64>>,
     /// Sort actions by field and direction. Can be used multiple times. For more information, see \"[Sorting](#sorting)\".
-    pub sort: Option<String>,
+    pub sort: Option<Vec<String>>,
     /// Filter the actions by status. Can be used multiple times. The response will only contain actions matching the specified statuses.
-    pub status: Option<String>,
+    pub status: Option<Vec<String>>,
     /// Page number to return. For more information, see \"[Pagination](#pagination)\".
     pub page: Option<i64>,
     /// Maximum number of entries returned per page. For more information, see \"[Pagination](#pagination)\".
@@ -213,9 +213,9 @@ pub struct ListServersParams {
     /// Filter resources by labels. The response will only contain resources matching the label selector. For more information, see \"[Label Selector](#label-selector)\".
     pub label_selector: Option<String>,
     /// Sort resources by field and direction. Can be used multiple times. For more information, see \"[Sorting](#sorting)\".
-    pub sort: Option<String>,
+    pub sort: Option<Vec<String>>,
     /// Filter resources by status. Can be used multiple times. The response will only contain the resources with the specified status.
-    pub status: Option<String>,
+    pub status: Option<Vec<String>>,
     /// Page number to return. For more information, see \"[Pagination](#pagination)\".
     pub page: Option<i64>,
     /// Maximum number of entries returned per page. For more information, see \"[Pagination](#pagination)\".
@@ -1549,12 +1549,42 @@ pub async fn list_actions_for_server(
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = sort {
-        local_var_req_builder =
-            local_var_req_builder.query(&[("sort", &local_var_str.to_string())]);
+        local_var_req_builder = match "multi" {
+            "multi" => local_var_req_builder.query(
+                &local_var_str
+                    .into_iter()
+                    .map(|p| ("sort".to_owned(), p.to_string()))
+                    .collect::<Vec<(std::string::String, std::string::String)>>(),
+            ),
+            _ => local_var_req_builder.query(&[(
+                "sort",
+                &local_var_str
+                    .into_iter()
+                    .map(|p| p.to_string())
+                    .collect::<Vec<String>>()
+                    .join(",")
+                    .to_string(),
+            )]),
+        };
     }
     if let Some(ref local_var_str) = status {
-        local_var_req_builder =
-            local_var_req_builder.query(&[("status", &local_var_str.to_string())]);
+        local_var_req_builder = match "multi" {
+            "multi" => local_var_req_builder.query(
+                &local_var_str
+                    .into_iter()
+                    .map(|p| ("status".to_owned(), p.to_string()))
+                    .collect::<Vec<(std::string::String, std::string::String)>>(),
+            ),
+            _ => local_var_req_builder.query(&[(
+                "status",
+                &local_var_str
+                    .into_iter()
+                    .map(|p| p.to_string())
+                    .collect::<Vec<String>>()
+                    .join(",")
+                    .to_string(),
+            )]),
+        };
     }
     if let Some(ref local_var_str) = page {
         local_var_req_builder =
@@ -1613,15 +1643,61 @@ pub async fn list_server_actions(
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = id {
-        local_var_req_builder = local_var_req_builder.query(&[("id", &local_var_str.to_string())]);
+        local_var_req_builder = match "multi" {
+            "multi" => local_var_req_builder.query(
+                &local_var_str
+                    .into_iter()
+                    .map(|p| ("id".to_owned(), p.to_string()))
+                    .collect::<Vec<(std::string::String, std::string::String)>>(),
+            ),
+            _ => local_var_req_builder.query(&[(
+                "id",
+                &local_var_str
+                    .into_iter()
+                    .map(|p| p.to_string())
+                    .collect::<Vec<String>>()
+                    .join(",")
+                    .to_string(),
+            )]),
+        };
     }
     if let Some(ref local_var_str) = sort {
-        local_var_req_builder =
-            local_var_req_builder.query(&[("sort", &local_var_str.to_string())]);
+        local_var_req_builder = match "multi" {
+            "multi" => local_var_req_builder.query(
+                &local_var_str
+                    .into_iter()
+                    .map(|p| ("sort".to_owned(), p.to_string()))
+                    .collect::<Vec<(std::string::String, std::string::String)>>(),
+            ),
+            _ => local_var_req_builder.query(&[(
+                "sort",
+                &local_var_str
+                    .into_iter()
+                    .map(|p| p.to_string())
+                    .collect::<Vec<String>>()
+                    .join(",")
+                    .to_string(),
+            )]),
+        };
     }
     if let Some(ref local_var_str) = status {
-        local_var_req_builder =
-            local_var_req_builder.query(&[("status", &local_var_str.to_string())]);
+        local_var_req_builder = match "multi" {
+            "multi" => local_var_req_builder.query(
+                &local_var_str
+                    .into_iter()
+                    .map(|p| ("status".to_owned(), p.to_string()))
+                    .collect::<Vec<(std::string::String, std::string::String)>>(),
+            ),
+            _ => local_var_req_builder.query(&[(
+                "status",
+                &local_var_str
+                    .into_iter()
+                    .map(|p| p.to_string())
+                    .collect::<Vec<String>>()
+                    .join(",")
+                    .to_string(),
+            )]),
+        };
     }
     if let Some(ref local_var_str) = page {
         local_var_req_builder =
@@ -1689,12 +1765,42 @@ pub async fn list_servers(
             local_var_req_builder.query(&[("label_selector", &local_var_str.to_string())]);
     }
     if let Some(ref local_var_str) = sort {
-        local_var_req_builder =
-            local_var_req_builder.query(&[("sort", &local_var_str.to_string())]);
+        local_var_req_builder = match "multi" {
+            "multi" => local_var_req_builder.query(
+                &local_var_str
+                    .into_iter()
+                    .map(|p| ("sort".to_owned(), p.to_string()))
+                    .collect::<Vec<(std::string::String, std::string::String)>>(),
+            ),
+            _ => local_var_req_builder.query(&[(
+                "sort",
+                &local_var_str
+                    .into_iter()
+                    .map(|p| p.to_string())
+                    .collect::<Vec<String>>()
+                    .join(",")
+                    .to_string(),
+            )]),
+        };
     }
     if let Some(ref local_var_str) = status {
-        local_var_req_builder =
-            local_var_req_builder.query(&[("status", &local_var_str.to_string())]);
+        local_var_req_builder = match "multi" {
+            "multi" => local_var_req_builder.query(
+                &local_var_str
+                    .into_iter()
+                    .map(|p| ("status".to_owned(), p.to_string()))
+                    .collect::<Vec<(std::string::String, std::string::String)>>(),
+            ),
+            _ => local_var_req_builder.query(&[(
+                "status",
+                &local_var_str
+                    .into_iter()
+                    .map(|p| p.to_string())
+                    .collect::<Vec<String>>()
+                    .join(",")
+                    .to_string(),
+            )]),
+        };
     }
     if let Some(ref local_var_str) = page {
         local_var_req_builder =

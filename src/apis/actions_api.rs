@@ -24,7 +24,7 @@ pub struct GetActionParams {
 #[derive(Clone, Debug, Default)]
 pub struct GetMultipleActionsParams {
     /// Filter the actions by ID. Can be used multiple times. The response will only contain actions matching the specified IDs.
-    pub id: i64,
+    pub id: Vec<i64>,
     /// Page to load.
     pub page: Option<i64>,
     /// Items to load per page.
@@ -111,7 +111,21 @@ pub async fn get_multiple_actions(
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    local_var_req_builder = local_var_req_builder.query(&[("id", &id.to_string())]);
+    local_var_req_builder = match "multi" {
+        "multi" => local_var_req_builder.query(
+            &id.into_iter()
+                .map(|p| ("id".to_owned(), p.to_string()))
+                .collect::<Vec<(std::string::String, std::string::String)>>(),
+        ),
+        _ => local_var_req_builder.query(&[(
+            "id",
+            &id.into_iter()
+                .map(|p| p.to_string())
+                .collect::<Vec<String>>()
+                .join(",")
+                .to_string(),
+        )]),
+    };
     if let Some(ref local_var_str) = page {
         local_var_req_builder =
             local_var_req_builder.query(&[("page", &local_var_str.to_string())]);

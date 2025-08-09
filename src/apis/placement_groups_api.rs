@@ -37,13 +37,13 @@ pub struct GetPlacementgroupParams {
 #[derive(Clone, Debug, Default)]
 pub struct ListPlacementGroupsParams {
     /// Sort resources by field and direction. Can be used multiple times. For more information, see \"[Sorting](#sorting)\".
-    pub sort: Option<String>,
+    pub sort: Option<Vec<String>>,
     /// Filter resources by their name. The response will only contain the resources matching exactly the specified name.
     pub name: Option<String>,
     /// Filter resources by labels. The response will only contain resources matching the label selector. For more information, see \"[Label Selector](#label-selector)\".
     pub label_selector: Option<String>,
     /// Filter resources by type. Can be used multiple times. The response will only contain the resources with the specified type.
-    pub r#type: Option<String>,
+    pub r#type: Option<Vec<String>>,
     /// Page number to return. For more information, see \"[Pagination](#pagination)\".
     pub page: Option<i64>,
     /// Maximum number of entries returned per page. For more information, see \"[Pagination](#pagination)\".
@@ -256,8 +256,23 @@ pub async fn list_placement_groups(
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = sort {
-        local_var_req_builder =
-            local_var_req_builder.query(&[("sort", &local_var_str.to_string())]);
+        local_var_req_builder = match "multi" {
+            "multi" => local_var_req_builder.query(
+                &local_var_str
+                    .into_iter()
+                    .map(|p| ("sort".to_owned(), p.to_string()))
+                    .collect::<Vec<(std::string::String, std::string::String)>>(),
+            ),
+            _ => local_var_req_builder.query(&[(
+                "sort",
+                &local_var_str
+                    .into_iter()
+                    .map(|p| p.to_string())
+                    .collect::<Vec<String>>()
+                    .join(",")
+                    .to_string(),
+            )]),
+        };
     }
     if let Some(ref local_var_str) = name {
         local_var_req_builder =
@@ -268,8 +283,23 @@ pub async fn list_placement_groups(
             local_var_req_builder.query(&[("label_selector", &local_var_str.to_string())]);
     }
     if let Some(ref local_var_str) = r#type {
-        local_var_req_builder =
-            local_var_req_builder.query(&[("type", &local_var_str.to_string())]);
+        local_var_req_builder = match "multi" {
+            "multi" => local_var_req_builder.query(
+                &local_var_str
+                    .into_iter()
+                    .map(|p| ("type".to_owned(), p.to_string()))
+                    .collect::<Vec<(std::string::String, std::string::String)>>(),
+            ),
+            _ => local_var_req_builder.query(&[(
+                "type",
+                &local_var_str
+                    .into_iter()
+                    .map(|p| p.to_string())
+                    .collect::<Vec<String>>()
+                    .join(",")
+                    .to_string(),
+            )]),
+        };
     }
     if let Some(ref local_var_str) = page {
         local_var_req_builder =
