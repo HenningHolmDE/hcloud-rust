@@ -471,7 +471,7 @@ pub async fn detach_volume(
 pub async fn get_action_for_volume(
     configuration: &configuration::Configuration,
     params: GetActionForVolumeParams,
-) -> Result<models::GetActionForVolumeResponse, Error<GetActionForVolumeError>> {
+) -> Result<models::GetActionResponse, Error<GetActionForVolumeError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -617,7 +617,7 @@ pub async fn get_volume_action(
 pub async fn list_actions_for_volume(
     configuration: &configuration::Configuration,
     params: ListActionsForVolumeParams,
-) -> Result<models::ListActionsForVolumeResponse, Error<ListActionsForVolumeError>> {
+) -> Result<models::ListActionsResponse, Error<ListActionsForVolumeError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters

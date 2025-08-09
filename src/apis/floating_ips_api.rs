@@ -476,7 +476,7 @@ pub async fn delete_floating_ip(
 pub async fn get_action_for_floating_ip(
     configuration: &configuration::Configuration,
     params: GetActionForFloatingIpParams,
-) -> Result<models::GetActionForFloatingIpResponse, Error<GetActionForFloatingIpError>> {
+) -> Result<models::GetActionResponse, Error<GetActionForFloatingIpError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -622,7 +622,7 @@ pub async fn get_floating_ip_action(
 pub async fn list_actions_for_floating_ip(
     configuration: &configuration::Configuration,
     params: ListActionsForFloatingIpParams,
-) -> Result<models::ListActionsForFloatingIpResponse, Error<ListActionsForFloatingIpError>> {
+) -> Result<models::ListActionsResponse, Error<ListActionsForFloatingIpError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters

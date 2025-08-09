@@ -357,7 +357,7 @@ pub async fn delete_firewall(
 pub async fn get_action_for_firewall(
     configuration: &configuration::Configuration,
     params: GetActionForFirewallParams,
-) -> Result<models::GetActionForFirewallResponse, Error<GetActionForFirewallError>> {
+) -> Result<models::GetActionResponse, Error<GetActionForFirewallError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -503,7 +503,7 @@ pub async fn get_firewall_action(
 pub async fn list_actions_for_firewall(
     configuration: &configuration::Configuration,
     params: ListActionsForFirewallParams,
-) -> Result<models::ListActionsForFirewallResponse, Error<ListActionsForFirewallError>> {
+) -> Result<models::ListActionsResponse, Error<ListActionsForFirewallError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters

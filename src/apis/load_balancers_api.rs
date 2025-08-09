@@ -1041,7 +1041,7 @@ pub async fn enable_public_interface_of_load_balancer(
 pub async fn get_action_for_load_balancer(
     configuration: &configuration::Configuration,
     params: GetActionForLoadBalancerParams,
-) -> Result<models::GetActionForLoadBalancerResponse, Error<GetActionForLoadBalancerError>> {
+) -> Result<models::GetActionResponse, Error<GetActionForLoadBalancerError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1246,7 +1246,7 @@ pub async fn get_metrics_for_loadbalancer(
 pub async fn list_actions_for_load_balancer(
     configuration: &configuration::Configuration,
     params: ListActionsForLoadBalancerParams,
-) -> Result<models::ListActionsForLoadBalancerResponse, Error<ListActionsForLoadBalancerError>> {
+) -> Result<models::ListActionsResponse, Error<ListActionsForLoadBalancerError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters

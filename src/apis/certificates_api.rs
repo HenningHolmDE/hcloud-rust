@@ -278,7 +278,7 @@ pub async fn delete_certificate(
 pub async fn get_action_for_certificate(
     configuration: &configuration::Configuration,
     params: GetActionForCertificateParams,
-) -> Result<models::GetActionForCertificateResponse, Error<GetActionForCertificateError>> {
+) -> Result<models::GetActionResponse, Error<GetActionForCertificateError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -424,7 +424,7 @@ pub async fn get_certificate_action(
 pub async fn list_actions_for_certificate(
     configuration: &configuration::Configuration,
     params: ListActionsForCertificateParams,
-) -> Result<models::ListActionsForCertificateResponse, Error<ListActionsForCertificateError>> {
+) -> Result<models::ListActionsResponse, Error<ListActionsForCertificateError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters

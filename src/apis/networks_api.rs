@@ -652,7 +652,7 @@ pub async fn delete_subnet_from_network(
 pub async fn get_action_for_network(
     configuration: &configuration::Configuration,
     params: GetActionForNetworkParams,
-) -> Result<models::GetActionForNetworkResponse, Error<GetActionForNetworkError>> {
+) -> Result<models::GetActionResponse, Error<GetActionForNetworkError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -798,7 +798,7 @@ pub async fn get_network_action(
 pub async fn list_actions_for_network(
     configuration: &configuration::Configuration,
     params: ListActionsForNetworkParams,
-) -> Result<models::ListActionsForNetworkResponse, Error<ListActionsForNetworkError>> {
+) -> Result<models::ListActionsResponse, Error<ListActionsForNetworkError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters

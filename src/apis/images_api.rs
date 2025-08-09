@@ -275,7 +275,7 @@ pub async fn delete_image(
 pub async fn get_action_for_image(
     configuration: &configuration::Configuration,
     params: GetActionForImageParams,
-) -> Result<models::GetActionForImageResponse, Error<GetActionForImageError>> {
+) -> Result<models::GetActionResponse, Error<GetActionForImageError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -416,7 +416,7 @@ pub async fn get_image_action(
 pub async fn list_actions_for_image(
     configuration: &configuration::Configuration,
     params: ListActionsForImageParams,
-) -> Result<models::ListActionsForImageResponse, Error<ListActionsForImageError>> {
+) -> Result<models::ListActionsResponse, Error<ListActionsForImageError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters

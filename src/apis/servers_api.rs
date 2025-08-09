@@ -1323,7 +1323,7 @@ pub async fn enable_rescue_mode_for_server(
 pub async fn get_action_for_server(
     configuration: &configuration::Configuration,
     params: GetActionForServerParams,
-) -> Result<models::GetActionForServerResponse, Error<GetActionForServerError>> {
+) -> Result<models::GetActionResponse, Error<GetActionForServerError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1528,7 +1528,7 @@ pub async fn get_server_action(
 pub async fn list_actions_for_server(
     configuration: &configuration::Configuration,
     params: ListActionsForServerParams,
-) -> Result<models::ListActionsForServerResponse, Error<ListActionsForServerError>> {
+) -> Result<models::ListActionsResponse, Error<ListActionsForServerError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters

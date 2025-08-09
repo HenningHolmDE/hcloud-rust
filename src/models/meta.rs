@@ -11,7 +11,6 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// Meta : Metadata contained in the response
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Meta {
     #[serde(rename = "pagination")]
@@ -19,7 +18,6 @@ pub struct Meta {
 }
 
 impl Meta {
-    /// Metadata contained in the response
     pub fn new(pagination: models::Pagination) -> Meta {
         Meta {
             pagination: Box::new(pagination),
