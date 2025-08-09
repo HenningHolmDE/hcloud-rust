@@ -250,8 +250,6 @@ pub mod get_metrics_for_loadbalancer_response;
 pub use self::get_metrics_for_loadbalancer_response::GetMetricsForLoadbalancerResponse;
 pub mod get_metrics_for_server_response;
 pub use self::get_metrics_for_server_response::GetMetricsForServerResponse;
-pub mod get_multiple_actions_response;
-pub use self::get_multiple_actions_response::GetMultipleActionsResponse;
 pub mod get_network_response;
 pub use self::get_network_response::GetNetworkResponse;
 pub mod get_placementgroup_response;

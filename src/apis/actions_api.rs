@@ -97,7 +97,7 @@ pub async fn get_action(
 pub async fn get_multiple_actions(
     configuration: &configuration::Configuration,
     params: GetMultipleActionsParams,
-) -> Result<models::GetMultipleActionsResponse, Error<GetMultipleActionsError>> {
+) -> Result<models::ListActionsResponse, Error<GetMultipleActionsError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
