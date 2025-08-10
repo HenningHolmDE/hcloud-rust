@@ -17,7 +17,7 @@ echo "Using Java from $(which "$_JAVA")..."
 # download OpenAPI generator if GENERATOR_JAR doesn't exist
 if [[ ! -f "${GENERATOR_JAR}" ]]; then
     echo "Downloading version ${GENERATOR_VERSION} of the OpenAPI Generator..."
-    curl -L "${GENERATOR_URL}" -o "${GENERATOR_JAR}"
+    curl -L "${GENERATOR_URL}" -o "${GENERATOR_JAR}" --fail
 fi
 
 # download OpenAPI spec if HCLOUD_OPENAPI_JSON doesn't exists

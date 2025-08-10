@@ -1,6 +1,11 @@
 #!/bin/bash
 # Set environment variables used by various scripts
 
+# Exit immediately if a command exits with a non-zero status,
+# treat unset variables as an error when substituting,
+# pipelines return the exit status of the last command to exit with a non-zero status, or zero if no command exited with a non-zero status.
+set -euo pipefail
+
 # directory for temporary downloads
 DOWNLOAD_DIR=generator_files
 mkdir -p ${DOWNLOAD_DIR}
