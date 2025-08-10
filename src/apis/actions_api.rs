@@ -113,13 +113,13 @@ pub async fn get_multiple_actions(
 
     local_var_req_builder = match "multi" {
         "multi" => local_var_req_builder.query(
-            &id.into_iter()
+            &id.iter()
                 .map(|p| ("id".to_owned(), p.to_string()))
                 .collect::<Vec<(std::string::String, std::string::String)>>(),
         ),
         _ => local_var_req_builder.query(&[(
             "id",
-            &id.into_iter()
+            &id.iter()
                 .map(|p| p.to_string())
                 .collect::<Vec<String>>()
                 .join(",")

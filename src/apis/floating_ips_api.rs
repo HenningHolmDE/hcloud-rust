@@ -646,14 +646,14 @@ pub async fn list_actions_for_floating_ip(
         local_var_req_builder = match "multi" {
             "multi" => local_var_req_builder.query(
                 &local_var_str
-                    .into_iter()
+                    .iter()
                     .map(|p| ("sort".to_owned(), p.to_string()))
                     .collect::<Vec<(std::string::String, std::string::String)>>(),
             ),
             _ => local_var_req_builder.query(&[(
                 "sort",
                 &local_var_str
-                    .into_iter()
+                    .iter()
                     .map(|p| p.to_string())
                     .collect::<Vec<String>>()
                     .join(",")
@@ -665,14 +665,14 @@ pub async fn list_actions_for_floating_ip(
         local_var_req_builder = match "multi" {
             "multi" => local_var_req_builder.query(
                 &local_var_str
-                    .into_iter()
+                    .iter()
                     .map(|p| ("status".to_owned(), p.to_string()))
                     .collect::<Vec<(std::string::String, std::string::String)>>(),
             ),
             _ => local_var_req_builder.query(&[(
                 "status",
                 &local_var_str
-                    .into_iter()
+                    .iter()
                     .map(|p| p.to_string())
                     .collect::<Vec<String>>()
                     .join(",")
@@ -740,14 +740,14 @@ pub async fn list_floating_ip_actions(
         local_var_req_builder = match "multi" {
             "multi" => local_var_req_builder.query(
                 &local_var_str
-                    .into_iter()
+                    .iter()
                     .map(|p| ("id".to_owned(), p.to_string()))
                     .collect::<Vec<(std::string::String, std::string::String)>>(),
             ),
             _ => local_var_req_builder.query(&[(
                 "id",
                 &local_var_str
-                    .into_iter()
+                    .iter()
                     .map(|p| p.to_string())
                     .collect::<Vec<String>>()
                     .join(",")
@@ -759,14 +759,14 @@ pub async fn list_floating_ip_actions(
         local_var_req_builder = match "multi" {
             "multi" => local_var_req_builder.query(
                 &local_var_str
-                    .into_iter()
+                    .iter()
                     .map(|p| ("sort".to_owned(), p.to_string()))
                     .collect::<Vec<(std::string::String, std::string::String)>>(),
             ),
             _ => local_var_req_builder.query(&[(
                 "sort",
                 &local_var_str
-                    .into_iter()
+                    .iter()
                     .map(|p| p.to_string())
                     .collect::<Vec<String>>()
                     .join(",")
@@ -778,14 +778,14 @@ pub async fn list_floating_ip_actions(
         local_var_req_builder = match "multi" {
             "multi" => local_var_req_builder.query(
                 &local_var_str
-                    .into_iter()
+                    .iter()
                     .map(|p| ("status".to_owned(), p.to_string()))
                     .collect::<Vec<(std::string::String, std::string::String)>>(),
             ),
             _ => local_var_req_builder.query(&[(
                 "status",
                 &local_var_str
-                    .into_iter()
+                    .iter()
                     .map(|p| p.to_string())
                     .collect::<Vec<String>>()
                     .join(",")
@@ -861,14 +861,14 @@ pub async fn list_floating_ips(
         local_var_req_builder = match "multi" {
             "multi" => local_var_req_builder.query(
                 &local_var_str
-                    .into_iter()
+                    .iter()
                     .map(|p| ("sort".to_owned(), p.to_string()))
                     .collect::<Vec<(std::string::String, std::string::String)>>(),
             ),
             _ => local_var_req_builder.query(&[(
                 "sort",
                 &local_var_str
-                    .into_iter()
+                    .iter()
                     .map(|p| p.to_string())
                     .collect::<Vec<String>>()
                     .join(",")

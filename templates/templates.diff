@@ -34,7 +34,7 @@ index dd7ac5a..8ecb33a 100644
  pub enum {{{enumName}}} {
  {{#allowableValues}}
 diff --git a/templates_orig/reqwest/api.mustache b/templates/reqwest/api.mustache
-index f9e6e9d..f4c0a8d 100644
+index f9e6e9d..c9aee44 100644
 --- a/templates_orig/reqwest/api.mustache
 +++ b/templates/reqwest/api.mustache
 @@ -11,7 +11,7 @@ use super::{Error, configuration};
@@ -46,3 +46,25 @@ index f9e6e9d..f4c0a8d 100644
  pub struct {{{operationIdCamelCase}}}Params {
  {{/-first}}
      {{#description}}
+@@ -103,8 +103,8 @@ pub {{#supportAsync}}async {{/supportAsync}}fn {{{operationId}}}(configuration:
+     {{#required}}
+     {{#isArray}}
+     local_var_req_builder = match "{{collectionFormat}}" {
+-        "multi" => local_var_req_builder.query(&{{{paramName}}}.into_iter().map(|p| ("{{{baseName}}}".to_owned(), p.to_string())).collect::<Vec<(std::string::String, std::string::String)>>()),
+-        _ => local_var_req_builder.query(&[("{{{baseName}}}", &{{{paramName}}}.into_iter().map(|p| p.to_string()).collect::<Vec<String>>().join(",").to_string())]),
++        "multi" => local_var_req_builder.query(&{{{paramName}}}.iter().map(|p| ("{{{baseName}}}".to_owned(), p.to_string())).collect::<Vec<(std::string::String, std::string::String)>>()),
++        _ => local_var_req_builder.query(&[("{{{baseName}}}", &{{{paramName}}}.iter().map(|p| p.to_string()).collect::<Vec<String>>().join(",").to_string())]),
+     };
+     {{/isArray}}
+     {{^isArray}}
+@@ -130,8 +130,8 @@ pub {{#supportAsync}}async {{/supportAsync}}fn {{{operationId}}}(configuration:
+     if let Some(ref local_var_str) = {{{paramName}}} {
+         {{#isArray}}
+         local_var_req_builder = match "{{collectionFormat}}" {
+-            "multi" => local_var_req_builder.query(&local_var_str.into_iter().map(|p| ("{{{baseName}}}".to_owned(), p.to_string())).collect::<Vec<(std::string::String, std::string::String)>>()),
+-            _ => local_var_req_builder.query(&[("{{{baseName}}}", &local_var_str.into_iter().map(|p| p.to_string()).collect::<Vec<String>>().join(",").to_string())]),
++            "multi" => local_var_req_builder.query(&local_var_str.iter().map(|p| ("{{{baseName}}}".to_owned(), p.to_string())).collect::<Vec<(std::string::String, std::string::String)>>()),
++            _ => local_var_req_builder.query(&[("{{{baseName}}}", &local_var_str.iter().map(|p| p.to_string()).collect::<Vec<String>>().join(",").to_string())]),
+         };
+         {{/isArray}}
+         {{^isArray}}

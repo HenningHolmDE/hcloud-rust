@@ -259,14 +259,14 @@ pub async fn list_placement_groups(
         local_var_req_builder = match "multi" {
             "multi" => local_var_req_builder.query(
                 &local_var_str
-                    .into_iter()
+                    .iter()
                     .map(|p| ("sort".to_owned(), p.to_string()))
                     .collect::<Vec<(std::string::String, std::string::String)>>(),
             ),
             _ => local_var_req_builder.query(&[(
                 "sort",
                 &local_var_str
-                    .into_iter()
+                    .iter()
                     .map(|p| p.to_string())
                     .collect::<Vec<String>>()
                     .join(",")
@@ -286,14 +286,14 @@ pub async fn list_placement_groups(
         local_var_req_builder = match "multi" {
             "multi" => local_var_req_builder.query(
                 &local_var_str
-                    .into_iter()
+                    .iter()
                     .map(|p| ("type".to_owned(), p.to_string()))
                     .collect::<Vec<(std::string::String, std::string::String)>>(),
             ),
             _ => local_var_req_builder.query(&[(
                 "type",
                 &local_var_str
-                    .into_iter()
+                    .iter()
                     .map(|p| p.to_string())
                     .collect::<Vec<String>>()
                     .join(",")
