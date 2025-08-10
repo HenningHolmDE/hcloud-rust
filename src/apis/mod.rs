@@ -92,7 +92,6 @@ pub fn parse_deep_object(prefix: &str, value: &serde_json::Value) -> Vec<(String
     unimplemented!("Only objects are supported with style=deepObject")
 }
 
-#[deprecated = "According to the [official docs](https://docs.hetzner.cloud/), the `GET /actions` endpoint will be disabled from `1 October 2023` onwards. Users should switch to the new resource-specific endpoints ASAP."]
 pub mod actions_api;
 pub mod certificates_api;
 pub mod datacenters_api;
