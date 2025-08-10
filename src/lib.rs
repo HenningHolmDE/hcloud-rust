@@ -34,7 +34,7 @@
 //!# }
 //!```
 //!
-//! For more examples check out the [examples](https://github.com/HenningHolmDE/hcloud-rust/tree/master/examples) folder in the Git repository.
+//! For more examples check out the [examples](https://github.com/HenningHolmDE/hcloud-rust/tree/main/examples) folder in the Git repository.
 //!
 //!# Selecting TLS implementation
 //!
