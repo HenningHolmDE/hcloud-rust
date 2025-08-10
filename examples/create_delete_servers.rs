@@ -18,6 +18,7 @@ struct ServerInfo {
     name: String,
     ipv4: String,
     ipv6: String,
+    action_id: i64,
 }
 
 #[tokio::main]
@@ -76,10 +77,10 @@ async fn main() -> Result<(), String> {
         let params = servers_api::CreateServerParams {
             create_server_request: Some(request),
         };
-        let server = servers_api::create_server(&configuration, params)
-            .await
-            .map_err(|err| format!("API call to create_server failed: {:?}", err))?
-            .server;
+        let models::CreateServerResponse { action, server, .. } =
+            servers_api::create_server(&configuration, params)
+                .await
+                .map_err(|err| format!("API call to create_server failed: {:?}", err))?;
 
         created_servers.push(ServerInfo {
             id: server.id,
@@ -94,40 +95,49 @@ async fn main() -> Result<(), String> {
                 .ipv6
                 .map(|ipv6| ipv6.ip)
                 .unwrap_or("None".to_string()),
+            action_id: action.id,
         });
     }
     println!();
     println!("Server info of created servers:");
     for server_info in &created_servers {
         println!(
-            " id: {}, name: {}, ipv4: {}, ipv6: {}",
-            server_info.id, server_info.name, server_info.ipv4, server_info.ipv6
+            " id: {}, name: {}, ipv4: {}, ipv6: {}, action_id: {}",
+            server_info.id,
+            server_info.name,
+            server_info.ipv4,
+            server_info.ipv6,
+            server_info.action_id
         );
     }
     println!();
 
+    // Collect IDs of create server actions to wait for completion
+    let action_ids = created_servers
+        .iter()
+        .map(|server_info| server_info.action_id)
+        .collect::<Vec<_>>();
+
     println!("Wait for servers to be ready by polling corresponding actions...");
     loop {
         let mut any_running = false;
-        for server_info in &created_servers {
-            let params = servers_api::ListActionsForServerParams {
-                id: server_info.id,
-                ..Default::default()
-            };
-            let actions = servers_api::list_actions_for_server(&configuration, params)
-                .await
-                .map_err(|err| format!("API call to list_actions_for_server failed: {:?}", err))?
-                .actions;
+        let params = servers_api::ListServerActionsParams {
+            id: Some(action_ids.clone()),
+            ..Default::default()
+        };
+        let actions = servers_api::list_server_actions(&configuration, params)
+            .await
+            .map_err(|err| format!("API call to get_multiple_actions failed: {:?}", err))?
+            .actions;
 
-            println!(" Actions for server {}:", server_info.name);
-            for action in actions {
-                println!(
-                    "  id: {}, command: {}, status: {:?}, progress: {}",
-                    action.id, action.command, action.status, action.progress
-                );
-                if action.status == models::action::Status::Running {
-                    any_running = true;
-                }
+        println!(" Actions for created servers:");
+        for action in actions {
+            println!(
+                "  id: {}, command: {}, status: {:?}, progress: {}",
+                action.id, action.command, action.status, action.progress
+            );
+            if action.status == models::action::Status::Running {
+                any_running = true;
             }
         }
         if !any_running {
