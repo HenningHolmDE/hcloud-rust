@@ -25,10 +25,6 @@ pub struct GetActionParams {
 pub struct GetMultipleActionsParams {
     /// Filter the actions by ID. Can be used multiple times. The response will only contain actions matching the specified IDs.
     pub id: Vec<i64>,
-    /// Page to load.
-    pub page: Option<i64>,
-    /// Items to load per page.
-    pub per_page: Option<i64>,
 }
 
 /// struct for typed errors of method [`get_action`]
@@ -97,13 +93,11 @@ pub async fn get_action(
 pub async fn get_multiple_actions(
     configuration: &configuration::Configuration,
     params: GetMultipleActionsParams,
-) -> Result<models::ListActionsResponse, Error<GetMultipleActionsError>> {
+) -> Result<models::GetMultipleActionsResponse, Error<GetMultipleActionsError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
     let id = params.id;
-    let page = params.page;
-    let per_page = params.per_page;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -126,14 +120,6 @@ pub async fn get_multiple_actions(
                 .to_string(),
         )]),
     };
-    if let Some(ref local_var_str) = page {
-        local_var_req_builder =
-            local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = per_page {
-        local_var_req_builder =
-            local_var_req_builder.query(&[("per_page", &local_var_str.to_string())]);
-    }
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder =
             local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
