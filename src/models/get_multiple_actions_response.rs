@@ -11,16 +11,16 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// ApplyToResourcesResponse : Response to POST https://api.hetzner.cloud/v1/firewalls/{id}/actions/apply_to_resources
+/// GetMultipleActionsResponse : Response to GET https://api.hetzner.cloud/v1/actions
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct ApplyToResourcesResponse {
+pub struct GetMultipleActionsResponse {
     #[serde(rename = "actions")]
     pub actions: Vec<models::Action>,
 }
 
-impl ApplyToResourcesResponse {
-    /// Response to POST https://api.hetzner.cloud/v1/firewalls/{id}/actions/apply_to_resources
-    pub fn new(actions: Vec<models::Action>) -> ApplyToResourcesResponse {
-        ApplyToResourcesResponse { actions }
+impl GetMultipleActionsResponse {
+    /// Response to GET https://api.hetzner.cloud/v1/actions
+    pub fn new(actions: Vec<models::Action>) -> GetMultipleActionsResponse {
+        GetMultipleActionsResponse { actions }
     }
 }
