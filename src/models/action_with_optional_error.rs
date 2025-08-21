@@ -11,18 +11,23 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// Action : Actions show the results and progress of asynchronous requests to the API.
+/// ActionWithOptionalError : Actions show the results and progress of asynchronous requests to the API.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct Action {
+pub struct ActionWithOptionalError {
     /// Command executed in the Action.
     #[serde(rename = "command")]
     pub command: String,
-    #[serde(rename = "error", deserialize_with = "Option::deserialize")]
-    pub error: Option<Box<models::Error>>,
+    #[serde(
+        rename = "error",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub error: Option<Option<Box<models::Error>>>,
     /// Point in time when the Action was finished (in ISO-8601 format). Only set if the Action is finished otherwise null.
     #[serde(rename = "finished", deserialize_with = "Option::deserialize")]
     pub finished: Option<String>,
-    /// ID of the Action
+    /// ID of the Action.
     #[serde(rename = "id")]
     pub id: i64,
     /// Progress of the Action in percent.
@@ -39,21 +44,20 @@ pub struct Action {
     pub status: Status,
 }
 
-impl Action {
+impl ActionWithOptionalError {
     /// Actions show the results and progress of asynchronous requests to the API.
     pub fn new(
         command: String,
-        error: Option<models::Error>,
         finished: Option<String>,
         id: i64,
         progress: i32,
         resources: Vec<models::Resource>,
         started: String,
         status: Status,
-    ) -> Action {
-        Action {
+    ) -> ActionWithOptionalError {
+        ActionWithOptionalError {
             command,
-            error: error.map(Box::new),
+            error: None,
             finished,
             id,
             progress,
