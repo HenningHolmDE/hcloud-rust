@@ -1,5 +1,5 @@
 use hcloud::apis::configuration::Configuration;
-use hcloud::apis::{servers_api, ssh_keys_api};
+use hcloud::apis::{actions_api, servers_api, ssh_keys_api};
 use hcloud::models;
 use rand::{distributions, thread_rng, Rng};
 use std::{env, thread, time};
@@ -113,16 +113,17 @@ async fn main() -> Result<(), String> {
     println!();
 
     // Collect IDs of create server actions to wait for completion
-    let action_ids = created_servers
+    let create_action_ids = created_servers
         .iter()
         .map(|server_info| server_info.action_id)
         .collect::<Vec<_>>();
 
     println!("Wait for servers to be ready by polling corresponding actions...");
+    // We use the `servers_api::list_server_actions` for this to only have one API call per iteration.
     loop {
         let mut any_running = false;
         let params = servers_api::ListServerActionsParams {
-            id: Some(action_ids.clone()),
+            id: Some(create_action_ids.clone()),
             ..Default::default()
         };
         let actions = servers_api::list_server_actions(&configuration, params)
@@ -130,7 +131,7 @@ async fn main() -> Result<(), String> {
             .map_err(|err| format!("API call to get_multiple_actions failed: {:?}", err))?
             .actions;
 
-        println!(" Actions for created servers:");
+        println!(" Actions for creating servers:");
         for action in actions {
             println!(
                 "  id: {}, command: {}, status: {:?}, progress: {}",
@@ -152,14 +153,49 @@ async fn main() -> Result<(), String> {
     // maybe do something useful with the servers here?
 
     println!("Deleting servers...");
+    // Collect IDs of delete server actions to wait for completion
+    let mut delete_action_ids = Vec::new();
     for server_info in &created_servers {
         println!(" Deleting server {}...", server_info.name);
         let params = servers_api::DeleteServerParams { id: server_info.id };
-        servers_api::delete_server(&configuration, params)
+        let action_option = servers_api::delete_server(&configuration, params)
             .await
-            .map_err(|err| format!("API call to delete_server failed: {:?}", err))?;
+            .map_err(|err| format!("API call to delete_server failed: {:?}", err))?
+            .action;
+        if let Some(action) = action_option {
+            delete_action_ids.push(action.id);
+        }
     }
-    println!("The servers should be deleted now!");
+
+    println!("Wait for servers to be deleted by polling corresponding actions...");
+    // For a change, we use the more generic `actions_api::get_multiple_actions` for this.
+    loop {
+        let mut any_running = false;
+        let params = actions_api::GetMultipleActionsParams {
+            id: delete_action_ids.clone(),
+        };
+        let actions = actions_api::get_multiple_actions(&configuration, params)
+            .await
+            .map_err(|err| format!("API call to get_multiple_actions failed: {:?}", err))?
+            .actions;
+
+        println!(" Actions for deleting servers:");
+        for action in actions {
+            println!(
+                "  id: {}, command: {}, status: {:?}, progress: {}",
+                action.id, action.command, action.status, action.progress
+            );
+            if action.status == models::action_with_optional_error::Status::Running {
+                any_running = true;
+            }
+        }
+        if !any_running {
+            break;
+        }
+        println!("Some actions are still running, let's wait some time and check again...");
+        thread::sleep(time::Duration::from_secs(1));
+    }
+    println!("All actions have finished. The servers should be deleted now!");
 
     Ok(())
 }
