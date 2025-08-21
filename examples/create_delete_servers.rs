@@ -1,7 +1,7 @@
 use hcloud::apis::configuration::Configuration;
 use hcloud::apis::{actions_api, servers_api, ssh_keys_api};
 use hcloud::models;
-use rand::{distributions, thread_rng, Rng};
+use rand::prelude::*;
 use std::{env, thread, time};
 
 // server type and location to be used for creating the servers
@@ -52,8 +52,8 @@ async fn main() -> Result<(), String> {
         let mut name = "example-server-".to_string();
         name.push_str(
             // append random postfix
-            &thread_rng()
-                .sample_iter(distributions::Alphanumeric)
+            &rand::rng()
+                .sample_iter(rand::distr::Alphanumeric)
                 .take(8)
                 .map(char::from)
                 .collect::<String>(),
