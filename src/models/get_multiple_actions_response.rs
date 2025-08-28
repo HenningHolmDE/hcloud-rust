@@ -15,12 +15,12 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GetMultipleActionsResponse {
     #[serde(rename = "actions")]
-    pub actions: Vec<models::ActionWithOptionalError>,
+    pub actions: Vec<models::Action>,
 }
 
 impl GetMultipleActionsResponse {
     /// Response to GET https://api.hetzner.cloud/v1/actions
-    pub fn new(actions: Vec<models::ActionWithOptionalError>) -> GetMultipleActionsResponse {
+    pub fn new(actions: Vec<models::Action>) -> GetMultipleActionsResponse {
         GetMultipleActionsResponse { actions }
     }
 }
