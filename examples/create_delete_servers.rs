@@ -185,7 +185,7 @@ async fn main() -> Result<(), String> {
                 "  id: {}, command: {}, status: {:?}, progress: {}",
                 action.id, action.command, action.status, action.progress
             );
-            if action.status == models::action_with_optional_error::Status::Running {
+            if action.status == models::action::Status::Running {
                 any_running = true;
             }
         }
