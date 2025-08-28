@@ -105,7 +105,8 @@ pub async fn create_ssh_key(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/ssh_keys", local_var_configuration.base_path);
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/ssh_keys", local_base_path);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
@@ -150,11 +151,8 @@ pub async fn delete_ssh_key(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!(
-        "{}/ssh_keys/{id}",
-        local_var_configuration.base_path,
-        id = id
-    );
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/ssh_keys/{id}", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
 
@@ -198,11 +196,8 @@ pub async fn get_ssh_key(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!(
-        "{}/ssh_keys/{id}",
-        local_var_configuration.base_path,
-        id = id
-    );
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/ssh_keys/{id}", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
@@ -251,7 +246,8 @@ pub async fn list_ssh_keys(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/ssh_keys", local_var_configuration.base_path);
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/ssh_keys", local_base_path);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
@@ -335,11 +331,8 @@ pub async fn replace_ssh_key(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!(
-        "{}/ssh_keys/{id}",
-        local_var_configuration.base_path,
-        id = id
-    );
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/ssh_keys/{id}", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 

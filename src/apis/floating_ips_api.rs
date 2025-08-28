@@ -239,9 +239,10 @@ pub async fn assign_floating_ip_to_server(
 
     let local_var_client = &local_var_configuration.client;
 
+    let local_base_path = local_var_configuration.get_default_base_path();
     let local_var_uri_str = format!(
         "{}/floating_ips/{id}/actions/assign",
-        local_var_configuration.base_path,
+        local_base_path,
         id = id
     );
     let mut local_var_req_builder =
@@ -289,9 +290,10 @@ pub async fn change_floating_ip_protection(
 
     let local_var_client = &local_var_configuration.client;
 
+    let local_base_path = local_var_configuration.get_default_base_path();
     let local_var_uri_str = format!(
         "{}/floating_ips/{id}/actions/change_protection",
-        local_var_configuration.base_path,
+        local_base_path,
         id = id
     );
     let mut local_var_req_builder =
@@ -342,9 +344,10 @@ pub async fn change_reverse_dns_records_for_floating_ip(
 
     let local_var_client = &local_var_configuration.client;
 
+    let local_base_path = local_var_configuration.get_default_base_path();
     let local_var_uri_str = format!(
         "{}/floating_ips/{id}/actions/change_dns_ptr",
-        local_var_configuration.base_path,
+        local_base_path,
         id = id
     );
     let mut local_var_req_builder =
@@ -391,7 +394,8 @@ pub async fn create_floating_ip(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/floating_ips", local_var_configuration.base_path);
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/floating_ips", local_base_path);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
@@ -436,11 +440,8 @@ pub async fn delete_floating_ip(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!(
-        "{}/floating_ips/{id}",
-        local_var_configuration.base_path,
-        id = id
-    );
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/floating_ips/{id}", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
 
@@ -485,9 +486,10 @@ pub async fn get_action_for_floating_ip(
 
     let local_var_client = &local_var_configuration.client;
 
+    let local_base_path = local_var_configuration.get_default_base_path();
     let local_var_uri_str = format!(
         "{}/floating_ips/{id}/actions/{action_id}",
-        local_var_configuration.base_path,
+        local_base_path,
         id = id,
         action_id = action_id
     );
@@ -534,11 +536,8 @@ pub async fn get_floating_ip(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!(
-        "{}/floating_ips/{id}",
-        local_var_configuration.base_path,
-        id = id
-    );
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/floating_ips/{id}", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
@@ -582,11 +581,8 @@ pub async fn get_floating_ip_action(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!(
-        "{}/floating_ips/actions/{id}",
-        local_var_configuration.base_path,
-        id = id
-    );
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/floating_ips/actions/{id}", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
@@ -634,11 +630,8 @@ pub async fn list_actions_for_floating_ip(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!(
-        "{}/floating_ips/{id}/actions",
-        local_var_configuration.base_path,
-        id = id
-    );
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/floating_ips/{id}/actions", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
@@ -732,7 +725,8 @@ pub async fn list_floating_ip_actions(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/floating_ips/actions", local_var_configuration.base_path);
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/floating_ips/actions", local_base_path);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
@@ -845,7 +839,8 @@ pub async fn list_floating_ips(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/floating_ips", local_var_configuration.base_path);
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/floating_ips", local_base_path);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
@@ -925,11 +920,8 @@ pub async fn replace_floating_ip(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!(
-        "{}/floating_ips/{id}",
-        local_var_configuration.base_path,
-        id = id
-    );
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/floating_ips/{id}", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
@@ -974,9 +966,10 @@ pub async fn unassign_floating_ip(
 
     let local_var_client = &local_var_configuration.client;
 
+    let local_base_path = local_var_configuration.get_default_base_path();
     let local_var_uri_str = format!(
         "{}/floating_ips/{id}/actions/unassign",
-        local_var_configuration.base_path,
+        local_base_path,
         id = id
     );
     let mut local_var_req_builder =

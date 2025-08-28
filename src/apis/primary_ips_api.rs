@@ -203,9 +203,10 @@ pub async fn assign_primary_ip_to_resource(
 
     let local_var_client = &local_var_configuration.client;
 
+    let local_base_path = local_var_configuration.get_default_base_path();
     let local_var_uri_str = format!(
         "{}/primary_ips/{id}/actions/assign",
-        local_var_configuration.base_path,
+        local_base_path,
         id = id
     );
     let mut local_var_req_builder =
@@ -253,9 +254,10 @@ pub async fn change_primary_ip_protection(
 
     let local_var_client = &local_var_configuration.client;
 
+    let local_base_path = local_var_configuration.get_default_base_path();
     let local_var_uri_str = format!(
         "{}/primary_ips/{id}/actions/change_protection",
-        local_var_configuration.base_path,
+        local_base_path,
         id = id
     );
     let mut local_var_req_builder =
@@ -306,9 +308,10 @@ pub async fn change_reverse_dns_records_for_primary_ip(
 
     let local_var_client = &local_var_configuration.client;
 
+    let local_base_path = local_var_configuration.get_default_base_path();
     let local_var_uri_str = format!(
         "{}/primary_ips/{id}/actions/change_dns_ptr",
-        local_var_configuration.base_path,
+        local_base_path,
         id = id
     );
     let mut local_var_req_builder =
@@ -355,7 +358,8 @@ pub async fn create_primary_ip(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/primary_ips", local_var_configuration.base_path);
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/primary_ips", local_base_path);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
@@ -400,11 +404,8 @@ pub async fn delete_primary_ip(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!(
-        "{}/primary_ips/{id}",
-        local_var_configuration.base_path,
-        id = id
-    );
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/primary_ips/{id}", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
 
@@ -448,11 +449,8 @@ pub async fn get_primary_ip(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!(
-        "{}/primary_ips/{id}",
-        local_var_configuration.base_path,
-        id = id
-    );
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/primary_ips/{id}", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
@@ -496,11 +494,8 @@ pub async fn get_primary_ip_action(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!(
-        "{}/primary_ips/actions/{id}",
-        local_var_configuration.base_path,
-        id = id
-    );
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/primary_ips/actions/{id}", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
@@ -548,7 +543,8 @@ pub async fn list_primary_ip_actions(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/primary_ips/actions", local_var_configuration.base_path);
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/primary_ips/actions", local_base_path);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
@@ -662,7 +658,8 @@ pub async fn list_primary_ips(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/primary_ips", local_var_configuration.base_path);
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/primary_ips", local_base_path);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
@@ -745,11 +742,8 @@ pub async fn replace_primary_ip(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!(
-        "{}/primary_ips/{id}",
-        local_var_configuration.base_path,
-        id = id
-    );
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/primary_ips/{id}", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
@@ -795,9 +789,10 @@ pub async fn unassign_primary_ip_from_resource(
 
     let local_var_client = &local_var_configuration.client;
 
+    let local_base_path = local_var_configuration.get_default_base_path();
     let local_var_uri_str = format!(
         "{}/primary_ips/{id}/actions/unassign",
-        local_var_configuration.base_path,
+        local_base_path,
         id = id
     );
     let mut local_var_req_builder =

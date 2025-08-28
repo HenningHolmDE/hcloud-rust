@@ -539,9 +539,10 @@ pub async fn add_server_to_placement_group(
 
     let local_var_client = &local_var_configuration.client;
 
+    let local_base_path = local_var_configuration.get_default_base_path();
     let local_var_uri_str = format!(
         "{}/servers/{id}/actions/add_to_placement_group",
-        local_var_configuration.base_path,
+        local_base_path,
         id = id
     );
     let mut local_var_req_builder =
@@ -589,9 +590,10 @@ pub async fn attach_iso_to_server(
 
     let local_var_client = &local_var_configuration.client;
 
+    let local_base_path = local_var_configuration.get_default_base_path();
     let local_var_uri_str = format!(
         "{}/servers/{id}/actions/attach_iso",
-        local_var_configuration.base_path,
+        local_base_path,
         id = id
     );
     let mut local_var_req_builder =
@@ -639,9 +641,10 @@ pub async fn attach_server_to_network(
 
     let local_var_client = &local_var_configuration.client;
 
+    let local_base_path = local_var_configuration.get_default_base_path();
     let local_var_uri_str = format!(
         "{}/servers/{id}/actions/attach_to_network",
-        local_var_configuration.base_path,
+        local_base_path,
         id = id
     );
     let mut local_var_req_builder =
@@ -689,9 +692,10 @@ pub async fn change_alias_ips_of_network(
 
     let local_var_client = &local_var_configuration.client;
 
+    let local_base_path = local_var_configuration.get_default_base_path();
     let local_var_uri_str = format!(
         "{}/servers/{id}/actions/change_alias_ips",
-        local_var_configuration.base_path,
+        local_base_path,
         id = id
     );
     let mut local_var_req_builder =
@@ -743,9 +747,10 @@ pub async fn change_reverse_dns_entry_for_this_server(
 
     let local_var_client = &local_var_configuration.client;
 
+    let local_base_path = local_var_configuration.get_default_base_path();
     let local_var_uri_str = format!(
         "{}/servers/{id}/actions/change_dns_ptr",
-        local_var_configuration.base_path,
+        local_base_path,
         id = id
     );
     let mut local_var_req_builder =
@@ -794,9 +799,10 @@ pub async fn change_server_protection(
 
     let local_var_client = &local_var_configuration.client;
 
+    let local_base_path = local_var_configuration.get_default_base_path();
     let local_var_uri_str = format!(
         "{}/servers/{id}/actions/change_protection",
-        local_var_configuration.base_path,
+        local_base_path,
         id = id
     );
     let mut local_var_req_builder =
@@ -844,9 +850,10 @@ pub async fn change_type_of_server(
 
     let local_var_client = &local_var_configuration.client;
 
+    let local_base_path = local_var_configuration.get_default_base_path();
     let local_var_uri_str = format!(
         "{}/servers/{id}/actions/change_type",
-        local_var_configuration.base_path,
+        local_base_path,
         id = id
     );
     let mut local_var_req_builder =
@@ -894,9 +901,10 @@ pub async fn create_image_from_server(
 
     let local_var_client = &local_var_configuration.client;
 
+    let local_base_path = local_var_configuration.get_default_base_path();
     let local_var_uri_str = format!(
         "{}/servers/{id}/actions/create_image",
-        local_var_configuration.base_path,
+        local_base_path,
         id = id
     );
     let mut local_var_req_builder =
@@ -943,7 +951,8 @@ pub async fn create_server(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/servers", local_var_configuration.base_path);
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/servers", local_base_path);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
@@ -988,11 +997,8 @@ pub async fn delete_server(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!(
-        "{}/servers/{id}",
-        local_var_configuration.base_path,
-        id = id
-    );
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/servers/{id}", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
 
@@ -1036,9 +1042,10 @@ pub async fn detach_iso_from_server(
 
     let local_var_client = &local_var_configuration.client;
 
+    let local_base_path = local_var_configuration.get_default_base_path();
     let local_var_uri_str = format!(
         "{}/servers/{id}/actions/detach_iso",
-        local_var_configuration.base_path,
+        local_base_path,
         id = id
     );
     let mut local_var_req_builder =
@@ -1085,9 +1092,10 @@ pub async fn detach_server_from_network(
 
     let local_var_client = &local_var_configuration.client;
 
+    let local_base_path = local_var_configuration.get_default_base_path();
     let local_var_uri_str = format!(
         "{}/servers/{id}/actions/detach_from_network",
-        local_var_configuration.base_path,
+        local_base_path,
         id = id
     );
     let mut local_var_req_builder =
@@ -1134,9 +1142,10 @@ pub async fn disable_backups_for_server(
 
     let local_var_client = &local_var_configuration.client;
 
+    let local_base_path = local_var_configuration.get_default_base_path();
     let local_var_uri_str = format!(
         "{}/servers/{id}/actions/disable_backup",
-        local_var_configuration.base_path,
+        local_base_path,
         id = id
     );
     let mut local_var_req_builder =
@@ -1182,9 +1191,10 @@ pub async fn disable_rescue_mode_for_server(
 
     let local_var_client = &local_var_configuration.client;
 
+    let local_base_path = local_var_configuration.get_default_base_path();
     let local_var_uri_str = format!(
         "{}/servers/{id}/actions/disable_rescue",
-        local_var_configuration.base_path,
+        local_base_path,
         id = id
     );
     let mut local_var_req_builder =
@@ -1233,9 +1243,10 @@ pub async fn enable_and_configure_backups_for_server(
 
     let local_var_client = &local_var_configuration.client;
 
+    let local_base_path = local_var_configuration.get_default_base_path();
     let local_var_uri_str = format!(
         "{}/servers/{id}/actions/enable_backup",
-        local_var_configuration.base_path,
+        local_base_path,
         id = id
     );
     let mut local_var_req_builder =
@@ -1282,9 +1293,10 @@ pub async fn enable_rescue_mode_for_server(
 
     let local_var_client = &local_var_configuration.client;
 
+    let local_base_path = local_var_configuration.get_default_base_path();
     let local_var_uri_str = format!(
         "{}/servers/{id}/actions/enable_rescue",
-        local_var_configuration.base_path,
+        local_base_path,
         id = id
     );
     let mut local_var_req_builder =
@@ -1332,9 +1344,10 @@ pub async fn get_action_for_server(
 
     let local_var_client = &local_var_configuration.client;
 
+    let local_base_path = local_var_configuration.get_default_base_path();
     let local_var_uri_str = format!(
         "{}/servers/{id}/actions/{action_id}",
-        local_var_configuration.base_path,
+        local_base_path,
         id = id,
         action_id = action_id
     );
@@ -1385,11 +1398,8 @@ pub async fn get_metrics_for_server(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!(
-        "{}/servers/{id}/metrics",
-        local_var_configuration.base_path,
-        id = id
-    );
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/servers/{id}/metrics", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
@@ -1440,11 +1450,8 @@ pub async fn get_server(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!(
-        "{}/servers/{id}",
-        local_var_configuration.base_path,
-        id = id
-    );
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/servers/{id}", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
@@ -1488,11 +1495,8 @@ pub async fn get_server_action(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!(
-        "{}/servers/actions/{id}",
-        local_var_configuration.base_path,
-        id = id
-    );
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/servers/actions/{id}", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
@@ -1540,11 +1544,8 @@ pub async fn list_actions_for_server(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!(
-        "{}/servers/{id}/actions",
-        local_var_configuration.base_path,
-        id = id
-    );
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/servers/{id}/actions", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
@@ -1638,7 +1639,8 @@ pub async fn list_server_actions(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/servers/actions", local_var_configuration.base_path);
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/servers/actions", local_base_path);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
@@ -1752,7 +1754,8 @@ pub async fn list_servers(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/servers", local_var_configuration.base_path);
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/servers", local_base_path);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
@@ -1850,11 +1853,8 @@ pub async fn power_off_server(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!(
-        "{}/servers/{id}/actions/poweroff",
-        local_var_configuration.base_path,
-        id = id
-    );
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/servers/{id}/actions/poweroff", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
@@ -1898,11 +1898,8 @@ pub async fn power_on_server(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!(
-        "{}/servers/{id}/actions/poweron",
-        local_var_configuration.base_path,
-        id = id
-    );
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/servers/{id}/actions/poweron", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
@@ -1947,11 +1944,8 @@ pub async fn rebuild_server_from_image(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!(
-        "{}/servers/{id}/actions/rebuild",
-        local_var_configuration.base_path,
-        id = id
-    );
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/servers/{id}/actions/rebuild", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
@@ -1996,9 +1990,10 @@ pub async fn remove_from_placement_group(
 
     let local_var_client = &local_var_configuration.client;
 
+    let local_base_path = local_var_configuration.get_default_base_path();
     let local_var_uri_str = format!(
         "{}/servers/{id}/actions/remove_from_placement_group",
-        local_var_configuration.base_path,
+        local_base_path,
         id = id
     );
     let mut local_var_req_builder =
@@ -2045,11 +2040,8 @@ pub async fn replace_server(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!(
-        "{}/servers/{id}",
-        local_var_configuration.base_path,
-        id = id
-    );
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/servers/{id}", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
@@ -2094,9 +2086,10 @@ pub async fn request_console_for_server(
 
     let local_var_client = &local_var_configuration.client;
 
+    let local_base_path = local_var_configuration.get_default_base_path();
     let local_var_uri_str = format!(
         "{}/servers/{id}/actions/request_console",
-        local_var_configuration.base_path,
+        local_base_path,
         id = id
     );
     let mut local_var_req_builder =
@@ -2142,9 +2135,10 @@ pub async fn reset_root_password_of_server(
 
     let local_var_client = &local_var_configuration.client;
 
+    let local_base_path = local_var_configuration.get_default_base_path();
     let local_var_uri_str = format!(
         "{}/servers/{id}/actions/reset_password",
-        local_var_configuration.base_path,
+        local_base_path,
         id = id
     );
     let mut local_var_req_builder =
@@ -2190,11 +2184,8 @@ pub async fn reset_server(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!(
-        "{}/servers/{id}/actions/reset",
-        local_var_configuration.base_path,
-        id = id
-    );
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/servers/{id}/actions/reset", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
@@ -2238,11 +2229,8 @@ pub async fn shutdown_server(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!(
-        "{}/servers/{id}/actions/shutdown",
-        local_var_configuration.base_path,
-        id = id
-    );
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/servers/{id}/actions/shutdown", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
@@ -2286,11 +2274,8 @@ pub async fn soft_reboot_server(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!(
-        "{}/servers/{id}/actions/reboot",
-        local_var_configuration.base_path,
-        id = id
-    );
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/servers/{id}/actions/reboot", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 

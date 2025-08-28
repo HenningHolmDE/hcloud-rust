@@ -239,11 +239,8 @@ pub async fn attach_volume_to_server(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!(
-        "{}/volumes/{id}/actions/attach",
-        local_var_configuration.base_path,
-        id = id
-    );
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/volumes/{id}/actions/attach", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
@@ -289,9 +286,10 @@ pub async fn change_volume_protection(
 
     let local_var_client = &local_var_configuration.client;
 
+    let local_base_path = local_var_configuration.get_default_base_path();
     let local_var_uri_str = format!(
         "{}/volumes/{id}/actions/change_protection",
-        local_var_configuration.base_path,
+        local_base_path,
         id = id
     );
     let mut local_var_req_builder =
@@ -338,7 +336,8 @@ pub async fn create_volume(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/volumes", local_var_configuration.base_path);
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/volumes", local_base_path);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
@@ -383,11 +382,8 @@ pub async fn delete_volume(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!(
-        "{}/volumes/{id}",
-        local_var_configuration.base_path,
-        id = id
-    );
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/volumes/{id}", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
 
@@ -431,11 +427,8 @@ pub async fn detach_volume(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!(
-        "{}/volumes/{id}/actions/detach",
-        local_var_configuration.base_path,
-        id = id
-    );
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/volumes/{id}/actions/detach", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
@@ -480,9 +473,10 @@ pub async fn get_action_for_volume(
 
     let local_var_client = &local_var_configuration.client;
 
+    let local_base_path = local_var_configuration.get_default_base_path();
     let local_var_uri_str = format!(
         "{}/volumes/{id}/actions/{action_id}",
-        local_var_configuration.base_path,
+        local_base_path,
         id = id,
         action_id = action_id
     );
@@ -529,11 +523,8 @@ pub async fn get_volume(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!(
-        "{}/volumes/{id}",
-        local_var_configuration.base_path,
-        id = id
-    );
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/volumes/{id}", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
@@ -577,11 +568,8 @@ pub async fn get_volume_action(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!(
-        "{}/volumes/actions/{id}",
-        local_var_configuration.base_path,
-        id = id
-    );
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/volumes/actions/{id}", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
@@ -629,11 +617,8 @@ pub async fn list_actions_for_volume(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!(
-        "{}/volumes/{id}/actions",
-        local_var_configuration.base_path,
-        id = id
-    );
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/volumes/{id}/actions", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
@@ -727,7 +712,8 @@ pub async fn list_volume_actions(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/volumes/actions", local_var_configuration.base_path);
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/volumes/actions", local_base_path);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
@@ -841,7 +827,8 @@ pub async fn list_volumes(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/volumes", local_var_configuration.base_path);
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/volumes", local_base_path);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
@@ -940,11 +927,8 @@ pub async fn replace_volume(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!(
-        "{}/volumes/{id}",
-        local_var_configuration.base_path,
-        id = id
-    );
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/volumes/{id}", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
@@ -990,11 +974,8 @@ pub async fn resize_volume(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!(
-        "{}/volumes/{id}/actions/resize",
-        local_var_configuration.base_path,
-        id = id
-    );
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/volumes/{id}/actions/resize", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
