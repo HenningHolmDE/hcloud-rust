@@ -1,7 +1,5 @@
 pub mod action;
 pub use self::action::Action;
-pub mod action_with_optional_error;
-pub use self::action_with_optional_error::ActionWithOptionalError;
 pub mod add_route_to_network_response;
 pub use self::add_route_to_network_response::AddRouteToNetworkResponse;
 pub mod add_server_to_placement_group_request;
