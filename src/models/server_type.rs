@@ -15,6 +15,9 @@ use serde::{Deserialize, Serialize};
 pub struct ServerType {
     #[serde(rename = "architecture")]
     pub architecture: models::Architecture,
+    /// Category of Server Type.
+    #[serde(rename = "category", skip_serializing_if = "Option::is_none")]
+    pub category: Option<String>,
     /// Number of cpu cores a Server of this type will have.
     #[serde(rename = "cores")]
     pub cores: i32,
@@ -70,6 +73,7 @@ impl ServerType {
     ) -> ServerType {
         ServerType {
             architecture,
+            category: None,
             cores,
             cpu_type,
             deprecated,
