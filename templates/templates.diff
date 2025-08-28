@@ -34,7 +34,7 @@ index dd7ac5a..8ecb33a 100644
  pub enum {{{enumName}}} {
  {{#allowableValues}}
 diff --git a/templates_orig/reqwest/api.mustache b/templates/reqwest/api.mustache
-index f9e6e9d..c9aee44 100644
+index f9e6e9d..555ed7e 100644
 --- a/templates_orig/reqwest/api.mustache
 +++ b/templates/reqwest/api.mustache
 @@ -11,7 +11,7 @@ use super::{Error, configuration};
@@ -46,7 +46,23 @@ index f9e6e9d..c9aee44 100644
  pub struct {{{operationIdCamelCase}}}Params {
  {{/-first}}
      {{#description}}
-@@ -103,8 +103,8 @@ pub {{#supportAsync}}async {{/supportAsync}}fn {{{operationId}}}(configuration:
+@@ -96,15 +96,23 @@ pub {{#supportAsync}}async {{/supportAsync}}fn {{{operationId}}}(configuration:
+ 
+     let local_var_client = &local_var_configuration.client;
+ 
+-    let local_var_uri_str = format!("{}{{{path}}}", local_var_configuration.base_path{{#pathParams}}, {{{baseName}}}={{#isString}}crate::apis::urlencode({{/isString}}{{{paramName}}}{{^required}}.unwrap(){{/required}}{{#required}}{{#isNullable}}.unwrap(){{/isNullable}}{{/required}}{{#isArray}}.join(",").as_ref(){{/isArray}}{{^isString}}{{^isUuid}}{{^isPrimitiveType}}{{^isContainer}}.to_string(){{/isContainer}}{{/isPrimitiveType}}{{/isUuid}}{{/isString}}{{#isString}}){{/isString}}{{/pathParams}});
++    {{#servers}}
++    {{#-first}}
++    let local_base_path = local_var_configuration.get_base_path("{{{url}}}");
++    {{/-first}}
++    {{/servers}}
++    {{^servers}}
++    let local_base_path = local_var_configuration.get_default_base_path();
++    {{/servers}}
++    let local_var_uri_str = format!("{}{{{path}}}", local_base_path{{#pathParams}}, {{{baseName}}}={{#isString}}crate::apis::urlencode({{/isString}}{{{paramName}}}{{^required}}.unwrap(){{/required}}{{#required}}{{#isNullable}}.unwrap(){{/isNullable}}{{/required}}{{#isArray}}.join(",").as_ref(){{/isArray}}{{^isString}}{{^isUuid}}{{^isPrimitiveType}}{{^isContainer}}.to_string(){{/isContainer}}{{/isPrimitiveType}}{{/isUuid}}{{/isString}}{{#isString}}){{/isString}}{{/pathParams}});
+     let mut local_var_req_builder = local_var_client.request(reqwest::Method::{{{httpMethod}}}, local_var_uri_str.as_str());
+ 
+     {{#queryParams}}
      {{#required}}
      {{#isArray}}
      local_var_req_builder = match "{{collectionFormat}}" {
@@ -57,7 +73,7 @@ index f9e6e9d..c9aee44 100644
      };
      {{/isArray}}
      {{^isArray}}
-@@ -130,8 +130,8 @@ pub {{#supportAsync}}async {{/supportAsync}}fn {{{operationId}}}(configuration:
+@@ -130,8 +138,8 @@ pub {{#supportAsync}}async {{/supportAsync}}fn {{{operationId}}}(configuration:
      if let Some(ref local_var_str) = {{{paramName}}} {
          {{#isArray}}
          local_var_req_builder = match "{{collectionFormat}}" {
@@ -68,3 +84,63 @@ index f9e6e9d..c9aee44 100644
          };
          {{/isArray}}
          {{^isArray}}
+diff --git a/templates_orig/reqwest/configuration.mustache b/templates/reqwest/configuration.mustache
+index fd6f7d0..cb6a82a 100644
+--- a/templates_orig/reqwest/configuration.mustache
++++ b/templates/reqwest/configuration.mustache
+@@ -1,5 +1,6 @@
+ {{>partial_header}}
+ 
++use std::collections::HashMap;
+ {{#withAWSV4Signature}}
+ use std::time::SystemTime;
+ use aws_sigv4::http_request::{sign, SigningSettings, SigningParams, SignableRequest};
+@@ -9,7 +10,7 @@ use secrecy::{SecretString, ExposeSecret};
+ 
+ #[derive(Debug, Clone)]
+ pub struct Configuration {
+-    pub base_path: String,
++    pub base_path_mapping: HashMap<String, String>,
+     pub user_agent: Option<String>,
+     pub client: {{#supportMiddleware}}reqwest_middleware::ClientWithMiddleware{{/supportMiddleware}}{{^supportMiddleware}}reqwest{{^supportAsync}}::blocking{{/supportAsync}}::Client{{/supportMiddleware}},
+     pub basic_auth: Option<BasicAuth>,
+@@ -69,16 +70,37 @@ impl AWSv4Key {
+ }
+ {{/withAWSV4Signature}}
+ 
+-impl Configuration {
++impl<'a> Configuration {
+     pub fn new() -> Configuration {
+         Configuration::default()
+     }
++
++    pub fn get_default_base_path(&self) -> &str {
++        self.get_base_path("{{{basePath}}}")
++    }
++
++    pub fn get_base_path(&'a self, url: &'a str) -> &'a str {
++        if let Some(mapped) = self.base_path_mapping.get(url) {
++            mapped
++        } else {
++            url
++        }
++    }
+ }
+ 
+ impl Default for Configuration {
+     fn default() -> Self {
++        let base_path_mapping = [
++{{#servers}}
++            "{{{url}}}", // {{{description}}}
++{{/servers}}
++        ]
++        .into_iter()
++        .map(|s| (s.to_owned(), s.to_owned()))
++        .collect();
++
+         Configuration {
+-            base_path: "{{{basePath}}}".to_owned(),
++            base_path_mapping,
+             user_agent: {{#httpUserAgent}}Some("{{{.}}}".to_owned()){{/httpUserAgent}}{{^httpUserAgent}}Some("OpenAPI-Generator/{{{version}}}/rust".to_owned()){{/httpUserAgent}},
+             client: {{#supportMiddleware}}reqwest_middleware::ClientBuilder::new(reqwest{{^supportAsync}}::blocking{{/supportAsync}}::Client::new()).build(){{/supportMiddleware}}{{^supportMiddleware}}reqwest{{^supportAsync}}::blocking{{/supportAsync}}::Client::new(){{/supportMiddleware}},
+             basic_auth: None,

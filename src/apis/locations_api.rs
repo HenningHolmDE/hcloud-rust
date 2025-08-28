@@ -59,11 +59,8 @@ pub async fn get_location(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!(
-        "{}/locations/{id}",
-        local_var_configuration.base_path,
-        id = id
-    );
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/locations/{id}", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
@@ -110,7 +107,8 @@ pub async fn list_locations(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/locations", local_var_configuration.base_path);
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/locations", local_base_path);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 

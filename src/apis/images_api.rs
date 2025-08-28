@@ -190,9 +190,10 @@ pub async fn change_image_protection(
 
     let local_var_client = &local_var_configuration.client;
 
+    let local_base_path = local_var_configuration.get_default_base_path();
     let local_var_uri_str = format!(
         "{}/images/{id}/actions/change_protection",
-        local_var_configuration.base_path,
+        local_base_path,
         id = id
     );
     let mut local_var_req_builder =
@@ -239,7 +240,8 @@ pub async fn delete_image(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/images/{id}", local_var_configuration.base_path, id = id);
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/images/{id}", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
 
@@ -284,9 +286,10 @@ pub async fn get_action_for_image(
 
     let local_var_client = &local_var_configuration.client;
 
+    let local_base_path = local_var_configuration.get_default_base_path();
     let local_var_uri_str = format!(
         "{}/images/{id}/actions/{action_id}",
-        local_var_configuration.base_path,
+        local_base_path,
         id = id,
         action_id = action_id
     );
@@ -333,7 +336,8 @@ pub async fn get_image(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/images/{id}", local_var_configuration.base_path, id = id);
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/images/{id}", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
@@ -376,11 +380,8 @@ pub async fn get_image_action(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!(
-        "{}/images/actions/{id}",
-        local_var_configuration.base_path,
-        id = id
-    );
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/images/actions/{id}", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
@@ -428,11 +429,8 @@ pub async fn list_actions_for_image(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!(
-        "{}/images/{id}/actions",
-        local_var_configuration.base_path,
-        id = id
-    );
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/images/{id}/actions", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
@@ -526,7 +524,8 @@ pub async fn list_image_actions(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/images/actions", local_var_configuration.base_path);
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/images/actions", local_base_path);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
@@ -644,7 +643,8 @@ pub async fn list_images(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/images", local_var_configuration.base_path);
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/images", local_base_path);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
@@ -789,7 +789,8 @@ pub async fn replace_image(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/images/{id}", local_var_configuration.base_path, id = id);
+    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_var_uri_str = format!("{}/images/{id}", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
