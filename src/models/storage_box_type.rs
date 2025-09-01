@@ -35,7 +35,7 @@ pub struct StorageBoxType {
     pub prices: Vec<models::StorageBoxTypePricesInner>,
     /// Available storage in bytes.
     #[serde(rename = "size")]
-    pub size: i32,
+    pub size: i64,
     /// Maximum number of allowed manual snapshots.
     #[serde(rename = "snapshot_limit", deserialize_with = "Option::deserialize")]
     pub snapshot_limit: Option<i32>,
@@ -52,7 +52,7 @@ impl StorageBoxType {
         id: i64,
         name: String,
         prices: Vec<models::StorageBoxTypePricesInner>,
-        size: i32,
+        size: i64,
         snapshot_limit: Option<i32>,
         subaccounts_limit: i32,
     ) -> StorageBoxType {
