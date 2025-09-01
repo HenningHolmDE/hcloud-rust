@@ -13,8 +13,8 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Subaccount {
-    #[serde(rename = "access_settings", skip_serializing_if = "Option::is_none")]
-    pub access_settings: Option<Box<models::SubaccountAccessSetting>>,
+    #[serde(rename = "access_settings")]
+    pub access_settings: Box<models::SubaccountAccessSetting>,
     /// Point in time (in ISO-8601 format).
     #[serde(rename = "created")]
     pub created: String,
@@ -43,6 +43,7 @@ pub struct Subaccount {
 
 impl Subaccount {
     pub fn new(
+        access_settings: models::SubaccountAccessSetting,
         created: String,
         description: String,
         home_directory: String,
@@ -53,7 +54,7 @@ impl Subaccount {
         username: String,
     ) -> Subaccount {
         Subaccount {
-            access_settings: None,
+            access_settings: Box::new(access_settings),
             created,
             description,
             home_directory,
