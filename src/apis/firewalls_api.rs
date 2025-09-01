@@ -223,7 +223,7 @@ pub async fn apply_to_resources(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!(
         "{}/firewalls/{id}/actions/apply_to_resources",
         local_base_path,
@@ -273,7 +273,7 @@ pub async fn create_firewall(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!("{}/firewalls", local_base_path);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
@@ -319,7 +319,7 @@ pub async fn delete_firewall(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!("{}/firewalls/{id}", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
@@ -365,7 +365,7 @@ pub async fn get_action_for_firewall(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!(
         "{}/firewalls/{id}/actions/{action_id}",
         local_base_path,
@@ -415,7 +415,7 @@ pub async fn get_firewall(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!("{}/firewalls/{id}", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -460,7 +460,7 @@ pub async fn get_firewall_action(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!("{}/firewalls/actions/{id}", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -509,7 +509,7 @@ pub async fn list_actions_for_firewall(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!("{}/firewalls/{id}/actions", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -604,7 +604,7 @@ pub async fn list_firewall_actions(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!("{}/firewalls/actions", local_base_path);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -718,7 +718,7 @@ pub async fn list_firewalls(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!("{}/firewalls", local_base_path);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -799,7 +799,7 @@ pub async fn remove_from_resources(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!(
         "{}/firewalls/{id}/actions/remove_from_resources",
         local_base_path,
@@ -850,7 +850,7 @@ pub async fn replace_firewall(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!("{}/firewalls/{id}", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
@@ -897,7 +897,7 @@ pub async fn set_rules(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!(
         "{}/firewalls/{id}/actions/set_rules",
         local_base_path,

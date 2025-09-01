@@ -193,7 +193,7 @@ pub async fn create_certificate(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!("{}/certificates", local_base_path);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
@@ -239,7 +239,7 @@ pub async fn delete_certificate(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!("{}/certificates/{id}", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
@@ -285,7 +285,7 @@ pub async fn get_action_for_certificate(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!(
         "{}/certificates/{id}/actions/{action_id}",
         local_base_path,
@@ -335,7 +335,7 @@ pub async fn get_certificate(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!("{}/certificates/{id}", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -380,7 +380,7 @@ pub async fn get_certificate_action(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!("{}/certificates/actions/{id}", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -429,7 +429,7 @@ pub async fn list_actions_for_certificate(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!("{}/certificates/{id}/actions", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -524,7 +524,7 @@ pub async fn list_certificate_actions(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!("{}/certificates/actions", local_base_path);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -639,7 +639,7 @@ pub async fn list_certificates(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!("{}/certificates", local_base_path);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -739,7 +739,7 @@ pub async fn replace_certificate(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!("{}/certificates/{id}", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
@@ -785,7 +785,7 @@ pub async fn retry_issuance_or_renewal(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!(
         "{}/certificates/{id}/actions/retry",
         local_base_path,

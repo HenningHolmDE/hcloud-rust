@@ -397,7 +397,7 @@ pub async fn add_service(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!(
         "{}/load_balancers/{id}/actions/add_service",
         local_base_path,
@@ -448,7 +448,7 @@ pub async fn add_target(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!(
         "{}/load_balancers/{id}/actions/add_target",
         local_base_path,
@@ -499,7 +499,7 @@ pub async fn attach_load_balancer_to_network(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!(
         "{}/load_balancers/{id}/actions/attach_to_network",
         local_base_path,
@@ -550,7 +550,7 @@ pub async fn change_algorithm(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!(
         "{}/load_balancers/{id}/actions/change_algorithm",
         local_base_path,
@@ -602,7 +602,7 @@ pub async fn change_load_balancer_protection(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!(
         "{}/load_balancers/{id}/actions/change_protection",
         local_base_path,
@@ -657,7 +657,7 @@ pub async fn change_reverse_dns_entry_for_this_load_balancer(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!(
         "{}/load_balancers/{id}/actions/change_dns_ptr",
         local_base_path,
@@ -709,7 +709,7 @@ pub async fn change_type_of_load_balancer(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!(
         "{}/load_balancers/{id}/actions/change_type",
         local_base_path,
@@ -759,7 +759,7 @@ pub async fn create_load_balancer(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!("{}/load_balancers", local_base_path);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
@@ -805,7 +805,7 @@ pub async fn delete_load_balancer(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!("{}/load_balancers/{id}", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
@@ -851,7 +851,7 @@ pub async fn delete_service(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!(
         "{}/load_balancers/{id}/actions/delete_service",
         local_base_path,
@@ -904,7 +904,7 @@ pub async fn detach_load_balancer_from_network(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!(
         "{}/load_balancers/{id}/actions/detach_from_network",
         local_base_path,
@@ -957,7 +957,7 @@ pub async fn disable_public_interface_of_load_balancer(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!(
         "{}/load_balancers/{id}/actions/disable_public_interface",
         local_base_path,
@@ -1009,7 +1009,7 @@ pub async fn enable_public_interface_of_load_balancer(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!(
         "{}/load_balancers/{id}/actions/enable_public_interface",
         local_base_path,
@@ -1059,7 +1059,7 @@ pub async fn get_action_for_load_balancer(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!(
         "{}/load_balancers/{id}/actions/{action_id}",
         local_base_path,
@@ -1109,7 +1109,7 @@ pub async fn get_load_balancer(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!("{}/load_balancers/{id}", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -1154,7 +1154,7 @@ pub async fn get_load_balancer_action(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!("{}/load_balancers/actions/{id}", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -1203,7 +1203,7 @@ pub async fn get_metrics_for_loadbalancer(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!("{}/load_balancers/{id}/metrics", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -1259,7 +1259,7 @@ pub async fn list_actions_for_load_balancer(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!("{}/load_balancers/{id}/actions", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -1354,7 +1354,7 @@ pub async fn list_load_balancer_actions(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!("{}/load_balancers/actions", local_base_path);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -1468,7 +1468,7 @@ pub async fn list_load_balancers(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!("{}/load_balancers", local_base_path);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -1549,7 +1549,7 @@ pub async fn remove_target(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!(
         "{}/load_balancers/{id}/actions/remove_target",
         local_base_path,
@@ -1600,7 +1600,7 @@ pub async fn replace_load_balancer(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!("{}/load_balancers/{id}", local_base_path, id = id);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
@@ -1647,7 +1647,7 @@ pub async fn update_service(
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_base_path = local_var_configuration.get_default_base_path();
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
     let local_var_uri_str = format!(
         "{}/load_balancers/{id}/actions/update_service",
         local_base_path,
