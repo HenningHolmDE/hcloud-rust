@@ -60,7 +60,7 @@ impl Default for Configuration {
 
         Configuration {
             base_path_mapping,
-            user_agent: Some("hcloud-rust/0.22.0".to_owned()),
+            user_agent: Some("hcloud-rust/0.23.0".to_owned()),
             client: reqwest::Client::new(),
             basic_auth: None,
             oauth_access_token: None,
