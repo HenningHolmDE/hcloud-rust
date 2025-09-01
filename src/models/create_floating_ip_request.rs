@@ -25,7 +25,7 @@ pub struct CreateFloatingIpRequest {
     /// Home [Location](#locations) for the [Floating IP](#floating-ips).  Either the ID or the name of the [Location](#locations).  Only optional if no [Server](#servers) is provided. Routing is optimized for this [Locations](#locations).
     #[serde(rename = "home_location", skip_serializing_if = "Option::is_none")]
     pub home_location: Option<String>,
-    /// User-defined labels (`key/value` pairs) for the Resource. For more information, see \"[Labels](#labels)\".  | User-defined labels (`key/value` pairs) for the Resource.  Note that the set of [Labels](#labels) provided in the request will overwrite the existing one.  For more information, see \"[Labels](#labels)\".
+    /// User-defined labels (`key/value` pairs) for the Resource. For more information, see \"[Labels](#labels)\".  | User-defined labels (`key/value` pairs) for the Resource.  Note that the set of [Labels](#labels) provided in the request will overwrite the existing one.  For more information, see \"[Labels](#labels)\".  | The Storage Boxes' labels. | The Subaccounts' labels. | The Snapshots' labels.
     #[serde(rename = "labels", skip_serializing_if = "Option::is_none")]
     pub labels: Option<std::collections::HashMap<String, String>>,
     /// Name of the Resource. Must be unique per Project.

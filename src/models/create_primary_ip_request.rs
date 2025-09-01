@@ -31,7 +31,7 @@ pub struct CreatePrimaryIpRequest {
     /// [Datacenter](#datacenters) ID or name.  The  [Primary IP](#primary-ips) will be bound to this [Datacenter](#datacenters). Omit if `assignee_id`/`assignee_type` is provided.
     #[serde(rename = "datacenter", skip_serializing_if = "Option::is_none")]
     pub datacenter: Option<String>,
-    /// User-defined labels (`key/value` pairs) for the Resource. For more information, see \"[Labels](#labels)\".  | User-defined labels (`key/value` pairs) for the Resource.  Note that the set of [Labels](#labels) provided in the request will overwrite the existing one.  For more information, see \"[Labels](#labels)\".
+    /// User-defined labels (`key/value` pairs) for the Resource. For more information, see \"[Labels](#labels)\".  | User-defined labels (`key/value` pairs) for the Resource.  Note that the set of [Labels](#labels) provided in the request will overwrite the existing one.  For more information, see \"[Labels](#labels)\".  | The Storage Boxes' labels. | The Subaccounts' labels. | The Snapshots' labels.
     #[serde(rename = "labels", skip_serializing_if = "Option::is_none")]
     pub labels: Option<std::collections::HashMap<String, String>>,
     /// Name of the Resource. Must be unique per Project.

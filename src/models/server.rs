@@ -35,7 +35,7 @@ pub struct Server {
     pub ingoing_traffic: Option<i64>,
     #[serde(rename = "iso", deserialize_with = "Option::deserialize")]
     pub iso: Option<Box<models::Iso>>,
-    /// User-defined labels (`key/value` pairs) for the Resource. For more information, see \"[Labels](#labels)\".  | User-defined labels (`key/value` pairs) for the Resource.  Note that the set of [Labels](#labels) provided in the request will overwrite the existing one.  For more information, see \"[Labels](#labels)\".
+    /// User-defined labels (`key/value` pairs) for the Resource. For more information, see \"[Labels](#labels)\".  | User-defined labels (`key/value` pairs) for the Resource.  Note that the set of [Labels](#labels) provided in the request will overwrite the existing one.  For more information, see \"[Labels](#labels)\".  | The Storage Boxes' labels. | The Subaccounts' labels. | The Snapshots' labels.
     #[serde(rename = "labels")]
     pub labels: std::collections::HashMap<String, String>,
     /// Load Balancer IDs assigned to the server.

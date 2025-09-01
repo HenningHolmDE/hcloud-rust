@@ -51,7 +51,8 @@ impl<'a> Configuration {
 impl Default for Configuration {
     fn default() -> Self {
         let base_path_mapping = [
-            "https://api.hetzner.cloud/v1", // Official production server
+            "https://api.hetzner.cloud/v1", // API for cloud services
+            "https://api.hetzner.com/v1",   // API for storage boxes
         ]
         .into_iter()
         .map(|s| (s.to_owned(), s.to_owned()))
