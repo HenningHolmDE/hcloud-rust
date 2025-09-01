@@ -135,7 +135,7 @@ pub struct GetLoadBalancerParams {
 /// struct for passing parameters to the method [`get_load_balancer_action`]
 #[derive(Clone, Debug, Default)]
 pub struct GetLoadBalancerActionParams {
-    /// ID of the Action
+    /// ID of the Action.
     pub id: i64,
 }
 

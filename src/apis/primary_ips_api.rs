@@ -62,7 +62,7 @@ pub struct GetPrimaryIpParams {
 /// struct for passing parameters to the method [`get_primary_ip_action`]
 #[derive(Clone, Debug, Default)]
 pub struct GetPrimaryIpActionParams {
-    /// ID of the Action
+    /// ID of the Action.
     pub id: i64,
 }
 

@@ -171,14 +171,14 @@ pub struct GetServerParams {
 /// struct for passing parameters to the method [`get_server_action`]
 #[derive(Clone, Debug, Default)]
 pub struct GetServerActionParams {
-    /// ID of the Action
+    /// ID of the Action.
     pub id: i64,
 }
 
 /// struct for passing parameters to the method [`list_actions_for_server`]
 #[derive(Clone, Debug, Default)]
 pub struct ListActionsForServerParams {
-    /// ID of the Server
+    /// ID of the Server.
     pub id: i64,
     /// Sort actions by field and direction. Can be used multiple times. For more information, see \"[Sorting](#sorting)\".
     pub sort: Option<Vec<String>>,

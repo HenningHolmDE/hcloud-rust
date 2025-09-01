@@ -16,7 +16,7 @@ use serde::{Deserialize, Serialize};
 /// struct for passing parameters to the method [`get_action`]
 #[derive(Clone, Debug, Default)]
 pub struct GetActionParams {
-    /// ID of the Action
+    /// ID of the Action.
     pub id: i64,
 }
 

@@ -68,7 +68,7 @@ pub struct GetVolumeParams {
 /// struct for passing parameters to the method [`get_volume_action`]
 #[derive(Clone, Debug, Default)]
 pub struct GetVolumeActionParams {
-    /// ID of the Action
+    /// ID of the Action.
     pub id: i64,
 }
 

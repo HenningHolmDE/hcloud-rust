@@ -47,7 +47,7 @@ pub struct GetImageParams {
 /// struct for passing parameters to the method [`get_image_action`]
 #[derive(Clone, Debug, Default)]
 pub struct GetImageActionParams {
-    /// ID of the Action
+    /// ID of the Action.
     pub id: i64,
 }
 

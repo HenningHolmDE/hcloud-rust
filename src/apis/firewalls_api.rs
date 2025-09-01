@@ -53,14 +53,14 @@ pub struct GetFirewallParams {
 /// struct for passing parameters to the method [`get_firewall_action`]
 #[derive(Clone, Debug, Default)]
 pub struct GetFirewallActionParams {
-    /// ID of the Action
+    /// ID of the Action.
     pub id: i64,
 }
 
 /// struct for passing parameters to the method [`list_actions_for_firewall`]
 #[derive(Clone, Debug, Default)]
 pub struct ListActionsForFirewallParams {
-    /// ID of the Firewall
+    /// ID of the Firewall.
     pub id: i64,
     /// Sort actions by field and direction. Can be used multiple times. For more information, see \"[Sorting](#sorting)\".
     pub sort: Option<Vec<String>>,

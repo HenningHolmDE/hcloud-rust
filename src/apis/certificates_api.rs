@@ -45,14 +45,14 @@ pub struct GetCertificateParams {
 /// struct for passing parameters to the method [`get_certificate_action`]
 #[derive(Clone, Debug, Default)]
 pub struct GetCertificateActionParams {
-    /// ID of the Action
+    /// ID of the Action.
     pub id: i64,
 }
 
 /// struct for passing parameters to the method [`list_actions_for_certificate`]
 #[derive(Clone, Debug, Default)]
 pub struct ListActionsForCertificateParams {
-    /// ID of the Certificate
+    /// ID of the Certificate.
     pub id: i64,
     /// Sort actions by field and direction. Can be used multiple times. For more information, see \"[Sorting](#sorting)\".
     pub sort: Option<Vec<String>>,

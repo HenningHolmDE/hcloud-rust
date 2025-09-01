@@ -22,7 +22,7 @@ pub struct Action {
     /// Point in time when the Action was finished (in ISO-8601 format). Only set if the Action is finished otherwise null.
     #[serde(rename = "finished", deserialize_with = "Option::deserialize")]
     pub finished: Option<String>,
-    /// ID of the Action
+    /// ID of the Action.
     #[serde(rename = "id")]
     pub id: i64,
     /// Progress of the Action in percent.

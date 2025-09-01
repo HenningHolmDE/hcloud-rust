@@ -93,7 +93,7 @@ pub struct GetNetworkParams {
 /// struct for passing parameters to the method [`get_network_action`]
 #[derive(Clone, Debug, Default)]
 pub struct GetNetworkActionParams {
-    /// ID of the Action
+    /// ID of the Action.
     pub id: i64,
 }
 
