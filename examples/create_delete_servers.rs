@@ -59,7 +59,7 @@ async fn main() -> Result<(), String> {
                 .collect::<String>(),
         );
         println!(" Creating server \"{}\"...", name);
-        let request = models::CreateServerRequest {
+        let create_server_request = models::CreateServerRequest {
             name,
             server_type: SERVER_TYPE.to_string(),
             start_after_create: Some(true),
@@ -75,7 +75,7 @@ async fn main() -> Result<(), String> {
 
         // execute request and store server ID
         let params = servers_api::CreateServerParams {
-            create_server_request: Some(request),
+            create_server_request,
         };
         let models::CreateServerResponse { action, server, .. } =
             servers_api::create_server(&configuration, params)
