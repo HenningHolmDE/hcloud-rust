@@ -112,5 +112,6 @@ pub mod ssh_keys_api;
 pub mod storage_box_types_api;
 pub mod storage_boxes_api;
 pub mod volumes_api;
+pub mod zones_api;
 
 pub mod configuration;
