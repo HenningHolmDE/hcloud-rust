@@ -55,3 +55,4 @@ jobs:
           cargo run --example list_isos "$HCLOUD_API_TOKEN"
           cargo run --example list_servers "$HCLOUD_API_TOKEN"
           cargo run --example list_storage_box_types "$HCLOUD_API_TOKEN"
+          cargo run --example list_zones "$HCLOUD_API_TOKEN"
