@@ -52,6 +52,8 @@ src/models/change_algorithm_response.rs
 src/models/change_alias_ips_of_network_request.rs
 src/models/change_alias_ips_of_network_response.rs
 src/models/change_floating_ip_protection_response.rs
+src/models/change_home_directory_request.rs
+src/models/change_home_directory_response.rs
 src/models/change_image_protection_request.rs
 src/models/change_image_protection_response.rs
 src/models/change_ip_range_of_network_request.rs

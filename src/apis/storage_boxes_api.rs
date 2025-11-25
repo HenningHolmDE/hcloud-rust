@@ -13,6 +13,16 @@ use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{Deserialize, Serialize};
 
+/// struct for passing parameters to the method [`change_home_directory`]
+#[derive(Clone, Debug, Default)]
+pub struct ChangeHomeDirectoryParams {
+    /// ID of the Storage Box.
+    pub id: i64,
+    /// ID of the Storage Box Subaccount.
+    pub subaccount_id: i64,
+    pub change_home_directory_request: models::ChangeHomeDirectoryRequest,
+}
+
 /// struct for passing parameters to the method [`change_storage_box_protection`]
 #[derive(Clone, Debug, Default)]
 pub struct ChangeStorageBoxProtectionParams {
@@ -276,6 +286,13 @@ pub struct UpdateStorageBoxSubaccountAccessSettingsParams {
     pub update_access_settings_request: models::UpdateAccessSettingsRequest,
 }
 
+/// struct for typed errors of method [`change_home_directory`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum ChangeHomeDirectoryError {
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`change_storage_box_protection`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -477,6 +494,59 @@ pub enum UpdateStorageBoxAccessSettingsError {
 #[serde(untagged)]
 pub enum UpdateStorageBoxSubaccountAccessSettingsError {
     UnknownValue(serde_json::Value),
+}
+
+/// Change the home directory of a Storage Box Subaccount.
+pub async fn change_home_directory(
+    configuration: &configuration::Configuration,
+    params: ChangeHomeDirectoryParams,
+) -> Result<models::ChangeHomeDirectoryResponse, Error<ChangeHomeDirectoryError>> {
+    let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let subaccount_id = params.subaccount_id;
+    let change_home_directory_request = params.change_home_directory_request;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.com/v1");
+    let local_var_uri_str = format!(
+        "{}/storage_boxes/{id}/subaccounts/{subaccount_id}/actions/change_home_directory",
+        local_base_path,
+        id = id,
+        subaccount_id = subaccount_id
+    );
+    let mut local_var_req_builder =
+        local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder =
+            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    local_var_req_builder = local_var_req_builder.json(&change_home_directory_request);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<ChangeHomeDirectoryError> =
+            serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent {
+            status: local_var_status,
+            content: local_var_content,
+            entity: local_var_entity,
+        };
+        Err(Error::ResponseError(local_var_error))
+    }
 }
 
 /// Changes the protection configuration of the Storage Box.
