@@ -20,7 +20,7 @@ pub struct ResourceRecordSetToCreate {
     /// Name of the RRSet.  The name must be in lower case, and must not end with a dot or the Zone name. Names containing non-ASCII characters must be transcribed to [Punycode](https://wikipedia.org/wiki/Punycode) representation with ACE prefix, e.g. `xn--4bi` (✉️).  For the Zone apex, use `@`.
     #[serde(rename = "name")]
     pub name: String,
-    /// Records of the RRSet.  Must not be empty and must only contain distinct record values.
+    /// Records of the RRSet.  Must not be empty and must only contain distinct record values. The order of records returned in responses is not guaranteed to be consistent.
     #[serde(rename = "records")]
     pub records: Vec<models::ResourceRecord>,
     /// Time To Live (TTL) of the RRSet.  Must be in between 60s and 2147483647s.  If not set, the Zone's Default TTL is used.

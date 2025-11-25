@@ -24,7 +24,7 @@ pub struct ResourceRecordSet {
     pub name: String,
     #[serde(rename = "protection")]
     pub protection: Box<models::ResourceRecordSetProtection>,
-    /// Records of the RRSet.  Must not be empty and must only contain distinct record values.
+    /// Records of the RRSet.  Must not be empty and must only contain distinct record values. The order of records returned in responses is not guaranteed to be consistent.
     #[serde(rename = "records")]
     pub records: Vec<models::ResourceRecord>,
     /// Time To Live (TTL) of the RRSet.  Must be in between 60s and 2147483647s.  If not set, the Zone's Default TTL is used.
