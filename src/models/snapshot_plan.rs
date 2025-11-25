@@ -21,14 +21,14 @@ pub struct SnapshotPlan {
     #[serde(rename = "day_of_week", deserialize_with = "Option::deserialize")]
     pub day_of_week: Option<i32>,
     /// Hour when the Snapshot Plan is executed (UTC).
-    #[serde(rename = "hour", deserialize_with = "Option::deserialize")]
-    pub hour: Option<i32>,
+    #[serde(rename = "hour")]
+    pub hour: i32,
     /// Maximum amount of Snapshots that will be created by this Snapshot Plan.  Older Snapshots will be deleted.
     #[serde(rename = "max_snapshots")]
     pub max_snapshots: i32,
     /// Minute when the Snapshot Plan is executed (UTC).
-    #[serde(rename = "minute", deserialize_with = "Option::deserialize")]
-    pub minute: Option<i32>,
+    #[serde(rename = "minute")]
+    pub minute: i32,
 }
 
 impl SnapshotPlan {
@@ -36,9 +36,9 @@ impl SnapshotPlan {
     pub fn new(
         day_of_month: Option<i32>,
         day_of_week: Option<i32>,
-        hour: Option<i32>,
+        hour: i32,
         max_snapshots: i32,
-        minute: Option<i32>,
+        minute: i32,
     ) -> SnapshotPlan {
         SnapshotPlan {
             day_of_month,

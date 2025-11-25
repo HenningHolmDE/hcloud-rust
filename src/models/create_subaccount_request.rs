@@ -17,16 +17,11 @@ pub struct CreateSubaccountRequest {
     #[serde(rename = "access_settings", skip_serializing_if = "Option::is_none")]
     pub access_settings: Option<Box<models::CreateSubaccountRequestAccessSettings>>,
     /// A description of Storage Box Subaccount.
-    #[serde(
-        rename = "description",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub description: Option<Option<String>>,
+    #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
     /// Home directory of the Storage Box Subaccount.  The directory will be created if it doesn't exist yet.
-    #[serde(rename = "home_directory", deserialize_with = "Option::deserialize")]
-    pub home_directory: Option<String>,
+    #[serde(rename = "home_directory")]
+    pub home_directory: String,
     /// User-defined labels (`key/value` pairs) for the Resource. For more information, see \"Labels\".  | User-defined labels (`key/value` pairs) for the Resource.  Note that the set of Labels provided in the request will overwrite the existing one.  For more information, see \"Labels\".
     #[serde(rename = "labels", skip_serializing_if = "Option::is_none")]
     pub labels: Option<std::collections::HashMap<String, String>>,
@@ -37,7 +32,7 @@ pub struct CreateSubaccountRequest {
 
 impl CreateSubaccountRequest {
     /// Request for POST https://api.hetzner.com/v1/storage_boxes/{id}/subaccounts
-    pub fn new(home_directory: Option<String>, password: String) -> CreateSubaccountRequest {
+    pub fn new(home_directory: String, password: String) -> CreateSubaccountRequest {
         CreateSubaccountRequest {
             access_settings: None,
             description: None,

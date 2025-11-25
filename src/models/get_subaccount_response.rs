@@ -14,13 +14,15 @@ use serde::{Deserialize, Serialize};
 /// GetSubaccountResponse : Response to GET https://api.hetzner.com/v1/storage_boxes/{id}/subaccounts/{subaccount_id}
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GetSubaccountResponse {
-    #[serde(rename = "subaccount", skip_serializing_if = "Option::is_none")]
-    pub subaccount: Option<Box<models::Subaccount>>,
+    #[serde(rename = "subaccount")]
+    pub subaccount: Box<models::Subaccount>,
 }
 
 impl GetSubaccountResponse {
     /// Response to GET https://api.hetzner.com/v1/storage_boxes/{id}/subaccounts/{subaccount_id}
-    pub fn new() -> GetSubaccountResponse {
-        GetSubaccountResponse { subaccount: None }
+    pub fn new(subaccount: models::Subaccount) -> GetSubaccountResponse {
+        GetSubaccountResponse {
+            subaccount: Box::new(subaccount),
+        }
     }
 }

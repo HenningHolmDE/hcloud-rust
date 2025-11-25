@@ -11,17 +11,15 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
+/// CreateStorageBoxRequestAccessSettings : Access settings of the Storage Box.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct CreateSubaccountRequestAccessSettings {
+pub struct CreateStorageBoxRequestAccessSettings {
     /// Whether access from outside the Hetzner network is allowed.
     #[serde(
         rename = "reachable_externally",
         skip_serializing_if = "Option::is_none"
     )]
     pub reachable_externally: Option<bool>,
-    /// Whether the Subaccount is read-only.
-    #[serde(rename = "readonly", skip_serializing_if = "Option::is_none")]
-    pub readonly: Option<bool>,
     /// Whether the Samba subsystem is enabled.
     #[serde(rename = "samba_enabled", skip_serializing_if = "Option::is_none")]
     pub samba_enabled: Option<bool>,
@@ -31,16 +29,20 @@ pub struct CreateSubaccountRequestAccessSettings {
     /// Whether the WebDAV subsystem is enabled.
     #[serde(rename = "webdav_enabled", skip_serializing_if = "Option::is_none")]
     pub webdav_enabled: Option<bool>,
+    /// Whether the ZFS snapshot folder is visible.
+    #[serde(rename = "zfs_enabled", skip_serializing_if = "Option::is_none")]
+    pub zfs_enabled: Option<bool>,
 }
 
-impl CreateSubaccountRequestAccessSettings {
-    pub fn new() -> CreateSubaccountRequestAccessSettings {
-        CreateSubaccountRequestAccessSettings {
+impl CreateStorageBoxRequestAccessSettings {
+    /// Access settings of the Storage Box.
+    pub fn new() -> CreateStorageBoxRequestAccessSettings {
+        CreateStorageBoxRequestAccessSettings {
             reachable_externally: None,
-            readonly: None,
             samba_enabled: None,
             ssh_enabled: None,
             webdav_enabled: None,
+            zfs_enabled: None,
         }
     }
 }

@@ -17,43 +17,21 @@ pub struct UpdateAccessSettingsRequest {
     /// Whether access from outside the Hetzner network is allowed.
     #[serde(
         rename = "reachable_externally",
-        default,
-        with = "::serde_with::rust::double_option",
         skip_serializing_if = "Option::is_none"
     )]
-    pub reachable_externally: Option<Option<bool>>,
+    pub reachable_externally: Option<bool>,
     /// Whether the Subaccount is read-only.
-    #[serde(
-        rename = "readonly",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub readonly: Option<Option<bool>>,
+    #[serde(rename = "readonly", skip_serializing_if = "Option::is_none")]
+    pub readonly: Option<bool>,
     /// Whether the Samba subsystem is enabled.
-    #[serde(
-        rename = "samba_enabled",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub samba_enabled: Option<Option<bool>>,
+    #[serde(rename = "samba_enabled", skip_serializing_if = "Option::is_none")]
+    pub samba_enabled: Option<bool>,
     /// Whether the SSH subsystem is enabled.
-    #[serde(
-        rename = "ssh_enabled",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub ssh_enabled: Option<Option<bool>>,
+    #[serde(rename = "ssh_enabled", skip_serializing_if = "Option::is_none")]
+    pub ssh_enabled: Option<bool>,
     /// Whether the WebDAV subsystem is enabled.
-    #[serde(
-        rename = "webdav_enabled",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub webdav_enabled: Option<Option<bool>>,
+    #[serde(rename = "webdav_enabled", skip_serializing_if = "Option::is_none")]
+    pub webdav_enabled: Option<bool>,
 }
 
 impl UpdateAccessSettingsRequest {

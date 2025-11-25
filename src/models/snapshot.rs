@@ -16,9 +16,9 @@ pub struct Snapshot {
     /// Point in time when the Resource was created (in ISO-8601 format).
     #[serde(rename = "created")]
     pub created: String,
-    /// Description of the Resource.
-    #[serde(rename = "description", deserialize_with = "Option::deserialize")]
-    pub description: Option<String>,
+    /// Description of the Storage Box Snapshot.
+    #[serde(rename = "description")]
+    pub description: String,
     /// ID of the Storage Box Snapshot.
     #[serde(rename = "id")]
     pub id: i64,
@@ -28,7 +28,7 @@ pub struct Snapshot {
     /// User-defined labels (`key/value` pairs) for the Resource. For more information, see \"Labels\".  | User-defined labels (`key/value` pairs) for the Resource.  Note that the set of Labels provided in the request will overwrite the existing one.  For more information, see \"Labels\".
     #[serde(rename = "labels")]
     pub labels: std::collections::HashMap<String, String>,
-    /// Name of the Resource. Must be unique per Project.
+    /// Name of the Storage Box Snapshot.
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "stats")]
@@ -41,7 +41,7 @@ pub struct Snapshot {
 impl Snapshot {
     pub fn new(
         created: String,
-        description: Option<String>,
+        description: String,
         id: i64,
         is_automatic: bool,
         labels: std::collections::HashMap<String, String>,

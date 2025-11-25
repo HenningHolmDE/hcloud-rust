@@ -14,13 +14,15 @@ use serde::{Deserialize, Serialize};
 /// ReplaceSubaccountResponse : Response to PUT https://api.hetzner.com/v1/storage_boxes/{id}/subaccounts/{subaccount_id}
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ReplaceSubaccountResponse {
-    #[serde(rename = "subaccount", skip_serializing_if = "Option::is_none")]
-    pub subaccount: Option<Box<models::Subaccount>>,
+    #[serde(rename = "subaccount")]
+    pub subaccount: Box<models::Subaccount>,
 }
 
 impl ReplaceSubaccountResponse {
     /// Response to PUT https://api.hetzner.com/v1/storage_boxes/{id}/subaccounts/{subaccount_id}
-    pub fn new() -> ReplaceSubaccountResponse {
-        ReplaceSubaccountResponse { subaccount: None }
+    pub fn new(subaccount: models::Subaccount) -> ReplaceSubaccountResponse {
+        ReplaceSubaccountResponse {
+            subaccount: Box::new(subaccount),
+        }
     }
 }

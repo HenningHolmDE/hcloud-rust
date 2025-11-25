@@ -14,13 +14,15 @@ use serde::{Deserialize, Serialize};
 /// ReplaceSnapshotResponse : Response to PUT https://api.hetzner.com/v1/storage_boxes/{id}/snapshots/{snapshot_id}
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ReplaceSnapshotResponse {
-    #[serde(rename = "snapshot", skip_serializing_if = "Option::is_none")]
-    pub snapshot: Option<Box<models::Snapshot>>,
+    #[serde(rename = "snapshot")]
+    pub snapshot: Box<models::Snapshot>,
 }
 
 impl ReplaceSnapshotResponse {
     /// Response to PUT https://api.hetzner.com/v1/storage_boxes/{id}/snapshots/{snapshot_id}
-    pub fn new() -> ReplaceSnapshotResponse {
-        ReplaceSnapshotResponse { snapshot: None }
+    pub fn new(snapshot: models::Snapshot) -> ReplaceSnapshotResponse {
+        ReplaceSnapshotResponse {
+            snapshot: Box::new(snapshot),
+        }
     }
 }

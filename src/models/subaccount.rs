@@ -18,10 +18,10 @@ pub struct Subaccount {
     /// Point in time when the Resource was created (in ISO-8601 format).
     #[serde(rename = "created")]
     pub created: String,
-    /// A description to remind you of the purpose of this Subaccount.
+    /// A description of Storage Box Subaccount.
     #[serde(rename = "description")]
     pub description: String,
-    /// Home directory of the Subaccount.
+    /// Home directory of the Storage Box Subaccount.
     #[serde(rename = "home_directory")]
     pub home_directory: String,
     /// ID of the Storage Box Subaccount.

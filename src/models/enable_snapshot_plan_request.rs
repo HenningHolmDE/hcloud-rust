@@ -31,35 +31,25 @@ pub struct EnableSnapshotPlanRequest {
     )]
     pub day_of_week: Option<Option<i32>>,
     /// Hour when the Snapshot Plan is executed (UTC).
-    #[serde(
-        rename = "hour",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub hour: Option<Option<i32>>,
+    #[serde(rename = "hour")]
+    pub hour: i32,
     /// Maximum amount of Snapshots that will be created by this Snapshot Plan.  Older Snapshots will be deleted.
     #[serde(rename = "max_snapshots")]
     pub max_snapshots: i32,
     /// Minute when the Snapshot Plan is executed (UTC).
-    #[serde(
-        rename = "minute",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub minute: Option<Option<i32>>,
+    #[serde(rename = "minute")]
+    pub minute: i32,
 }
 
 impl EnableSnapshotPlanRequest {
     /// Request for POST https://api.hetzner.com/v1/storage_boxes/{id}/actions/enable_snapshot_plan
-    pub fn new(max_snapshots: i32) -> EnableSnapshotPlanRequest {
+    pub fn new(hour: i32, max_snapshots: i32, minute: i32) -> EnableSnapshotPlanRequest {
         EnableSnapshotPlanRequest {
             day_of_month: None,
             day_of_week: None,
-            hour: None,
+            hour,
             max_snapshots,
-            minute: None,
+            minute,
         }
     }
 }

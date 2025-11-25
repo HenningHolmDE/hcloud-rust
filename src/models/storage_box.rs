@@ -37,9 +37,8 @@ pub struct StorageBox {
     /// Details of the active snapshot plan.  Not available if the `status` is `initializing`.
     #[serde(rename = "snapshot_plan", deserialize_with = "Option::deserialize")]
     pub snapshot_plan: Option<Box<models::SnapshotPlan>>,
-    /// Information about disk usage. Not available if the status is \"initializing\".
-    #[serde(rename = "stats", deserialize_with = "Option::deserialize")]
-    pub stats: Option<Box<models::StorageBoxStats>>,
+    #[serde(rename = "stats")]
+    pub stats: Box<models::StorageBoxStats>,
     /// Status of the Storage Box.
     #[serde(rename = "status")]
     pub status: Status,
@@ -49,13 +48,8 @@ pub struct StorageBox {
     #[serde(rename = "system", deserialize_with = "Option::deserialize")]
     pub system: Option<String>,
     /// Primary username of the Storage Box.  Not available if the `status` is `initializing`.
-    #[serde(
-        rename = "username",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub username: Option<Option<String>>,
+    #[serde(rename = "username", deserialize_with = "Option::deserialize")]
+    pub username: Option<String>,
 }
 
 impl StorageBox {
@@ -69,10 +63,11 @@ impl StorageBox {
         protection: models::Protection,
         server: Option<String>,
         snapshot_plan: Option<models::SnapshotPlan>,
-        stats: Option<models::StorageBoxStats>,
+        stats: models::StorageBoxStats,
         status: Status,
         storage_box_type: models::StorageBoxType,
         system: Option<String>,
+        username: Option<String>,
     ) -> StorageBox {
         StorageBox {
             access_settings: Box::new(access_settings),
@@ -84,11 +79,11 @@ impl StorageBox {
             protection: Box::new(protection),
             server,
             snapshot_plan: snapshot_plan.map(Box::new),
-            stats: stats.map(Box::new),
+            stats: Box::new(stats),
             status,
             storage_box_type: Box::new(storage_box_type),
             system,
-            username: None,
+            username,
         }
     }
 }

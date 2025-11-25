@@ -118,6 +118,7 @@ src/models/create_snapshot_response_snapshot.rs
 src/models/create_ssh_key_request.rs
 src/models/create_ssh_key_response.rs
 src/models/create_storage_box_request.rs
+src/models/create_storage_box_request_access_settings.rs
 src/models/create_storage_box_response.rs
 src/models/create_subaccount_request.rs
 src/models/create_subaccount_request_access_settings.rs
@@ -358,7 +359,6 @@ src/models/subnet.rs
 src/models/subnet_with_gateway.rs
 src/models/unassign_floating_ip_response.rs
 src/models/unassign_primary_ip_from_resource_response.rs
-src/models/update_access_settings.rs
 src/models/update_access_settings_request.rs
 src/models/update_access_settings_response.rs
 src/models/update_load_balancer_service.rs
