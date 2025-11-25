@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 /// CreateSnapshotRequest : Request for POST https://api.hetzner.com/v1/storage_boxes/{id}/snapshots
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CreateSnapshotRequest {
-    /// Description of the Snapshot.
+    /// Description of the Storage Box Snapshot.
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
 }

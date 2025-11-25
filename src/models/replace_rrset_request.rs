@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 /// ReplaceRrsetRequest : Request for PUT https://api.hetzner.cloud/v1/zones/{id_or_name}/rrsets/{rr_name}/{rr_type}
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ReplaceRrsetRequest {
-    /// User-defined labels (`key/value` pairs) for the Resource. For more information, see \"Labels\".  | User-defined labels (`key/value` pairs) for the Resource.  Note that the set of Labels provided in the request will overwrite the existing one.  For more information, see \"Labels\".  | The Storage Boxes' labels. | The Subaccounts' labels. | The Snapshots' labels.
+    /// User-defined labels (`key/value` pairs) for the Resource. For more information, see \"Labels\".  | User-defined labels (`key/value` pairs) for the Resource.  Note that the set of Labels provided in the request will overwrite the existing one.  For more information, see \"Labels\".
     #[serde(rename = "labels", skip_serializing_if = "Option::is_none")]
     pub labels: Option<std::collections::HashMap<String, String>>,
 }

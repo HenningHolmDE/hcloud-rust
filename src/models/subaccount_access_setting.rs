@@ -11,9 +11,10 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
+/// SubaccountAccessSetting : Access settings for the Subaccount.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct SubaccountAccessSetting {
-    /// Whether the Subaccount is accessible from outside the Hetzner network.
+    /// Whether access from outside the Hetzner network is allowed.
     #[serde(rename = "reachable_externally")]
     pub reachable_externally: bool,
     /// Whether the Subaccount is read-only.
@@ -31,6 +32,7 @@ pub struct SubaccountAccessSetting {
 }
 
 impl SubaccountAccessSetting {
+    /// Access settings for the Subaccount.
     pub fn new(
         reachable_externally: bool,
         readonly: bool,

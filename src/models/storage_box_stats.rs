@@ -11,7 +11,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// StorageBoxStats : Information about disk usage. Not available if the status is \"initializing\".
+/// StorageBoxStats : Statistics of the Storage Box.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct StorageBoxStats {
     /// Current disk usage in bytes.
@@ -26,7 +26,7 @@ pub struct StorageBoxStats {
 }
 
 impl StorageBoxStats {
-    /// Information about disk usage. Not available if the status is \"initializing\".
+    /// Statistics of the Storage Box.
     pub fn new(size: i32, size_data: i32, size_snapshots: i32) -> StorageBoxStats {
         StorageBoxStats {
             size,

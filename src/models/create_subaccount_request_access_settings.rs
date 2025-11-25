@@ -13,7 +13,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CreateSubaccountRequestAccessSettings {
-    /// Whether the Subaccount should be accessible from outside the Hetzner network.
+    /// Whether access from outside the Hetzner network is allowed.
     #[serde(
         rename = "reachable_externally",
         default,
@@ -21,7 +21,7 @@ pub struct CreateSubaccountRequestAccessSettings {
         skip_serializing_if = "Option::is_none"
     )]
     pub reachable_externally: Option<Option<bool>>,
-    /// Whether the Subaccount should be read-only.
+    /// Whether the Subaccount is read-only.
     #[serde(
         rename = "readonly",
         default,
@@ -29,7 +29,7 @@ pub struct CreateSubaccountRequestAccessSettings {
         skip_serializing_if = "Option::is_none"
     )]
     pub readonly: Option<Option<bool>>,
-    /// Whether the Samba subsystem should be enabled.
+    /// Whether the Samba subsystem is enabled.
     #[serde(
         rename = "samba_enabled",
         default,
@@ -37,7 +37,7 @@ pub struct CreateSubaccountRequestAccessSettings {
         skip_serializing_if = "Option::is_none"
     )]
     pub samba_enabled: Option<Option<bool>>,
-    /// Whether the SSH subsystem should be enabled.
+    /// Whether the SSH subsystem is enabled.
     #[serde(
         rename = "ssh_enabled",
         default,
@@ -45,7 +45,7 @@ pub struct CreateSubaccountRequestAccessSettings {
         skip_serializing_if = "Option::is_none"
     )]
     pub ssh_enabled: Option<Option<bool>>,
-    /// Whether the WebDAV subsystem should be enabled.
+    /// Whether the WebDAV subsystem is enabled.
     #[serde(
         rename = "webdav_enabled",
         default,

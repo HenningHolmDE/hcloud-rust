@@ -16,7 +16,7 @@ use serde::{Deserialize, Serialize};
 pub struct CreateSubaccountRequest {
     #[serde(rename = "access_settings", skip_serializing_if = "Option::is_none")]
     pub access_settings: Option<Box<models::CreateSubaccountRequestAccessSettings>>,
-    /// A description to remind you of the purpose of this Subaccount.
+    /// A description of Storage Box Subaccount.
     #[serde(
         rename = "description",
         default,
@@ -24,13 +24,13 @@ pub struct CreateSubaccountRequest {
         skip_serializing_if = "Option::is_none"
     )]
     pub description: Option<Option<String>>,
-    /// Home directory of the Subaccount. Will be created if it doesn't exist yet.
+    /// Home directory of the Storage Box Subaccount.  The directory will be created if it doesn't exist yet.
     #[serde(rename = "home_directory", deserialize_with = "Option::deserialize")]
     pub home_directory: Option<String>,
-    /// User-defined labels (`key/value` pairs) for the Resource. For more information, see \"Labels\".  | User-defined labels (`key/value` pairs) for the Resource.  Note that the set of Labels provided in the request will overwrite the existing one.  For more information, see \"Labels\".  | The Storage Boxes' labels. | The Subaccounts' labels. | The Snapshots' labels.
+    /// User-defined labels (`key/value` pairs) for the Resource. For more information, see \"Labels\".  | User-defined labels (`key/value` pairs) for the Resource.  Note that the set of Labels provided in the request will overwrite the existing one.  For more information, see \"Labels\".
     #[serde(rename = "labels", skip_serializing_if = "Option::is_none")]
     pub labels: Option<std::collections::HashMap<String, String>>,
-    /// New password.
+    /// Password of the Storage Box Subaccount.  For more details, see the Storage Boxes password policy.
     #[serde(rename = "password")]
     pub password: String,
 }

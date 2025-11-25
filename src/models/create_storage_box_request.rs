@@ -16,22 +16,22 @@ use serde::{Deserialize, Serialize};
 pub struct CreateStorageBoxRequest {
     #[serde(rename = "access_settings", skip_serializing_if = "Option::is_none")]
     pub access_settings: Option<Box<models::UpdateAccessSettings>>,
-    /// User-defined labels (`key/value` pairs) for the Resource. For more information, see \"Labels\".  | User-defined labels (`key/value` pairs) for the Resource.  Note that the set of Labels provided in the request will overwrite the existing one.  For more information, see \"Labels\".  | The Storage Boxes' labels. | The Subaccounts' labels. | The Snapshots' labels.
+    /// User-defined labels (`key/value` pairs) for the Resource. For more information, see \"Labels\".  | User-defined labels (`key/value` pairs) for the Resource.  Note that the set of Labels provided in the request will overwrite the existing one.  For more information, see \"Labels\".
     #[serde(rename = "labels", skip_serializing_if = "Option::is_none")]
     pub labels: Option<std::collections::HashMap<String, String>>,
-    /// Unique identifier of the Location.
+    /// ID or Name of Location.
     #[serde(rename = "location")]
     pub location: String,
-    /// Name of the Resource. Must be unique per Project.
+    /// Name of the Storage Box.
     #[serde(rename = "name")]
     pub name: String,
-    /// The password that will be set for this Storage Box.
+    /// Password of the Storage Box.  For more details, see the Storage Boxes password policy.
     #[serde(rename = "password")]
     pub password: String,
-    /// Array of SSH public keys in OpenSSH format which should be injected into the Storage Box.
+    /// SSH public keys in OpenSSH format to inject into the Storage Box.
     #[serde(rename = "ssh_keys", skip_serializing_if = "Option::is_none")]
     pub ssh_keys: Option<Vec<String>>,
-    /// The name or the ID of the Storage Box Type.
+    /// ID or Name of the Storage Box Type.
     #[serde(rename = "storage_box_type")]
     pub storage_box_type: String,
 }

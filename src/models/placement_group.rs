@@ -19,7 +19,7 @@ pub struct PlacementGroup {
     /// ID of the Placement Group.
     #[serde(rename = "id")]
     pub id: i64,
-    /// User-defined labels (`key/value` pairs) for the Resource. For more information, see \"Labels\".  | User-defined labels (`key/value` pairs) for the Resource.  Note that the set of Labels provided in the request will overwrite the existing one.  For more information, see \"Labels\".  | The Storage Boxes' labels. | The Subaccounts' labels. | The Snapshots' labels.
+    /// User-defined labels (`key/value` pairs) for the Resource. For more information, see \"Labels\".  | User-defined labels (`key/value` pairs) for the Resource.  Note that the set of Labels provided in the request will overwrite the existing one.  For more information, see \"Labels\".
     #[serde(rename = "labels")]
     pub labels: std::collections::HashMap<String, String>,
     /// Name of the Resource. Must be unique per Project.

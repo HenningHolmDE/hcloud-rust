@@ -11,9 +11,10 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
+/// UpdateAccessSettings : Access settings of the Storage Box.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct UpdateAccessSettings {
-    /// Whether the Storage Box should be accessible from outside the Hetzner network.
+    /// Whether access from outside the Hetzner network is allowed.
     #[serde(
         rename = "reachable_externally",
         default,
@@ -21,7 +22,7 @@ pub struct UpdateAccessSettings {
         skip_serializing_if = "Option::is_none"
     )]
     pub reachable_externally: Option<Option<bool>>,
-    /// Whether the Samba subsystem should be enabled.
+    /// Whether the Samba subsystem is enabled.
     #[serde(
         rename = "samba_enabled",
         default,
@@ -29,7 +30,7 @@ pub struct UpdateAccessSettings {
         skip_serializing_if = "Option::is_none"
     )]
     pub samba_enabled: Option<Option<bool>>,
-    /// Whether the SSH subsystem should be enabled.
+    /// Whether the SSH subsystem is enabled.
     #[serde(
         rename = "ssh_enabled",
         default,
@@ -37,7 +38,7 @@ pub struct UpdateAccessSettings {
         skip_serializing_if = "Option::is_none"
     )]
     pub ssh_enabled: Option<Option<bool>>,
-    /// Whether the WebDAV subsystem should be enabled.
+    /// Whether the WebDAV subsystem is enabled.
     #[serde(
         rename = "webdav_enabled",
         default,
@@ -45,7 +46,7 @@ pub struct UpdateAccessSettings {
         skip_serializing_if = "Option::is_none"
     )]
     pub webdav_enabled: Option<Option<bool>>,
-    /// Whether the ZFS Snapshot folder should be visible.
+    /// Whether the ZFS snapshot folder is visible.
     #[serde(
         rename = "zfs_enabled",
         default,
@@ -56,6 +57,7 @@ pub struct UpdateAccessSettings {
 }
 
 impl UpdateAccessSettings {
+    /// Access settings of the Storage Box.
     pub fn new() -> UpdateAccessSettings {
         UpdateAccessSettings {
             reachable_externally: None,

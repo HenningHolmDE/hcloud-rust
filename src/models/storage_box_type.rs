@@ -11,6 +11,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
+/// StorageBoxType : Type of the Storage Box.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct StorageBoxType {
     /// Maximum number of snapshots created automatically by a snapshot plan.
@@ -46,6 +47,7 @@ pub struct StorageBoxType {
 }
 
 impl StorageBoxType {
+    /// Type of the Storage Box.
     pub fn new(
         automatic_snapshot_limit: Option<i32>,
         deprecation: Option<models::DeprecationInfo>,

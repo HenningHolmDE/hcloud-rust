@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 /// ResetPasswordRequest : Request for POST https://api.hetzner.com/v1/storage_boxes/{id}/subaccounts/{subaccount_id}/actions/reset_subaccount_password
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ResetPasswordRequest {
-    /// New password.
+    /// Password of the Storage Box Subaccount.  For more details, see the Storage Boxes password policy.
     #[serde(rename = "password")]
     pub password: String,
 }

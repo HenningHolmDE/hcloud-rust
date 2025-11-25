@@ -11,28 +11,28 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// SnapshotPlan : Details of the active snapshot plan. Not available if the status is \"initializing\".
+/// SnapshotPlan : Details of the active snapshot plan.  Not available if the `status` is `initializing`.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct SnapshotPlan {
-    /// Day of the month the Snapshot Plan is executed on.
+    /// Day of the month when the Snapshot Plan is executed.  Null means every day.
     #[serde(rename = "day_of_month", deserialize_with = "Option::deserialize")]
     pub day_of_month: Option<i32>,
-    /// Day of the week the Snapshot Plan is executed on.
+    /// Day of the week when the Snapshot Plan is executed.  Starts at 1 for Monday til 7 for Sunday. Null means every day.
     #[serde(rename = "day_of_week", deserialize_with = "Option::deserialize")]
     pub day_of_week: Option<i32>,
-    /// Hour the Snapshot Plan is executed at (UTC).
+    /// Hour when the Snapshot Plan is executed (UTC).
     #[serde(rename = "hour", deserialize_with = "Option::deserialize")]
     pub hour: Option<i32>,
-    /// Maximum amount of Snapshots that will be created by this Snapshot Plan. Older Snapshots will be deleted.
+    /// Maximum amount of Snapshots that will be created by this Snapshot Plan.  Older Snapshots will be deleted.
     #[serde(rename = "max_snapshots")]
     pub max_snapshots: i32,
-    /// Minute the Snapshot Plan is executed at (UTC).
+    /// Minute when the Snapshot Plan is executed (UTC).
     #[serde(rename = "minute", deserialize_with = "Option::deserialize")]
     pub minute: Option<i32>,
 }
 
 impl SnapshotPlan {
-    /// Details of the active snapshot plan. Not available if the status is \"initializing\".
+    /// Details of the active snapshot plan.  Not available if the `status` is `initializing`.
     pub fn new(
         day_of_month: Option<i32>,
         day_of_week: Option<i32>,

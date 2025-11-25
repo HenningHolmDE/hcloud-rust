@@ -15,38 +15,40 @@ use serde::{Deserialize, Serialize};
 pub struct StorageBox {
     #[serde(rename = "access_settings")]
     pub access_settings: Box<models::StorageBoxAccessSetting>,
-    /// Point in time (in ISO-8601 format).
+    /// Point in time when the Resource was created (in ISO-8601 format).
     #[serde(rename = "created")]
     pub created: String,
     /// ID of the Storage Box.
     #[serde(rename = "id")]
     pub id: i64,
-    /// User-defined labels (`key/value` pairs) for the Resource. For more information, see \"Labels\".  | User-defined labels (`key/value` pairs) for the Resource.  Note that the set of Labels provided in the request will overwrite the existing one.  For more information, see \"Labels\".  | The Storage Boxes' labels. | The Subaccounts' labels. | The Snapshots' labels.
+    /// User-defined labels (`key/value` pairs) for the Resource. For more information, see \"Labels\".  | User-defined labels (`key/value` pairs) for the Resource.  Note that the set of Labels provided in the request will overwrite the existing one.  For more information, see \"Labels\".
     #[serde(rename = "labels")]
     pub labels: std::collections::HashMap<String, String>,
     #[serde(rename = "location")]
     pub location: Box<models::Location>,
+    /// Name of the Storage Box.
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "protection")]
     pub protection: Box<models::Protection>,
-    /// FQDN of the Storage Box. Not available if the status is \"initializing\".
+    /// FQDN of the Storage Box.  Not available if the `status` is `initializing`.
     #[serde(rename = "server", deserialize_with = "Option::deserialize")]
     pub server: Option<String>,
-    /// Details of the active snapshot plan. Not available if the status is \"initializing\".
+    /// Details of the active snapshot plan.  Not available if the `status` is `initializing`.
     #[serde(rename = "snapshot_plan", deserialize_with = "Option::deserialize")]
     pub snapshot_plan: Option<Box<models::SnapshotPlan>>,
     /// Information about disk usage. Not available if the status is \"initializing\".
     #[serde(rename = "stats", deserialize_with = "Option::deserialize")]
     pub stats: Option<Box<models::StorageBoxStats>>,
+    /// Status of the Storage Box.
     #[serde(rename = "status")]
     pub status: Status,
     #[serde(rename = "storage_box_type")]
     pub storage_box_type: Box<models::StorageBoxType>,
-    /// Storage Box host system. Not available if the status is \"initializing\".
+    /// Host system of the Storage Box.  Not available if the `status` is `initializing`.
     #[serde(rename = "system", deserialize_with = "Option::deserialize")]
     pub system: Option<String>,
-    /// Primary username of the Storage Box.  Not available if the status is \"initializing\".
+    /// Primary username of the Storage Box.  Not available if the `status` is `initializing`.
     #[serde(
         rename = "username",
         default,
@@ -90,6 +92,7 @@ impl StorageBox {
         }
     }
 }
+/// Status of the Storage Box.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum Status {
     #[serde(rename = "active")]

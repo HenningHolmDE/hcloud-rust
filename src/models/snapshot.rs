@@ -13,7 +13,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Snapshot {
-    /// Point in time (in ISO-8601 format).
+    /// Point in time when the Resource was created (in ISO-8601 format).
     #[serde(rename = "created")]
     pub created: String,
     /// Description of the Resource.
@@ -22,10 +22,10 @@ pub struct Snapshot {
     /// ID of the Storage Box Snapshot.
     #[serde(rename = "id")]
     pub id: i64,
-    /// Whether the Snapshot was created automatically.
+    /// Whether the Storage Box Snapshot was created automatically.
     #[serde(rename = "is_automatic")]
     pub is_automatic: bool,
-    /// User-defined labels (`key/value` pairs) for the Resource. For more information, see \"Labels\".  | User-defined labels (`key/value` pairs) for the Resource.  Note that the set of Labels provided in the request will overwrite the existing one.  For more information, see \"Labels\".  | The Storage Boxes' labels. | The Subaccounts' labels. | The Snapshots' labels.
+    /// User-defined labels (`key/value` pairs) for the Resource. For more information, see \"Labels\".  | User-defined labels (`key/value` pairs) for the Resource.  Note that the set of Labels provided in the request will overwrite the existing one.  For more information, see \"Labels\".
     #[serde(rename = "labels")]
     pub labels: std::collections::HashMap<String, String>,
     /// Name of the Resource. Must be unique per Project.

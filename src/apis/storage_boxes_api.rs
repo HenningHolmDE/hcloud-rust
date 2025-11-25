@@ -31,9 +31,9 @@ pub struct ChangeStorageBoxProtectionParams {
     pub body: models::Protection,
 }
 
-/// struct for passing parameters to the method [`change_type_of_storage_box`]
+/// struct for passing parameters to the method [`change_type`]
 #[derive(Clone, Debug, Default)]
-pub struct ChangeTypeOfStorageBoxParams {
+pub struct ChangeTypeParams {
     /// ID of the Storage Box.
     pub id: i64,
     pub change_type_of_storage_box_request: models::ChangeTypeOfStorageBoxRequest,
@@ -300,10 +300,10 @@ pub enum ChangeStorageBoxProtectionError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`change_type_of_storage_box`]
+/// struct for typed errors of method [`change_type`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum ChangeTypeOfStorageBoxError {
+pub enum ChangeTypeError {
     UnknownValue(serde_json::Value),
 }
 
@@ -549,7 +549,7 @@ pub async fn change_home_directory(
     }
 }
 
-/// Changes the protection configuration of the Storage Box.
+/// Changes the protection configuration of a Storage Box.
 pub async fn change_storage_box_protection(
     configuration: &configuration::Configuration,
     params: ChangeStorageBoxProtectionParams,
@@ -600,11 +600,11 @@ pub async fn change_storage_box_protection(
     }
 }
 
-/// Requests a Storage Box to be upgraded or downgraded to another Storage Box Type.  Please note that it is not possible to downgrade to a Storage Box Type that offers less disk space than you are currently using.
-pub async fn change_type_of_storage_box(
+/// Changes the type of a Storage Box.  Upgrades or downgrades a Storage Box to another Storage Box Type.  It is not possible to downgrade to a Storage Box Type that offers less disk space than you are currently using.
+pub async fn change_type(
     configuration: &configuration::Configuration,
-    params: ChangeTypeOfStorageBoxParams,
-) -> Result<models::ChangeTypeOfStorageBoxResponse, Error<ChangeTypeOfStorageBoxError>> {
+    params: ChangeTypeParams,
+) -> Result<models::ChangeTypeOfStorageBoxResponse, Error<ChangeTypeError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -640,7 +640,7 @@ pub async fn change_type_of_storage_box(
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<ChangeTypeOfStorageBoxError> =
+        let local_var_entity: Option<ChangeTypeError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
@@ -651,7 +651,7 @@ pub async fn change_type_of_storage_box(
     }
 }
 
-/// Creates a new Snapshot.
+/// Creates a Storage Box Snapshot.
 pub async fn create_snapshot(
     configuration: &configuration::Configuration,
     params: CreateSnapshotParams,
@@ -698,7 +698,7 @@ pub async fn create_snapshot(
     }
 }
 
-/// Creates a new Storage Box. Returns an Action that covers progress of creation.
+/// Creates a Storage Box.
 pub async fn create_storage_box(
     configuration: &configuration::Configuration,
     params: CreateStorageBoxParams,
@@ -744,7 +744,7 @@ pub async fn create_storage_box(
     }
 }
 
-/// Creates a new Subaccount with a separate home directory.
+/// Creates a Storage Box Subaccount.  A Storage Box Subaccount will use a separate home directory.
 pub async fn create_subaccount(
     configuration: &configuration::Configuration,
     params: CreateSubaccountParams,
@@ -795,7 +795,7 @@ pub async fn create_subaccount(
     }
 }
 
-/// Delete the given Snapshot.
+/// Deletes a Storage Box Snapshot.
 pub async fn delete_snapshot(
     configuration: &configuration::Configuration,
     params: DeleteSnapshotParams,
@@ -846,7 +846,7 @@ pub async fn delete_snapshot(
     }
 }
 
-/// Deletes an existing Storage Box.
+/// Deletes a Storage Box.
 pub async fn delete_storage_box(
     configuration: &configuration::Configuration,
     params: DeleteStorageBoxParams,
@@ -891,7 +891,7 @@ pub async fn delete_storage_box(
     }
 }
 
-/// Deletes an existing subaccount.
+/// Deletes a Storage Box Subaccount.
 pub async fn delete_subaccount(
     configuration: &configuration::Configuration,
     params: DeleteSubaccountParams,
@@ -942,7 +942,7 @@ pub async fn delete_subaccount(
     }
 }
 
-/// Disables the active Snapshot Plan.  This action doesn't result in the deletion of the Snapshots created by the Snapshot Plan. They must be removed manually.
+/// Disables the active Snapshot Plan of a Storage Box.  Existing Storage Box Snapshots created by the Snapshot Plan will not be delete, they must be removed manually.
 pub async fn disable_snapshot_plan(
     configuration: &configuration::Configuration,
     params: DisableSnapshotPlanParams,
@@ -991,7 +991,7 @@ pub async fn disable_snapshot_plan(
     }
 }
 
-/// Enables a Snapshot Plan for a given StorageBox. Once enabled, a Snapshot Plan will create Snapshots at predefined intervals. There can only ever be one Snapshot Plan. The existing Snapshot Plan will be deleted before a new one is set up.  Automatic Snapshots are retained until explicitly deleted by the user or the maximum snapshot count for the plan (\"max_snapshots\") is exceeded.  You can choose the specific time (UTC timezone), day of the week, and day of the month. The time-related options are cron like. Some typical use cases include:  | Interval                                   | Request body                                                  | | ------------------------------------------ | ------------------------------------------------------------- | | Every day at 3 o'clock                     | `{\"max_snapshots\":10,\"minute\":0,\"hour\":3}`                    | | Every Friday at 3 o'clock                  | `{\"max_snapshots\":10,\"minute\":0,\"hour\":3,\"day_of_week\": 5}`   | | On the first of every month at half past 6 | `{\"max_snapshots\":10,\"minute\":30,\"hour\":6,\"day_of_month\": 1}` |
+/// Enables a Snapshot Plan for a Storage Box.  Once enabled, a Snapshot Plan will create Snapshots at predefined intervals. There can only ever be one Snapshot Plan. The existing Snapshot Plan will be deleted before a new one is set up.  Automatic Snapshots are retained until explicitly deleted by the user or the maximum snapshot count for the plan (\"max_snapshots\") is exceeded.  You can choose the specific time (UTC timezone), day of the week, and day of the month. The time-related options are cron like. Some typical use cases include:  | Interval                                   | Request body                                                  | | ------------------------------------------ | ------------------------------------------------------------- | | Every day at 3 o'clock                     | `{\"max_snapshots\":10,\"minute\":0,\"hour\":3}`                    | | Every Friday at 3 o'clock                  | `{\"max_snapshots\":10,\"minute\":0,\"hour\":3,\"day_of_week\": 5}`   | | On the first of every month at half past 6 | `{\"max_snapshots\":10,\"minute\":30,\"hour\":6,\"day_of_month\": 1}` |
 pub async fn enable_snapshot_plan(
     configuration: &configuration::Configuration,
     params: EnableSnapshotPlanParams,
@@ -1093,7 +1093,7 @@ pub async fn get_action_for_storage_box(
     }
 }
 
-/// Returns a specific Snapshot object.
+/// Returns a specific Storage Box Snapshot.
 pub async fn get_snapshot(
     configuration: &configuration::Configuration,
     params: GetSnapshotParams,
@@ -1144,7 +1144,7 @@ pub async fn get_snapshot(
     }
 }
 
-/// Returns a specific Storage Box object. The Storage Box must exist inside the Project.
+/// Returns a specific Storage Box.
 pub async fn get_storage_box(
     configuration: &configuration::Configuration,
     params: GetStorageBoxParams,
@@ -1234,7 +1234,7 @@ pub async fn get_storage_box_action(
     }
 }
 
-/// Returns a specific Subaccount object.
+/// Returns a specific Storage Box Subaccount.
 pub async fn get_subaccount(
     configuration: &configuration::Configuration,
     params: GetSubaccountParams,
@@ -1380,7 +1380,7 @@ pub async fn list_actions_for_storage_box(
     }
 }
 
-/// Lists the (sub)folders contained in a Storage Box at the location specified by the path. Files are not part of the response.
+/// Returns a list of (sub)folders in a Storage Box.  The folder location is specified by the `path` query parameter.
 pub async fn list_content_of_storage_box(
     configuration: &configuration::Configuration,
     params: ListContentOfStorageBoxParams,
@@ -1430,7 +1430,7 @@ pub async fn list_content_of_storage_box(
     }
 }
 
-/// Get all Snapshots created both manually and through the Snapshot Plan.
+/// Returns a list of Storage Box Snapshot.  Both snapshots created manually and by the snapshot plan are returned.
 pub async fn list_snapshots_for_storage_box(
     configuration: &configuration::Configuration,
     params: ListSnapshotsForStorageBoxParams,
@@ -1599,7 +1599,7 @@ pub async fn list_storage_box_actions(
     }
 }
 
-/// Returns all existing Storage Box objects.
+/// Returns a paginated list of Storage Boxes.
 pub async fn list_storage_boxes(
     configuration: &configuration::Configuration,
     params: ListStorageBoxesParams,
@@ -1663,7 +1663,7 @@ pub async fn list_storage_boxes(
     }
 }
 
-/// Get a list of all available Subaccounts.
+/// Returns a list of Storage Box Subaccount.
 pub async fn list_subaccounts_for_storage_box(
     configuration: &configuration::Configuration,
     params: ListSubaccountsForStorageBoxParams,
@@ -1718,7 +1718,7 @@ pub async fn list_subaccounts_for_storage_box(
     }
 }
 
-/// Updates the name and labels of a Snapshot.
+/// Updates a Storage Box Snapshot.
 pub async fn replace_snapshot(
     configuration: &configuration::Configuration,
     params: ReplaceSnapshotParams,
@@ -1771,7 +1771,7 @@ pub async fn replace_snapshot(
     }
 }
 
-/// Updates a Storage Box. You can update a Storage Boxes' name and labels.
+/// Updates a Storage Box.
 pub async fn replace_storage_box(
     configuration: &configuration::Configuration,
     params: ReplaceStorageBoxParams,
@@ -1818,7 +1818,7 @@ pub async fn replace_storage_box(
     }
 }
 
-/// Updates the description and the labels of a Subaccount.
+/// Updates a Storage Box Subaccount.
 pub async fn replace_subaccount(
     configuration: &configuration::Configuration,
     params: ReplaceSubaccountParams,
@@ -1871,7 +1871,7 @@ pub async fn replace_subaccount(
     }
 }
 
-/// Reset the password of the given Storage Box.
+/// Reset the password of a Storage Box.
 pub async fn reset_storage_box_password(
     configuration: &configuration::Configuration,
     params: ResetStorageBoxPasswordParams,
@@ -1922,7 +1922,7 @@ pub async fn reset_storage_box_password(
     }
 }
 
-/// Reset the password of the given Subaccount.
+/// Reset the password of a Storage Box Subaccount.
 pub async fn reset_storage_box_subaccount_password(
     configuration: &configuration::Configuration,
     params: ResetStorageBoxSubaccountPasswordParams,
@@ -1975,7 +1975,7 @@ pub async fn reset_storage_box_subaccount_password(
     }
 }
 
-/// Rolls back the Storage Box to the given Snapshot.  This action will remove all newer Snapshots and irrevocably delete all data that was since written to the Storage Box.
+/// Rolls back a Storage Box to the given Storage Box Snapshot.  This will remove all newer Storage Box Snapshot and irrevocably delete all data that was since written to the Storage Box.
 pub async fn rollback_snapshot(
     configuration: &configuration::Configuration,
     params: RollbackSnapshotParams,
@@ -2026,7 +2026,7 @@ pub async fn rollback_snapshot(
     }
 }
 
-/// Update access settings of the primary Storage Box account.  This endpoints supports partial updates. Omitted optional parameters do not result in any changes to the respective properties.
+/// Update access settings of a primary Storage Box account.  This endpoints supports partial updates. Omitted optional parameters do not result in any changes to the respective properties.
 pub async fn update_storage_box_access_settings(
     configuration: &configuration::Configuration,
     params: UpdateStorageBoxAccessSettingsParams,
@@ -2077,7 +2077,7 @@ pub async fn update_storage_box_access_settings(
     }
 }
 
-/// Updates the access settings of a Subaccount.  This endpoints supports partial updates. Omitted optional parameters do not result in any changes to the respective properties.
+/// Updates the access settings of a Storage Box Subaccount.  This endpoints supports partial updates. Omitted optional parameters do not result in any changes to the respective properties.
 pub async fn update_storage_box_subaccount_access_settings(
     configuration: &configuration::Configuration,
     params: UpdateStorageBoxSubaccountAccessSettingsParams,

@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 /// EnableSnapshotPlanRequest : Request for POST https://api.hetzner.com/v1/storage_boxes/{id}/actions/enable_snapshot_plan
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct EnableSnapshotPlanRequest {
-    /// Day of the month the Snapshot Plan should be executed on. Null means every day.
+    /// Day of the month when the Snapshot Plan is executed.  Null means every day.
     #[serde(
         rename = "day_of_month",
         default,
@@ -22,7 +22,7 @@ pub struct EnableSnapshotPlanRequest {
         skip_serializing_if = "Option::is_none"
     )]
     pub day_of_month: Option<Option<i32>>,
-    /// Day of the week the Snapshot Plan should be executed on. Starts at 1 for Monday til 7 for Sunday. Null means every day.
+    /// Day of the week when the Snapshot Plan is executed.  Starts at 1 for Monday til 7 for Sunday. Null means every day.
     #[serde(
         rename = "day_of_week",
         default,
@@ -30,7 +30,7 @@ pub struct EnableSnapshotPlanRequest {
         skip_serializing_if = "Option::is_none"
     )]
     pub day_of_week: Option<Option<i32>>,
-    /// Hour the Snapshot Plan should be executed on (UTC). Null means every hour.
+    /// Hour when the Snapshot Plan is executed (UTC).
     #[serde(
         rename = "hour",
         default,
@@ -38,10 +38,10 @@ pub struct EnableSnapshotPlanRequest {
         skip_serializing_if = "Option::is_none"
     )]
     pub hour: Option<Option<i32>>,
-    /// Maximum amount of Snapshots that should be created by this Snapshot Plan. Older Snapshots will be deleted.
+    /// Maximum amount of Snapshots that will be created by this Snapshot Plan.  Older Snapshots will be deleted.
     #[serde(rename = "max_snapshots")]
     pub max_snapshots: i32,
-    /// Minute the Snapshot Plan should be executed on (UTC). Null means every minute.
+    /// Minute when the Snapshot Plan is executed (UTC).
     #[serde(
         rename = "minute",
         default,

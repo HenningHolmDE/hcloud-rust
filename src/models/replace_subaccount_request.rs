@@ -14,10 +14,10 @@ use serde::{Deserialize, Serialize};
 /// ReplaceSubaccountRequest : Request for PUT https://api.hetzner.com/v1/storage_boxes/{id}/subaccounts/{subaccount_id}
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ReplaceSubaccountRequest {
-    /// A description to remind you of the purpose of this Subaccount.
+    /// A description of Storage Box Subaccount.
     #[serde(rename = "description", deserialize_with = "Option::deserialize")]
     pub description: Option<String>,
-    /// User-defined labels (`key/value` pairs) for the Resource. For more information, see \"Labels\".  | User-defined labels (`key/value` pairs) for the Resource.  Note that the set of Labels provided in the request will overwrite the existing one.  For more information, see \"Labels\".  | The Storage Boxes' labels. | The Subaccounts' labels. | The Snapshots' labels.
+    /// User-defined labels (`key/value` pairs) for the Resource. For more information, see \"Labels\".  | User-defined labels (`key/value` pairs) for the Resource.  Note that the set of Labels provided in the request will overwrite the existing one.  For more information, see \"Labels\".
     #[serde(rename = "labels")]
     pub labels: std::collections::HashMap<String, String>,
 }

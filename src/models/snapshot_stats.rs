@@ -11,7 +11,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// SnapshotStats : Information about disk usage.
+/// SnapshotStats : Statistics of the Storage Box Snapshot.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct SnapshotStats {
     /// Current storage requirements of the Snapshot in bytes.
@@ -23,7 +23,7 @@ pub struct SnapshotStats {
 }
 
 impl SnapshotStats {
-    /// Information about disk usage.
+    /// Statistics of the Storage Box Snapshot.
     pub fn new(size: i32, size_filesystem: i32) -> SnapshotStats {
         SnapshotStats {
             size,

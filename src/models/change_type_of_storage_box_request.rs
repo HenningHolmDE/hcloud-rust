@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 /// ChangeTypeOfStorageBoxRequest : Request for POST https://api.hetzner.com/v1/storage_boxes/{id}/actions/change_type
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ChangeTypeOfStorageBoxRequest {
-    /// The ID or the name of the Storage Box Type.
+    /// ID or Name of the Storage Box Type.
     #[serde(rename = "storage_box_type")]
     pub storage_box_type: String,
 }
