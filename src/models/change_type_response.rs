@@ -11,17 +11,17 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// ChangeTypeOfStorageBoxResponse : Response to POST https://api.hetzner.com/v1/storage_boxes/{id}/actions/change_type
+/// ChangeTypeResponse : Response to POST https://api.hetzner.com/v1/storage_boxes/{id}/actions/change_type
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct ChangeTypeOfStorageBoxResponse {
+pub struct ChangeTypeResponse {
     #[serde(rename = "action")]
     pub action: Box<models::Action>,
 }
 
-impl ChangeTypeOfStorageBoxResponse {
+impl ChangeTypeResponse {
     /// Response to POST https://api.hetzner.com/v1/storage_boxes/{id}/actions/change_type
-    pub fn new(action: models::Action) -> ChangeTypeOfStorageBoxResponse {
-        ChangeTypeOfStorageBoxResponse {
+    pub fn new(action: models::Action) -> ChangeTypeResponse {
+        ChangeTypeResponse {
             action: Box::new(action),
         }
     }

@@ -11,16 +11,16 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// ListSnapshotsForStorageBoxResponse : Response to GET https://api.hetzner.com/v1/storage_boxes/{id}/snapshots
+/// ListSnapshotsResponse : Response to GET https://api.hetzner.com/v1/storage_boxes/{id}/snapshots
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct ListSnapshotsForStorageBoxResponse {
+pub struct ListSnapshotsResponse {
     #[serde(rename = "snapshots")]
     pub snapshots: Vec<models::Snapshot>,
 }
 
-impl ListSnapshotsForStorageBoxResponse {
+impl ListSnapshotsResponse {
     /// Response to GET https://api.hetzner.com/v1/storage_boxes/{id}/snapshots
-    pub fn new(snapshots: Vec<models::Snapshot>) -> ListSnapshotsForStorageBoxResponse {
-        ListSnapshotsForStorageBoxResponse { snapshots }
+    pub fn new(snapshots: Vec<models::Snapshot>) -> ListSnapshotsResponse {
+        ListSnapshotsResponse { snapshots }
     }
 }

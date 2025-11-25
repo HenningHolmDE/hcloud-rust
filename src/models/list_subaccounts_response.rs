@@ -11,16 +11,16 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// ListSubaccountsForStorageBoxResponse : Response to GET https://api.hetzner.com/v1/storage_boxes/{id}/subaccounts
+/// ListSubaccountsResponse : Response to GET https://api.hetzner.com/v1/storage_boxes/{id}/subaccounts
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct ListSubaccountsForStorageBoxResponse {
+pub struct ListSubaccountsResponse {
     #[serde(rename = "subaccounts")]
     pub subaccounts: Vec<models::Subaccount>,
 }
 
-impl ListSubaccountsForStorageBoxResponse {
+impl ListSubaccountsResponse {
     /// Response to GET https://api.hetzner.com/v1/storage_boxes/{id}/subaccounts
-    pub fn new(subaccounts: Vec<models::Subaccount>) -> ListSubaccountsForStorageBoxResponse {
-        ListSubaccountsForStorageBoxResponse { subaccounts }
+    pub fn new(subaccounts: Vec<models::Subaccount>) -> ListSubaccountsResponse {
+        ListSubaccountsResponse { subaccounts }
     }
 }

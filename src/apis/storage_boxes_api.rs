@@ -23,12 +23,12 @@ pub struct ChangeHomeDirectoryParams {
     pub change_home_directory_request: models::ChangeHomeDirectoryRequest,
 }
 
-/// struct for passing parameters to the method [`change_storage_box_protection`]
+/// struct for passing parameters to the method [`change_protection`]
 #[derive(Clone, Debug, Default)]
-pub struct ChangeStorageBoxProtectionParams {
+pub struct ChangeProtectionParams {
     /// ID of the Storage Box.
     pub id: i64,
-    pub body: models::Protection,
+    pub change_protection_request: models::ChangeProtectionRequest,
 }
 
 /// struct for passing parameters to the method [`change_type`]
@@ -36,7 +36,7 @@ pub struct ChangeStorageBoxProtectionParams {
 pub struct ChangeTypeParams {
     /// ID of the Storage Box.
     pub id: i64,
-    pub change_type_of_storage_box_request: models::ChangeTypeOfStorageBoxRequest,
+    pub change_type_request: models::ChangeTypeRequest,
 }
 
 /// struct for passing parameters to the method [`create_snapshot`]
@@ -157,18 +157,18 @@ pub struct ListActionsForStorageBoxParams {
     pub per_page: Option<i64>,
 }
 
-/// struct for passing parameters to the method [`list_content_of_storage_box`]
+/// struct for passing parameters to the method [`list_folders_of_storage_box`]
 #[derive(Clone, Debug, Default)]
-pub struct ListContentOfStorageBoxParams {
+pub struct ListFoldersOfStorageBoxParams {
     /// ID of the Storage Box.
     pub id: i64,
     /// Relative path for which the listing is to be made.
     pub path: Option<String>,
 }
 
-/// struct for passing parameters to the method [`list_snapshots_for_storage_box`]
+/// struct for passing parameters to the method [`list_snapshots`]
 #[derive(Clone, Debug, Default)]
-pub struct ListSnapshotsForStorageBoxParams {
+pub struct ListSnapshotsParams {
     /// ID of the Storage Box.
     pub id: i64,
     /// Filter resources by their name. The response will only contain the resources matching exactly the specified name.
@@ -205,9 +205,9 @@ pub struct ListStorageBoxesParams {
     pub per_page: Option<i64>,
 }
 
-/// struct for passing parameters to the method [`list_subaccounts_for_storage_box`]
+/// struct for passing parameters to the method [`list_subaccounts`]
 #[derive(Clone, Debug, Default)]
-pub struct ListSubaccountsForStorageBoxParams {
+pub struct ListSubaccountsParams {
     /// ID of the Storage Box.
     pub id: i64,
     /// Filter resources by labels. The response will only contain resources matching the label selector. For more information, see \"Label Selector\".
@@ -293,10 +293,10 @@ pub enum ChangeHomeDirectoryError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`change_storage_box_protection`]
+/// struct for typed errors of method [`change_protection`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum ChangeStorageBoxProtectionError {
+pub enum ChangeProtectionError {
     UnknownValue(serde_json::Value),
 }
 
@@ -405,17 +405,17 @@ pub enum ListActionsForStorageBoxError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`list_content_of_storage_box`]
+/// struct for typed errors of method [`list_folders_of_storage_box`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum ListContentOfStorageBoxError {
+pub enum ListFoldersOfStorageBoxError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`list_snapshots_for_storage_box`]
+/// struct for typed errors of method [`list_snapshots`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum ListSnapshotsForStorageBoxError {
+pub enum ListSnapshotsError {
     UnknownValue(serde_json::Value),
 }
 
@@ -433,10 +433,10 @@ pub enum ListStorageBoxesError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`list_subaccounts_for_storage_box`]
+/// struct for typed errors of method [`list_subaccounts`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum ListSubaccountsForStorageBoxError {
+pub enum ListSubaccountsError {
     UnknownValue(serde_json::Value),
 }
 
@@ -550,15 +550,15 @@ pub async fn change_home_directory(
 }
 
 /// Changes the protection configuration of a Storage Box.
-pub async fn change_storage_box_protection(
+pub async fn change_protection(
     configuration: &configuration::Configuration,
-    params: ChangeStorageBoxProtectionParams,
-) -> Result<models::ChangeStorageBoxProtectionResponse, Error<ChangeStorageBoxProtectionError>> {
+    params: ChangeProtectionParams,
+) -> Result<models::ChangeProtectionResponse, Error<ChangeProtectionError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
     let id = params.id;
-    let body = params.body;
+    let change_protection_request = params.change_protection_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -578,7 +578,7 @@ pub async fn change_storage_box_protection(
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&body);
+    local_var_req_builder = local_var_req_builder.json(&change_protection_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -589,7 +589,7 @@ pub async fn change_storage_box_protection(
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<ChangeStorageBoxProtectionError> =
+        let local_var_entity: Option<ChangeProtectionError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
@@ -604,12 +604,12 @@ pub async fn change_storage_box_protection(
 pub async fn change_type(
     configuration: &configuration::Configuration,
     params: ChangeTypeParams,
-) -> Result<models::ChangeTypeOfStorageBoxResponse, Error<ChangeTypeError>> {
+) -> Result<models::ChangeTypeResponse, Error<ChangeTypeError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
     let id = params.id;
-    let change_type_of_storage_box_request = params.change_type_of_storage_box_request;
+    let change_type_request = params.change_type_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -629,7 +629,7 @@ pub async fn change_type(
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&change_type_of_storage_box_request);
+    local_var_req_builder = local_var_req_builder.json(&change_type_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -1381,10 +1381,10 @@ pub async fn list_actions_for_storage_box(
 }
 
 /// Returns a list of (sub)folders in a Storage Box.  The folder location is specified by the `path` query parameter.
-pub async fn list_content_of_storage_box(
+pub async fn list_folders_of_storage_box(
     configuration: &configuration::Configuration,
-    params: ListContentOfStorageBoxParams,
-) -> Result<models::ListContentOfStorageBoxResponse, Error<ListContentOfStorageBoxError>> {
+    params: ListFoldersOfStorageBoxParams,
+) -> Result<models::ListFoldersOfStorageBoxResponse, Error<ListFoldersOfStorageBoxError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1419,7 +1419,7 @@ pub async fn list_content_of_storage_box(
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<ListContentOfStorageBoxError> =
+        let local_var_entity: Option<ListFoldersOfStorageBoxError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
@@ -1431,10 +1431,10 @@ pub async fn list_content_of_storage_box(
 }
 
 /// Returns a list of Storage Box Snapshot.  Both snapshots created manually and by the snapshot plan are returned.
-pub async fn list_snapshots_for_storage_box(
+pub async fn list_snapshots(
     configuration: &configuration::Configuration,
-    params: ListSnapshotsForStorageBoxParams,
-) -> Result<models::ListSnapshotsForStorageBoxResponse, Error<ListSnapshotsForStorageBoxError>> {
+    params: ListSnapshotsParams,
+) -> Result<models::ListSnapshotsResponse, Error<ListSnapshotsError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1474,7 +1474,7 @@ pub async fn list_snapshots_for_storage_box(
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<ListSnapshotsForStorageBoxError> =
+        let local_var_entity: Option<ListSnapshotsError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
@@ -1664,11 +1664,10 @@ pub async fn list_storage_boxes(
 }
 
 /// Returns a list of Storage Box Subaccount.
-pub async fn list_subaccounts_for_storage_box(
+pub async fn list_subaccounts(
     configuration: &configuration::Configuration,
-    params: ListSubaccountsForStorageBoxParams,
-) -> Result<models::ListSubaccountsForStorageBoxResponse, Error<ListSubaccountsForStorageBoxError>>
-{
+    params: ListSubaccountsParams,
+) -> Result<models::ListSubaccountsResponse, Error<ListSubaccountsError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1707,7 +1706,7 @@ pub async fn list_subaccounts_for_storage_box(
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<ListSubaccountsForStorageBoxError> =
+        let local_var_entity: Option<ListSubaccountsError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,

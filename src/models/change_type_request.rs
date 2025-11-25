@@ -11,17 +11,17 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// ChangeTypeOfStorageBoxRequest : Request for POST https://api.hetzner.com/v1/storage_boxes/{id}/actions/change_type
+/// ChangeTypeRequest : Request for POST https://api.hetzner.com/v1/storage_boxes/{id}/actions/change_type
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct ChangeTypeOfStorageBoxRequest {
+pub struct ChangeTypeRequest {
     /// ID or Name of the Storage Box Type.
     #[serde(rename = "storage_box_type")]
     pub storage_box_type: String,
 }
 
-impl ChangeTypeOfStorageBoxRequest {
+impl ChangeTypeRequest {
     /// Request for POST https://api.hetzner.com/v1/storage_boxes/{id}/actions/change_type
-    pub fn new(storage_box_type: String) -> ChangeTypeOfStorageBoxRequest {
-        ChangeTypeOfStorageBoxRequest { storage_box_type }
+    pub fn new(storage_box_type: String) -> ChangeTypeRequest {
+        ChangeTypeRequest { storage_box_type }
     }
 }
