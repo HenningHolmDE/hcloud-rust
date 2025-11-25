@@ -17,11 +17,17 @@ pub struct CreateSnapshotRequest {
     /// Description of the Storage Box Snapshot.
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
+    /// User-defined labels (`key/value` pairs) for the Resource. For more information, see \"Labels\".  | User-defined labels (`key/value` pairs) for the Resource.  Note that the set of Labels provided in the request will overwrite the existing one.  For more information, see \"Labels\".
+    #[serde(rename = "labels", skip_serializing_if = "Option::is_none")]
+    pub labels: Option<std::collections::HashMap<String, String>>,
 }
 
 impl CreateSnapshotRequest {
     /// Request for POST https://api.hetzner.com/v1/storage_boxes/{id}/snapshots
     pub fn new() -> CreateSnapshotRequest {
-        CreateSnapshotRequest { description: None }
+        CreateSnapshotRequest {
+            description: None,
+            labels: None,
+        }
     }
 }
