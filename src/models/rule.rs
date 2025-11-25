@@ -22,7 +22,7 @@ pub struct Rule {
         skip_serializing_if = "Option::is_none"
     )]
     pub description: Option<Option<String>>,
-    /// List of permitted IPv4/IPv6 addresses for outgoing traffic.  The `direction` must be set to `out`.  IPs must be in [CIDR block notation](https://wikipedia.org/wiki/CIDR). You can specify 100 CIDR blocks at most.  The CIDR blocks may refer to networks (with empty host bits) or single hosts. For example, a network could be defined with `10.0.1.0/24` or `2001:db8:ff00:42::/64`, and a single host with `10.0.1.1/32` or `2001:db8:ff00:42::8329/128`.  Use `0.0.0.0/0` to allow any IPv4 addresses and `::/0` to allow any IPv6 addresses.
+    /// List of permitted IPv4/IPv6 addresses for outgoing traffic.  The `direction` must be set to `out`.  IPs must be in [CIDR block notation](https://wikipedia.org/wiki/CIDR). You can specify 100 CIDR blocks at most.  The CIDR blocks may refer to networks (with empty host bits) or single hosts. For example, a network could be defined with `10.0.1.0/24` or `2001:db8:ff00:42::/64`, and a single host with `10.0.1.1/32` or `2001:db8:ff00:42::8329/128`.  Use `0.0.0.0/0` to allow any IPv4 addresses and `::/0` to allow any IPv6 addresses.  IPv6 CIDRs will be transformed to their canonical form according to [RFC5952](https://datatracker.ietf.org/doc/html/rfc5952#section-4).
     #[serde(rename = "destination_ips", skip_serializing_if = "Option::is_none")]
     pub destination_ips: Option<Vec<String>>,
     /// Traffic direction in which the rule should be applied to.  Use `source_ips` for direction `in` and `destination_ips` for direction `out` to specify IPs.
@@ -39,7 +39,7 @@ pub struct Rule {
     /// Network protocol to apply the rule for.
     #[serde(rename = "protocol")]
     pub protocol: Protocol,
-    /// List of permitted IPv4/IPv6 addresses for incoming traffic.  The `direction` must be set to `in`.  IPs must be provided in [CIDR block notation](https://wikipedia.org/wiki/CIDR). You can specify 100 CIDR blocks at most.  The CIDR blocks may refer to networks (with empty host bits) or single hosts. For example, a network could be defined with `10.0.1.0/24` or `2001:db8:ff00:42::/64`, and a single host with `10.0.1.1/32` or `2001:db8:ff00:42::8329/128`.  Use `0.0.0.0/0` to allow any IPv4 addresses and `::/0` to allow any IPv6 addresses.
+    /// List of permitted IPv4/IPv6 addresses for incoming traffic.  The `direction` must be set to `in`.  IPs must be provided in [CIDR block notation](https://wikipedia.org/wiki/CIDR). You can specify 100 CIDR blocks at most.  The CIDR blocks may refer to networks (with empty host bits) or single hosts. For example, a network could be defined with `10.0.1.0/24` or `2001:db8:ff00:42::/64`, and a single host with `10.0.1.1/32` or `2001:db8:ff00:42::8329/128`.  Use `0.0.0.0/0` to allow any IPv4 addresses and `::/0` to allow any IPv6 addresses.  IPv6 CIDRs will be transformed to their canonical form according to [RFC5952](https://datatracker.ietf.org/doc/html/rfc5952#section-4).
     #[serde(rename = "source_ips", skip_serializing_if = "Option::is_none")]
     pub source_ips: Option<Vec<String>>,
 }
