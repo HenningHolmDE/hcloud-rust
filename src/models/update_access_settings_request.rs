@@ -14,14 +14,6 @@ use serde::{Deserialize, Serialize};
 /// UpdateAccessSettingsRequest : Request for POST https://api.hetzner.com/v1/storage_boxes/{id}/subaccounts/{subaccount_id}/actions/update_access_settings
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct UpdateAccessSettingsRequest {
-    /// Home directory of the Subaccount. Will be created if it doesn't exist yet.
-    #[serde(
-        rename = "home_directory",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub home_directory: Option<Option<String>>,
     /// Whether access from outside the Hetzner network is allowed.
     #[serde(
         rename = "reachable_externally",
@@ -68,7 +60,6 @@ impl UpdateAccessSettingsRequest {
     /// Request for POST https://api.hetzner.com/v1/storage_boxes/{id}/subaccounts/{subaccount_id}/actions/update_access_settings
     pub fn new() -> UpdateAccessSettingsRequest {
         UpdateAccessSettingsRequest {
-            home_directory: None,
             reachable_externally: None,
             readonly: None,
             samba_enabled: None,
