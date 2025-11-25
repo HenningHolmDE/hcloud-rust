@@ -23,7 +23,7 @@ pub struct Nameserver {
     /// [Transaction signature (TSIG)](https://en.wikipedia.org/wiki/TSIG) algorithm used to generate the TSIG key.
     #[serde(rename = "tsig_algorithm", skip_serializing_if = "Option::is_none")]
     pub tsig_algorithm: Option<TsigAlgorithm>,
-    /// [Transaction signature (TSIG)](https://en.wikipedia.org/wiki/TSIG) key to use for the zone transfer.
+    /// [Transaction signature (TSIG)](https://en.wikipedia.org/wiki/TSIG) key to use for the zone transfer. Must be base64 encoded.
     #[serde(rename = "tsig_key", skip_serializing_if = "Option::is_none")]
     pub tsig_key: Option<String>,
 }

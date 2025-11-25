@@ -17,7 +17,7 @@ pub struct ResourceRecord {
     /// Comment of the record.
     #[serde(rename = "comment", skip_serializing_if = "Option::is_none")]
     pub comment: Option<String>,
-    /// Value of the record.
+    /// Value of the record.  For details about accepted values, see the [DNS record types documentation](https://docs.hetzner.com/networking/dns/record-types/overview/).
     #[serde(rename = "value")]
     pub value: String,
 }
