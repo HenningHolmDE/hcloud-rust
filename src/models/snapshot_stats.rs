@@ -16,15 +16,15 @@ use serde::{Deserialize, Serialize};
 pub struct SnapshotStats {
     /// Current storage requirements of the Snapshot in bytes.
     #[serde(rename = "size")]
-    pub size: i32,
+    pub size: i64,
     /// Size of the compressed file system contained in the Snapshot in bytes.
     #[serde(rename = "size_filesystem")]
-    pub size_filesystem: i32,
+    pub size_filesystem: i64,
 }
 
 impl SnapshotStats {
     /// Statistics of the Storage Box Snapshot.
-    pub fn new(size: i32, size_filesystem: i32) -> SnapshotStats {
+    pub fn new(size: i64, size_filesystem: i64) -> SnapshotStats {
         SnapshotStats {
             size,
             size_filesystem,

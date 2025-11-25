@@ -16,18 +16,18 @@ use serde::{Deserialize, Serialize};
 pub struct StorageBoxStats {
     /// Current disk usage in bytes.
     #[serde(rename = "size")]
-    pub size: i32,
+    pub size: i64,
     /// Current disk usage for data in bytes.
     #[serde(rename = "size_data")]
-    pub size_data: i32,
+    pub size_data: i64,
     /// Current disk usage for snapshots in bytes.
     #[serde(rename = "size_snapshots")]
-    pub size_snapshots: i32,
+    pub size_snapshots: i64,
 }
 
 impl StorageBoxStats {
     /// Statistics of the Storage Box.
-    pub fn new(size: i32, size_data: i32, size_snapshots: i32) -> StorageBoxStats {
+    pub fn new(size: i64, size_data: i64, size_snapshots: i64) -> StorageBoxStats {
         StorageBoxStats {
             size,
             size_data,
