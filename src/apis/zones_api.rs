@@ -1329,7 +1329,7 @@ pub async fn list_actions_for_zone(
     }
 }
 
-/// Returns all RRSets in the Zone.  Use the provided URI parameters to modify the result.  Only applicable for Zones in primary mode.  #### Call specific error codes  | Code                  | Description                      | |-----------------------|----------------------------------| | `incorrect_zone_mode` | The zone is not in primary mode. |
+/// Returns all RRSets in the Zone.  Use the provided URI parameters to modify the result.  The maximum value for `per_page` on this endpoint is `100` instead of `50`.  Only applicable for Zones in primary mode.  #### Call specific error codes  | Code                  | Description                      | |-----------------------|----------------------------------| | `incorrect_zone_mode` | The zone is not in primary mode. |
 pub async fn list_rrsets(
     configuration: &configuration::Configuration,
     params: ListRrsetsParams,
