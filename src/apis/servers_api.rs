@@ -152,7 +152,7 @@ pub struct GetMetricsForServerParams {
     /// ID of the Server.
     pub id: i64,
     /// Type of metrics to get.
-    pub r#type: String,
+    pub r#type: Vec<String>,
     /// Start of period to get Metrics for (in ISO-8601 format).
     pub start: String,
     /// End of period to get Metrics for (in ISO-8601 format).
@@ -1403,7 +1403,23 @@ pub async fn get_metrics_for_server(
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    local_var_req_builder = local_var_req_builder.query(&[("type", &r#type.to_string())]);
+    local_var_req_builder = match "multi" {
+        "multi" => local_var_req_builder.query(
+            &r#type
+                .iter()
+                .map(|p| ("type".to_owned(), p.to_string()))
+                .collect::<Vec<(std::string::String, std::string::String)>>(),
+        ),
+        _ => local_var_req_builder.query(&[(
+            "type",
+            &r#type
+                .iter()
+                .map(|p| p.to_string())
+                .collect::<Vec<String>>()
+                .join(",")
+                .to_string(),
+        )]),
+    };
     local_var_req_builder = local_var_req_builder.query(&[("start", &start.to_string())]);
     local_var_req_builder = local_var_req_builder.query(&[("end", &end.to_string())]);
     if let Some(ref local_var_str) = step {
