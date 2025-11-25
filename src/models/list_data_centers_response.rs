@@ -11,27 +11,27 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// ListDatacentersResponse : Response to GET https://api.hetzner.cloud/v1/datacenters
+/// ListDataCentersResponse : Response to GET https://api.hetzner.cloud/v1/datacenters
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct ListDatacentersResponse {
-    /// List of Datacenters.
+pub struct ListDataCentersResponse {
+    /// List of Data Centers.
     #[serde(rename = "datacenters")]
-    pub datacenters: Vec<models::Datacenter>,
+    pub datacenters: Vec<models::DataCenter>,
     #[serde(rename = "meta")]
     pub meta: Box<models::Meta>,
-    /// Recommended Datacenter for creating new resources.
+    /// Recommended Data Center for creating new resources.
     #[serde(rename = "recommendation")]
     pub recommendation: i64,
 }
 
-impl ListDatacentersResponse {
+impl ListDataCentersResponse {
     /// Response to GET https://api.hetzner.cloud/v1/datacenters
     pub fn new(
-        datacenters: Vec<models::Datacenter>,
+        datacenters: Vec<models::DataCenter>,
         meta: models::Meta,
         recommendation: i64,
-    ) -> ListDatacentersResponse {
-        ListDatacentersResponse {
+    ) -> ListDataCentersResponse {
+        ListDataCentersResponse {
             datacenters,
             meta: Box::new(meta),
             recommendation,

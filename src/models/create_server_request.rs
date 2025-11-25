@@ -17,7 +17,7 @@ pub struct CreateServerRequest {
     /// Auto-mount Volumes after attach.
     #[serde(rename = "automount", skip_serializing_if = "Option::is_none")]
     pub automount: Option<bool>,
-    /// ID or name of Datacenter to create Server in (must not be used together with location).
+    /// ID or name of Data Center to create Server in (must not be used together with location).
     #[serde(rename = "datacenter", skip_serializing_if = "Option::is_none")]
     pub datacenter: Option<String>,
     /// Firewalls which should be applied on the Server's public network interface at creation time.

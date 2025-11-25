@@ -29,7 +29,7 @@ pub struct PrimaryIp {
     #[serde(rename = "created")]
     pub created: String,
     #[serde(rename = "datacenter")]
-    pub datacenter: Box<models::Datacenter>,
+    pub datacenter: Box<models::DataCenter>,
     /// List of reverse DNS records.
     #[serde(rename = "dns_ptr")]
     pub dns_ptr: Vec<models::DnsPtr>,
@@ -58,7 +58,7 @@ impl PrimaryIp {
         auto_delete: bool,
         blocked: bool,
         created: String,
-        datacenter: models::Datacenter,
+        datacenter: models::DataCenter,
         dns_ptr: Vec<models::DnsPtr>,
         id: i64,
         ip: String,

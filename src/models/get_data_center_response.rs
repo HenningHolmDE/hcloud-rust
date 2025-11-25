@@ -11,17 +11,17 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// GetDatacenterResponse : Response to GET https://api.hetzner.cloud/v1/datacenters/{id}
+/// GetDataCenterResponse : Response to GET https://api.hetzner.cloud/v1/datacenters/{id}
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct GetDatacenterResponse {
+pub struct GetDataCenterResponse {
     #[serde(rename = "datacenter")]
-    pub datacenter: Box<models::Datacenter>,
+    pub datacenter: Box<models::DataCenter>,
 }
 
-impl GetDatacenterResponse {
+impl GetDataCenterResponse {
     /// Response to GET https://api.hetzner.cloud/v1/datacenters/{id}
-    pub fn new(datacenter: models::Datacenter) -> GetDatacenterResponse {
-        GetDatacenterResponse {
+    pub fn new(datacenter: models::DataCenter) -> GetDataCenterResponse {
+        GetDataCenterResponse {
             datacenter: Box::new(datacenter),
         }
     }

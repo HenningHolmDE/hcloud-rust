@@ -21,7 +21,7 @@ pub struct Server {
     #[serde(rename = "created")]
     pub created: String,
     #[serde(rename = "datacenter")]
-    pub datacenter: Box<models::Datacenter>,
+    pub datacenter: Box<models::DataCenter>,
     /// ID of the Server.
     #[serde(rename = "id")]
     pub id: i64,
@@ -87,7 +87,7 @@ impl Server {
     pub fn new(
         backup_window: Option<String>,
         created: String,
-        datacenter: models::Datacenter,
+        datacenter: models::DataCenter,
         id: i64,
         image: Option<models::Image>,
         included_traffic: Option<i64>,
