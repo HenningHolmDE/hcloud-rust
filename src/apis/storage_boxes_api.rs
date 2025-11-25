@@ -175,6 +175,10 @@ pub struct ListSnapshotsParams {
     pub name: Option<String>,
     /// Filter resources by labels. The response will only contain resources matching the label selector. For more information, see \"Label Selector\".
     pub label_selector: Option<String>,
+    /// Sort resources by field and direction. Can be used multiple times. For more information, see \"Sorting\".
+    pub sort: Option<Vec<String>>,
+    /// Filter wether a Storage Box Snapshot is automatic.
+    pub is_automatic: Option<bool>,
 }
 
 /// struct for passing parameters to the method [`list_storage_box_actions`]
@@ -195,10 +199,12 @@ pub struct ListStorageBoxActionsParams {
 /// struct for passing parameters to the method [`list_storage_boxes`]
 #[derive(Clone, Debug, Default)]
 pub struct ListStorageBoxesParams {
-    /// Filter resources by labels. The response will only contain resources matching the label selector. For more information, see \"Label Selector\".
-    pub label_selector: Option<String>,
     /// Filter resources by their name. The response will only contain the resources matching exactly the specified name.
     pub name: Option<String>,
+    /// Filter resources by labels. The response will only contain resources matching the label selector. For more information, see \"Label Selector\".
+    pub label_selector: Option<String>,
+    /// Sort resources by field and direction. Can be used multiple times. For more information, see \"Sorting\".
+    pub sort: Option<Vec<String>>,
     /// Page number to return. For more information, see \"Pagination\".
     pub page: Option<i64>,
     /// Maximum number of entries returned per page. For more information, see \"Pagination\".
@@ -212,6 +218,10 @@ pub struct ListSubaccountsParams {
     pub id: i64,
     /// Filter resources by labels. The response will only contain resources matching the label selector. For more information, see \"Label Selector\".
     pub label_selector: Option<String>,
+    /// Sort resources by field and direction. Can be used multiple times. For more information, see \"Sorting\".
+    pub sort: Option<Vec<String>>,
+    /// Filter Storage Box Subaccounts by username. The response will only contain the resources matching exactly the specified username.
+    pub username: Option<String>,
 }
 
 /// struct for passing parameters to the method [`replace_snapshot`]
@@ -1441,6 +1451,8 @@ pub async fn list_snapshots(
     let id = params.id;
     let name = params.name;
     let label_selector = params.label_selector;
+    let sort = params.sort;
+    let is_automatic = params.is_automatic;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1456,6 +1468,29 @@ pub async fn list_snapshots(
     if let Some(ref local_var_str) = label_selector {
         local_var_req_builder =
             local_var_req_builder.query(&[("label_selector", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = sort {
+        local_var_req_builder = match "multi" {
+            "multi" => local_var_req_builder.query(
+                &local_var_str
+                    .iter()
+                    .map(|p| ("sort".to_owned(), p.to_string()))
+                    .collect::<Vec<(std::string::String, std::string::String)>>(),
+            ),
+            _ => local_var_req_builder.query(&[(
+                "sort",
+                &local_var_str
+                    .iter()
+                    .map(|p| p.to_string())
+                    .collect::<Vec<String>>()
+                    .join(",")
+                    .to_string(),
+            )]),
+        };
+    }
+    if let Some(ref local_var_str) = is_automatic {
+        local_var_req_builder =
+            local_var_req_builder.query(&[("is_automatic", &local_var_str.to_string())]);
     }
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder =
@@ -1607,8 +1642,9 @@ pub async fn list_storage_boxes(
     let local_var_configuration = configuration;
 
     // unbox the parameters
-    let label_selector = params.label_selector;
     let name = params.name;
+    let label_selector = params.label_selector;
+    let sort = params.sort;
     let page = params.page;
     let per_page = params.per_page;
 
@@ -1619,13 +1655,32 @@ pub async fn list_storage_boxes(
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
+    if let Some(ref local_var_str) = name {
+        local_var_req_builder =
+            local_var_req_builder.query(&[("name", &local_var_str.to_string())]);
+    }
     if let Some(ref local_var_str) = label_selector {
         local_var_req_builder =
             local_var_req_builder.query(&[("label_selector", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_str) = name {
-        local_var_req_builder =
-            local_var_req_builder.query(&[("name", &local_var_str.to_string())]);
+    if let Some(ref local_var_str) = sort {
+        local_var_req_builder = match "multi" {
+            "multi" => local_var_req_builder.query(
+                &local_var_str
+                    .iter()
+                    .map(|p| ("sort".to_owned(), p.to_string()))
+                    .collect::<Vec<(std::string::String, std::string::String)>>(),
+            ),
+            _ => local_var_req_builder.query(&[(
+                "sort",
+                &local_var_str
+                    .iter()
+                    .map(|p| p.to_string())
+                    .collect::<Vec<String>>()
+                    .join(",")
+                    .to_string(),
+            )]),
+        };
     }
     if let Some(ref local_var_str) = page {
         local_var_req_builder =
@@ -1673,6 +1728,8 @@ pub async fn list_subaccounts(
     // unbox the parameters
     let id = params.id;
     let label_selector = params.label_selector;
+    let sort = params.sort;
+    let username = params.username;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1688,6 +1745,29 @@ pub async fn list_subaccounts(
     if let Some(ref local_var_str) = label_selector {
         local_var_req_builder =
             local_var_req_builder.query(&[("label_selector", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = sort {
+        local_var_req_builder = match "multi" {
+            "multi" => local_var_req_builder.query(
+                &local_var_str
+                    .iter()
+                    .map(|p| ("sort".to_owned(), p.to_string()))
+                    .collect::<Vec<(std::string::String, std::string::String)>>(),
+            ),
+            _ => local_var_req_builder.query(&[(
+                "sort",
+                &local_var_str
+                    .iter()
+                    .map(|p| p.to_string())
+                    .collect::<Vec<String>>()
+                    .join(",")
+                    .to_string(),
+            )]),
+        };
+    }
+    if let Some(ref local_var_str) = username {
+        local_var_req_builder =
+            local_var_req_builder.query(&[("username", &local_var_str.to_string())]);
     }
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder =
