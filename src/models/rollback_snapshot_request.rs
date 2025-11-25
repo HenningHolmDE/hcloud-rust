@@ -14,14 +14,14 @@ use serde::{Deserialize, Serialize};
 /// RollbackSnapshotRequest : Request for POST https://api.hetzner.com/v1/storage_boxes/{id}/actions/rollback_snapshot
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct RollbackSnapshotRequest {
-    /// ID of the Storage Box Snapshot.
-    #[serde(rename = "snapshot_id")]
-    pub snapshot_id: i64,
+    /// ID or Name of the Storage Box Snapshot.
+    #[serde(rename = "snapshot")]
+    pub snapshot: String,
 }
 
 impl RollbackSnapshotRequest {
     /// Request for POST https://api.hetzner.com/v1/storage_boxes/{id}/actions/rollback_snapshot
-    pub fn new(snapshot_id: i64) -> RollbackSnapshotRequest {
-        RollbackSnapshotRequest { snapshot_id }
+    pub fn new(snapshot: String) -> RollbackSnapshotRequest {
+        RollbackSnapshotRequest { snapshot }
     }
 }
