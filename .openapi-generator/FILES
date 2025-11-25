@@ -364,6 +364,8 @@ src/models/update_access_settings_response.rs
 src/models/update_load_balancer_service.rs
 src/models/update_load_balancer_service_health_check.rs
 src/models/update_load_balancer_service_health_check_http.rs
+src/models/update_records_of_rrset_request.rs
+src/models/update_records_of_rrset_response.rs
 src/models/update_service_response.rs
 src/models/volume.rs
 src/models/zone.rs
