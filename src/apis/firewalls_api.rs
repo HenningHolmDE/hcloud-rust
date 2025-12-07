@@ -261,7 +261,7 @@ pub async fn apply_to_resources(
     }
 }
 
-/// Create a Firewall.  #### Error Codes specific to this Call  | Code                          | Description                                                                 | |------------------------------ |-----------------------------------------------------------------------------| | `server_already_added`        | Server applied more than once                                   | | `incompatible_network_type`   | The resources network type is not supported by Firewalls      | | `firewall_resource_not_found` | The resource the Firewall should be attached to was not found |
+/// Create a Firewall.  #### Operation specific errors  | Status Code | Error Code | Description | | --- | --- | --- | | `422` | `server_already_added` | The Server was applied more than once. | | `422` | `incompatible_network_type` | The resources network type is not supported by Firewalls. | | `422` | `firewall_resource_not_found` | The resource the Firewall should be attached to was not found. |
 pub async fn create_firewall(
     configuration: &configuration::Configuration,
     params: CreateFirewallParams,
