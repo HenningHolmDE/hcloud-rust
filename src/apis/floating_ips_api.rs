@@ -139,6 +139,7 @@ pub struct UnassignFloatingIpParams {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AssignFloatingIpToServerError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -146,6 +147,7 @@ pub enum AssignFloatingIpToServerError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ChangeFloatingIpProtectionError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -153,6 +155,7 @@ pub enum ChangeFloatingIpProtectionError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ChangeReverseDnsRecordsForFloatingIpError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -160,6 +163,7 @@ pub enum ChangeReverseDnsRecordsForFloatingIpError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateFloatingIpError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -167,6 +171,7 @@ pub enum CreateFloatingIpError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteFloatingIpError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -174,6 +179,7 @@ pub enum DeleteFloatingIpError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetActionForFloatingIpError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -181,6 +187,7 @@ pub enum GetActionForFloatingIpError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetFloatingIpError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -188,6 +195,7 @@ pub enum GetFloatingIpError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetFloatingIpActionError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -195,6 +203,7 @@ pub enum GetFloatingIpActionError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListActionsForFloatingIpError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -202,6 +211,7 @@ pub enum ListActionsForFloatingIpError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListFloatingIpActionsError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -209,6 +219,7 @@ pub enum ListFloatingIpActionsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListFloatingIpsError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -216,6 +227,7 @@ pub enum ListFloatingIpsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ReplaceFloatingIpError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -223,6 +235,7 @@ pub enum ReplaceFloatingIpError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UnassignFloatingIpError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 

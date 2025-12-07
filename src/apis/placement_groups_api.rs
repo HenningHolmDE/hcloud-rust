@@ -62,6 +62,7 @@ pub struct ReplacePlacementgroupParams {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreatePlacementgroupError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -69,6 +70,7 @@ pub enum CreatePlacementgroupError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeletePlacementgroupError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -76,6 +78,7 @@ pub enum DeletePlacementgroupError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetPlacementgroupError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -83,6 +86,7 @@ pub enum GetPlacementgroupError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListPlacementGroupsError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -90,6 +94,7 @@ pub enum ListPlacementGroupsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ReplacePlacementgroupError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 

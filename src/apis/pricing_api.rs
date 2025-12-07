@@ -17,6 +17,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListPricesError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 

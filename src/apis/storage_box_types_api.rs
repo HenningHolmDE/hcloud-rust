@@ -35,6 +35,7 @@ pub struct ListStorageBoxTypesParams {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetStorageBoxTypeError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -42,6 +43,7 @@ pub enum GetStorageBoxTypeError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListStorageBoxTypesError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 

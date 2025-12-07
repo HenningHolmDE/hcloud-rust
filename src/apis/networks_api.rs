@@ -154,6 +154,7 @@ pub struct ReplaceNetworkParams {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AddRouteToNetworkError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -161,6 +162,7 @@ pub enum AddRouteToNetworkError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AddSubnetToNetworkError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -168,6 +170,7 @@ pub enum AddSubnetToNetworkError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ChangeIpRangeOfNetworkError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -175,6 +178,7 @@ pub enum ChangeIpRangeOfNetworkError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ChangeNetworkProtectionError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -182,6 +186,7 @@ pub enum ChangeNetworkProtectionError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateNetworkError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -189,6 +194,7 @@ pub enum CreateNetworkError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteNetworkError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -196,6 +202,7 @@ pub enum DeleteNetworkError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteRouteFromNetworkError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -203,6 +210,7 @@ pub enum DeleteRouteFromNetworkError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteSubnetFromNetworkError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -210,6 +218,7 @@ pub enum DeleteSubnetFromNetworkError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetActionForNetworkError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -217,6 +226,7 @@ pub enum GetActionForNetworkError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetNetworkError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -224,6 +234,7 @@ pub enum GetNetworkError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetNetworkActionError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -231,6 +242,7 @@ pub enum GetNetworkActionError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListActionsForNetworkError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -238,6 +250,7 @@ pub enum ListActionsForNetworkError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListNetworkActionsError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -245,6 +258,7 @@ pub enum ListNetworkActionsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListNetworksError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -252,6 +266,7 @@ pub enum ListNetworksError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ReplaceNetworkError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 

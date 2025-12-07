@@ -225,6 +225,7 @@ pub struct UpdateServiceParams {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AddServiceError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -232,6 +233,7 @@ pub enum AddServiceError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AddTargetError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -239,6 +241,7 @@ pub enum AddTargetError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AttachLoadBalancerToNetworkError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -246,6 +249,7 @@ pub enum AttachLoadBalancerToNetworkError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ChangeAlgorithmError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -253,6 +257,7 @@ pub enum ChangeAlgorithmError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ChangeLoadBalancerProtectionError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -260,6 +265,7 @@ pub enum ChangeLoadBalancerProtectionError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ChangeReverseDnsEntryForThisLoadBalancerError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -267,6 +273,7 @@ pub enum ChangeReverseDnsEntryForThisLoadBalancerError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ChangeTypeOfLoadBalancerError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -274,6 +281,7 @@ pub enum ChangeTypeOfLoadBalancerError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateLoadBalancerError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -281,6 +289,7 @@ pub enum CreateLoadBalancerError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteLoadBalancerError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -288,6 +297,7 @@ pub enum DeleteLoadBalancerError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteServiceError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -295,6 +305,7 @@ pub enum DeleteServiceError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DetachLoadBalancerFromNetworkError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -302,6 +313,7 @@ pub enum DetachLoadBalancerFromNetworkError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DisablePublicInterfaceOfLoadBalancerError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -309,6 +321,7 @@ pub enum DisablePublicInterfaceOfLoadBalancerError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum EnablePublicInterfaceOfLoadBalancerError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -316,6 +329,7 @@ pub enum EnablePublicInterfaceOfLoadBalancerError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetActionForLoadBalancerError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -323,6 +337,7 @@ pub enum GetActionForLoadBalancerError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetLoadBalancerError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -330,6 +345,7 @@ pub enum GetLoadBalancerError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetLoadBalancerActionError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -337,6 +353,7 @@ pub enum GetLoadBalancerActionError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetMetricsForLoadbalancerError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -344,6 +361,7 @@ pub enum GetMetricsForLoadbalancerError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListActionsForLoadBalancerError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -351,6 +369,7 @@ pub enum ListActionsForLoadBalancerError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListLoadBalancerActionsError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -358,6 +377,7 @@ pub enum ListLoadBalancerActionsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListLoadBalancersError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -365,6 +385,7 @@ pub enum ListLoadBalancersError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum RemoveTargetError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -372,6 +393,7 @@ pub enum RemoveTargetError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ReplaceLoadBalancerError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -379,6 +401,7 @@ pub enum ReplaceLoadBalancerError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateServiceError {
+    DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 

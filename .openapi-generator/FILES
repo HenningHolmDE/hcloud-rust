@@ -161,6 +161,8 @@ src/models/enable_rescue_mode_for_server_response.rs
 src/models/enable_snapshot_plan_request.rs
 src/models/enable_snapshot_plan_response.rs
 src/models/error.rs
+src/models/error_response.rs
+src/models/error_response_error.rs
 src/models/export_zone_file_response.rs
 src/models/firewall.rs
 src/models/firewall_resource.rs
