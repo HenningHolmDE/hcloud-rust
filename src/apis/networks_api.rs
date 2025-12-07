@@ -18,7 +18,7 @@ use serde::{Deserialize, Serialize};
 pub struct AddRouteToNetworkParams {
     /// ID of the Network.
     pub id: i64,
-    pub body: models::Route,
+    pub route: models::Route,
 }
 
 /// struct for passing parameters to the method [`add_subnet_to_network`]
@@ -26,7 +26,7 @@ pub struct AddRouteToNetworkParams {
 pub struct AddSubnetToNetworkParams {
     /// ID of the Network.
     pub id: i64,
-    pub body: models::Subnet,
+    pub subnet: models::Subnet,
 }
 
 /// struct for passing parameters to the method [`change_ip_range_of_network`]
@@ -63,7 +63,7 @@ pub struct DeleteNetworkParams {
 pub struct DeleteRouteFromNetworkParams {
     /// ID of the Network.
     pub id: i64,
-    pub body: models::Route,
+    pub route: models::Route,
 }
 
 /// struct for passing parameters to the method [`delete_subnet_from_network`]
@@ -264,7 +264,7 @@ pub async fn add_route_to_network(
 
     // unbox the parameters
     let id = params.id;
-    let body = params.body;
+    let route = params.route;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -284,7 +284,7 @@ pub async fn add_route_to_network(
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&body);
+    local_var_req_builder = local_var_req_builder.json(&route);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -315,7 +315,7 @@ pub async fn add_subnet_to_network(
 
     // unbox the parameters
     let id = params.id;
-    let body = params.body;
+    let subnet = params.subnet;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -335,7 +335,7 @@ pub async fn add_subnet_to_network(
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&body);
+    local_var_req_builder = local_var_req_builder.json(&subnet);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -559,7 +559,7 @@ pub async fn delete_route_from_network(
 
     // unbox the parameters
     let id = params.id;
-    let body = params.body;
+    let route = params.route;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -579,7 +579,7 @@ pub async fn delete_route_from_network(
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&body);
+    local_var_req_builder = local_var_req_builder.json(&route);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;

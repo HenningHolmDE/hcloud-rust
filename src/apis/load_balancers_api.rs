@@ -18,7 +18,7 @@ use serde::{Deserialize, Serialize};
 pub struct AddServiceParams {
     /// ID of the Load Balancer.
     pub id: i64,
-    pub body: models::LoadBalancerService,
+    pub load_balancer_service: models::LoadBalancerService,
 }
 
 /// struct for passing parameters to the method [`add_target`]
@@ -26,7 +26,7 @@ pub struct AddServiceParams {
 pub struct AddTargetParams {
     /// ID of the Load Balancer.
     pub id: i64,
-    pub body: models::LoadBalancerAddTarget,
+    pub load_balancer_add_target: models::LoadBalancerAddTarget,
 }
 
 /// struct for passing parameters to the method [`attach_load_balancer_to_network`]
@@ -218,7 +218,7 @@ pub struct ReplaceLoadBalancerParams {
 pub struct UpdateServiceParams {
     /// ID of the Load Balancer.
     pub id: i64,
-    pub body: models::UpdateLoadBalancerService,
+    pub update_load_balancer_service: models::UpdateLoadBalancerService,
 }
 
 /// struct for typed errors of method [`add_service`]
@@ -391,7 +391,7 @@ pub async fn add_service(
 
     // unbox the parameters
     let id = params.id;
-    let body = params.body;
+    let load_balancer_service = params.load_balancer_service;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -411,7 +411,7 @@ pub async fn add_service(
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&body);
+    local_var_req_builder = local_var_req_builder.json(&load_balancer_service);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -442,7 +442,7 @@ pub async fn add_target(
 
     // unbox the parameters
     let id = params.id;
-    let body = params.body;
+    let load_balancer_add_target = params.load_balancer_add_target;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -462,7 +462,7 @@ pub async fn add_target(
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&body);
+    local_var_req_builder = local_var_req_builder.json(&load_balancer_add_target);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -1657,7 +1657,7 @@ pub async fn update_service(
 
     // unbox the parameters
     let id = params.id;
-    let body = params.body;
+    let update_load_balancer_service = params.update_load_balancer_service;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -1677,7 +1677,7 @@ pub async fn update_service(
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&body);
+    local_var_req_builder = local_var_req_builder.json(&update_load_balancer_service);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;

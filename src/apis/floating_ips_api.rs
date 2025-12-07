@@ -26,7 +26,7 @@ pub struct AssignFloatingIpToServerParams {
 pub struct ChangeFloatingIpProtectionParams {
     /// ID of the Floating IP.
     pub id: i64,
-    pub body: models::Protection,
+    pub protection: models::Protection,
 }
 
 /// struct for passing parameters to the method [`change_reverse_dns_records_for_floating_ip`]
@@ -35,7 +35,7 @@ pub struct ChangeReverseDnsRecordsForFloatingIpParams {
     /// ID of the Floating IP.
     pub id: i64,
     /// The `ip` attributes specifies for which IP address the record is set. For IPv4 addresses this must be the exact address of the Floating IP. For IPv6 addresses this must be a single address within the `/64` subnet of the Floating IP.  The `dns_ptr` attribute specifies the hostname used for the IP address. Must be a fully qualified domain name (FQDN) without trailing dot.  For IPv6 Floating IPs up to 100 entries can be created.
-    pub body: models::DnsPtr,
+    pub dns_ptr: models::DnsPtr,
 }
 
 /// struct for passing parameters to the method [`create_floating_ip`]
@@ -286,7 +286,7 @@ pub async fn change_floating_ip_protection(
 
     // unbox the parameters
     let id = params.id;
-    let body = params.body;
+    let protection = params.protection;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -306,7 +306,7 @@ pub async fn change_floating_ip_protection(
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&body);
+    local_var_req_builder = local_var_req_builder.json(&protection);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -340,7 +340,7 @@ pub async fn change_reverse_dns_records_for_floating_ip(
 
     // unbox the parameters
     let id = params.id;
-    let body = params.body;
+    let dns_ptr = params.dns_ptr;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -360,7 +360,7 @@ pub async fn change_reverse_dns_records_for_floating_ip(
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&body);
+    local_var_req_builder = local_var_req_builder.json(&dns_ptr);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;

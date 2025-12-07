@@ -72,7 +72,7 @@ pub struct ChangeZonesProtectionParams {
 pub struct CreateRrsetParams {
     /// ID or Name of the Zone.
     pub id_or_name: String,
-    pub body: models::ResourceRecordSetToCreate,
+    pub resource_record_set_to_create: models::ResourceRecordSetToCreate,
 }
 
 /// struct for passing parameters to the method [`create_zone`]
@@ -761,7 +761,7 @@ pub async fn create_rrset(
 
     // unbox the parameters
     let id_or_name = params.id_or_name;
-    let body = params.body;
+    let resource_record_set_to_create = params.resource_record_set_to_create;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -781,7 +781,7 @@ pub async fn create_rrset(
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&body);
+    local_var_req_builder = local_var_req_builder.json(&resource_record_set_to_create);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
