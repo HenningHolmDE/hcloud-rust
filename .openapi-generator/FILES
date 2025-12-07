@@ -325,6 +325,7 @@ src/models/resource_record_set.rs
 src/models/resource_record_set_protection.rs
 src/models/resource_record_set_to_create.rs
 src/models/resource_record_set_type.rs
+src/models/resource_record_with_comment.rs
 src/models/retry_issuance_or_renewal_response.rs
 src/models/rollback_snapshot_request.rs
 src/models/rollback_snapshot_response.rs

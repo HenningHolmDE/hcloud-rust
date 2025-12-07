@@ -602,6 +602,8 @@ pub mod resource_record_set_to_create;
 pub use self::resource_record_set_to_create::ResourceRecordSetToCreate;
 pub mod resource_record_set_type;
 pub use self::resource_record_set_type::ResourceRecordSetType;
+pub mod resource_record_with_comment;
+pub use self::resource_record_with_comment::ResourceRecordWithComment;
 pub mod retry_issuance_or_renewal_response;
 pub use self::retry_issuance_or_renewal_response::RetryIssuanceOrRenewalResponse;
 pub mod rollback_snapshot_request;

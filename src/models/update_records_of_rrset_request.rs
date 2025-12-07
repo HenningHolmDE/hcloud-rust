@@ -16,12 +16,12 @@ use serde::{Deserialize, Serialize};
 pub struct UpdateRecordsOfRrsetRequest {
     /// Records to update in the RRSet.  Must not be empty and must only contain distinct record values.
     #[serde(rename = "records")]
-    pub records: Vec<models::ResourceRecord>,
+    pub records: Vec<models::ResourceRecordWithComment>,
 }
 
 impl UpdateRecordsOfRrsetRequest {
     /// Request for POST https://api.hetzner.cloud/v1/zones/{id_or_name}/rrsets/{rr_name}/{rr_type}/actions/update_records
-    pub fn new(records: Vec<models::ResourceRecord>) -> UpdateRecordsOfRrsetRequest {
+    pub fn new(records: Vec<models::ResourceRecordWithComment>) -> UpdateRecordsOfRrsetRequest {
         UpdateRecordsOfRrsetRequest { records }
     }
 }
