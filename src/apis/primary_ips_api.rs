@@ -52,6 +52,15 @@ pub struct DeletePrimaryIpParams {
     pub id: i64,
 }
 
+/// struct for passing parameters to the method [`get_action_for_primary_ip`]
+#[derive(Clone, Debug, Default)]
+pub struct GetActionForPrimaryIpParams {
+    /// ID of the Primary IP.
+    pub id: i64,
+    /// ID of the Action.
+    pub action_id: i64,
+}
+
 /// struct for passing parameters to the method [`get_primary_ip`]
 #[derive(Clone, Debug, Default)]
 pub struct GetPrimaryIpParams {
@@ -64,6 +73,21 @@ pub struct GetPrimaryIpParams {
 pub struct GetPrimaryIpActionParams {
     /// ID of the Action.
     pub id: i64,
+}
+
+/// struct for passing parameters to the method [`list_actions_for_primary_ip`]
+#[derive(Clone, Debug, Default)]
+pub struct ListActionsForPrimaryIpParams {
+    /// ID of the Primary IP.
+    pub id: i64,
+    /// Sort actions by field and direction. Can be used multiple times. For more information, see \"Sorting\".
+    pub sort: Option<Vec<String>>,
+    /// Filter the actions by status. Can be used multiple times. The response will only contain actions matching the specified statuses.
+    pub status: Option<Vec<String>>,
+    /// Page number to return. For more information, see \"Pagination\".
+    pub page: Option<i64>,
+    /// Maximum number of entries returned per page. For more information, see \"Pagination\".
+    pub per_page: Option<i64>,
 }
 
 /// struct for passing parameters to the method [`list_primary_ip_actions`]
@@ -153,6 +177,14 @@ pub enum DeletePrimaryIpError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`get_action_for_primary_ip`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetActionForPrimaryIpError {
+    DefaultResponse(models::ErrorResponse),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`get_primary_ip`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -165,6 +197,14 @@ pub enum GetPrimaryIpError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetPrimaryIpActionError {
+    DefaultResponse(models::ErrorResponse),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`list_actions_for_primary_ip`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum ListActionsForPrimaryIpError {
     DefaultResponse(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
@@ -448,6 +488,57 @@ pub async fn delete_primary_ip(
     }
 }
 
+/// Returns a specific Action for a Primary IP.
+pub async fn get_action_for_primary_ip(
+    configuration: &configuration::Configuration,
+    params: GetActionForPrimaryIpParams,
+) -> Result<models::GetActionResponse, Error<GetActionForPrimaryIpError>> {
+    let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let action_id = params.action_id;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
+    let local_var_uri_str = format!(
+        "{}/primary_ips/{id}/actions/{action_id}",
+        local_base_path,
+        id = id,
+        action_id = action_id
+    );
+    let mut local_var_req_builder =
+        local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder =
+            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<GetActionForPrimaryIpError> =
+            serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent {
+            status: local_var_status,
+            content: local_var_content,
+            entity: local_var_entity,
+        };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
 /// Returns a Primary IP.
 pub async fn get_primary_ip(
     configuration: &configuration::Configuration,
@@ -528,6 +619,101 @@ pub async fn get_primary_ip_action(
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<GetPrimaryIpActionError> =
+            serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent {
+            status: local_var_status,
+            content: local_var_content,
+            entity: local_var_entity,
+        };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// Returns all Actions for a Primary IP.  Use the provided URI parameters to modify the result.
+pub async fn list_actions_for_primary_ip(
+    configuration: &configuration::Configuration,
+    params: ListActionsForPrimaryIpParams,
+) -> Result<models::ListActionsResponse, Error<ListActionsForPrimaryIpError>> {
+    let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let sort = params.sort;
+    let status = params.status;
+    let page = params.page;
+    let per_page = params.per_page;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
+    let local_var_uri_str = format!("{}/primary_ips/{id}/actions", local_base_path, id = id);
+    let mut local_var_req_builder =
+        local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_str) = sort {
+        local_var_req_builder = match "multi" {
+            "multi" => local_var_req_builder.query(
+                &local_var_str
+                    .iter()
+                    .map(|p| ("sort".to_owned(), p.to_string()))
+                    .collect::<Vec<(std::string::String, std::string::String)>>(),
+            ),
+            _ => local_var_req_builder.query(&[(
+                "sort",
+                &local_var_str
+                    .iter()
+                    .map(|p| p.to_string())
+                    .collect::<Vec<String>>()
+                    .join(",")
+                    .to_string(),
+            )]),
+        };
+    }
+    if let Some(ref local_var_str) = status {
+        local_var_req_builder = match "multi" {
+            "multi" => local_var_req_builder.query(
+                &local_var_str
+                    .iter()
+                    .map(|p| ("status".to_owned(), p.to_string()))
+                    .collect::<Vec<(std::string::String, std::string::String)>>(),
+            ),
+            _ => local_var_req_builder.query(&[(
+                "status",
+                &local_var_str
+                    .iter()
+                    .map(|p| p.to_string())
+                    .collect::<Vec<String>>()
+                    .join(",")
+                    .to_string(),
+            )]),
+        };
+    }
+    if let Some(ref local_var_str) = page {
+        local_var_req_builder =
+            local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = per_page {
+        local_var_req_builder =
+            local_var_req_builder.query(&[("per_page", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder =
+            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<ListActionsForPrimaryIpError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
