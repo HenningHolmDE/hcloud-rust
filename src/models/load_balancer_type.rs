@@ -13,7 +13,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct LoadBalancerType {
-    /// Point in time when the Load Balancer type is deprecated (in ISO-8601 format).
+    /// Point in time when the Load Balancer type is deprecated (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).
     #[serde(rename = "deprecated", deserialize_with = "Option::deserialize")]
     pub deprecated: Option<String>,
     /// Description of the Load Balancer type.

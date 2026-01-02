@@ -19,16 +19,16 @@ pub struct Image {
     /// ID of Server the Image is bound to. Only set for Images of type `backup`.
     #[serde(rename = "bound_to", deserialize_with = "Option::deserialize")]
     pub bound_to: Option<i64>,
-    /// Point in time when the Resource was created (in ISO-8601 format).
+    /// Point in time when the Resource was created (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).
     #[serde(rename = "created")]
     pub created: String,
     /// Information about the Server the Image was created from.
     #[serde(rename = "created_from", deserialize_with = "Option::deserialize")]
     pub created_from: Option<Box<models::CreatedFrom>>,
-    /// Point in time where the Image was deleted (in ISO-8601 format).
+    /// Point in time where the Image was deleted (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).
     #[serde(rename = "deleted", deserialize_with = "Option::deserialize")]
     pub deleted: Option<String>,
-    /// Point in time when the Image is considered to be deprecated (in ISO-8601 format).
+    /// Point in time when the Image is considered to be deprecated (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).
     #[serde(rename = "deprecated", deserialize_with = "Option::deserialize")]
     pub deprecated: Option<String>,
     /// Description of the Image.

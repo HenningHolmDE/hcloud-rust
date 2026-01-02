@@ -17,7 +17,7 @@ pub struct Certificate {
     /// Certificate and chain in PEM format, in order so that each record directly certifies the one preceding.
     #[serde(rename = "certificate", deserialize_with = "Option::deserialize")]
     pub certificate: Option<String>,
-    /// Point in time when the Resource was created (in ISO-8601 format).
+    /// Point in time when the Resource was created (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).
     #[serde(rename = "created")]
     pub created: String,
     /// Domains and subdomains covered by the Certificate.
@@ -35,10 +35,10 @@ pub struct Certificate {
     /// Name of the Resource. Must be unique per Project.
     #[serde(rename = "name")]
     pub name: String,
-    /// Point in time when the Certificate stops being valid (in ISO-8601 format).
+    /// Point in time when the Certificate stops being valid (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).
     #[serde(rename = "not_valid_after", deserialize_with = "Option::deserialize")]
     pub not_valid_after: Option<String>,
-    /// Point in time when the Certificate becomes valid (in ISO-8601 format).
+    /// Point in time when the Certificate becomes valid (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).
     #[serde(rename = "not_valid_before", deserialize_with = "Option::deserialize")]
     pub not_valid_before: Option<String>,
     #[serde(

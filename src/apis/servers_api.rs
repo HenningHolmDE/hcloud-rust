@@ -153,9 +153,9 @@ pub struct GetMetricsForServerParams {
     pub id: i64,
     /// Type of metrics to get.
     pub r#type: Vec<String>,
-    /// Start of period to get Metrics for (in ISO-8601 format).
+    /// Start of period to get Metrics for (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).
     pub start: String,
-    /// End of period to get Metrics for (in ISO-8601 format).
+    /// End of period to get Metrics for (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).
     pub end: String,
     /// Resolution of results in seconds.
     pub step: Option<String>,

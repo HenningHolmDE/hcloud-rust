@@ -19,7 +19,7 @@ pub struct ZoneAuthoritativeNameservers {
     /// Authoritative nameservers currently delegated to by the parent DNS zone.  If these don't match the assigned authoritative nameservers, the DNS zone is currently not being served by Hetzner.
     #[serde(rename = "delegated")]
     pub delegated: Vec<String>,
-    /// Point in time (in ISO-8601 format) when the DNS zone delegation was last checked.
+    /// Point in time (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format) when the DNS zone delegation was last checked.
     #[serde(
         rename = "delegation_last_check",
         deserialize_with = "Option::deserialize"

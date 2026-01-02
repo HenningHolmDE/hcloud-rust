@@ -15,7 +15,7 @@ use serde::{Deserialize, Serialize};
 pub struct LoadBalancer {
     #[serde(rename = "algorithm")]
     pub algorithm: Box<models::LoadBalancerAlgorithm>,
-    /// Point in time when the Resource was created (in ISO-8601 format).
+    /// Point in time when the Resource was created (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).
     #[serde(rename = "created")]
     pub created: String,
     /// ID of the Load Balancer.

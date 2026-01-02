@@ -14,10 +14,10 @@ use serde::{Deserialize, Serialize};
 /// Metrics : You must specify the type of metric to get: open_connections, requests_per_second or bandwidth. You can also specify more than one type by comma separation, e.g. requests_per_second,bandwidth. Depending on the type you will get different time series data.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Metrics {
-    /// End of period of metrics reported (in ISO-8601 format).
+    /// End of period of metrics reported (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).
     #[serde(rename = "end")]
     pub end: String,
-    /// Start of period of metrics reported (in ISO-8601 format).
+    /// Start of period of metrics reported (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).
     #[serde(rename = "start")]
     pub start: String,
     /// Resolution of results in seconds.

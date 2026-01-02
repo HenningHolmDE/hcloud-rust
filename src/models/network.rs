@@ -13,7 +13,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Network {
-    /// Point in time when the Resource was created (in ISO-8601 format).
+    /// Point in time when the Resource was created (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).
     #[serde(rename = "created")]
     pub created: String,
     /// Indicates if the routes from this Network should be exposed to the vSwitch connection.
