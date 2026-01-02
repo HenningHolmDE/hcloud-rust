@@ -20,6 +20,7 @@ pub struct Server {
     /// Point in time when the Resource was created (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).
     #[serde(rename = "created")]
     pub created: String,
+    /// **Deprecated**: This property is deprecated and will be removed after the 1 July 2026. Use the `location` property instead.  Data Center this Resource is located at.
     #[serde(rename = "datacenter")]
     pub datacenter: Box<models::DataCenter>,
     /// ID of the Server.
@@ -43,6 +44,8 @@ pub struct Server {
     /// Load Balancer IDs assigned to the server.
     #[serde(rename = "load_balancers", skip_serializing_if = "Option::is_none")]
     pub load_balancers: Option<Vec<i64>>,
+    #[serde(rename = "location")]
+    pub location: Box<models::Location>,
     /// True if Server has been locked and is not available to user.
     #[serde(rename = "locked")]
     pub locked: bool,
@@ -94,6 +97,7 @@ impl Server {
         ingoing_traffic: Option<i64>,
         iso: Option<models::Iso>,
         labels: std::collections::HashMap<String, String>,
+        location: models::Location,
         locked: bool,
         name: String,
         outgoing_traffic: Option<i64>,
@@ -116,6 +120,7 @@ impl Server {
             iso: iso.map(Box::new),
             labels,
             load_balancers: None,
+            location: Box::new(location),
             locked,
             name,
             outgoing_traffic,

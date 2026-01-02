@@ -41,7 +41,7 @@ pub struct ChangeReverseDnsRecordsForPrimaryIpParams {
 /// struct for passing parameters to the method [`create_primary_ip`]
 #[derive(Clone, Debug, Default)]
 pub struct CreatePrimaryIpParams {
-    /// Request Body for creating a new Primary IP.  The `datacenter` and `assignee_id`/`assignee_type` attributes are mutually exclusive.
+    /// Request Body for creating a new Primary IP.  The `location`, `datacenter` and `assignee_id`/`assignee_type` attributes are mutually exclusive.
     pub create_primary_ip_request: models::CreatePrimaryIpRequest,
 }
 
@@ -357,7 +357,7 @@ pub async fn change_reverse_dns_records_for_primary_ip(
     }
 }
 
-/// Create a new Primary IP.  Can optionally be assigned to a resource by providing an `assignee_id` and `assignee_type`.  If not assigned to a resource the `datacenter` key needs to be provided. This can be either the ID or the name of the Data Center this Primary IP shall be created in.  A Primary IP can only be assigned to resource in the same Data Center later on.  #### Call specific error codes  | Code                          | Description                                                              | |------------------------------ |------------------------------------------------------------------------- | | `server_not_stopped`          | The specified Server is running, but needs to be powered off | | `server_has_ipv4`             | The Server already has an ipv4 address                       | | `server_has_ipv6`             | The Server already has an ipv6 address                       |
+/// Create a new Primary IP.  Can optionally be assigned to a resource by providing an `assignee_id` and `assignee_type`.  If not assigned to a resource the `location` key needs to be provided. This can be either the ID or the name of the Location this Primary IP shall be created in.  A Primary IP can only be assigned to resource in the same Location later on.  The `datacenter` key is deprecated in favor of `location` and will be removed after 01 July 2026.  #### Call specific error codes  | Code                          | Description                                                              | |------------------------------ |------------------------------------------------------------------------- | | `server_not_stopped`          | The specified Server is running, but needs to be powered off | | `server_has_ipv4`             | The Server already has an ipv4 address                       | | `server_has_ipv6`             | The Server already has an ipv6 address                       |
 pub async fn create_primary_ip(
     configuration: &configuration::Configuration,
     params: CreatePrimaryIpParams,
