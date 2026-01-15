@@ -39,7 +39,8 @@ pub struct ListIsosParams {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetIsoError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -47,7 +48,8 @@ pub enum GetIsoError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListIsosError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 

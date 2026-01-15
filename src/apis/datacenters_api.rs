@@ -37,7 +37,8 @@ pub struct ListDataCentersParams {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetDataCenterError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -45,7 +46,8 @@ pub enum GetDataCenterError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListDataCentersError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 

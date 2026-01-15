@@ -300,7 +300,8 @@ pub struct UpdateStorageBoxSubaccountAccessSettingsParams {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ChangeHomeDirectoryError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -308,7 +309,8 @@ pub enum ChangeHomeDirectoryError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ChangeProtectionError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -316,7 +318,8 @@ pub enum ChangeProtectionError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ChangeTypeError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -324,7 +327,8 @@ pub enum ChangeTypeError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateSnapshotError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -332,7 +336,8 @@ pub enum CreateSnapshotError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateStorageBoxError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -340,7 +345,8 @@ pub enum CreateStorageBoxError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateSubaccountError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -348,7 +354,8 @@ pub enum CreateSubaccountError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteSnapshotError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -356,7 +363,8 @@ pub enum DeleteSnapshotError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteStorageBoxError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -364,7 +372,8 @@ pub enum DeleteStorageBoxError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteSubaccountError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -372,7 +381,8 @@ pub enum DeleteSubaccountError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DisableSnapshotPlanError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -380,7 +390,8 @@ pub enum DisableSnapshotPlanError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum EnableSnapshotPlanError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -388,7 +399,8 @@ pub enum EnableSnapshotPlanError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetActionForStorageBoxError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -396,7 +408,8 @@ pub enum GetActionForStorageBoxError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetSnapshotError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -404,7 +417,8 @@ pub enum GetSnapshotError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetStorageBoxError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -412,7 +426,8 @@ pub enum GetStorageBoxError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetStorageBoxActionError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -420,7 +435,8 @@ pub enum GetStorageBoxActionError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetSubaccountError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -428,7 +444,8 @@ pub enum GetSubaccountError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListActionsForStorageBoxError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -436,7 +453,8 @@ pub enum ListActionsForStorageBoxError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListFoldersOfStorageBoxError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -444,7 +462,8 @@ pub enum ListFoldersOfStorageBoxError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListSnapshotsError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -452,7 +471,8 @@ pub enum ListSnapshotsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListStorageBoxActionsError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -460,7 +480,8 @@ pub enum ListStorageBoxActionsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListStorageBoxesError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -468,7 +489,8 @@ pub enum ListStorageBoxesError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListSubaccountsError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -476,7 +498,8 @@ pub enum ListSubaccountsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ReplaceSnapshotError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -484,7 +507,8 @@ pub enum ReplaceSnapshotError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ReplaceStorageBoxError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -492,7 +516,8 @@ pub enum ReplaceStorageBoxError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ReplaceSubaccountError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -500,7 +525,8 @@ pub enum ReplaceSubaccountError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ResetStorageBoxPasswordError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -508,7 +534,8 @@ pub enum ResetStorageBoxPasswordError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ResetStorageBoxSubaccountPasswordError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -516,7 +543,8 @@ pub enum ResetStorageBoxSubaccountPasswordError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum RollbackSnapshotError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -524,7 +552,8 @@ pub enum RollbackSnapshotError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateStorageBoxAccessSettingsError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -532,7 +561,8 @@ pub enum UpdateStorageBoxAccessSettingsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateStorageBoxSubaccountAccessSettingsError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 

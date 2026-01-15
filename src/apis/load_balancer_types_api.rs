@@ -35,7 +35,8 @@ pub struct ListLoadBalancerTypesParams {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetLoadBalancerTypeError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -43,7 +44,8 @@ pub enum GetLoadBalancerTypeError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListLoadBalancerTypesError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 

@@ -115,7 +115,8 @@ pub struct RetryIssuanceOrRenewalParams {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateCertificateError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -123,7 +124,8 @@ pub enum CreateCertificateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteCertificateError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -131,7 +133,8 @@ pub enum DeleteCertificateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetActionForCertificateError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -139,7 +142,8 @@ pub enum GetActionForCertificateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetCertificateError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -147,7 +151,8 @@ pub enum GetCertificateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetCertificateActionError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -155,7 +160,8 @@ pub enum GetCertificateActionError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListActionsForCertificateError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -163,7 +169,8 @@ pub enum ListActionsForCertificateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListCertificateActionsError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -171,7 +178,8 @@ pub enum ListCertificateActionsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListCertificatesError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -179,7 +187,8 @@ pub enum ListCertificatesError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ReplaceCertificateError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -187,7 +196,8 @@ pub enum ReplaceCertificateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum RetryIssuanceOrRenewalError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -783,7 +793,7 @@ pub async fn replace_certificate(
     }
 }
 
-/// Retry a failed Certificate issuance or renewal.  Only applicable if the type of the Certificate is `managed` and the issuance or renewal status is `failed`.  #### Call specific error codes  | Code                                                    | Description                                                               | |---------------------------------------------------------|---------------------------------------------------------------------------| | `caa_record_does_not_allow_ca`                          | CAA record does not allow certificate authority                           | | `ca_dns_validation_failed`                              | Certificate Authority: DNS validation failed                              | | `ca_too_many_authorizations_failed_recently`            | Certificate Authority: Too many authorizations failed recently            | | `ca_too_many_certificates_issued_for_registered_domain` | Certificate Authority: Too many certificates issued for registered domain | | `ca_too_many_duplicate_certificates`                    | Certificate Authority: Too many duplicate certificates                    | | `could_not_verify_domain_delegated_to_zone`             | Could not verify domain delegated to zone                                 | | `dns_zone_not_found`                                    | DNS zone not found                                                        | | `dns_zone_is_secondary_zone`                            | DNS zone is a secondary zone                                              |
+/// Retry a failed Certificate issuance or renewal.  Only applicable if the type of the Certificate is `managed` and the issuance or renewal status is `failed`.  #### Operation specific errors  | Status | Code | Description | | --- | --- | --- | |  | `caa_record_does_not_allow_ca` | CAA record does not allow certificate authority | |  | `ca_dns_validation_failed` | Certificate Authority: DNS validation failed | |  | `ca_too_many_authorizations_failed_recently` | Certificate Authority: Too many authorizations failed recently | |  | `ca_too_many_certificates_issued_for_registered_domain` | Certificate Authority: Too many certificates issued for registered domain | |  | `ca_too_many_duplicate_certificates` | Certificate Authority: Too many duplicate certificates | |  | `could_not_verify_domain_delegated_to_zone` | Could not verify domain delegated to zone | |  | `dns_zone_not_found` | DNS zone not found | |  | `dns_zone_is_secondary_zone` | DNS zone is a secondary zone |
 pub async fn retry_issuance_or_renewal(
     configuration: &configuration::Configuration,
     params: RetryIssuanceOrRenewalParams,

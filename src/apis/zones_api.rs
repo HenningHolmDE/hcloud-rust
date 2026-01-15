@@ -262,7 +262,8 @@ pub struct UpdateRecordsOfRrsetParams {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AddRecordsToRrsetError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -270,7 +271,8 @@ pub enum AddRecordsToRrsetError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ChangeRrsetsProtectionError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -278,7 +280,8 @@ pub enum ChangeRrsetsProtectionError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ChangeRrsetsTtlError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -286,7 +289,8 @@ pub enum ChangeRrsetsTtlError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ChangeZonesDefaultTtlError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -294,7 +298,8 @@ pub enum ChangeZonesDefaultTtlError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ChangeZonesPrimaryNameserversError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -302,7 +307,8 @@ pub enum ChangeZonesPrimaryNameserversError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ChangeZonesProtectionError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -310,7 +316,8 @@ pub enum ChangeZonesProtectionError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateRrsetError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -318,7 +325,8 @@ pub enum CreateRrsetError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateZoneError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -326,7 +334,8 @@ pub enum CreateZoneError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteRrsetError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -334,7 +343,8 @@ pub enum DeleteRrsetError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteZoneError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -342,7 +352,8 @@ pub enum DeleteZoneError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ExportZoneFileError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -350,7 +361,8 @@ pub enum ExportZoneFileError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetActionForZoneError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -358,7 +370,8 @@ pub enum GetActionForZoneError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetRrsetError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -366,7 +379,8 @@ pub enum GetRrsetError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetZoneError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -374,7 +388,8 @@ pub enum GetZoneError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetZoneActionError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -382,7 +397,8 @@ pub enum GetZoneActionError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ImportZoneFileError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -390,7 +406,8 @@ pub enum ImportZoneFileError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListActionsForZoneError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -398,7 +415,8 @@ pub enum ListActionsForZoneError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListRrsetsError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -406,7 +424,8 @@ pub enum ListRrsetsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListZoneActionsError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -414,7 +433,8 @@ pub enum ListZoneActionsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListZonesError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -422,7 +442,8 @@ pub enum ListZonesError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum RemoveRecordsFromRrsetError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -430,7 +451,8 @@ pub enum RemoveRecordsFromRrsetError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ReplaceRrsetError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -438,7 +460,8 @@ pub enum ReplaceRrsetError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ReplaceZoneError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -446,7 +469,8 @@ pub enum ReplaceZoneError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SetRecordsOfRrsetError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -454,11 +478,12 @@ pub enum SetRecordsOfRrsetError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateRecordsOfRrsetError {
-    DefaultResponse(models::ErrorResponse),
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
-/// Adds resource records (RRs) to an RRSet in the Zone.  For convenience, the RRSet will be automatically created if it doesn't exist. Otherwise, the new records are appended to the existing RRSet.  Only applicable for Zones in primary mode.  #### Call specific error codes  | Code                  | Description                      | |-----------------------|----------------------------------| | `incorrect_zone_mode` | The zone is not in primary mode. |
+/// Adds resource records (RRs) to an RRSet in the Zone.  For convenience, the RRSet will be automatically created if it doesn't exist. Otherwise, the new records are appended to the existing RRSet.  Only applicable for Zones in primary mode.  #### Operation specific errors  | Status | Code | Description | | --- | --- | --- | | `422` | `incorrect_zone_mode` | This operation is not supported for this Zone's `mode`. |
 pub async fn add_records_to_rrset(
     configuration: &configuration::Configuration,
     params: AddRecordsToRrsetParams,
@@ -513,7 +538,7 @@ pub async fn add_records_to_rrset(
     }
 }
 
-/// Changes the protection of an RRSet in the Zone.  Only applicable for Zones in primary mode.  #### Call specific error codes  | Code                  | Description                      | |-----------------------|----------------------------------| | `incorrect_zone_mode` | The zone is not in primary mode. |
+/// Changes the protection of an RRSet in the Zone.  Only applicable for Zones in primary mode.  #### Operation specific errors  | Status | Code | Description | | --- | --- | --- | | `422` | `incorrect_zone_mode` | This operation is not supported for this Zone's `mode`. |
 pub async fn change_rrsets_protection(
     configuration: &configuration::Configuration,
     params: ChangeRrsetsProtectionParams,
@@ -568,7 +593,7 @@ pub async fn change_rrsets_protection(
     }
 }
 
-/// Changes the Time To Live (TTL) of an RRSet in the Zone.  Only applicable for Zones in primary mode.  #### Call specific error codes  | Code                  | Description                      | |-----------------------|----------------------------------| | `incorrect_zone_mode` | The zone is not in primary mode. |
+/// Changes the Time To Live (TTL) of an RRSet in the Zone.  Only applicable for Zones in primary mode.  #### Operation specific errors  | Status | Code | Description | | --- | --- | --- | | `422` | `incorrect_zone_mode` | This operation is not supported for this Zone's `mode`. |
 pub async fn change_rrsets_ttl(
     configuration: &configuration::Configuration,
     params: ChangeRrsetsTtlParams,
@@ -623,7 +648,7 @@ pub async fn change_rrsets_ttl(
     }
 }
 
-/// Changes the default Time To Live (TTL) of a Zone.  This TTL is used for RRSets that do not explicitly define a TTL.  Only applicable for Zones in primary mode.  #### Call specific error codes  | Code                  | Description                      | |-----------------------|----------------------------------| | `incorrect_zone_mode` | The zone is not in primary mode. |
+/// Changes the default Time To Live (TTL) of a Zone.  This TTL is used for RRSets that do not explicitly define a TTL.  Only applicable for Zones in primary mode.  #### Operation specific errors  | Status | Code | Description | | --- | --- | --- | | `422` | `incorrect_zone_mode` | This operation is not supported for this Zone's `mode`. |
 pub async fn change_zones_default_ttl(
     configuration: &configuration::Configuration,
     params: ChangeZonesDefaultTtlParams,
@@ -674,7 +699,7 @@ pub async fn change_zones_default_ttl(
     }
 }
 
-/// Overwrites the primary nameservers of a Zone.  Only applicable for Zones in secondary mode.  #### Call specific error codes  | Code                  | Description                        | |-----------------------|------------------------------------| | `incorrect_zone_mode` | The zone is not in secondary mode. |
+/// Overwrites the primary nameservers of a Zone.  Only applicable for Zones in secondary mode.  #### Operation specific errors  | Status | Code | Description | | --- | --- | --- | | `422` | `incorrect_zone_mode` | This operation is not supported for this Zone's `mode`. |
 pub async fn change_zones_primary_nameservers(
     configuration: &configuration::Configuration,
     params: ChangeZonesPrimaryNameserversParams,
@@ -777,7 +802,7 @@ pub async fn change_zones_protection(
     }
 }
 
-/// Create an RRSet in the Zone.  Only applicable for Zones in primary mode.  | Code                  | Description                      | |-----------------------|----------------------------------| | `incorrect_zone_mode` | The zone is not in primary mode. |
+/// Create an RRSet in the Zone.  Only applicable for Zones in primary mode.  #### Operation specific errors  | Status | Code | Description | | --- | --- | --- | | `422` | `incorrect_zone_mode` | This operation is not supported for this Zone's `mode`. |
 pub async fn create_rrset(
     configuration: &configuration::Configuration,
     params: CreateRrsetParams,
@@ -874,7 +899,7 @@ pub async fn create_zone(
     }
 }
 
-/// Deletes an RRSet from the Zone.  Only applicable for Zones in primary mode.  | Code                  | Description                      | |-----------------------|----------------------------------| | `incorrect_zone_mode` | The zone is not in primary mode. |
+/// Deletes an RRSet from the Zone.  Only applicable for Zones in primary mode.  #### Operation specific errors  | Status | Code | Description | | --- | --- | --- | | `422` | `incorrect_zone_mode` | This operation is not supported for this Zone's `mode`. |
 pub async fn delete_rrset(
     configuration: &configuration::Configuration,
     params: DeleteRrsetParams,
@@ -976,7 +1001,7 @@ pub async fn delete_zone(
     }
 }
 
-/// Returns a generated Zone file in BIND (RFC [1034](https://datatracker.ietf.org/doc/html/rfc1034)/[1035](https://datatracker.ietf.org/doc/html/rfc1035)) format.  Only applicable for Zones in primary mode.  #### Call specific error codes  | Code                  | Description                      | |-----------------------|----------------------------------| | `incorrect_zone_mode` | The zone is not in primary mode. |
+/// Returns a generated Zone file in BIND (RFC [1034](https://datatracker.ietf.org/doc/html/rfc1034)/[1035](https://datatracker.ietf.org/doc/html/rfc1035)) format.  Only applicable for Zones in primary mode.  #### Operation specific errors  | Status | Code | Description | | --- | --- | --- | | `422` | `incorrect_zone_mode` | This operation is not supported for this Zone's `mode`. |
 pub async fn export_zone_file(
     configuration: &configuration::Configuration,
     params: ExportZoneFileParams,
@@ -1076,7 +1101,7 @@ pub async fn get_action_for_zone(
     }
 }
 
-/// Returns a single RRSet from the Zone.  Only applicable for Zones in primary mode.  #### Call specific error codes  | Code                  | Description                      | |-----------------------|----------------------------------| | `incorrect_zone_mode` | The zone is not in primary mode. |
+/// Returns a single RRSet from the Zone.  Only applicable for Zones in primary mode.  #### Operation specific errors  | Status | Code | Description | | --- | --- | --- | | `422` | `incorrect_zone_mode` | This operation is not supported for this Zone's `mode`. |
 pub async fn get_rrset(
     configuration: &configuration::Configuration,
     params: GetRrsetParams,
@@ -1221,7 +1246,7 @@ pub async fn get_zone_action(
     }
 }
 
-/// Imports a zone file, replacing all resource record sets (RRSets).  The import will fail if existing RRSet are `change` protected.  See Zone file import for more details. Only applicable for Zones in primary mode.  #### Call specific error codes  | Code                  | Description                      | |-----------------------|----------------------------------| | `incorrect_zone_mode` | The zone is not in primary mode. |
+/// Imports a zone file, replacing all resource record sets (RRSets).  The import will fail if existing RRSet are `change` protected.  See Zone file import for more details. Only applicable for Zones in primary mode.  #### Operation specific errors  | Status | Code | Description | | --- | --- | --- | | `422` | `incorrect_zone_mode` | This operation is not supported for this Zone's `mode`. |
 pub async fn import_zone_file(
     configuration: &configuration::Configuration,
     params: ImportZoneFileParams,
@@ -1371,7 +1396,7 @@ pub async fn list_actions_for_zone(
     }
 }
 
-/// Returns all RRSets in the Zone.  Use the provided URI parameters to modify the result.  The maximum value for `per_page` on this endpoint is `100` instead of `50`.  Only applicable for Zones in primary mode.  #### Call specific error codes  | Code                  | Description                      | |-----------------------|----------------------------------| | `incorrect_zone_mode` | The zone is not in primary mode. |
+/// Returns all RRSets in the Zone.  Use the provided URI parameters to modify the result.  The maximum value for `per_page` on this endpoint is `100` instead of `50`.  Only applicable for Zones in primary mode.  #### Operation specific errors  | Status | Code | Description | | --- | --- | --- | | `422` | `incorrect_zone_mode` | This operation is not supported for this Zone's `mode`. |
 pub async fn list_rrsets(
     configuration: &configuration::Configuration,
     params: ListRrsetsParams,
@@ -1683,7 +1708,7 @@ pub async fn list_zones(
     }
 }
 
-/// Removes resource records (RRs) from an existing RRSet in the Zone.  For convenience, the RRSet will be automatically deleted if it doesn't contain any RRs afterwards.  Only applicable for Zones in primary mode.  #### Call specific error codes  | Code                  | Description                      | |-----------------------|----------------------------------| | `incorrect_zone_mode` | The zone is not in primary mode. |
+/// Removes resource records (RRs) from an existing RRSet in the Zone.  For convenience, the RRSet will be automatically deleted if it doesn't contain any RRs afterwards.  Only applicable for Zones in primary mode.  #### Operation specific errors  | Status | Code | Description | | --- | --- | --- | | `422` | `incorrect_zone_mode` | This operation is not supported for this Zone's `mode`. |
 pub async fn remove_records_from_rrset(
     configuration: &configuration::Configuration,
     params: RemoveRecordsFromRrsetParams,
@@ -1738,7 +1763,7 @@ pub async fn remove_records_from_rrset(
     }
 }
 
-/// Updates an RRSet in the Zone.  Only applicable for Zones in primary mode.  | Code                  | Description                      | |-----------------------|----------------------------------| | `incorrect_zone_mode` | The zone is not in primary mode. |
+/// Updates an RRSet in the Zone.  Only applicable for Zones in primary mode.  #### Operation specific errors  | Status | Code | Description | | --- | --- | --- | | `422` | `incorrect_zone_mode` | This operation is not supported for this Zone's `mode`. |
 pub async fn replace_rrset(
     configuration: &configuration::Configuration,
     params: ReplaceRrsetParams,
@@ -1844,7 +1869,7 @@ pub async fn replace_zone(
     }
 }
 
-/// Overwrites the resource records (RRs) of an existing RRSet in the Zone.  Only applicable for Zones in primary mode.  #### Call specific error codes  | Code                  | Description                      | |-----------------------|----------------------------------| | `incorrect_zone_mode` | The zone is not in primary mode. |
+/// Overwrites the resource records (RRs) of an existing RRSet in the Zone.  Only applicable for Zones in primary mode.  #### Operation specific errors  | Status | Code | Description | | --- | --- | --- | | `422` | `incorrect_zone_mode` | This operation is not supported for this Zone's `mode`. |
 pub async fn set_records_of_rrset(
     configuration: &configuration::Configuration,
     params: SetRecordsOfRrsetParams,
@@ -1899,7 +1924,7 @@ pub async fn set_records_of_rrset(
     }
 }
 
-/// Updates resource records' (RRs) comments of an existing RRSet in the Zone.  Only applicable for Zones in primary mode.  #### Call specific error codes  | Code                  | Description                      | |-----------------------|----------------------------------| | `incorrect_zone_mode` | The zone is not in primary mode. |
+/// Updates resource records' (RRs) comments of an existing RRSet in the Zone.  Only applicable for Zones in primary mode.  #### Operation specific errors  | Status | Code | Description | | --- | --- | --- | | `422` | `incorrect_zone_mode` | This operation is not supported for this Zone's `mode`. |
 pub async fn update_records_of_rrset(
     configuration: &configuration::Configuration,
     params: UpdateRecordsOfRrsetParams,
