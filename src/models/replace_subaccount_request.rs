@@ -20,6 +20,9 @@ pub struct ReplaceSubaccountRequest {
     /// User-defined labels (`key/value` pairs) for the Resource. For more information, see \"Labels\".  | User-defined labels (`key/value` pairs) for the Resource.  Note that the set of Labels provided in the request will overwrite the existing one.  For more information, see \"Labels\".
     #[serde(rename = "labels", skip_serializing_if = "Option::is_none")]
     pub labels: Option<std::collections::HashMap<String, String>>,
+    /// Name of the Storage Box Subaccount.
+    #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
 }
 
 impl ReplaceSubaccountRequest {
@@ -28,6 +31,7 @@ impl ReplaceSubaccountRequest {
         ReplaceSubaccountRequest {
             description: None,
             labels: None,
+            name: None,
         }
     }
 }

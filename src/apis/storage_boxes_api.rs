@@ -216,6 +216,8 @@ pub struct ListStorageBoxesParams {
 pub struct ListSubaccountsParams {
     /// ID of the Storage Box.
     pub id: i64,
+    /// Filter resources by their name. The response will only contain the resources matching exactly the specified name.
+    pub name: Option<String>,
     /// Filter resources by labels. The response will only contain resources matching the label selector. For more information, see \"Label Selector\".
     pub label_selector: Option<String>,
     /// Sort resources by field and direction. Can be used multiple times. For more information, see \"Sorting\".
@@ -1787,6 +1789,7 @@ pub async fn list_subaccounts(
 
     // unbox the parameters
     let id = params.id;
+    let name = params.name;
     let label_selector = params.label_selector;
     let sort = params.sort;
     let username = params.username;
@@ -1802,6 +1805,10 @@ pub async fn list_subaccounts(
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
+    if let Some(ref local_var_str) = name {
+        local_var_req_builder =
+            local_var_req_builder.query(&[("name", &local_var_str.to_string())]);
+    }
     if let Some(ref local_var_str) = label_selector {
         local_var_req_builder =
             local_var_req_builder.query(&[("label_selector", &local_var_str.to_string())]);

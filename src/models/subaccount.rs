@@ -30,6 +30,9 @@ pub struct Subaccount {
     /// User-defined labels (`key/value` pairs) for the Resource. For more information, see \"Labels\".  | User-defined labels (`key/value` pairs) for the Resource.  Note that the set of Labels provided in the request will overwrite the existing one.  For more information, see \"Labels\".
     #[serde(rename = "labels")]
     pub labels: std::collections::HashMap<String, String>,
+    /// Name of the Storage Box Subaccount.
+    #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
     /// FQDN of the Storage Box Subaccount.
     #[serde(rename = "server")]
     pub server: String,
@@ -60,6 +63,7 @@ impl Subaccount {
             home_directory,
             id,
             labels,
+            name: None,
             server,
             storage_box,
             username,
