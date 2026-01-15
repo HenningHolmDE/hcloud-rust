@@ -31,8 +31,8 @@ pub struct Subaccount {
     #[serde(rename = "labels")]
     pub labels: std::collections::HashMap<String, String>,
     /// Name of the Storage Box Subaccount.
-    #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
+    #[serde(rename = "name")]
+    pub name: String,
     /// FQDN of the Storage Box Subaccount.
     #[serde(rename = "server")]
     pub server: String,
@@ -52,6 +52,7 @@ impl Subaccount {
         home_directory: String,
         id: i64,
         labels: std::collections::HashMap<String, String>,
+        name: String,
         server: String,
         storage_box: i64,
         username: String,
@@ -63,7 +64,7 @@ impl Subaccount {
             home_directory,
             id,
             labels,
-            name: None,
+            name,
             server,
             storage_box,
             username,
