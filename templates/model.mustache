@@ -46,7 +46,8 @@ impl Default for {{{classname}}} {
 {{!-- for schemas that have a discriminator --}}
 {{#discriminator}}
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
-#[serde(tag = "{{{propertyBaseName}}}")]
+{{!-- internally tagged does not work as tag is removed before parsing the inner struct --}}
+#[serde(untagged)]
 pub enum {{{classname}}} {
     {{^oneOf}}
     {{#mappedModels}}
