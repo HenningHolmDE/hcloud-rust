@@ -56,6 +56,16 @@ pub async fn get_location(
     configuration: &configuration::Configuration,
     params: GetLocationParams,
 ) -> Result<models::GetLocationResponse, Error<GetLocationError>> {
+    get_location_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_location`], but also returns the response headers.
+pub async fn get_location_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetLocationParams,
+) -> Result<(models::GetLocationResponse, reqwest::header::HeaderMap), Error<GetLocationError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -80,15 +90,19 @@ pub async fn get_location(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetLocationError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -101,6 +115,17 @@ pub async fn list_locations(
     configuration: &configuration::Configuration,
     params: ListLocationsParams,
 ) -> Result<models::ListLocationsResponse, Error<ListLocationsError>> {
+    list_locations_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_locations`], but also returns the response headers.
+pub async fn list_locations_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListLocationsParams,
+) -> Result<(models::ListLocationsResponse, reqwest::header::HeaderMap), Error<ListLocationsError>>
+{
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -159,15 +184,19 @@ pub async fn list_locations(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListLocationsError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };

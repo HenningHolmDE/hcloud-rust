@@ -257,6 +257,22 @@ pub async fn assign_floating_ip_to_server(
     configuration: &configuration::Configuration,
     params: AssignFloatingIpToServerParams,
 ) -> Result<models::AssignFloatingIpToServerResponse, Error<AssignFloatingIpToServerError>> {
+    assign_floating_ip_to_server_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`assign_floating_ip_to_server`], but also returns the response headers.
+pub async fn assign_floating_ip_to_server_with_headers(
+    configuration: &configuration::Configuration,
+    params: AssignFloatingIpToServerParams,
+) -> Result<
+    (
+        models::AssignFloatingIpToServerResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<AssignFloatingIpToServerError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -287,15 +303,19 @@ pub async fn assign_floating_ip_to_server(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<AssignFloatingIpToServerError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -308,6 +328,22 @@ pub async fn change_floating_ip_protection(
     configuration: &configuration::Configuration,
     params: ChangeFloatingIpProtectionParams,
 ) -> Result<models::ChangeFloatingIpProtectionResponse, Error<ChangeFloatingIpProtectionError>> {
+    change_floating_ip_protection_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`change_floating_ip_protection`], but also returns the response headers.
+pub async fn change_floating_ip_protection_with_headers(
+    configuration: &configuration::Configuration,
+    params: ChangeFloatingIpProtectionParams,
+) -> Result<
+    (
+        models::ChangeFloatingIpProtectionResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<ChangeFloatingIpProtectionError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -338,15 +374,19 @@ pub async fn change_floating_ip_protection(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ChangeFloatingIpProtectionError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -360,6 +400,22 @@ pub async fn change_reverse_dns_records_for_floating_ip(
     params: ChangeReverseDnsRecordsForFloatingIpParams,
 ) -> Result<
     models::ChangeReverseDnsRecordsForFloatingIpResponse,
+    Error<ChangeReverseDnsRecordsForFloatingIpError>,
+> {
+    change_reverse_dns_records_for_floating_ip_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`change_reverse_dns_records_for_floating_ip`], but also returns the response headers.
+pub async fn change_reverse_dns_records_for_floating_ip_with_headers(
+    configuration: &configuration::Configuration,
+    params: ChangeReverseDnsRecordsForFloatingIpParams,
+) -> Result<
+    (
+        models::ChangeReverseDnsRecordsForFloatingIpResponse,
+        reqwest::header::HeaderMap,
+    ),
     Error<ChangeReverseDnsRecordsForFloatingIpError>,
 > {
     let local_var_configuration = configuration;
@@ -392,15 +448,19 @@ pub async fn change_reverse_dns_records_for_floating_ip(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ChangeReverseDnsRecordsForFloatingIpError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -413,6 +473,19 @@ pub async fn create_floating_ip(
     configuration: &configuration::Configuration,
     params: CreateFloatingIpParams,
 ) -> Result<models::CreateFloatingIpResponse, Error<CreateFloatingIpError>> {
+    create_floating_ip_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`create_floating_ip`], but also returns the response headers.
+pub async fn create_floating_ip_with_headers(
+    configuration: &configuration::Configuration,
+    params: CreateFloatingIpParams,
+) -> Result<
+    (models::CreateFloatingIpResponse, reqwest::header::HeaderMap),
+    Error<CreateFloatingIpError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -438,15 +511,19 @@ pub async fn create_floating_ip(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<CreateFloatingIpError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -459,6 +536,16 @@ pub async fn delete_floating_ip(
     configuration: &configuration::Configuration,
     params: DeleteFloatingIpParams,
 ) -> Result<(), Error<DeleteFloatingIpError>> {
+    delete_floating_ip_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`delete_floating_ip`], but also returns the response headers.
+pub async fn delete_floating_ip_with_headers(
+    configuration: &configuration::Configuration,
+    params: DeleteFloatingIpParams,
+) -> Result<((), reqwest::header::HeaderMap), Error<DeleteFloatingIpError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -483,15 +570,17 @@ pub async fn delete_floating_ip(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(())
+        Ok(((), local_var_headers))
     } else {
         let local_var_entity: Option<DeleteFloatingIpError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -504,6 +593,19 @@ pub async fn get_action_for_floating_ip(
     configuration: &configuration::Configuration,
     params: GetActionForFloatingIpParams,
 ) -> Result<models::GetActionResponse, Error<GetActionForFloatingIpError>> {
+    get_action_for_floating_ip_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_action_for_floating_ip`], but also returns the response headers.
+pub async fn get_action_for_floating_ip_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetActionForFloatingIpParams,
+) -> Result<
+    (models::GetActionResponse, reqwest::header::HeaderMap),
+    Error<GetActionForFloatingIpError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -534,15 +636,19 @@ pub async fn get_action_for_floating_ip(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetActionForFloatingIpError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -555,6 +661,17 @@ pub async fn get_floating_ip(
     configuration: &configuration::Configuration,
     params: GetFloatingIpParams,
 ) -> Result<models::GetFloatingIpResponse, Error<GetFloatingIpError>> {
+    get_floating_ip_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_floating_ip`], but also returns the response headers.
+pub async fn get_floating_ip_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetFloatingIpParams,
+) -> Result<(models::GetFloatingIpResponse, reqwest::header::HeaderMap), Error<GetFloatingIpError>>
+{
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -579,15 +696,19 @@ pub async fn get_floating_ip(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetFloatingIpError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -600,6 +721,17 @@ pub async fn get_floating_ip_action(
     configuration: &configuration::Configuration,
     params: GetFloatingIpActionParams,
 ) -> Result<models::GetActionResponse, Error<GetFloatingIpActionError>> {
+    get_floating_ip_action_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_floating_ip_action`], but also returns the response headers.
+pub async fn get_floating_ip_action_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetFloatingIpActionParams,
+) -> Result<(models::GetActionResponse, reqwest::header::HeaderMap), Error<GetFloatingIpActionError>>
+{
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -624,15 +756,19 @@ pub async fn get_floating_ip_action(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetFloatingIpActionError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -645,6 +781,19 @@ pub async fn list_actions_for_floating_ip(
     configuration: &configuration::Configuration,
     params: ListActionsForFloatingIpParams,
 ) -> Result<models::ListActionsResponse, Error<ListActionsForFloatingIpError>> {
+    list_actions_for_floating_ip_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_actions_for_floating_ip`], but also returns the response headers.
+pub async fn list_actions_for_floating_ip_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListActionsForFloatingIpParams,
+) -> Result<
+    (models::ListActionsResponse, reqwest::header::HeaderMap),
+    Error<ListActionsForFloatingIpError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -719,15 +868,19 @@ pub async fn list_actions_for_floating_ip(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListActionsForFloatingIpError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -740,6 +893,19 @@ pub async fn list_floating_ip_actions(
     configuration: &configuration::Configuration,
     params: ListFloatingIpActionsParams,
 ) -> Result<models::ListActionsResponse, Error<ListFloatingIpActionsError>> {
+    list_floating_ip_actions_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_floating_ip_actions`], but also returns the response headers.
+pub async fn list_floating_ip_actions_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListFloatingIpActionsParams,
+) -> Result<
+    (models::ListActionsResponse, reqwest::header::HeaderMap),
+    Error<ListFloatingIpActionsError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -833,15 +999,19 @@ pub async fn list_floating_ip_actions(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListFloatingIpActionsError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -854,6 +1024,19 @@ pub async fn list_floating_ips(
     configuration: &configuration::Configuration,
     params: ListFloatingIpsParams,
 ) -> Result<models::ListFloatingIpsResponse, Error<ListFloatingIpsError>> {
+    list_floating_ips_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_floating_ips`], but also returns the response headers.
+pub async fn list_floating_ips_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListFloatingIpsParams,
+) -> Result<
+    (models::ListFloatingIpsResponse, reqwest::header::HeaderMap),
+    Error<ListFloatingIpsError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -917,15 +1100,19 @@ pub async fn list_floating_ips(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListFloatingIpsError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -938,6 +1125,22 @@ pub async fn replace_floating_ip(
     configuration: &configuration::Configuration,
     params: ReplaceFloatingIpParams,
 ) -> Result<models::ReplaceFloatingIpResponse, Error<ReplaceFloatingIpError>> {
+    replace_floating_ip_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`replace_floating_ip`], but also returns the response headers.
+pub async fn replace_floating_ip_with_headers(
+    configuration: &configuration::Configuration,
+    params: ReplaceFloatingIpParams,
+) -> Result<
+    (
+        models::ReplaceFloatingIpResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<ReplaceFloatingIpError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -964,15 +1167,19 @@ pub async fn replace_floating_ip(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ReplaceFloatingIpError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -985,6 +1192,22 @@ pub async fn unassign_floating_ip(
     configuration: &configuration::Configuration,
     params: UnassignFloatingIpParams,
 ) -> Result<models::UnassignFloatingIpResponse, Error<UnassignFloatingIpError>> {
+    unassign_floating_ip_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`unassign_floating_ip`], but also returns the response headers.
+pub async fn unassign_floating_ip_with_headers(
+    configuration: &configuration::Configuration,
+    params: UnassignFloatingIpParams,
+) -> Result<
+    (
+        models::UnassignFloatingIpResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<UnassignFloatingIpError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1013,15 +1236,19 @@ pub async fn unassign_floating_ip(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<UnassignFloatingIpError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };

@@ -488,6 +488,22 @@ pub async fn add_records_to_rrset(
     configuration: &configuration::Configuration,
     params: AddRecordsToRrsetParams,
 ) -> Result<models::AddRecordsToRrsetResponse, Error<AddRecordsToRrsetError>> {
+    add_records_to_rrset_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`add_records_to_rrset`], but also returns the response headers.
+pub async fn add_records_to_rrset_with_headers(
+    configuration: &configuration::Configuration,
+    params: AddRecordsToRrsetParams,
+) -> Result<
+    (
+        models::AddRecordsToRrsetResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<AddRecordsToRrsetError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -522,15 +538,19 @@ pub async fn add_records_to_rrset(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<AddRecordsToRrsetError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -543,6 +563,22 @@ pub async fn change_rrsets_protection(
     configuration: &configuration::Configuration,
     params: ChangeRrsetsProtectionParams,
 ) -> Result<models::ChangeRrsetsProtectionResponse, Error<ChangeRrsetsProtectionError>> {
+    change_rrsets_protection_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`change_rrsets_protection`], but also returns the response headers.
+pub async fn change_rrsets_protection_with_headers(
+    configuration: &configuration::Configuration,
+    params: ChangeRrsetsProtectionParams,
+) -> Result<
+    (
+        models::ChangeRrsetsProtectionResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<ChangeRrsetsProtectionError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -577,15 +613,19 @@ pub async fn change_rrsets_protection(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ChangeRrsetsProtectionError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -598,6 +638,19 @@ pub async fn change_rrsets_ttl(
     configuration: &configuration::Configuration,
     params: ChangeRrsetsTtlParams,
 ) -> Result<models::ChangeRrsetsTtlResponse, Error<ChangeRrsetsTtlError>> {
+    change_rrsets_ttl_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`change_rrsets_ttl`], but also returns the response headers.
+pub async fn change_rrsets_ttl_with_headers(
+    configuration: &configuration::Configuration,
+    params: ChangeRrsetsTtlParams,
+) -> Result<
+    (models::ChangeRrsetsTtlResponse, reqwest::header::HeaderMap),
+    Error<ChangeRrsetsTtlError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -632,15 +685,19 @@ pub async fn change_rrsets_ttl(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ChangeRrsetsTtlError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -653,6 +710,22 @@ pub async fn change_zones_default_ttl(
     configuration: &configuration::Configuration,
     params: ChangeZonesDefaultTtlParams,
 ) -> Result<models::ChangeZonesDefaultTtlResponse, Error<ChangeZonesDefaultTtlError>> {
+    change_zones_default_ttl_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`change_zones_default_ttl`], but also returns the response headers.
+pub async fn change_zones_default_ttl_with_headers(
+    configuration: &configuration::Configuration,
+    params: ChangeZonesDefaultTtlParams,
+) -> Result<
+    (
+        models::ChangeZonesDefaultTtlResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<ChangeZonesDefaultTtlError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -683,15 +756,19 @@ pub async fn change_zones_default_ttl(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ChangeZonesDefaultTtlError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -705,6 +782,22 @@ pub async fn change_zones_primary_nameservers(
     params: ChangeZonesPrimaryNameserversParams,
 ) -> Result<models::ChangeZonesPrimaryNameserversResponse, Error<ChangeZonesPrimaryNameserversError>>
 {
+    change_zones_primary_nameservers_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`change_zones_primary_nameservers`], but also returns the response headers.
+pub async fn change_zones_primary_nameservers_with_headers(
+    configuration: &configuration::Configuration,
+    params: ChangeZonesPrimaryNameserversParams,
+) -> Result<
+    (
+        models::ChangeZonesPrimaryNameserversResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<ChangeZonesPrimaryNameserversError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -735,15 +828,19 @@ pub async fn change_zones_primary_nameservers(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ChangeZonesPrimaryNameserversError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -756,6 +853,22 @@ pub async fn change_zones_protection(
     configuration: &configuration::Configuration,
     params: ChangeZonesProtectionParams,
 ) -> Result<models::ChangeZonesProtectionResponse, Error<ChangeZonesProtectionError>> {
+    change_zones_protection_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`change_zones_protection`], but also returns the response headers.
+pub async fn change_zones_protection_with_headers(
+    configuration: &configuration::Configuration,
+    params: ChangeZonesProtectionParams,
+) -> Result<
+    (
+        models::ChangeZonesProtectionResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<ChangeZonesProtectionError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -786,15 +899,19 @@ pub async fn change_zones_protection(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ChangeZonesProtectionError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -807,6 +924,16 @@ pub async fn create_rrset(
     configuration: &configuration::Configuration,
     params: CreateRrsetParams,
 ) -> Result<models::CreateRrsetResponse, Error<CreateRrsetError>> {
+    create_rrset_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`create_rrset`], but also returns the response headers.
+pub async fn create_rrset_with_headers(
+    configuration: &configuration::Configuration,
+    params: CreateRrsetParams,
+) -> Result<(models::CreateRrsetResponse, reqwest::header::HeaderMap), Error<CreateRrsetError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -837,15 +964,19 @@ pub async fn create_rrset(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<CreateRrsetError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -858,6 +989,16 @@ pub async fn create_zone(
     configuration: &configuration::Configuration,
     params: CreateZoneParams,
 ) -> Result<models::CreateZoneResponse, Error<CreateZoneError>> {
+    create_zone_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`create_zone`], but also returns the response headers.
+pub async fn create_zone_with_headers(
+    configuration: &configuration::Configuration,
+    params: CreateZoneParams,
+) -> Result<(models::CreateZoneResponse, reqwest::header::HeaderMap), Error<CreateZoneError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -883,15 +1024,19 @@ pub async fn create_zone(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<CreateZoneError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -904,6 +1049,16 @@ pub async fn delete_rrset(
     configuration: &configuration::Configuration,
     params: DeleteRrsetParams,
 ) -> Result<models::DeleteRrsetResponse, Error<DeleteRrsetError>> {
+    delete_rrset_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`delete_rrset`], but also returns the response headers.
+pub async fn delete_rrset_with_headers(
+    configuration: &configuration::Configuration,
+    params: DeleteRrsetParams,
+) -> Result<(models::DeleteRrsetResponse, reqwest::header::HeaderMap), Error<DeleteRrsetError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -936,15 +1091,19 @@ pub async fn delete_rrset(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<DeleteRrsetError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -957,6 +1116,16 @@ pub async fn delete_zone(
     configuration: &configuration::Configuration,
     params: DeleteZoneParams,
 ) -> Result<models::DeleteZoneResponse, Error<DeleteZoneError>> {
+    delete_zone_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`delete_zone`], but also returns the response headers.
+pub async fn delete_zone_with_headers(
+    configuration: &configuration::Configuration,
+    params: DeleteZoneParams,
+) -> Result<(models::DeleteZoneResponse, reqwest::header::HeaderMap), Error<DeleteZoneError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -985,15 +1154,19 @@ pub async fn delete_zone(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<DeleteZoneError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1006,6 +1179,17 @@ pub async fn export_zone_file(
     configuration: &configuration::Configuration,
     params: ExportZoneFileParams,
 ) -> Result<models::ExportZoneFileResponse, Error<ExportZoneFileError>> {
+    export_zone_file_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`export_zone_file`], but also returns the response headers.
+pub async fn export_zone_file_with_headers(
+    configuration: &configuration::Configuration,
+    params: ExportZoneFileParams,
+) -> Result<(models::ExportZoneFileResponse, reqwest::header::HeaderMap), Error<ExportZoneFileError>>
+{
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1034,15 +1218,19 @@ pub async fn export_zone_file(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ExportZoneFileError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1055,6 +1243,16 @@ pub async fn get_action_for_zone(
     configuration: &configuration::Configuration,
     params: GetActionForZoneParams,
 ) -> Result<models::GetActionResponse, Error<GetActionForZoneError>> {
+    get_action_for_zone_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_action_for_zone`], but also returns the response headers.
+pub async fn get_action_for_zone_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetActionForZoneParams,
+) -> Result<(models::GetActionResponse, reqwest::header::HeaderMap), Error<GetActionForZoneError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1085,15 +1283,19 @@ pub async fn get_action_for_zone(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetActionForZoneError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1106,6 +1308,16 @@ pub async fn get_rrset(
     configuration: &configuration::Configuration,
     params: GetRrsetParams,
 ) -> Result<models::GetRrsetResponse, Error<GetRrsetError>> {
+    get_rrset_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_rrset`], but also returns the response headers.
+pub async fn get_rrset_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetRrsetParams,
+) -> Result<(models::GetRrsetResponse, reqwest::header::HeaderMap), Error<GetRrsetError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1138,14 +1350,18 @@ pub async fn get_rrset(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetRrsetError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1158,6 +1374,16 @@ pub async fn get_zone(
     configuration: &configuration::Configuration,
     params: GetZoneParams,
 ) -> Result<models::GetZoneResponse, Error<GetZoneError>> {
+    get_zone_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_zone`], but also returns the response headers.
+pub async fn get_zone_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetZoneParams,
+) -> Result<(models::GetZoneResponse, reqwest::header::HeaderMap), Error<GetZoneError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1186,14 +1412,18 @@ pub async fn get_zone(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetZoneError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1206,6 +1436,16 @@ pub async fn get_zone_action(
     configuration: &configuration::Configuration,
     params: GetZoneActionParams,
 ) -> Result<models::GetActionResponse, Error<GetZoneActionError>> {
+    get_zone_action_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_zone_action`], but also returns the response headers.
+pub async fn get_zone_action_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetZoneActionParams,
+) -> Result<(models::GetActionResponse, reqwest::header::HeaderMap), Error<GetZoneActionError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1230,15 +1470,19 @@ pub async fn get_zone_action(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetZoneActionError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1251,6 +1495,17 @@ pub async fn import_zone_file(
     configuration: &configuration::Configuration,
     params: ImportZoneFileParams,
 ) -> Result<models::ImportZoneFileResponse, Error<ImportZoneFileError>> {
+    import_zone_file_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`import_zone_file`], but also returns the response headers.
+pub async fn import_zone_file_with_headers(
+    configuration: &configuration::Configuration,
+    params: ImportZoneFileParams,
+) -> Result<(models::ImportZoneFileResponse, reqwest::header::HeaderMap), Error<ImportZoneFileError>>
+{
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1281,15 +1536,19 @@ pub async fn import_zone_file(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ImportZoneFileError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1302,6 +1561,17 @@ pub async fn list_actions_for_zone(
     configuration: &configuration::Configuration,
     params: ListActionsForZoneParams,
 ) -> Result<models::ListActionsResponse, Error<ListActionsForZoneError>> {
+    list_actions_for_zone_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_actions_for_zone`], but also returns the response headers.
+pub async fn list_actions_for_zone_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListActionsForZoneParams,
+) -> Result<(models::ListActionsResponse, reqwest::header::HeaderMap), Error<ListActionsForZoneError>>
+{
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1380,15 +1650,19 @@ pub async fn list_actions_for_zone(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListActionsForZoneError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1401,6 +1675,16 @@ pub async fn list_rrsets(
     configuration: &configuration::Configuration,
     params: ListRrsetsParams,
 ) -> Result<models::ListRrsetsResponse, Error<ListRrsetsError>> {
+    list_rrsets_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_rrsets`], but also returns the response headers.
+pub async fn list_rrsets_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListRrsetsParams,
+) -> Result<(models::ListRrsetsResponse, reqwest::header::HeaderMap), Error<ListRrsetsError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1489,15 +1773,19 @@ pub async fn list_rrsets(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListRrsetsError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1510,6 +1798,17 @@ pub async fn list_zone_actions(
     configuration: &configuration::Configuration,
     params: ListZoneActionsParams,
 ) -> Result<models::ListActionsResponse, Error<ListZoneActionsError>> {
+    list_zone_actions_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_zone_actions`], but also returns the response headers.
+pub async fn list_zone_actions_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListZoneActionsParams,
+) -> Result<(models::ListActionsResponse, reqwest::header::HeaderMap), Error<ListZoneActionsError>>
+{
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1603,15 +1902,19 @@ pub async fn list_zone_actions(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListZoneActionsError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1624,6 +1927,16 @@ pub async fn list_zones(
     configuration: &configuration::Configuration,
     params: ListZonesParams,
 ) -> Result<models::ListZonesResponse, Error<ListZonesError>> {
+    list_zones_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_zones`], but also returns the response headers.
+pub async fn list_zones_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListZonesParams,
+) -> Result<(models::ListZonesResponse, reqwest::header::HeaderMap), Error<ListZonesError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1692,15 +2005,19 @@ pub async fn list_zones(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListZonesError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1713,6 +2030,22 @@ pub async fn remove_records_from_rrset(
     configuration: &configuration::Configuration,
     params: RemoveRecordsFromRrsetParams,
 ) -> Result<models::RemoveRecordsFromRrsetResponse, Error<RemoveRecordsFromRrsetError>> {
+    remove_records_from_rrset_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`remove_records_from_rrset`], but also returns the response headers.
+pub async fn remove_records_from_rrset_with_headers(
+    configuration: &configuration::Configuration,
+    params: RemoveRecordsFromRrsetParams,
+) -> Result<
+    (
+        models::RemoveRecordsFromRrsetResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<RemoveRecordsFromRrsetError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1747,15 +2080,19 @@ pub async fn remove_records_from_rrset(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<RemoveRecordsFromRrsetError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1768,6 +2105,16 @@ pub async fn replace_rrset(
     configuration: &configuration::Configuration,
     params: ReplaceRrsetParams,
 ) -> Result<models::ReplaceRrsetResponse, Error<ReplaceRrsetError>> {
+    replace_rrset_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`replace_rrset`], but also returns the response headers.
+pub async fn replace_rrset_with_headers(
+    configuration: &configuration::Configuration,
+    params: ReplaceRrsetParams,
+) -> Result<(models::ReplaceRrsetResponse, reqwest::header::HeaderMap), Error<ReplaceRrsetError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1802,15 +2149,19 @@ pub async fn replace_rrset(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ReplaceRrsetError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1823,6 +2174,16 @@ pub async fn replace_zone(
     configuration: &configuration::Configuration,
     params: ReplaceZoneParams,
 ) -> Result<models::ReplaceZoneResponse, Error<ReplaceZoneError>> {
+    replace_zone_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`replace_zone`], but also returns the response headers.
+pub async fn replace_zone_with_headers(
+    configuration: &configuration::Configuration,
+    params: ReplaceZoneParams,
+) -> Result<(models::ReplaceZoneResponse, reqwest::header::HeaderMap), Error<ReplaceZoneError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1853,15 +2214,19 @@ pub async fn replace_zone(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ReplaceZoneError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1874,6 +2239,22 @@ pub async fn set_records_of_rrset(
     configuration: &configuration::Configuration,
     params: SetRecordsOfRrsetParams,
 ) -> Result<models::SetRecordsOfRrsetResponse, Error<SetRecordsOfRrsetError>> {
+    set_records_of_rrset_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`set_records_of_rrset`], but also returns the response headers.
+pub async fn set_records_of_rrset_with_headers(
+    configuration: &configuration::Configuration,
+    params: SetRecordsOfRrsetParams,
+) -> Result<
+    (
+        models::SetRecordsOfRrsetResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<SetRecordsOfRrsetError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1908,15 +2289,19 @@ pub async fn set_records_of_rrset(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<SetRecordsOfRrsetError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1929,6 +2314,22 @@ pub async fn update_records_of_rrset(
     configuration: &configuration::Configuration,
     params: UpdateRecordsOfRrsetParams,
 ) -> Result<models::UpdateRecordsOfRrsetResponse, Error<UpdateRecordsOfRrsetError>> {
+    update_records_of_rrset_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`update_records_of_rrset`], but also returns the response headers.
+pub async fn update_records_of_rrset_with_headers(
+    configuration: &configuration::Configuration,
+    params: UpdateRecordsOfRrsetParams,
+) -> Result<
+    (
+        models::UpdateRecordsOfRrsetResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<UpdateRecordsOfRrsetError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1963,15 +2364,19 @@ pub async fn update_records_of_rrset(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<UpdateRecordsOfRrsetError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };

@@ -108,6 +108,22 @@ pub async fn create_placementgroup(
     configuration: &configuration::Configuration,
     params: CreatePlacementgroupParams,
 ) -> Result<models::CreatePlacementgroupResponse, Error<CreatePlacementgroupError>> {
+    create_placementgroup_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`create_placementgroup`], but also returns the response headers.
+pub async fn create_placementgroup_with_headers(
+    configuration: &configuration::Configuration,
+    params: CreatePlacementgroupParams,
+) -> Result<
+    (
+        models::CreatePlacementgroupResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<CreatePlacementgroupError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -133,15 +149,19 @@ pub async fn create_placementgroup(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<CreatePlacementgroupError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -154,6 +174,16 @@ pub async fn delete_placementgroup(
     configuration: &configuration::Configuration,
     params: DeletePlacementgroupParams,
 ) -> Result<(), Error<DeletePlacementgroupError>> {
+    delete_placementgroup_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`delete_placementgroup`], but also returns the response headers.
+pub async fn delete_placementgroup_with_headers(
+    configuration: &configuration::Configuration,
+    params: DeletePlacementgroupParams,
+) -> Result<((), reqwest::header::HeaderMap), Error<DeletePlacementgroupError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -178,15 +208,17 @@ pub async fn delete_placementgroup(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(())
+        Ok(((), local_var_headers))
     } else {
         let local_var_entity: Option<DeletePlacementgroupError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -199,6 +231,22 @@ pub async fn get_placementgroup(
     configuration: &configuration::Configuration,
     params: GetPlacementgroupParams,
 ) -> Result<models::GetPlacementgroupResponse, Error<GetPlacementgroupError>> {
+    get_placementgroup_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_placementgroup`], but also returns the response headers.
+pub async fn get_placementgroup_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetPlacementgroupParams,
+) -> Result<
+    (
+        models::GetPlacementgroupResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<GetPlacementgroupError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -223,15 +271,19 @@ pub async fn get_placementgroup(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetPlacementgroupError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -244,6 +296,22 @@ pub async fn list_placement_groups(
     configuration: &configuration::Configuration,
     params: ListPlacementGroupsParams,
 ) -> Result<models::ListPlacementGroupsResponse, Error<ListPlacementGroupsError>> {
+    list_placement_groups_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_placement_groups`], but also returns the response headers.
+pub async fn list_placement_groups_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListPlacementGroupsParams,
+) -> Result<
+    (
+        models::ListPlacementGroupsResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<ListPlacementGroupsError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -327,15 +395,19 @@ pub async fn list_placement_groups(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListPlacementGroupsError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -348,6 +420,22 @@ pub async fn replace_placementgroup(
     configuration: &configuration::Configuration,
     params: ReplacePlacementgroupParams,
 ) -> Result<models::ReplacePlacementgroupResponse, Error<ReplacePlacementgroupError>> {
+    replace_placementgroup_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`replace_placementgroup`], but also returns the response headers.
+pub async fn replace_placementgroup_with_headers(
+    configuration: &configuration::Configuration,
+    params: ReplacePlacementgroupParams,
+) -> Result<
+    (
+        models::ReplacePlacementgroupResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<ReplacePlacementgroupError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -374,15 +462,19 @@ pub async fn replace_placementgroup(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ReplacePlacementgroupError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };

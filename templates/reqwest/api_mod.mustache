@@ -1,5 +1,8 @@
 use std::error;
 use std::fmt;
+{{#withAWSV4Signature}}
+use aws_sigv4;
+{{/withAWSV4Signature}}
 
 #[derive(Debug, Clone)]
 pub struct ResponseContent<T> {
@@ -12,47 +15,73 @@ pub struct ResponseContent<T> {
 #[derive(Debug)]
 pub enum Error<T> {
     Reqwest(reqwest::Error),
+    {{#supportMiddleware}}
+    ReqwestMiddleware(reqwest_middleware::Error),
+    {{/supportMiddleware}}
     Serde(serde_json::Error),
     Io(std::io::Error),
     ResponseError(ResponseContent<T>),
+    {{#withAWSV4Signature}}
+    AWSV4SignatureError(aws_sigv4::http_request::Error),
+    {{/withAWSV4Signature}}
 }
 
-impl<T> fmt::Display for Error<T> {
+impl <T> fmt::Display for Error<T> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let (module, e) = match self {
             Error::Reqwest(e) => ("reqwest", e.to_string()),
+            {{#supportMiddleware}}
+            Error::ReqwestMiddleware(e) => ("reqwest-middleware", e.to_string()),
+            {{/supportMiddleware}}
             Error::Serde(e) => ("serde", e.to_string()),
             Error::Io(e) => ("IO", e.to_string()),
             Error::ResponseError(e) => ("response", format!("status code {}", e.status)),
+            {{#withAWSV4Signature}}
+            Error::AWSV4SignatureError(e) => ("aws v4 signature", e.to_string()),
+            {{/withAWSV4Signature}}
         };
         write!(f, "error in {}: {}", module, e)
     }
 }
 
-impl<T: fmt::Debug> error::Error for Error<T> {
+impl <T: fmt::Debug> error::Error for Error<T> {
     fn source(&self) -> Option<&(dyn error::Error + 'static)> {
         Some(match self {
             Error::Reqwest(e) => e,
+            {{#supportMiddleware}}
+            Error::ReqwestMiddleware(e) => e,
+            {{/supportMiddleware}}
             Error::Serde(e) => e,
             Error::Io(e) => e,
             Error::ResponseError(_) => return None,
+            {{#withAWSV4Signature}}
+            Error::AWSV4SignatureError(_) => return None,
+            {{/withAWSV4Signature}}
         })
     }
 }
 
-impl<T> From<reqwest::Error> for Error<T> {
+impl <T> From<reqwest::Error> for Error<T> {
     fn from(e: reqwest::Error) -> Self {
         Error::Reqwest(e)
     }
 }
 
-impl<T> From<serde_json::Error> for Error<T> {
+{{#supportMiddleware}}
+impl<T> From<reqwest_middleware::Error> for Error<T> {
+    fn from(e: reqwest_middleware::Error) -> Self {
+        Error::ReqwestMiddleware(e)
+    }
+}
+
+{{/supportMiddleware}}
+impl <T> From<serde_json::Error> for Error<T> {
     fn from(e: serde_json::Error) -> Self {
         Error::Serde(e)
     }
 }
 
-impl<T> From<std::io::Error> for Error<T> {
+impl <T> From<std::io::Error> for Error<T> {
     fn from(e: std::io::Error) -> Self {
         Error::Io(e)
     }
@@ -79,10 +108,8 @@ pub fn parse_deep_object(prefix: &str, value: &serde_json::Value) -> Vec<(String
                             value,
                         ));
                     }
-                }
-                serde_json::Value::String(s) => {
-                    params.push((format!("{}[{}]", prefix, key), s.clone()))
-                }
+                },
+                serde_json::Value::String(s) => params.push((format!("{}[{}]", prefix, key), s.clone())),
                 _ => params.push((format!("{}[{}]", prefix, key), value.to_string())),
             }
         }
@@ -93,26 +120,10 @@ pub fn parse_deep_object(prefix: &str, value: &serde_json::Value) -> Vec<(String
     unimplemented!("Only objects are supported with style=deepObject")
 }
 
-pub mod actions_api;
-pub mod certificates_api;
-pub mod datacenters_api;
-pub mod firewalls_api;
-pub mod floating_ips_api;
-pub mod images_api;
-pub mod isos_api;
-pub mod load_balancer_types_api;
-pub mod load_balancers_api;
-pub mod locations_api;
-pub mod networks_api;
-pub mod placement_groups_api;
-pub mod pricing_api;
-pub mod primary_ips_api;
-pub mod server_types_api;
-pub mod servers_api;
-pub mod ssh_keys_api;
-pub mod storage_box_types_api;
-pub mod storage_boxes_api;
-pub mod volumes_api;
-pub mod zones_api;
+{{#apiInfo}}
+{{#apis}}
+pub mod {{{classFilename}}};
+{{/apis}}
+{{/apiInfo}}
 
 pub mod configuration;

@@ -206,6 +206,22 @@ pub async fn create_certificate(
     configuration: &configuration::Configuration,
     params: CreateCertificateParams,
 ) -> Result<models::CreateCertificateResponse, Error<CreateCertificateError>> {
+    create_certificate_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`create_certificate`], but also returns the response headers.
+pub async fn create_certificate_with_headers(
+    configuration: &configuration::Configuration,
+    params: CreateCertificateParams,
+) -> Result<
+    (
+        models::CreateCertificateResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<CreateCertificateError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -231,15 +247,19 @@ pub async fn create_certificate(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<CreateCertificateError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -252,6 +272,16 @@ pub async fn delete_certificate(
     configuration: &configuration::Configuration,
     params: DeleteCertificateParams,
 ) -> Result<(), Error<DeleteCertificateError>> {
+    delete_certificate_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`delete_certificate`], but also returns the response headers.
+pub async fn delete_certificate_with_headers(
+    configuration: &configuration::Configuration,
+    params: DeleteCertificateParams,
+) -> Result<((), reqwest::header::HeaderMap), Error<DeleteCertificateError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -276,15 +306,17 @@ pub async fn delete_certificate(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(())
+        Ok(((), local_var_headers))
     } else {
         let local_var_entity: Option<DeleteCertificateError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -297,6 +329,19 @@ pub async fn get_action_for_certificate(
     configuration: &configuration::Configuration,
     params: GetActionForCertificateParams,
 ) -> Result<models::GetActionResponse, Error<GetActionForCertificateError>> {
+    get_action_for_certificate_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_action_for_certificate`], but also returns the response headers.
+pub async fn get_action_for_certificate_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetActionForCertificateParams,
+) -> Result<
+    (models::GetActionResponse, reqwest::header::HeaderMap),
+    Error<GetActionForCertificateError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -327,15 +372,19 @@ pub async fn get_action_for_certificate(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetActionForCertificateError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -348,6 +397,17 @@ pub async fn get_certificate(
     configuration: &configuration::Configuration,
     params: GetCertificateParams,
 ) -> Result<models::GetCertificateResponse, Error<GetCertificateError>> {
+    get_certificate_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_certificate`], but also returns the response headers.
+pub async fn get_certificate_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetCertificateParams,
+) -> Result<(models::GetCertificateResponse, reqwest::header::HeaderMap), Error<GetCertificateError>>
+{
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -372,15 +432,19 @@ pub async fn get_certificate(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetCertificateError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -393,6 +457,17 @@ pub async fn get_certificate_action(
     configuration: &configuration::Configuration,
     params: GetCertificateActionParams,
 ) -> Result<models::GetActionResponse, Error<GetCertificateActionError>> {
+    get_certificate_action_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_certificate_action`], but also returns the response headers.
+pub async fn get_certificate_action_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetCertificateActionParams,
+) -> Result<(models::GetActionResponse, reqwest::header::HeaderMap), Error<GetCertificateActionError>>
+{
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -417,15 +492,19 @@ pub async fn get_certificate_action(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetCertificateActionError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -438,6 +517,19 @@ pub async fn list_actions_for_certificate(
     configuration: &configuration::Configuration,
     params: ListActionsForCertificateParams,
 ) -> Result<models::ListActionsResponse, Error<ListActionsForCertificateError>> {
+    list_actions_for_certificate_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_actions_for_certificate`], but also returns the response headers.
+pub async fn list_actions_for_certificate_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListActionsForCertificateParams,
+) -> Result<
+    (models::ListActionsResponse, reqwest::header::HeaderMap),
+    Error<ListActionsForCertificateError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -512,15 +604,19 @@ pub async fn list_actions_for_certificate(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListActionsForCertificateError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -533,6 +629,19 @@ pub async fn list_certificate_actions(
     configuration: &configuration::Configuration,
     params: ListCertificateActionsParams,
 ) -> Result<models::ListActionsResponse, Error<ListCertificateActionsError>> {
+    list_certificate_actions_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_certificate_actions`], but also returns the response headers.
+pub async fn list_certificate_actions_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListCertificateActionsParams,
+) -> Result<
+    (models::ListActionsResponse, reqwest::header::HeaderMap),
+    Error<ListCertificateActionsError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -626,15 +735,19 @@ pub async fn list_certificate_actions(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListCertificateActionsError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -647,6 +760,19 @@ pub async fn list_certificates(
     configuration: &configuration::Configuration,
     params: ListCertificatesParams,
 ) -> Result<models::ListCertificatesResponse, Error<ListCertificatesError>> {
+    list_certificates_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_certificates`], but also returns the response headers.
+pub async fn list_certificates_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListCertificatesParams,
+) -> Result<
+    (models::ListCertificatesResponse, reqwest::header::HeaderMap),
+    Error<ListCertificatesError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -730,15 +856,19 @@ pub async fn list_certificates(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListCertificatesError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -751,6 +881,22 @@ pub async fn replace_certificate(
     configuration: &configuration::Configuration,
     params: ReplaceCertificateParams,
 ) -> Result<models::ReplaceCertificateResponse, Error<ReplaceCertificateError>> {
+    replace_certificate_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`replace_certificate`], but also returns the response headers.
+pub async fn replace_certificate_with_headers(
+    configuration: &configuration::Configuration,
+    params: ReplaceCertificateParams,
+) -> Result<
+    (
+        models::ReplaceCertificateResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<ReplaceCertificateError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -777,15 +923,19 @@ pub async fn replace_certificate(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ReplaceCertificateError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -798,6 +948,22 @@ pub async fn retry_issuance_or_renewal(
     configuration: &configuration::Configuration,
     params: RetryIssuanceOrRenewalParams,
 ) -> Result<models::RetryIssuanceOrRenewalResponse, Error<RetryIssuanceOrRenewalError>> {
+    retry_issuance_or_renewal_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`retry_issuance_or_renewal`], but also returns the response headers.
+pub async fn retry_issuance_or_renewal_with_headers(
+    configuration: &configuration::Configuration,
+    params: RetryIssuanceOrRenewalParams,
+) -> Result<
+    (
+        models::RetryIssuanceOrRenewalResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<RetryIssuanceOrRenewalError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -826,15 +992,19 @@ pub async fn retry_issuance_or_renewal(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<RetryIssuanceOrRenewalError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };

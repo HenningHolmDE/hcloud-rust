@@ -50,6 +50,16 @@ pub async fn get_action(
     configuration: &configuration::Configuration,
     params: GetActionParams,
 ) -> Result<models::GetActionResponse, Error<GetActionError>> {
+    get_action_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_action`], but also returns the response headers.
+pub async fn get_action_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetActionParams,
+) -> Result<(models::GetActionResponse, reqwest::header::HeaderMap), Error<GetActionError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -74,15 +84,19 @@ pub async fn get_action(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetActionError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -95,6 +109,22 @@ pub async fn get_multiple_actions(
     configuration: &configuration::Configuration,
     params: GetMultipleActionsParams,
 ) -> Result<models::GetMultipleActionsResponse, Error<GetMultipleActionsError>> {
+    get_multiple_actions_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_multiple_actions`], but also returns the response headers.
+pub async fn get_multiple_actions_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetMultipleActionsParams,
+) -> Result<
+    (
+        models::GetMultipleActionsResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<GetMultipleActionsError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -134,15 +164,19 @@ pub async fn get_multiple_actions(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetMultipleActionsError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };

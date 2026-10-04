@@ -54,6 +54,22 @@ pub async fn get_storage_box_type(
     configuration: &configuration::Configuration,
     params: GetStorageBoxTypeParams,
 ) -> Result<models::GetStorageBoxTypeResponse, Error<GetStorageBoxTypeError>> {
+    get_storage_box_type_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_storage_box_type`], but also returns the response headers.
+pub async fn get_storage_box_type_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetStorageBoxTypeParams,
+) -> Result<
+    (
+        models::GetStorageBoxTypeResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<GetStorageBoxTypeError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -78,15 +94,19 @@ pub async fn get_storage_box_type(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetStorageBoxTypeError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -99,6 +119,22 @@ pub async fn list_storage_box_types(
     configuration: &configuration::Configuration,
     params: ListStorageBoxTypesParams,
 ) -> Result<models::ListStorageBoxTypesResponse, Error<ListStorageBoxTypesError>> {
+    list_storage_box_types_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_storage_box_types`], but also returns the response headers.
+pub async fn list_storage_box_types_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListStorageBoxTypesParams,
+) -> Result<
+    (
+        models::ListStorageBoxTypesResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<ListStorageBoxTypesError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -137,15 +173,19 @@ pub async fn list_storage_box_types(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListStorageBoxTypesError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };

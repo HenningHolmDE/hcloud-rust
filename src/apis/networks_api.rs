@@ -290,6 +290,22 @@ pub async fn add_route_to_network(
     configuration: &configuration::Configuration,
     params: AddRouteToNetworkParams,
 ) -> Result<models::AddRouteToNetworkResponse, Error<AddRouteToNetworkError>> {
+    add_route_to_network_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`add_route_to_network`], but also returns the response headers.
+pub async fn add_route_to_network_with_headers(
+    configuration: &configuration::Configuration,
+    params: AddRouteToNetworkParams,
+) -> Result<
+    (
+        models::AddRouteToNetworkResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<AddRouteToNetworkError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -320,15 +336,19 @@ pub async fn add_route_to_network(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<AddRouteToNetworkError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -341,6 +361,22 @@ pub async fn add_subnet_to_network(
     configuration: &configuration::Configuration,
     params: AddSubnetToNetworkParams,
 ) -> Result<models::AddSubnetToNetworkResponse, Error<AddSubnetToNetworkError>> {
+    add_subnet_to_network_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`add_subnet_to_network`], but also returns the response headers.
+pub async fn add_subnet_to_network_with_headers(
+    configuration: &configuration::Configuration,
+    params: AddSubnetToNetworkParams,
+) -> Result<
+    (
+        models::AddSubnetToNetworkResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<AddSubnetToNetworkError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -371,15 +407,19 @@ pub async fn add_subnet_to_network(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<AddSubnetToNetworkError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -392,6 +432,22 @@ pub async fn change_ip_range_of_network(
     configuration: &configuration::Configuration,
     params: ChangeIpRangeOfNetworkParams,
 ) -> Result<models::ChangeIpRangeOfNetworkResponse, Error<ChangeIpRangeOfNetworkError>> {
+    change_ip_range_of_network_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`change_ip_range_of_network`], but also returns the response headers.
+pub async fn change_ip_range_of_network_with_headers(
+    configuration: &configuration::Configuration,
+    params: ChangeIpRangeOfNetworkParams,
+) -> Result<
+    (
+        models::ChangeIpRangeOfNetworkResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<ChangeIpRangeOfNetworkError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -422,15 +478,19 @@ pub async fn change_ip_range_of_network(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ChangeIpRangeOfNetworkError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -443,6 +503,22 @@ pub async fn change_network_protection(
     configuration: &configuration::Configuration,
     params: ChangeNetworkProtectionParams,
 ) -> Result<models::ChangeNetworkProtectionResponse, Error<ChangeNetworkProtectionError>> {
+    change_network_protection_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`change_network_protection`], but also returns the response headers.
+pub async fn change_network_protection_with_headers(
+    configuration: &configuration::Configuration,
+    params: ChangeNetworkProtectionParams,
+) -> Result<
+    (
+        models::ChangeNetworkProtectionResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<ChangeNetworkProtectionError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -473,15 +549,19 @@ pub async fn change_network_protection(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ChangeNetworkProtectionError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -494,6 +574,17 @@ pub async fn create_network(
     configuration: &configuration::Configuration,
     params: CreateNetworkParams,
 ) -> Result<models::CreateNetworkResponse, Error<CreateNetworkError>> {
+    create_network_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`create_network`], but also returns the response headers.
+pub async fn create_network_with_headers(
+    configuration: &configuration::Configuration,
+    params: CreateNetworkParams,
+) -> Result<(models::CreateNetworkResponse, reqwest::header::HeaderMap), Error<CreateNetworkError>>
+{
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -519,15 +610,19 @@ pub async fn create_network(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<CreateNetworkError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -540,6 +635,16 @@ pub async fn delete_network(
     configuration: &configuration::Configuration,
     params: DeleteNetworkParams,
 ) -> Result<(), Error<DeleteNetworkError>> {
+    delete_network_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`delete_network`], but also returns the response headers.
+pub async fn delete_network_with_headers(
+    configuration: &configuration::Configuration,
+    params: DeleteNetworkParams,
+) -> Result<((), reqwest::header::HeaderMap), Error<DeleteNetworkError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -564,15 +669,17 @@ pub async fn delete_network(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(())
+        Ok(((), local_var_headers))
     } else {
         let local_var_entity: Option<DeleteNetworkError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -585,6 +692,22 @@ pub async fn delete_route_from_network(
     configuration: &configuration::Configuration,
     params: DeleteRouteFromNetworkParams,
 ) -> Result<models::DeleteRouteFromNetworkResponse, Error<DeleteRouteFromNetworkError>> {
+    delete_route_from_network_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`delete_route_from_network`], but also returns the response headers.
+pub async fn delete_route_from_network_with_headers(
+    configuration: &configuration::Configuration,
+    params: DeleteRouteFromNetworkParams,
+) -> Result<
+    (
+        models::DeleteRouteFromNetworkResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<DeleteRouteFromNetworkError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -615,15 +738,19 @@ pub async fn delete_route_from_network(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<DeleteRouteFromNetworkError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -636,6 +763,22 @@ pub async fn delete_subnet_from_network(
     configuration: &configuration::Configuration,
     params: DeleteSubnetFromNetworkParams,
 ) -> Result<models::DeleteSubnetFromNetworkResponse, Error<DeleteSubnetFromNetworkError>> {
+    delete_subnet_from_network_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`delete_subnet_from_network`], but also returns the response headers.
+pub async fn delete_subnet_from_network_with_headers(
+    configuration: &configuration::Configuration,
+    params: DeleteSubnetFromNetworkParams,
+) -> Result<
+    (
+        models::DeleteSubnetFromNetworkResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<DeleteSubnetFromNetworkError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -666,15 +809,19 @@ pub async fn delete_subnet_from_network(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<DeleteSubnetFromNetworkError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -687,6 +834,17 @@ pub async fn get_action_for_network(
     configuration: &configuration::Configuration,
     params: GetActionForNetworkParams,
 ) -> Result<models::GetActionResponse, Error<GetActionForNetworkError>> {
+    get_action_for_network_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_action_for_network`], but also returns the response headers.
+pub async fn get_action_for_network_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetActionForNetworkParams,
+) -> Result<(models::GetActionResponse, reqwest::header::HeaderMap), Error<GetActionForNetworkError>>
+{
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -717,15 +875,19 @@ pub async fn get_action_for_network(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetActionForNetworkError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -738,6 +900,16 @@ pub async fn get_network(
     configuration: &configuration::Configuration,
     params: GetNetworkParams,
 ) -> Result<models::GetNetworkResponse, Error<GetNetworkError>> {
+    get_network_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_network`], but also returns the response headers.
+pub async fn get_network_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetNetworkParams,
+) -> Result<(models::GetNetworkResponse, reqwest::header::HeaderMap), Error<GetNetworkError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -762,15 +934,19 @@ pub async fn get_network(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetNetworkError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -783,6 +959,16 @@ pub async fn get_network_action(
     configuration: &configuration::Configuration,
     params: GetNetworkActionParams,
 ) -> Result<models::GetActionResponse, Error<GetNetworkActionError>> {
+    get_network_action_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_network_action`], but also returns the response headers.
+pub async fn get_network_action_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetNetworkActionParams,
+) -> Result<(models::GetActionResponse, reqwest::header::HeaderMap), Error<GetNetworkActionError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -807,15 +993,19 @@ pub async fn get_network_action(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetNetworkActionError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -828,6 +1018,19 @@ pub async fn list_actions_for_network(
     configuration: &configuration::Configuration,
     params: ListActionsForNetworkParams,
 ) -> Result<models::ListActionsResponse, Error<ListActionsForNetworkError>> {
+    list_actions_for_network_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_actions_for_network`], but also returns the response headers.
+pub async fn list_actions_for_network_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListActionsForNetworkParams,
+) -> Result<
+    (models::ListActionsResponse, reqwest::header::HeaderMap),
+    Error<ListActionsForNetworkError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -902,15 +1105,19 @@ pub async fn list_actions_for_network(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListActionsForNetworkError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -923,6 +1130,17 @@ pub async fn list_network_actions(
     configuration: &configuration::Configuration,
     params: ListNetworkActionsParams,
 ) -> Result<models::ListActionsResponse, Error<ListNetworkActionsError>> {
+    list_network_actions_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_network_actions`], but also returns the response headers.
+pub async fn list_network_actions_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListNetworkActionsParams,
+) -> Result<(models::ListActionsResponse, reqwest::header::HeaderMap), Error<ListNetworkActionsError>>
+{
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1016,15 +1234,19 @@ pub async fn list_network_actions(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListNetworkActionsError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1037,6 +1259,16 @@ pub async fn list_networks(
     configuration: &configuration::Configuration,
     params: ListNetworksParams,
 ) -> Result<models::ListNetworksResponse, Error<ListNetworksError>> {
+    list_networks_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_networks`], but also returns the response headers.
+pub async fn list_networks_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListNetworksParams,
+) -> Result<(models::ListNetworksResponse, reqwest::header::HeaderMap), Error<ListNetworksError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1100,15 +1332,19 @@ pub async fn list_networks(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListNetworksError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1121,6 +1357,17 @@ pub async fn replace_network(
     configuration: &configuration::Configuration,
     params: ReplaceNetworkParams,
 ) -> Result<models::ReplaceNetworkResponse, Error<ReplaceNetworkError>> {
+    replace_network_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`replace_network`], but also returns the response headers.
+pub async fn replace_network_with_headers(
+    configuration: &configuration::Configuration,
+    params: ReplaceNetworkParams,
+) -> Result<(models::ReplaceNetworkResponse, reqwest::header::HeaderMap), Error<ReplaceNetworkError>>
+{
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1147,15 +1394,19 @@ pub async fn replace_network(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ReplaceNetworkError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };

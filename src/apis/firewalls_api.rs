@@ -239,6 +239,19 @@ pub async fn apply_to_resources(
     configuration: &configuration::Configuration,
     params: ApplyToResourcesParams,
 ) -> Result<models::ApplyToResourcesResponse, Error<ApplyToResourcesError>> {
+    apply_to_resources_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`apply_to_resources`], but also returns the response headers.
+pub async fn apply_to_resources_with_headers(
+    configuration: &configuration::Configuration,
+    params: ApplyToResourcesParams,
+) -> Result<
+    (models::ApplyToResourcesResponse, reqwest::header::HeaderMap),
+    Error<ApplyToResourcesError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -269,15 +282,19 @@ pub async fn apply_to_resources(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ApplyToResourcesError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -290,6 +307,17 @@ pub async fn create_firewall(
     configuration: &configuration::Configuration,
     params: CreateFirewallParams,
 ) -> Result<models::CreateFirewallResponse, Error<CreateFirewallError>> {
+    create_firewall_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`create_firewall`], but also returns the response headers.
+pub async fn create_firewall_with_headers(
+    configuration: &configuration::Configuration,
+    params: CreateFirewallParams,
+) -> Result<(models::CreateFirewallResponse, reqwest::header::HeaderMap), Error<CreateFirewallError>>
+{
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -315,15 +343,19 @@ pub async fn create_firewall(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<CreateFirewallError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -336,6 +368,16 @@ pub async fn delete_firewall(
     configuration: &configuration::Configuration,
     params: DeleteFirewallParams,
 ) -> Result<(), Error<DeleteFirewallError>> {
+    delete_firewall_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`delete_firewall`], but also returns the response headers.
+pub async fn delete_firewall_with_headers(
+    configuration: &configuration::Configuration,
+    params: DeleteFirewallParams,
+) -> Result<((), reqwest::header::HeaderMap), Error<DeleteFirewallError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -360,15 +402,17 @@ pub async fn delete_firewall(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(())
+        Ok(((), local_var_headers))
     } else {
         let local_var_entity: Option<DeleteFirewallError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -381,6 +425,17 @@ pub async fn get_action_for_firewall(
     configuration: &configuration::Configuration,
     params: GetActionForFirewallParams,
 ) -> Result<models::GetActionResponse, Error<GetActionForFirewallError>> {
+    get_action_for_firewall_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_action_for_firewall`], but also returns the response headers.
+pub async fn get_action_for_firewall_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetActionForFirewallParams,
+) -> Result<(models::GetActionResponse, reqwest::header::HeaderMap), Error<GetActionForFirewallError>>
+{
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -411,15 +466,19 @@ pub async fn get_action_for_firewall(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetActionForFirewallError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -432,6 +491,16 @@ pub async fn get_firewall(
     configuration: &configuration::Configuration,
     params: GetFirewallParams,
 ) -> Result<models::GetFirewallResponse, Error<GetFirewallError>> {
+    get_firewall_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_firewall`], but also returns the response headers.
+pub async fn get_firewall_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetFirewallParams,
+) -> Result<(models::GetFirewallResponse, reqwest::header::HeaderMap), Error<GetFirewallError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -456,15 +525,19 @@ pub async fn get_firewall(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetFirewallError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -477,6 +550,17 @@ pub async fn get_firewall_action(
     configuration: &configuration::Configuration,
     params: GetFirewallActionParams,
 ) -> Result<models::GetActionResponse, Error<GetFirewallActionError>> {
+    get_firewall_action_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_firewall_action`], but also returns the response headers.
+pub async fn get_firewall_action_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetFirewallActionParams,
+) -> Result<(models::GetActionResponse, reqwest::header::HeaderMap), Error<GetFirewallActionError>>
+{
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -501,15 +585,19 @@ pub async fn get_firewall_action(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetFirewallActionError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -522,6 +610,19 @@ pub async fn list_actions_for_firewall(
     configuration: &configuration::Configuration,
     params: ListActionsForFirewallParams,
 ) -> Result<models::ListActionsResponse, Error<ListActionsForFirewallError>> {
+    list_actions_for_firewall_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_actions_for_firewall`], but also returns the response headers.
+pub async fn list_actions_for_firewall_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListActionsForFirewallParams,
+) -> Result<
+    (models::ListActionsResponse, reqwest::header::HeaderMap),
+    Error<ListActionsForFirewallError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -596,15 +697,19 @@ pub async fn list_actions_for_firewall(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListActionsForFirewallError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -617,6 +722,19 @@ pub async fn list_firewall_actions(
     configuration: &configuration::Configuration,
     params: ListFirewallActionsParams,
 ) -> Result<models::ListActionsResponse, Error<ListFirewallActionsError>> {
+    list_firewall_actions_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_firewall_actions`], but also returns the response headers.
+pub async fn list_firewall_actions_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListFirewallActionsParams,
+) -> Result<
+    (models::ListActionsResponse, reqwest::header::HeaderMap),
+    Error<ListFirewallActionsError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -710,15 +828,19 @@ pub async fn list_firewall_actions(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListFirewallActionsError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -731,6 +853,17 @@ pub async fn list_firewalls(
     configuration: &configuration::Configuration,
     params: ListFirewallsParams,
 ) -> Result<models::ListFirewallsResponse, Error<ListFirewallsError>> {
+    list_firewalls_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_firewalls`], but also returns the response headers.
+pub async fn list_firewalls_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListFirewallsParams,
+) -> Result<(models::ListFirewallsResponse, reqwest::header::HeaderMap), Error<ListFirewallsError>>
+{
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -794,15 +927,19 @@ pub async fn list_firewalls(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListFirewallsError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -815,6 +952,22 @@ pub async fn remove_from_resources(
     configuration: &configuration::Configuration,
     params: RemoveFromResourcesParams,
 ) -> Result<models::RemoveFromResourcesResponse, Error<RemoveFromResourcesError>> {
+    remove_from_resources_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`remove_from_resources`], but also returns the response headers.
+pub async fn remove_from_resources_with_headers(
+    configuration: &configuration::Configuration,
+    params: RemoveFromResourcesParams,
+) -> Result<
+    (
+        models::RemoveFromResourcesResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<RemoveFromResourcesError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -845,15 +998,19 @@ pub async fn remove_from_resources(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<RemoveFromResourcesError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -866,6 +1023,19 @@ pub async fn replace_firewall(
     configuration: &configuration::Configuration,
     params: ReplaceFirewallParams,
 ) -> Result<models::ReplaceFirewallResponse, Error<ReplaceFirewallError>> {
+    replace_firewall_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`replace_firewall`], but also returns the response headers.
+pub async fn replace_firewall_with_headers(
+    configuration: &configuration::Configuration,
+    params: ReplaceFirewallParams,
+) -> Result<
+    (models::ReplaceFirewallResponse, reqwest::header::HeaderMap),
+    Error<ReplaceFirewallError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -892,15 +1062,19 @@ pub async fn replace_firewall(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ReplaceFirewallError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -913,6 +1087,16 @@ pub async fn set_rules(
     configuration: &configuration::Configuration,
     params: SetRulesParams,
 ) -> Result<models::SetRulesResponse, Error<SetRulesError>> {
+    set_rules_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`set_rules`], but also returns the response headers.
+pub async fn set_rules_with_headers(
+    configuration: &configuration::Configuration,
+    params: SetRulesParams,
+) -> Result<(models::SetRulesResponse, reqwest::header::HeaderMap), Error<SetRulesError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -943,14 +1127,18 @@ pub async fn set_rules(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<SetRulesError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };

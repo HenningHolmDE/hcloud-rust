@@ -54,6 +54,17 @@ pub async fn get_server_type(
     configuration: &configuration::Configuration,
     params: GetServerTypeParams,
 ) -> Result<models::GetServerTypeResponse, Error<GetServerTypeError>> {
+    get_server_type_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_server_type`], but also returns the response headers.
+pub async fn get_server_type_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetServerTypeParams,
+) -> Result<(models::GetServerTypeResponse, reqwest::header::HeaderMap), Error<GetServerTypeError>>
+{
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -78,15 +89,19 @@ pub async fn get_server_type(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetServerTypeError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -99,6 +114,19 @@ pub async fn list_server_types(
     configuration: &configuration::Configuration,
     params: ListServerTypesParams,
 ) -> Result<models::ListServerTypesResponse, Error<ListServerTypesError>> {
+    list_server_types_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_server_types`], but also returns the response headers.
+pub async fn list_server_types_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListServerTypesParams,
+) -> Result<
+    (models::ListServerTypesResponse, reqwest::header::HeaderMap),
+    Error<ListServerTypesError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -137,15 +165,19 @@ pub async fn list_server_types(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListServerTypesError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };

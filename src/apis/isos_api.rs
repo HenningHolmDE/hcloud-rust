@@ -58,6 +58,16 @@ pub async fn get_iso(
     configuration: &configuration::Configuration,
     params: GetIsoParams,
 ) -> Result<models::GetIsoResponse, Error<GetIsoError>> {
+    get_iso_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_iso`], but also returns the response headers.
+pub async fn get_iso_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetIsoParams,
+) -> Result<(models::GetIsoResponse, reqwest::header::HeaderMap), Error<GetIsoError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -82,14 +92,18 @@ pub async fn get_iso(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetIsoError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -102,6 +116,16 @@ pub async fn list_isos(
     configuration: &configuration::Configuration,
     params: ListIsosParams,
 ) -> Result<models::ListIsosResponse, Error<ListIsosError>> {
+    list_isos_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_isos`], but also returns the response headers.
+pub async fn list_isos_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListIsosParams,
+) -> Result<(models::ListIsosResponse, reqwest::header::HeaderMap), Error<ListIsosError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -150,14 +174,18 @@ pub async fn list_isos(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListIsosError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };

@@ -257,6 +257,22 @@ pub async fn attach_volume_to_server(
     configuration: &configuration::Configuration,
     params: AttachVolumeToServerParams,
 ) -> Result<models::AttachVolumeToServerResponse, Error<AttachVolumeToServerError>> {
+    attach_volume_to_server_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`attach_volume_to_server`], but also returns the response headers.
+pub async fn attach_volume_to_server_with_headers(
+    configuration: &configuration::Configuration,
+    params: AttachVolumeToServerParams,
+) -> Result<
+    (
+        models::AttachVolumeToServerResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<AttachVolumeToServerError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -283,15 +299,19 @@ pub async fn attach_volume_to_server(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<AttachVolumeToServerError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -304,6 +324,22 @@ pub async fn change_volume_protection(
     configuration: &configuration::Configuration,
     params: ChangeVolumeProtectionParams,
 ) -> Result<models::ChangeVolumeProtectionResponse, Error<ChangeVolumeProtectionError>> {
+    change_volume_protection_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`change_volume_protection`], but also returns the response headers.
+pub async fn change_volume_protection_with_headers(
+    configuration: &configuration::Configuration,
+    params: ChangeVolumeProtectionParams,
+) -> Result<
+    (
+        models::ChangeVolumeProtectionResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<ChangeVolumeProtectionError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -334,15 +370,19 @@ pub async fn change_volume_protection(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ChangeVolumeProtectionError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -355,6 +395,16 @@ pub async fn create_volume(
     configuration: &configuration::Configuration,
     params: CreateVolumeParams,
 ) -> Result<models::CreateVolumeResponse, Error<CreateVolumeError>> {
+    create_volume_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`create_volume`], but also returns the response headers.
+pub async fn create_volume_with_headers(
+    configuration: &configuration::Configuration,
+    params: CreateVolumeParams,
+) -> Result<(models::CreateVolumeResponse, reqwest::header::HeaderMap), Error<CreateVolumeError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -380,15 +430,19 @@ pub async fn create_volume(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<CreateVolumeError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -401,6 +455,16 @@ pub async fn delete_volume(
     configuration: &configuration::Configuration,
     params: DeleteVolumeParams,
 ) -> Result<(), Error<DeleteVolumeError>> {
+    delete_volume_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`delete_volume`], but also returns the response headers.
+pub async fn delete_volume_with_headers(
+    configuration: &configuration::Configuration,
+    params: DeleteVolumeParams,
+) -> Result<((), reqwest::header::HeaderMap), Error<DeleteVolumeError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -425,15 +489,17 @@ pub async fn delete_volume(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(())
+        Ok(((), local_var_headers))
     } else {
         let local_var_entity: Option<DeleteVolumeError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -446,6 +512,16 @@ pub async fn detach_volume(
     configuration: &configuration::Configuration,
     params: DetachVolumeParams,
 ) -> Result<models::DetachVolumeResponse, Error<DetachVolumeError>> {
+    detach_volume_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`detach_volume`], but also returns the response headers.
+pub async fn detach_volume_with_headers(
+    configuration: &configuration::Configuration,
+    params: DetachVolumeParams,
+) -> Result<(models::DetachVolumeResponse, reqwest::header::HeaderMap), Error<DetachVolumeError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -470,15 +546,19 @@ pub async fn detach_volume(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<DetachVolumeError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -491,6 +571,17 @@ pub async fn get_action_for_volume(
     configuration: &configuration::Configuration,
     params: GetActionForVolumeParams,
 ) -> Result<models::GetActionResponse, Error<GetActionForVolumeError>> {
+    get_action_for_volume_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_action_for_volume`], but also returns the response headers.
+pub async fn get_action_for_volume_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetActionForVolumeParams,
+) -> Result<(models::GetActionResponse, reqwest::header::HeaderMap), Error<GetActionForVolumeError>>
+{
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -521,15 +612,19 @@ pub async fn get_action_for_volume(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetActionForVolumeError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -542,6 +637,16 @@ pub async fn get_volume(
     configuration: &configuration::Configuration,
     params: GetVolumeParams,
 ) -> Result<models::GetVolumeResponse, Error<GetVolumeError>> {
+    get_volume_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_volume`], but also returns the response headers.
+pub async fn get_volume_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetVolumeParams,
+) -> Result<(models::GetVolumeResponse, reqwest::header::HeaderMap), Error<GetVolumeError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -566,15 +671,19 @@ pub async fn get_volume(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetVolumeError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -587,6 +696,16 @@ pub async fn get_volume_action(
     configuration: &configuration::Configuration,
     params: GetVolumeActionParams,
 ) -> Result<models::GetActionResponse, Error<GetVolumeActionError>> {
+    get_volume_action_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_volume_action`], but also returns the response headers.
+pub async fn get_volume_action_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetVolumeActionParams,
+) -> Result<(models::GetActionResponse, reqwest::header::HeaderMap), Error<GetVolumeActionError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -611,15 +730,19 @@ pub async fn get_volume_action(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetVolumeActionError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -632,6 +755,19 @@ pub async fn list_actions_for_volume(
     configuration: &configuration::Configuration,
     params: ListActionsForVolumeParams,
 ) -> Result<models::ListActionsResponse, Error<ListActionsForVolumeError>> {
+    list_actions_for_volume_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_actions_for_volume`], but also returns the response headers.
+pub async fn list_actions_for_volume_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListActionsForVolumeParams,
+) -> Result<
+    (models::ListActionsResponse, reqwest::header::HeaderMap),
+    Error<ListActionsForVolumeError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -706,15 +842,19 @@ pub async fn list_actions_for_volume(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListActionsForVolumeError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -727,6 +867,17 @@ pub async fn list_volume_actions(
     configuration: &configuration::Configuration,
     params: ListVolumeActionsParams,
 ) -> Result<models::ListActionsResponse, Error<ListVolumeActionsError>> {
+    list_volume_actions_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_volume_actions`], but also returns the response headers.
+pub async fn list_volume_actions_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListVolumeActionsParams,
+) -> Result<(models::ListActionsResponse, reqwest::header::HeaderMap), Error<ListVolumeActionsError>>
+{
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -820,15 +971,19 @@ pub async fn list_volume_actions(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListVolumeActionsError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -841,6 +996,16 @@ pub async fn list_volumes(
     configuration: &configuration::Configuration,
     params: ListVolumesParams,
 ) -> Result<models::ListVolumesResponse, Error<ListVolumesError>> {
+    list_volumes_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_volumes`], but also returns the response headers.
+pub async fn list_volumes_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListVolumesParams,
+) -> Result<(models::ListVolumesResponse, reqwest::header::HeaderMap), Error<ListVolumesError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -924,15 +1089,19 @@ pub async fn list_volumes(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListVolumesError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -945,6 +1114,17 @@ pub async fn replace_volume(
     configuration: &configuration::Configuration,
     params: ReplaceVolumeParams,
 ) -> Result<models::ReplaceVolumeResponse, Error<ReplaceVolumeError>> {
+    replace_volume_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`replace_volume`], but also returns the response headers.
+pub async fn replace_volume_with_headers(
+    configuration: &configuration::Configuration,
+    params: ReplaceVolumeParams,
+) -> Result<(models::ReplaceVolumeResponse, reqwest::header::HeaderMap), Error<ReplaceVolumeError>>
+{
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -971,15 +1151,19 @@ pub async fn replace_volume(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ReplaceVolumeError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -992,6 +1176,16 @@ pub async fn resize_volume(
     configuration: &configuration::Configuration,
     params: ResizeVolumeParams,
 ) -> Result<models::ResizeVolumeResponse, Error<ResizeVolumeError>> {
+    resize_volume_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`resize_volume`], but also returns the response headers.
+pub async fn resize_volume_with_headers(
+    configuration: &configuration::Configuration,
+    params: ResizeVolumeParams,
+) -> Result<(models::ResizeVolumeResponse, reqwest::header::HeaderMap), Error<ResizeVolumeError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1018,15 +1212,19 @@ pub async fn resize_volume(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ResizeVolumeError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
