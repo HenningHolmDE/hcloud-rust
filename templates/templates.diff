@@ -1,5 +1,5 @@
 diff --git a/templates_orig/model.mustache b/templates/model.mustache
-index dd7ac5a..8ecb33a 100644
+index dd7ac5a..88471c2 100644
 --- a/templates_orig/model.mustache
 +++ b/templates/model.mustache
 @@ -11,7 +11,9 @@ use serde_with::serde_as;
@@ -13,7 +13,17 @@ index dd7ac5a..8ecb33a 100644
  #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
  pub enum {{{classname}}} {
  {{#allowableValues}}
-@@ -110,7 +112,7 @@ impl {{{classname}}} {
+@@ -44,7 +46,8 @@ impl Default for {{{classname}}} {
+ {{!-- for schemas that have a discriminator --}}
+ {{#discriminator}}
+ #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+-#[serde(tag = "{{{propertyBaseName}}}")]
++{{!-- internally tagged does not work as tag is removed before parsing the inner struct --}}
++#[serde(untagged)]
+ pub enum {{{classname}}} {
+     {{^oneOf}}
+     {{#mappedModels}}
+@@ -110,7 +113,7 @@ impl {{{classname}}} {
      pub fn new({{#requiredVars}}{{{name}}}: {{#isNullable}}Option<{{/isNullable}}{{#isEnum}}{{#isArray}}{{#uniqueItems}}std::collections::HashSet<{{/uniqueItems}}{{^uniqueItems}}Vec<{{/uniqueItems}}{{/isArray}}{{{enumName}}}{{#isArray}}>{{/isArray}}{{/isEnum}}{{^isEnum}}{{#isByteArray}}Vec<u8>{{/isByteArray}}{{^isByteArray}}{{{dataType}}}{{/isByteArray}}{{/isEnum}}{{#isNullable}}>{{/isNullable}}{{^-last}}, {{/-last}}{{/requiredVars}}) -> {{{classname}}} {
          {{{classname}}} {
              {{#vars}}
@@ -22,7 +32,7 @@ index dd7ac5a..8ecb33a 100644
              {{/vars}}
          }
      }
-@@ -143,7 +145,9 @@ impl Default for {{classname}} {
+@@ -143,7 +146,9 @@ impl Default for {{classname}} {
  {{!-- for properties that are of enum type --}}
  {{#vars}}
  {{#isEnum}}
@@ -34,7 +44,7 @@ index dd7ac5a..8ecb33a 100644
  pub enum {{{enumName}}} {
  {{#allowableValues}}
 diff --git a/templates_orig/reqwest/api.mustache b/templates/reqwest/api.mustache
-index f9e6e9d..555ed7e 100644
+index f9e6e9d..6f9bdb5 100644
 --- a/templates_orig/reqwest/api.mustache
 +++ b/templates/reqwest/api.mustache
 @@ -11,7 +11,7 @@ use super::{Error, configuration};
@@ -46,7 +56,29 @@ index f9e6e9d..555ed7e 100644
  pub struct {{{operationIdCamelCase}}}Params {
  {{/-first}}
      {{#description}}
-@@ -96,15 +96,23 @@ pub {{#supportAsync}}async {{/supportAsync}}fn {{{operationId}}}(configuration:
+@@ -81,6 +81,11 @@ pub enum {{{operationIdCamelCase}}}Error {
+ {{/notes}}
+ {{#vendorExtensions.x-group-parameters}}
+ pub {{#supportAsync}}async {{/supportAsync}}fn {{{operationId}}}(configuration: &configuration::Configuration{{#allParams}}{{#-first}}, params: {{{operationIdCamelCase}}}Params{{/-first}}{{/allParams}}) -> Result<{{#supportMultipleResponses}}ResponseContent<{{{operationIdCamelCase}}}Success>{{/supportMultipleResponses}}{{^supportMultipleResponses}}{{^returnType}}(){{/returnType}}{{{returnType}}}{{/supportMultipleResponses}}, Error<{{{operationIdCamelCase}}}Error>> {
++    {{{operationId}}}_with_headers(configuration{{#allParams}}{{#-first}}, params{{/-first}}{{/allParams}}){{#supportAsync}}.await{{/supportAsync}}.map(|(local_var_entity, _)| local_var_entity)
++}
++
++/// Same as [`{{{operationId}}}`], but also returns the response headers.
++pub {{#supportAsync}}async {{/supportAsync}}fn {{{operationId}}}_with_headers(configuration: &configuration::Configuration{{#allParams}}{{#-first}}, params: {{{operationIdCamelCase}}}Params{{/-first}}{{/allParams}}) -> Result<({{#supportMultipleResponses}}ResponseContent<{{{operationIdCamelCase}}}Success>{{/supportMultipleResponses}}{{^supportMultipleResponses}}{{^returnType}}(){{/returnType}}{{{returnType}}}{{/supportMultipleResponses}}, reqwest::header::HeaderMap), Error<{{{operationIdCamelCase}}}Error>> {
+     let local_var_configuration = configuration;
+ 
+     // unbox the parameters
+@@ -91,20 +96,33 @@ pub {{#supportAsync}}async {{/supportAsync}}fn {{{operationId}}}(configuration:
+ {{/vendorExtensions.x-group-parameters}}
+ {{^vendorExtensions.x-group-parameters}}
+ pub {{#supportAsync}}async {{/supportAsync}}fn {{{operationId}}}(configuration: &configuration::Configuration, {{#allParams}}{{{paramName}}}: {{^required}}Option<{{/required}}{{#required}}{{#isNullable}}Option<{{/isNullable}}{{/required}}{{#isString}}{{#isArray}}Vec<{{/isArray}}{{^isUuid}}&str{{/isUuid}}{{#isArray}}>{{/isArray}}{{/isString}}{{#isUuid}}{{#isArray}}Vec<{{/isArray}}&str{{#isArray}}>{{/isArray}}{{/isUuid}}{{^isString}}{{^isUuid}}{{^isPrimitiveType}}{{^isContainer}}models::{{/isContainer}}{{/isPrimitiveType}}{{{dataType}}}{{/isUuid}}{{/isString}}{{^required}}>{{/required}}{{#required}}{{#isNullable}}>{{/isNullable}}{{/required}}{{^-last}}, {{/-last}}{{/allParams}}) -> Result<{{#supportMultipleResponses}}ResponseContent<{{{operationIdCamelCase}}}Success>{{/supportMultipleResponses}}{{^supportMultipleResponses}}{{^returnType}}(){{/returnType}}{{{returnType}}}{{/supportMultipleResponses}}, Error<{{{operationIdCamelCase}}}Error>> {
++    {{{operationId}}}_with_headers(configuration{{#allParams}}, {{{paramName}}}{{/allParams}}){{#supportAsync}}.await{{/supportAsync}}.map(|(local_var_entity, _)| local_var_entity)
++}
++
++/// Same as [`{{{operationId}}}`], but also returns the response headers.
++pub {{#supportAsync}}async {{/supportAsync}}fn {{{operationId}}}_with_headers(configuration: &configuration::Configuration, {{#allParams}}{{{paramName}}}: {{^required}}Option<{{/required}}{{#required}}{{#isNullable}}Option<{{/isNullable}}{{/required}}{{#isString}}{{#isArray}}Vec<{{/isArray}}{{^isUuid}}&str{{/isUuid}}{{#isArray}}>{{/isArray}}{{/isString}}{{#isUuid}}{{#isArray}}Vec<{{/isArray}}&str{{#isArray}}>{{/isArray}}{{/isUuid}}{{^isString}}{{^isUuid}}{{^isPrimitiveType}}{{^isContainer}}models::{{/isContainer}}{{/isPrimitiveType}}{{{dataType}}}{{/isUuid}}{{/isString}}{{^required}}>{{/required}}{{#required}}{{#isNullable}}>{{/isNullable}}{{/required}}{{^-last}}, {{/-last}}{{/allParams}}) -> Result<({{#supportMultipleResponses}}ResponseContent<{{{operationIdCamelCase}}}Success>{{/supportMultipleResponses}}{{^supportMultipleResponses}}{{^returnType}}(){{/returnType}}{{{returnType}}}{{/supportMultipleResponses}}, reqwest::header::HeaderMap), Error<{{{operationIdCamelCase}}}Error>> {
+     let local_var_configuration = configuration;
+ {{/vendorExtensions.x-group-parameters}}
  
      let local_var_client = &local_var_configuration.client;
  
@@ -73,7 +105,7 @@ index f9e6e9d..555ed7e 100644
      };
      {{/isArray}}
      {{^isArray}}
-@@ -130,8 +138,8 @@ pub {{#supportAsync}}async {{/supportAsync}}fn {{{operationId}}}(configuration:
+@@ -130,8 +148,8 @@ pub {{#supportAsync}}async {{/supportAsync}}fn {{{operationId}}}(configuration:
      if let Some(ref local_var_str) = {{{paramName}}} {
          {{#isArray}}
          local_var_req_builder = match "{{collectionFormat}}" {
@@ -84,6 +116,50 @@ index f9e6e9d..555ed7e 100644
          };
          {{/isArray}}
          {{^isArray}}
+@@ -345,25 +363,26 @@ pub {{#supportAsync}}async {{/supportAsync}}fn {{{operationId}}}(configuration:
+     let local_var_resp = local_var_client.execute(local_var_req){{#supportAsync}}.await{{/supportAsync}}?;
+ 
+     let local_var_status = local_var_resp.status();
++    let local_var_headers = local_var_resp.headers().clone();
+     let local_var_content = local_var_resp.text(){{#supportAsync}}.await{{/supportAsync}}?;
+ 
+     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+         {{^supportMultipleResponses}}
+         {{^returnType}}
+-        Ok(())
++        Ok(((), local_var_headers))
+         {{/returnType}}
+         {{#returnType}}
+-        serde_json::from_str(&local_var_content).map_err(Error::from)
++        serde_json::from_str(&local_var_content).map(|local_var_entity| (local_var_entity, local_var_headers)).map_err(Error::from)
+         {{/returnType}}
+         {{/supportMultipleResponses}}
+         {{#supportMultipleResponses}}
+         let local_var_entity: Option<{{{operationIdCamelCase}}}Success> = serde_json::from_str(&local_var_content).ok();
+-        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+-        Ok(local_var_result)
++        let local_var_result = ResponseContent { status: local_var_status, headers: Box::new(local_var_headers.clone()), content: local_var_content, entity: local_var_entity };
++        Ok((local_var_result, local_var_headers))
+         {{/supportMultipleResponses}}
+     } else {
+         let local_var_entity: Option<{{{operationIdCamelCase}}}Error> = serde_json::from_str(&local_var_content).ok();
+-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
++        let local_var_error = ResponseContent { status: local_var_status, headers: Box::new(local_var_headers), content: local_var_content, entity: local_var_entity };
+         Err(Error::ResponseError(local_var_error))
+     }
+ }
+diff --git a/templates_orig/reqwest/api_mod.mustache b/templates/reqwest/api_mod.mustache
+index 347f333..4009683 100644
+--- a/templates_orig/reqwest/api_mod.mustache
++++ b/templates/reqwest/api_mod.mustache
+@@ -7,6 +7,7 @@ use aws_sigv4;
+ #[derive(Debug, Clone)]
+ pub struct ResponseContent<T> {
+     pub status: reqwest::StatusCode,
++    pub headers: Box<reqwest::header::HeaderMap>,
+     pub content: String,
+     pub entity: Option<T>,
+ }
 diff --git a/templates_orig/reqwest/configuration.mustache b/templates/reqwest/configuration.mustache
 index fd6f7d0..cb6a82a 100644
 --- a/templates_orig/reqwest/configuration.mustache
