@@ -200,6 +200,22 @@ pub async fn change_image_protection(
     configuration: &configuration::Configuration,
     params: ChangeImageProtectionParams,
 ) -> Result<models::ChangeImageProtectionResponse, Error<ChangeImageProtectionError>> {
+    change_image_protection_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`change_image_protection`], but also returns the response headers.
+pub async fn change_image_protection_with_headers(
+    configuration: &configuration::Configuration,
+    params: ChangeImageProtectionParams,
+) -> Result<
+    (
+        models::ChangeImageProtectionResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<ChangeImageProtectionError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -230,15 +246,19 @@ pub async fn change_image_protection(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ChangeImageProtectionError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -251,6 +271,16 @@ pub async fn delete_image(
     configuration: &configuration::Configuration,
     params: DeleteImageParams,
 ) -> Result<(), Error<DeleteImageError>> {
+    delete_image_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`delete_image`], but also returns the response headers.
+pub async fn delete_image_with_headers(
+    configuration: &configuration::Configuration,
+    params: DeleteImageParams,
+) -> Result<((), reqwest::header::HeaderMap), Error<DeleteImageError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -275,15 +305,17 @@ pub async fn delete_image(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(())
+        Ok(((), local_var_headers))
     } else {
         let local_var_entity: Option<DeleteImageError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -296,6 +328,17 @@ pub async fn get_action_for_image(
     configuration: &configuration::Configuration,
     params: GetActionForImageParams,
 ) -> Result<models::GetActionResponse, Error<GetActionForImageError>> {
+    get_action_for_image_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_action_for_image`], but also returns the response headers.
+pub async fn get_action_for_image_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetActionForImageParams,
+) -> Result<(models::GetActionResponse, reqwest::header::HeaderMap), Error<GetActionForImageError>>
+{
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -326,15 +369,19 @@ pub async fn get_action_for_image(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetActionForImageError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -347,6 +394,16 @@ pub async fn get_image(
     configuration: &configuration::Configuration,
     params: GetImageParams,
 ) -> Result<models::GetImageResponse, Error<GetImageError>> {
+    get_image_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_image`], but also returns the response headers.
+pub async fn get_image_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetImageParams,
+) -> Result<(models::GetImageResponse, reqwest::header::HeaderMap), Error<GetImageError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -371,14 +428,18 @@ pub async fn get_image(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetImageError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -391,6 +452,16 @@ pub async fn get_image_action(
     configuration: &configuration::Configuration,
     params: GetImageActionParams,
 ) -> Result<models::GetActionResponse, Error<GetImageActionError>> {
+    get_image_action_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_image_action`], but also returns the response headers.
+pub async fn get_image_action_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetImageActionParams,
+) -> Result<(models::GetActionResponse, reqwest::header::HeaderMap), Error<GetImageActionError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -415,15 +486,19 @@ pub async fn get_image_action(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetImageActionError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -436,6 +511,19 @@ pub async fn list_actions_for_image(
     configuration: &configuration::Configuration,
     params: ListActionsForImageParams,
 ) -> Result<models::ListActionsResponse, Error<ListActionsForImageError>> {
+    list_actions_for_image_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_actions_for_image`], but also returns the response headers.
+pub async fn list_actions_for_image_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListActionsForImageParams,
+) -> Result<
+    (models::ListActionsResponse, reqwest::header::HeaderMap),
+    Error<ListActionsForImageError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -510,15 +598,19 @@ pub async fn list_actions_for_image(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListActionsForImageError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -531,6 +623,17 @@ pub async fn list_image_actions(
     configuration: &configuration::Configuration,
     params: ListImageActionsParams,
 ) -> Result<models::ListActionsResponse, Error<ListImageActionsError>> {
+    list_image_actions_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_image_actions`], but also returns the response headers.
+pub async fn list_image_actions_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListImageActionsParams,
+) -> Result<(models::ListActionsResponse, reqwest::header::HeaderMap), Error<ListImageActionsError>>
+{
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -624,15 +727,19 @@ pub async fn list_image_actions(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListImageActionsError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -645,6 +752,16 @@ pub async fn list_images(
     configuration: &configuration::Configuration,
     params: ListImagesParams,
 ) -> Result<models::ListImagesResponse, Error<ListImagesError>> {
+    list_images_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_images`], but also returns the response headers.
+pub async fn list_images_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListImagesParams,
+) -> Result<(models::ListImagesResponse, reqwest::header::HeaderMap), Error<ListImagesError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -778,15 +895,19 @@ pub async fn list_images(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListImagesError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -799,6 +920,16 @@ pub async fn replace_image(
     configuration: &configuration::Configuration,
     params: ReplaceImageParams,
 ) -> Result<models::ReplaceImageResponse, Error<ReplaceImageError>> {
+    replace_image_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`replace_image`], but also returns the response headers.
+pub async fn replace_image_with_headers(
+    configuration: &configuration::Configuration,
+    params: ReplaceImageParams,
+) -> Result<(models::ReplaceImageResponse, reqwest::header::HeaderMap), Error<ReplaceImageError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -825,15 +956,19 @@ pub async fn replace_image(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ReplaceImageError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };

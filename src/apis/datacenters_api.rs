@@ -56,6 +56,17 @@ pub async fn get_data_center(
     configuration: &configuration::Configuration,
     params: GetDataCenterParams,
 ) -> Result<models::GetDataCenterResponse, Error<GetDataCenterError>> {
+    get_data_center_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_data_center`], but also returns the response headers.
+pub async fn get_data_center_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetDataCenterParams,
+) -> Result<(models::GetDataCenterResponse, reqwest::header::HeaderMap), Error<GetDataCenterError>>
+{
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -80,15 +91,19 @@ pub async fn get_data_center(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetDataCenterError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -101,6 +116,19 @@ pub async fn list_data_centers(
     configuration: &configuration::Configuration,
     params: ListDataCentersParams,
 ) -> Result<models::ListDataCentersResponse, Error<ListDataCentersError>> {
+    list_data_centers_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_data_centers`], but also returns the response headers.
+pub async fn list_data_centers_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListDataCentersParams,
+) -> Result<
+    (models::ListDataCentersResponse, reqwest::header::HeaderMap),
+    Error<ListDataCentersError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -159,15 +187,19 @@ pub async fn list_data_centers(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListDataCentersError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };

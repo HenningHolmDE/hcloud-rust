@@ -432,6 +432,16 @@ pub async fn add_service(
     configuration: &configuration::Configuration,
     params: AddServiceParams,
 ) -> Result<models::AddServiceResponse, Error<AddServiceError>> {
+    add_service_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`add_service`], but also returns the response headers.
+pub async fn add_service_with_headers(
+    configuration: &configuration::Configuration,
+    params: AddServiceParams,
+) -> Result<(models::AddServiceResponse, reqwest::header::HeaderMap), Error<AddServiceError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -462,15 +472,19 @@ pub async fn add_service(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<AddServiceError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -483,6 +497,16 @@ pub async fn add_target(
     configuration: &configuration::Configuration,
     params: AddTargetParams,
 ) -> Result<models::AddTargetResponse, Error<AddTargetError>> {
+    add_target_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`add_target`], but also returns the response headers.
+pub async fn add_target_with_headers(
+    configuration: &configuration::Configuration,
+    params: AddTargetParams,
+) -> Result<(models::AddTargetResponse, reqwest::header::HeaderMap), Error<AddTargetError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -513,15 +537,19 @@ pub async fn add_target(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<AddTargetError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -534,6 +562,22 @@ pub async fn attach_load_balancer_to_network(
     configuration: &configuration::Configuration,
     params: AttachLoadBalancerToNetworkParams,
 ) -> Result<models::AttachLoadBalancerToNetworkResponse, Error<AttachLoadBalancerToNetworkError>> {
+    attach_load_balancer_to_network_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`attach_load_balancer_to_network`], but also returns the response headers.
+pub async fn attach_load_balancer_to_network_with_headers(
+    configuration: &configuration::Configuration,
+    params: AttachLoadBalancerToNetworkParams,
+) -> Result<
+    (
+        models::AttachLoadBalancerToNetworkResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<AttachLoadBalancerToNetworkError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -564,15 +608,19 @@ pub async fn attach_load_balancer_to_network(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<AttachLoadBalancerToNetworkError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -585,6 +633,19 @@ pub async fn change_algorithm(
     configuration: &configuration::Configuration,
     params: ChangeAlgorithmParams,
 ) -> Result<models::ChangeAlgorithmResponse, Error<ChangeAlgorithmError>> {
+    change_algorithm_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`change_algorithm`], but also returns the response headers.
+pub async fn change_algorithm_with_headers(
+    configuration: &configuration::Configuration,
+    params: ChangeAlgorithmParams,
+) -> Result<
+    (models::ChangeAlgorithmResponse, reqwest::header::HeaderMap),
+    Error<ChangeAlgorithmError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -615,15 +676,19 @@ pub async fn change_algorithm(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ChangeAlgorithmError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -637,6 +702,22 @@ pub async fn change_load_balancer_protection(
     params: ChangeLoadBalancerProtectionParams,
 ) -> Result<models::ChangeLoadBalancerProtectionResponse, Error<ChangeLoadBalancerProtectionError>>
 {
+    change_load_balancer_protection_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`change_load_balancer_protection`], but also returns the response headers.
+pub async fn change_load_balancer_protection_with_headers(
+    configuration: &configuration::Configuration,
+    params: ChangeLoadBalancerProtectionParams,
+) -> Result<
+    (
+        models::ChangeLoadBalancerProtectionResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<ChangeLoadBalancerProtectionError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -667,15 +748,19 @@ pub async fn change_load_balancer_protection(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ChangeLoadBalancerProtectionError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -689,6 +774,22 @@ pub async fn change_reverse_dns_entry_for_this_load_balancer(
     params: ChangeReverseDnsEntryForThisLoadBalancerParams,
 ) -> Result<
     models::ChangeReverseDnsEntryForThisLoadBalancerResponse,
+    Error<ChangeReverseDnsEntryForThisLoadBalancerError>,
+> {
+    change_reverse_dns_entry_for_this_load_balancer_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`change_reverse_dns_entry_for_this_load_balancer`], but also returns the response headers.
+pub async fn change_reverse_dns_entry_for_this_load_balancer_with_headers(
+    configuration: &configuration::Configuration,
+    params: ChangeReverseDnsEntryForThisLoadBalancerParams,
+) -> Result<
+    (
+        models::ChangeReverseDnsEntryForThisLoadBalancerResponse,
+        reqwest::header::HeaderMap,
+    ),
     Error<ChangeReverseDnsEntryForThisLoadBalancerError>,
 > {
     let local_var_configuration = configuration;
@@ -721,15 +822,19 @@ pub async fn change_reverse_dns_entry_for_this_load_balancer(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ChangeReverseDnsEntryForThisLoadBalancerError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -742,6 +847,22 @@ pub async fn change_type_of_load_balancer(
     configuration: &configuration::Configuration,
     params: ChangeTypeOfLoadBalancerParams,
 ) -> Result<models::ChangeTypeOfLoadBalancerResponse, Error<ChangeTypeOfLoadBalancerError>> {
+    change_type_of_load_balancer_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`change_type_of_load_balancer`], but also returns the response headers.
+pub async fn change_type_of_load_balancer_with_headers(
+    configuration: &configuration::Configuration,
+    params: ChangeTypeOfLoadBalancerParams,
+) -> Result<
+    (
+        models::ChangeTypeOfLoadBalancerResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<ChangeTypeOfLoadBalancerError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -772,15 +893,19 @@ pub async fn change_type_of_load_balancer(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ChangeTypeOfLoadBalancerError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -793,6 +918,22 @@ pub async fn create_load_balancer(
     configuration: &configuration::Configuration,
     params: CreateLoadBalancerParams,
 ) -> Result<models::CreateLoadBalancerResponse, Error<CreateLoadBalancerError>> {
+    create_load_balancer_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`create_load_balancer`], but also returns the response headers.
+pub async fn create_load_balancer_with_headers(
+    configuration: &configuration::Configuration,
+    params: CreateLoadBalancerParams,
+) -> Result<
+    (
+        models::CreateLoadBalancerResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<CreateLoadBalancerError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -818,15 +959,19 @@ pub async fn create_load_balancer(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<CreateLoadBalancerError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -839,6 +984,16 @@ pub async fn delete_load_balancer(
     configuration: &configuration::Configuration,
     params: DeleteLoadBalancerParams,
 ) -> Result<(), Error<DeleteLoadBalancerError>> {
+    delete_load_balancer_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`delete_load_balancer`], but also returns the response headers.
+pub async fn delete_load_balancer_with_headers(
+    configuration: &configuration::Configuration,
+    params: DeleteLoadBalancerParams,
+) -> Result<((), reqwest::header::HeaderMap), Error<DeleteLoadBalancerError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -863,15 +1018,17 @@ pub async fn delete_load_balancer(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(())
+        Ok(((), local_var_headers))
     } else {
         let local_var_entity: Option<DeleteLoadBalancerError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -884,6 +1041,17 @@ pub async fn delete_service(
     configuration: &configuration::Configuration,
     params: DeleteServiceParams,
 ) -> Result<models::DeleteServiceResponse, Error<DeleteServiceError>> {
+    delete_service_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`delete_service`], but also returns the response headers.
+pub async fn delete_service_with_headers(
+    configuration: &configuration::Configuration,
+    params: DeleteServiceParams,
+) -> Result<(models::DeleteServiceResponse, reqwest::header::HeaderMap), Error<DeleteServiceError>>
+{
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -914,15 +1082,19 @@ pub async fn delete_service(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<DeleteServiceError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -936,6 +1108,22 @@ pub async fn detach_load_balancer_from_network(
     params: DetachLoadBalancerFromNetworkParams,
 ) -> Result<models::DetachLoadBalancerFromNetworkResponse, Error<DetachLoadBalancerFromNetworkError>>
 {
+    detach_load_balancer_from_network_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`detach_load_balancer_from_network`], but also returns the response headers.
+pub async fn detach_load_balancer_from_network_with_headers(
+    configuration: &configuration::Configuration,
+    params: DetachLoadBalancerFromNetworkParams,
+) -> Result<
+    (
+        models::DetachLoadBalancerFromNetworkResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<DetachLoadBalancerFromNetworkError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -967,15 +1155,19 @@ pub async fn detach_load_balancer_from_network(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<DetachLoadBalancerFromNetworkError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -989,6 +1181,22 @@ pub async fn disable_public_interface_of_load_balancer(
     params: DisablePublicInterfaceOfLoadBalancerParams,
 ) -> Result<
     models::DisablePublicInterfaceOfLoadBalancerResponse,
+    Error<DisablePublicInterfaceOfLoadBalancerError>,
+> {
+    disable_public_interface_of_load_balancer_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`disable_public_interface_of_load_balancer`], but also returns the response headers.
+pub async fn disable_public_interface_of_load_balancer_with_headers(
+    configuration: &configuration::Configuration,
+    params: DisablePublicInterfaceOfLoadBalancerParams,
+) -> Result<
+    (
+        models::DisablePublicInterfaceOfLoadBalancerResponse,
+        reqwest::header::HeaderMap,
+    ),
     Error<DisablePublicInterfaceOfLoadBalancerError>,
 > {
     let local_var_configuration = configuration;
@@ -1019,15 +1227,19 @@ pub async fn disable_public_interface_of_load_balancer(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<DisablePublicInterfaceOfLoadBalancerError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1041,6 +1253,22 @@ pub async fn enable_public_interface_of_load_balancer(
     params: EnablePublicInterfaceOfLoadBalancerParams,
 ) -> Result<
     models::EnablePublicInterfaceOfLoadBalancerResponse,
+    Error<EnablePublicInterfaceOfLoadBalancerError>,
+> {
+    enable_public_interface_of_load_balancer_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`enable_public_interface_of_load_balancer`], but also returns the response headers.
+pub async fn enable_public_interface_of_load_balancer_with_headers(
+    configuration: &configuration::Configuration,
+    params: EnablePublicInterfaceOfLoadBalancerParams,
+) -> Result<
+    (
+        models::EnablePublicInterfaceOfLoadBalancerResponse,
+        reqwest::header::HeaderMap,
+    ),
     Error<EnablePublicInterfaceOfLoadBalancerError>,
 > {
     let local_var_configuration = configuration;
@@ -1071,15 +1299,19 @@ pub async fn enable_public_interface_of_load_balancer(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<EnablePublicInterfaceOfLoadBalancerError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1092,6 +1324,19 @@ pub async fn get_action_for_load_balancer(
     configuration: &configuration::Configuration,
     params: GetActionForLoadBalancerParams,
 ) -> Result<models::GetActionResponse, Error<GetActionForLoadBalancerError>> {
+    get_action_for_load_balancer_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_action_for_load_balancer`], but also returns the response headers.
+pub async fn get_action_for_load_balancer_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetActionForLoadBalancerParams,
+) -> Result<
+    (models::GetActionResponse, reqwest::header::HeaderMap),
+    Error<GetActionForLoadBalancerError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1122,15 +1367,19 @@ pub async fn get_action_for_load_balancer(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetActionForLoadBalancerError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1143,6 +1392,19 @@ pub async fn get_load_balancer(
     configuration: &configuration::Configuration,
     params: GetLoadBalancerParams,
 ) -> Result<models::GetLoadBalancerResponse, Error<GetLoadBalancerError>> {
+    get_load_balancer_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_load_balancer`], but also returns the response headers.
+pub async fn get_load_balancer_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetLoadBalancerParams,
+) -> Result<
+    (models::GetLoadBalancerResponse, reqwest::header::HeaderMap),
+    Error<GetLoadBalancerError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1167,15 +1429,19 @@ pub async fn get_load_balancer(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetLoadBalancerError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1188,6 +1454,19 @@ pub async fn get_load_balancer_action(
     configuration: &configuration::Configuration,
     params: GetLoadBalancerActionParams,
 ) -> Result<models::GetActionResponse, Error<GetLoadBalancerActionError>> {
+    get_load_balancer_action_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_load_balancer_action`], but also returns the response headers.
+pub async fn get_load_balancer_action_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetLoadBalancerActionParams,
+) -> Result<
+    (models::GetActionResponse, reqwest::header::HeaderMap),
+    Error<GetLoadBalancerActionError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1212,15 +1491,19 @@ pub async fn get_load_balancer_action(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetLoadBalancerActionError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1233,6 +1516,22 @@ pub async fn get_metrics_for_loadbalancer(
     configuration: &configuration::Configuration,
     params: GetMetricsForLoadbalancerParams,
 ) -> Result<models::GetMetricsForLoadbalancerResponse, Error<GetMetricsForLoadbalancerError>> {
+    get_metrics_for_loadbalancer_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_metrics_for_loadbalancer`], but also returns the response headers.
+pub async fn get_metrics_for_loadbalancer_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetMetricsForLoadbalancerParams,
+) -> Result<
+    (
+        models::GetMetricsForLoadbalancerResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<GetMetricsForLoadbalancerError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1284,15 +1583,19 @@ pub async fn get_metrics_for_loadbalancer(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetMetricsForLoadbalancerError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1305,6 +1608,19 @@ pub async fn list_actions_for_load_balancer(
     configuration: &configuration::Configuration,
     params: ListActionsForLoadBalancerParams,
 ) -> Result<models::ListActionsResponse, Error<ListActionsForLoadBalancerError>> {
+    list_actions_for_load_balancer_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_actions_for_load_balancer`], but also returns the response headers.
+pub async fn list_actions_for_load_balancer_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListActionsForLoadBalancerParams,
+) -> Result<
+    (models::ListActionsResponse, reqwest::header::HeaderMap),
+    Error<ListActionsForLoadBalancerError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1379,15 +1695,19 @@ pub async fn list_actions_for_load_balancer(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListActionsForLoadBalancerError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1400,6 +1720,19 @@ pub async fn list_load_balancer_actions(
     configuration: &configuration::Configuration,
     params: ListLoadBalancerActionsParams,
 ) -> Result<models::ListActionsResponse, Error<ListLoadBalancerActionsError>> {
+    list_load_balancer_actions_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_load_balancer_actions`], but also returns the response headers.
+pub async fn list_load_balancer_actions_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListLoadBalancerActionsParams,
+) -> Result<
+    (models::ListActionsResponse, reqwest::header::HeaderMap),
+    Error<ListLoadBalancerActionsError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1493,15 +1826,19 @@ pub async fn list_load_balancer_actions(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListLoadBalancerActionsError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1514,6 +1851,22 @@ pub async fn list_load_balancers(
     configuration: &configuration::Configuration,
     params: ListLoadBalancersParams,
 ) -> Result<models::ListLoadBalancersResponse, Error<ListLoadBalancersError>> {
+    list_load_balancers_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_load_balancers`], but also returns the response headers.
+pub async fn list_load_balancers_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListLoadBalancersParams,
+) -> Result<
+    (
+        models::ListLoadBalancersResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<ListLoadBalancersError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1577,15 +1930,19 @@ pub async fn list_load_balancers(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListLoadBalancersError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1598,6 +1955,16 @@ pub async fn remove_target(
     configuration: &configuration::Configuration,
     params: RemoveTargetParams,
 ) -> Result<models::RemoveTargetResponse, Error<RemoveTargetError>> {
+    remove_target_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`remove_target`], but also returns the response headers.
+pub async fn remove_target_with_headers(
+    configuration: &configuration::Configuration,
+    params: RemoveTargetParams,
+) -> Result<(models::RemoveTargetResponse, reqwest::header::HeaderMap), Error<RemoveTargetError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1628,15 +1995,19 @@ pub async fn remove_target(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<RemoveTargetError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1649,6 +2020,22 @@ pub async fn replace_load_balancer(
     configuration: &configuration::Configuration,
     params: ReplaceLoadBalancerParams,
 ) -> Result<models::ReplaceLoadBalancerResponse, Error<ReplaceLoadBalancerError>> {
+    replace_load_balancer_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`replace_load_balancer`], but also returns the response headers.
+pub async fn replace_load_balancer_with_headers(
+    configuration: &configuration::Configuration,
+    params: ReplaceLoadBalancerParams,
+) -> Result<
+    (
+        models::ReplaceLoadBalancerResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<ReplaceLoadBalancerError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1675,15 +2062,19 @@ pub async fn replace_load_balancer(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ReplaceLoadBalancerError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1696,6 +2087,17 @@ pub async fn update_service(
     configuration: &configuration::Configuration,
     params: UpdateServiceParams,
 ) -> Result<models::UpdateServiceResponse, Error<UpdateServiceError>> {
+    update_service_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`update_service`], but also returns the response headers.
+pub async fn update_service_with_headers(
+    configuration: &configuration::Configuration,
+    params: UpdateServiceParams,
+) -> Result<(models::UpdateServiceResponse, reqwest::header::HeaderMap), Error<UpdateServiceError>>
+{
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1726,15 +2128,19 @@ pub async fn update_service(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<UpdateServiceError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };

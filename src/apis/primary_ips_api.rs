@@ -259,6 +259,22 @@ pub async fn assign_primary_ip_to_resource(
     configuration: &configuration::Configuration,
     params: AssignPrimaryIpToResourceParams,
 ) -> Result<models::AssignPrimaryIpToResourceResponse, Error<AssignPrimaryIpToResourceError>> {
+    assign_primary_ip_to_resource_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`assign_primary_ip_to_resource`], but also returns the response headers.
+pub async fn assign_primary_ip_to_resource_with_headers(
+    configuration: &configuration::Configuration,
+    params: AssignPrimaryIpToResourceParams,
+) -> Result<
+    (
+        models::AssignPrimaryIpToResourceResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<AssignPrimaryIpToResourceError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -289,15 +305,19 @@ pub async fn assign_primary_ip_to_resource(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<AssignPrimaryIpToResourceError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -310,6 +330,22 @@ pub async fn change_primary_ip_protection(
     configuration: &configuration::Configuration,
     params: ChangePrimaryIpProtectionParams,
 ) -> Result<models::ChangePrimaryIpProtectionResponse, Error<ChangePrimaryIpProtectionError>> {
+    change_primary_ip_protection_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`change_primary_ip_protection`], but also returns the response headers.
+pub async fn change_primary_ip_protection_with_headers(
+    configuration: &configuration::Configuration,
+    params: ChangePrimaryIpProtectionParams,
+) -> Result<
+    (
+        models::ChangePrimaryIpProtectionResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<ChangePrimaryIpProtectionError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -340,15 +376,19 @@ pub async fn change_primary_ip_protection(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ChangePrimaryIpProtectionError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -362,6 +402,22 @@ pub async fn change_reverse_dns_records_for_primary_ip(
     params: ChangeReverseDnsRecordsForPrimaryIpParams,
 ) -> Result<
     models::ChangeReverseDnsRecordsForPrimaryIpResponse,
+    Error<ChangeReverseDnsRecordsForPrimaryIpError>,
+> {
+    change_reverse_dns_records_for_primary_ip_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`change_reverse_dns_records_for_primary_ip`], but also returns the response headers.
+pub async fn change_reverse_dns_records_for_primary_ip_with_headers(
+    configuration: &configuration::Configuration,
+    params: ChangeReverseDnsRecordsForPrimaryIpParams,
+) -> Result<
+    (
+        models::ChangeReverseDnsRecordsForPrimaryIpResponse,
+        reqwest::header::HeaderMap,
+    ),
     Error<ChangeReverseDnsRecordsForPrimaryIpError>,
 > {
     let local_var_configuration = configuration;
@@ -394,15 +450,19 @@ pub async fn change_reverse_dns_records_for_primary_ip(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ChangeReverseDnsRecordsForPrimaryIpError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -415,6 +475,19 @@ pub async fn create_primary_ip(
     configuration: &configuration::Configuration,
     params: CreatePrimaryIpParams,
 ) -> Result<models::CreatePrimaryIpResponse, Error<CreatePrimaryIpError>> {
+    create_primary_ip_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`create_primary_ip`], but also returns the response headers.
+pub async fn create_primary_ip_with_headers(
+    configuration: &configuration::Configuration,
+    params: CreatePrimaryIpParams,
+) -> Result<
+    (models::CreatePrimaryIpResponse, reqwest::header::HeaderMap),
+    Error<CreatePrimaryIpError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -440,15 +513,19 @@ pub async fn create_primary_ip(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<CreatePrimaryIpError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -461,6 +538,16 @@ pub async fn delete_primary_ip(
     configuration: &configuration::Configuration,
     params: DeletePrimaryIpParams,
 ) -> Result<(), Error<DeletePrimaryIpError>> {
+    delete_primary_ip_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`delete_primary_ip`], but also returns the response headers.
+pub async fn delete_primary_ip_with_headers(
+    configuration: &configuration::Configuration,
+    params: DeletePrimaryIpParams,
+) -> Result<((), reqwest::header::HeaderMap), Error<DeletePrimaryIpError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -485,15 +572,17 @@ pub async fn delete_primary_ip(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(())
+        Ok(((), local_var_headers))
     } else {
         let local_var_entity: Option<DeletePrimaryIpError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -506,6 +595,19 @@ pub async fn get_action_for_primary_ip(
     configuration: &configuration::Configuration,
     params: GetActionForPrimaryIpParams,
 ) -> Result<models::GetActionResponse, Error<GetActionForPrimaryIpError>> {
+    get_action_for_primary_ip_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_action_for_primary_ip`], but also returns the response headers.
+pub async fn get_action_for_primary_ip_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetActionForPrimaryIpParams,
+) -> Result<
+    (models::GetActionResponse, reqwest::header::HeaderMap),
+    Error<GetActionForPrimaryIpError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -536,15 +638,19 @@ pub async fn get_action_for_primary_ip(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetActionForPrimaryIpError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -557,6 +663,16 @@ pub async fn get_primary_ip(
     configuration: &configuration::Configuration,
     params: GetPrimaryIpParams,
 ) -> Result<models::GetPrimaryIpResponse, Error<GetPrimaryIpError>> {
+    get_primary_ip_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_primary_ip`], but also returns the response headers.
+pub async fn get_primary_ip_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetPrimaryIpParams,
+) -> Result<(models::GetPrimaryIpResponse, reqwest::header::HeaderMap), Error<GetPrimaryIpError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -581,15 +697,19 @@ pub async fn get_primary_ip(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetPrimaryIpError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -602,6 +722,17 @@ pub async fn get_primary_ip_action(
     configuration: &configuration::Configuration,
     params: GetPrimaryIpActionParams,
 ) -> Result<models::GetActionResponse, Error<GetPrimaryIpActionError>> {
+    get_primary_ip_action_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_primary_ip_action`], but also returns the response headers.
+pub async fn get_primary_ip_action_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetPrimaryIpActionParams,
+) -> Result<(models::GetActionResponse, reqwest::header::HeaderMap), Error<GetPrimaryIpActionError>>
+{
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -626,15 +757,19 @@ pub async fn get_primary_ip_action(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetPrimaryIpActionError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -647,6 +782,19 @@ pub async fn list_actions_for_primary_ip(
     configuration: &configuration::Configuration,
     params: ListActionsForPrimaryIpParams,
 ) -> Result<models::ListActionsResponse, Error<ListActionsForPrimaryIpError>> {
+    list_actions_for_primary_ip_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_actions_for_primary_ip`], but also returns the response headers.
+pub async fn list_actions_for_primary_ip_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListActionsForPrimaryIpParams,
+) -> Result<
+    (models::ListActionsResponse, reqwest::header::HeaderMap),
+    Error<ListActionsForPrimaryIpError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -721,15 +869,19 @@ pub async fn list_actions_for_primary_ip(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListActionsForPrimaryIpError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -742,6 +894,19 @@ pub async fn list_primary_ip_actions(
     configuration: &configuration::Configuration,
     params: ListPrimaryIpActionsParams,
 ) -> Result<models::ListActionsResponse, Error<ListPrimaryIpActionsError>> {
+    list_primary_ip_actions_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_primary_ip_actions`], but also returns the response headers.
+pub async fn list_primary_ip_actions_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListPrimaryIpActionsParams,
+) -> Result<
+    (models::ListActionsResponse, reqwest::header::HeaderMap),
+    Error<ListPrimaryIpActionsError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -835,15 +1000,19 @@ pub async fn list_primary_ip_actions(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListPrimaryIpActionsError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -856,6 +1025,17 @@ pub async fn list_primary_ips(
     configuration: &configuration::Configuration,
     params: ListPrimaryIpsParams,
 ) -> Result<models::ListPrimaryIpsResponse, Error<ListPrimaryIpsError>> {
+    list_primary_ips_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_primary_ips`], but also returns the response headers.
+pub async fn list_primary_ips_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListPrimaryIpsParams,
+) -> Result<(models::ListPrimaryIpsResponse, reqwest::header::HeaderMap), Error<ListPrimaryIpsError>>
+{
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -923,15 +1103,19 @@ pub async fn list_primary_ips(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListPrimaryIpsError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -944,6 +1128,19 @@ pub async fn replace_primary_ip(
     configuration: &configuration::Configuration,
     params: ReplacePrimaryIpParams,
 ) -> Result<models::ReplacePrimaryIpResponse, Error<ReplacePrimaryIpError>> {
+    replace_primary_ip_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`replace_primary_ip`], but also returns the response headers.
+pub async fn replace_primary_ip_with_headers(
+    configuration: &configuration::Configuration,
+    params: ReplacePrimaryIpParams,
+) -> Result<
+    (models::ReplacePrimaryIpResponse, reqwest::header::HeaderMap),
+    Error<ReplacePrimaryIpError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -970,15 +1167,19 @@ pub async fn replace_primary_ip(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ReplacePrimaryIpError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -992,6 +1193,22 @@ pub async fn unassign_primary_ip_from_resource(
     params: UnassignPrimaryIpFromResourceParams,
 ) -> Result<models::UnassignPrimaryIpFromResourceResponse, Error<UnassignPrimaryIpFromResourceError>>
 {
+    unassign_primary_ip_from_resource_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`unassign_primary_ip_from_resource`], but also returns the response headers.
+pub async fn unassign_primary_ip_from_resource_with_headers(
+    configuration: &configuration::Configuration,
+    params: UnassignPrimaryIpFromResourceParams,
+) -> Result<
+    (
+        models::UnassignPrimaryIpFromResourceResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<UnassignPrimaryIpFromResourceError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1020,15 +1237,19 @@ pub async fn unassign_primary_ip_from_resource(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<UnassignPrimaryIpFromResourceError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };

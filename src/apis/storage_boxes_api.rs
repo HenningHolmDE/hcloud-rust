@@ -573,6 +573,22 @@ pub async fn change_home_directory(
     configuration: &configuration::Configuration,
     params: ChangeHomeDirectoryParams,
 ) -> Result<models::ChangeHomeDirectoryResponse, Error<ChangeHomeDirectoryError>> {
+    change_home_directory_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`change_home_directory`], but also returns the response headers.
+pub async fn change_home_directory_with_headers(
+    configuration: &configuration::Configuration,
+    params: ChangeHomeDirectoryParams,
+) -> Result<
+    (
+        models::ChangeHomeDirectoryResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<ChangeHomeDirectoryError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -605,15 +621,19 @@ pub async fn change_home_directory(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ChangeHomeDirectoryError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -626,6 +646,19 @@ pub async fn change_protection(
     configuration: &configuration::Configuration,
     params: ChangeProtectionParams,
 ) -> Result<models::ChangeProtectionResponse, Error<ChangeProtectionError>> {
+    change_protection_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`change_protection`], but also returns the response headers.
+pub async fn change_protection_with_headers(
+    configuration: &configuration::Configuration,
+    params: ChangeProtectionParams,
+) -> Result<
+    (models::ChangeProtectionResponse, reqwest::header::HeaderMap),
+    Error<ChangeProtectionError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -656,15 +689,19 @@ pub async fn change_protection(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ChangeProtectionError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -677,6 +714,16 @@ pub async fn change_type(
     configuration: &configuration::Configuration,
     params: ChangeTypeParams,
 ) -> Result<models::ChangeTypeResponse, Error<ChangeTypeError>> {
+    change_type_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`change_type`], but also returns the response headers.
+pub async fn change_type_with_headers(
+    configuration: &configuration::Configuration,
+    params: ChangeTypeParams,
+) -> Result<(models::ChangeTypeResponse, reqwest::header::HeaderMap), Error<ChangeTypeError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -707,15 +754,19 @@ pub async fn change_type(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ChangeTypeError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -728,6 +779,17 @@ pub async fn create_snapshot(
     configuration: &configuration::Configuration,
     params: CreateSnapshotParams,
 ) -> Result<models::CreateSnapshotResponse, Error<CreateSnapshotError>> {
+    create_snapshot_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`create_snapshot`], but also returns the response headers.
+pub async fn create_snapshot_with_headers(
+    configuration: &configuration::Configuration,
+    params: CreateSnapshotParams,
+) -> Result<(models::CreateSnapshotResponse, reqwest::header::HeaderMap), Error<CreateSnapshotError>>
+{
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -754,15 +816,19 @@ pub async fn create_snapshot(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<CreateSnapshotError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -775,6 +841,19 @@ pub async fn create_storage_box(
     configuration: &configuration::Configuration,
     params: CreateStorageBoxParams,
 ) -> Result<models::CreateStorageBoxResponse, Error<CreateStorageBoxError>> {
+    create_storage_box_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`create_storage_box`], but also returns the response headers.
+pub async fn create_storage_box_with_headers(
+    configuration: &configuration::Configuration,
+    params: CreateStorageBoxParams,
+) -> Result<
+    (models::CreateStorageBoxResponse, reqwest::header::HeaderMap),
+    Error<CreateStorageBoxError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -800,15 +879,19 @@ pub async fn create_storage_box(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<CreateStorageBoxError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -821,6 +904,19 @@ pub async fn create_subaccount(
     configuration: &configuration::Configuration,
     params: CreateSubaccountParams,
 ) -> Result<models::CreateSubaccountResponse, Error<CreateSubaccountError>> {
+    create_subaccount_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`create_subaccount`], but also returns the response headers.
+pub async fn create_subaccount_with_headers(
+    configuration: &configuration::Configuration,
+    params: CreateSubaccountParams,
+) -> Result<
+    (models::CreateSubaccountResponse, reqwest::header::HeaderMap),
+    Error<CreateSubaccountError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -851,15 +947,19 @@ pub async fn create_subaccount(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<CreateSubaccountError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -872,6 +972,17 @@ pub async fn delete_snapshot(
     configuration: &configuration::Configuration,
     params: DeleteSnapshotParams,
 ) -> Result<models::DeleteSnapshotResponse, Error<DeleteSnapshotError>> {
+    delete_snapshot_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`delete_snapshot`], but also returns the response headers.
+pub async fn delete_snapshot_with_headers(
+    configuration: &configuration::Configuration,
+    params: DeleteSnapshotParams,
+) -> Result<(models::DeleteSnapshotResponse, reqwest::header::HeaderMap), Error<DeleteSnapshotError>>
+{
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -902,15 +1013,19 @@ pub async fn delete_snapshot(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<DeleteSnapshotError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -923,6 +1038,19 @@ pub async fn delete_storage_box(
     configuration: &configuration::Configuration,
     params: DeleteStorageBoxParams,
 ) -> Result<models::DeleteStorageBoxResponse, Error<DeleteStorageBoxError>> {
+    delete_storage_box_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`delete_storage_box`], but also returns the response headers.
+pub async fn delete_storage_box_with_headers(
+    configuration: &configuration::Configuration,
+    params: DeleteStorageBoxParams,
+) -> Result<
+    (models::DeleteStorageBoxResponse, reqwest::header::HeaderMap),
+    Error<DeleteStorageBoxError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -947,15 +1075,19 @@ pub async fn delete_storage_box(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<DeleteStorageBoxError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -968,6 +1100,19 @@ pub async fn delete_subaccount(
     configuration: &configuration::Configuration,
     params: DeleteSubaccountParams,
 ) -> Result<models::DeleteSubaccountResponse, Error<DeleteSubaccountError>> {
+    delete_subaccount_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`delete_subaccount`], but also returns the response headers.
+pub async fn delete_subaccount_with_headers(
+    configuration: &configuration::Configuration,
+    params: DeleteSubaccountParams,
+) -> Result<
+    (models::DeleteSubaccountResponse, reqwest::header::HeaderMap),
+    Error<DeleteSubaccountError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -998,15 +1143,19 @@ pub async fn delete_subaccount(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<DeleteSubaccountError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1019,6 +1168,22 @@ pub async fn disable_snapshot_plan(
     configuration: &configuration::Configuration,
     params: DisableSnapshotPlanParams,
 ) -> Result<models::DisableSnapshotPlanResponse, Error<DisableSnapshotPlanError>> {
+    disable_snapshot_plan_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`disable_snapshot_plan`], but also returns the response headers.
+pub async fn disable_snapshot_plan_with_headers(
+    configuration: &configuration::Configuration,
+    params: DisableSnapshotPlanParams,
+) -> Result<
+    (
+        models::DisableSnapshotPlanResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<DisableSnapshotPlanError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1047,15 +1212,19 @@ pub async fn disable_snapshot_plan(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<DisableSnapshotPlanError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1068,6 +1237,22 @@ pub async fn enable_snapshot_plan(
     configuration: &configuration::Configuration,
     params: EnableSnapshotPlanParams,
 ) -> Result<models::EnableSnapshotPlanResponse, Error<EnableSnapshotPlanError>> {
+    enable_snapshot_plan_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`enable_snapshot_plan`], but also returns the response headers.
+pub async fn enable_snapshot_plan_with_headers(
+    configuration: &configuration::Configuration,
+    params: EnableSnapshotPlanParams,
+) -> Result<
+    (
+        models::EnableSnapshotPlanResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<EnableSnapshotPlanError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1098,15 +1283,19 @@ pub async fn enable_snapshot_plan(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<EnableSnapshotPlanError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1119,6 +1308,19 @@ pub async fn get_action_for_storage_box(
     configuration: &configuration::Configuration,
     params: GetActionForStorageBoxParams,
 ) -> Result<models::GetActionResponse, Error<GetActionForStorageBoxError>> {
+    get_action_for_storage_box_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_action_for_storage_box`], but also returns the response headers.
+pub async fn get_action_for_storage_box_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetActionForStorageBoxParams,
+) -> Result<
+    (models::GetActionResponse, reqwest::header::HeaderMap),
+    Error<GetActionForStorageBoxError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1149,15 +1351,19 @@ pub async fn get_action_for_storage_box(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetActionForStorageBoxError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1170,6 +1376,16 @@ pub async fn get_snapshot(
     configuration: &configuration::Configuration,
     params: GetSnapshotParams,
 ) -> Result<models::GetSnapshotResponse, Error<GetSnapshotError>> {
+    get_snapshot_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_snapshot`], but also returns the response headers.
+pub async fn get_snapshot_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetSnapshotParams,
+) -> Result<(models::GetSnapshotResponse, reqwest::header::HeaderMap), Error<GetSnapshotError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1200,15 +1416,19 @@ pub async fn get_snapshot(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetSnapshotError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1221,6 +1441,17 @@ pub async fn get_storage_box(
     configuration: &configuration::Configuration,
     params: GetStorageBoxParams,
 ) -> Result<models::GetStorageBoxResponse, Error<GetStorageBoxError>> {
+    get_storage_box_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_storage_box`], but also returns the response headers.
+pub async fn get_storage_box_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetStorageBoxParams,
+) -> Result<(models::GetStorageBoxResponse, reqwest::header::HeaderMap), Error<GetStorageBoxError>>
+{
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1245,15 +1476,19 @@ pub async fn get_storage_box(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetStorageBoxError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1266,6 +1501,17 @@ pub async fn get_storage_box_action(
     configuration: &configuration::Configuration,
     params: GetStorageBoxActionParams,
 ) -> Result<models::GetActionResponse, Error<GetStorageBoxActionError>> {
+    get_storage_box_action_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_storage_box_action`], but also returns the response headers.
+pub async fn get_storage_box_action_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetStorageBoxActionParams,
+) -> Result<(models::GetActionResponse, reqwest::header::HeaderMap), Error<GetStorageBoxActionError>>
+{
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1290,15 +1536,19 @@ pub async fn get_storage_box_action(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetStorageBoxActionError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1311,6 +1561,17 @@ pub async fn get_subaccount(
     configuration: &configuration::Configuration,
     params: GetSubaccountParams,
 ) -> Result<models::GetSubaccountResponse, Error<GetSubaccountError>> {
+    get_subaccount_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`get_subaccount`], but also returns the response headers.
+pub async fn get_subaccount_with_headers(
+    configuration: &configuration::Configuration,
+    params: GetSubaccountParams,
+) -> Result<(models::GetSubaccountResponse, reqwest::header::HeaderMap), Error<GetSubaccountError>>
+{
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1341,15 +1602,19 @@ pub async fn get_subaccount(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<GetSubaccountError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1362,6 +1627,19 @@ pub async fn list_actions_for_storage_box(
     configuration: &configuration::Configuration,
     params: ListActionsForStorageBoxParams,
 ) -> Result<models::ListActionsResponse, Error<ListActionsForStorageBoxError>> {
+    list_actions_for_storage_box_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_actions_for_storage_box`], but also returns the response headers.
+pub async fn list_actions_for_storage_box_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListActionsForStorageBoxParams,
+) -> Result<
+    (models::ListActionsResponse, reqwest::header::HeaderMap),
+    Error<ListActionsForStorageBoxError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1436,15 +1714,19 @@ pub async fn list_actions_for_storage_box(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListActionsForStorageBoxError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1457,6 +1739,22 @@ pub async fn list_folders_of_storage_box(
     configuration: &configuration::Configuration,
     params: ListFoldersOfStorageBoxParams,
 ) -> Result<models::ListFoldersOfStorageBoxResponse, Error<ListFoldersOfStorageBoxError>> {
+    list_folders_of_storage_box_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_folders_of_storage_box`], but also returns the response headers.
+pub async fn list_folders_of_storage_box_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListFoldersOfStorageBoxParams,
+) -> Result<
+    (
+        models::ListFoldersOfStorageBoxResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<ListFoldersOfStorageBoxError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1486,15 +1784,19 @@ pub async fn list_folders_of_storage_box(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListFoldersOfStorageBoxError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1507,6 +1809,17 @@ pub async fn list_snapshots(
     configuration: &configuration::Configuration,
     params: ListSnapshotsParams,
 ) -> Result<models::ListSnapshotsResponse, Error<ListSnapshotsError>> {
+    list_snapshots_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_snapshots`], but also returns the response headers.
+pub async fn list_snapshots_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListSnapshotsParams,
+) -> Result<(models::ListSnapshotsResponse, reqwest::header::HeaderMap), Error<ListSnapshotsError>>
+{
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1566,15 +1879,19 @@ pub async fn list_snapshots(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListSnapshotsError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1587,6 +1904,19 @@ pub async fn list_storage_box_actions(
     configuration: &configuration::Configuration,
     params: ListStorageBoxActionsParams,
 ) -> Result<models::ListActionsResponse, Error<ListStorageBoxActionsError>> {
+    list_storage_box_actions_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_storage_box_actions`], but also returns the response headers.
+pub async fn list_storage_box_actions_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListStorageBoxActionsParams,
+) -> Result<
+    (models::ListActionsResponse, reqwest::header::HeaderMap),
+    Error<ListStorageBoxActionsError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1680,15 +2010,19 @@ pub async fn list_storage_box_actions(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListStorageBoxActionsError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1701,6 +2035,19 @@ pub async fn list_storage_boxes(
     configuration: &configuration::Configuration,
     params: ListStorageBoxesParams,
 ) -> Result<models::ListStorageBoxesResponse, Error<ListStorageBoxesError>> {
+    list_storage_boxes_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_storage_boxes`], but also returns the response headers.
+pub async fn list_storage_boxes_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListStorageBoxesParams,
+) -> Result<
+    (models::ListStorageBoxesResponse, reqwest::header::HeaderMap),
+    Error<ListStorageBoxesError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1764,15 +2111,19 @@ pub async fn list_storage_boxes(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListStorageBoxesError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1785,6 +2136,19 @@ pub async fn list_subaccounts(
     configuration: &configuration::Configuration,
     params: ListSubaccountsParams,
 ) -> Result<models::ListSubaccountsResponse, Error<ListSubaccountsError>> {
+    list_subaccounts_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`list_subaccounts`], but also returns the response headers.
+pub async fn list_subaccounts_with_headers(
+    configuration: &configuration::Configuration,
+    params: ListSubaccountsParams,
+) -> Result<
+    (models::ListSubaccountsResponse, reqwest::header::HeaderMap),
+    Error<ListSubaccountsError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1848,15 +2212,19 @@ pub async fn list_subaccounts(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ListSubaccountsError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1869,6 +2237,19 @@ pub async fn replace_snapshot(
     configuration: &configuration::Configuration,
     params: ReplaceSnapshotParams,
 ) -> Result<models::ReplaceSnapshotResponse, Error<ReplaceSnapshotError>> {
+    replace_snapshot_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`replace_snapshot`], but also returns the response headers.
+pub async fn replace_snapshot_with_headers(
+    configuration: &configuration::Configuration,
+    params: ReplaceSnapshotParams,
+) -> Result<
+    (models::ReplaceSnapshotResponse, reqwest::header::HeaderMap),
+    Error<ReplaceSnapshotError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1901,15 +2282,19 @@ pub async fn replace_snapshot(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ReplaceSnapshotError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1922,6 +2307,22 @@ pub async fn replace_storage_box(
     configuration: &configuration::Configuration,
     params: ReplaceStorageBoxParams,
 ) -> Result<models::ReplaceStorageBoxResponse, Error<ReplaceStorageBoxError>> {
+    replace_storage_box_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`replace_storage_box`], but also returns the response headers.
+pub async fn replace_storage_box_with_headers(
+    configuration: &configuration::Configuration,
+    params: ReplaceStorageBoxParams,
+) -> Result<
+    (
+        models::ReplaceStorageBoxResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<ReplaceStorageBoxError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -1948,15 +2349,19 @@ pub async fn replace_storage_box(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ReplaceStorageBoxError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -1969,6 +2374,22 @@ pub async fn replace_subaccount(
     configuration: &configuration::Configuration,
     params: ReplaceSubaccountParams,
 ) -> Result<models::ReplaceSubaccountResponse, Error<ReplaceSubaccountError>> {
+    replace_subaccount_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`replace_subaccount`], but also returns the response headers.
+pub async fn replace_subaccount_with_headers(
+    configuration: &configuration::Configuration,
+    params: ReplaceSubaccountParams,
+) -> Result<
+    (
+        models::ReplaceSubaccountResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<ReplaceSubaccountError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -2001,15 +2422,19 @@ pub async fn replace_subaccount(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ReplaceSubaccountError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -2022,6 +2447,19 @@ pub async fn reset_storage_box_password(
     configuration: &configuration::Configuration,
     params: ResetStorageBoxPasswordParams,
 ) -> Result<models::ResetPasswordResponse, Error<ResetStorageBoxPasswordError>> {
+    reset_storage_box_password_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`reset_storage_box_password`], but also returns the response headers.
+pub async fn reset_storage_box_password_with_headers(
+    configuration: &configuration::Configuration,
+    params: ResetStorageBoxPasswordParams,
+) -> Result<
+    (models::ResetPasswordResponse, reqwest::header::HeaderMap),
+    Error<ResetStorageBoxPasswordError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -2052,15 +2490,19 @@ pub async fn reset_storage_box_password(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ResetStorageBoxPasswordError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -2073,6 +2515,19 @@ pub async fn reset_storage_box_subaccount_password(
     configuration: &configuration::Configuration,
     params: ResetStorageBoxSubaccountPasswordParams,
 ) -> Result<models::ResetPasswordResponse, Error<ResetStorageBoxSubaccountPasswordError>> {
+    reset_storage_box_subaccount_password_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`reset_storage_box_subaccount_password`], but also returns the response headers.
+pub async fn reset_storage_box_subaccount_password_with_headers(
+    configuration: &configuration::Configuration,
+    params: ResetStorageBoxSubaccountPasswordParams,
+) -> Result<
+    (models::ResetPasswordResponse, reqwest::header::HeaderMap),
+    Error<ResetStorageBoxSubaccountPasswordError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -2105,15 +2560,19 @@ pub async fn reset_storage_box_subaccount_password(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<ResetStorageBoxSubaccountPasswordError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -2126,6 +2585,19 @@ pub async fn rollback_snapshot(
     configuration: &configuration::Configuration,
     params: RollbackSnapshotParams,
 ) -> Result<models::RollbackSnapshotResponse, Error<RollbackSnapshotError>> {
+    rollback_snapshot_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`rollback_snapshot`], but also returns the response headers.
+pub async fn rollback_snapshot_with_headers(
+    configuration: &configuration::Configuration,
+    params: RollbackSnapshotParams,
+) -> Result<
+    (models::RollbackSnapshotResponse, reqwest::header::HeaderMap),
+    Error<RollbackSnapshotError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -2156,15 +2628,19 @@ pub async fn rollback_snapshot(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<RollbackSnapshotError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -2177,6 +2653,22 @@ pub async fn update_storage_box_access_settings(
     configuration: &configuration::Configuration,
     params: UpdateStorageBoxAccessSettingsParams,
 ) -> Result<models::UpdateAccessSettingsResponse, Error<UpdateStorageBoxAccessSettingsError>> {
+    update_storage_box_access_settings_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`update_storage_box_access_settings`], but also returns the response headers.
+pub async fn update_storage_box_access_settings_with_headers(
+    configuration: &configuration::Configuration,
+    params: UpdateStorageBoxAccessSettingsParams,
+) -> Result<
+    (
+        models::UpdateAccessSettingsResponse,
+        reqwest::header::HeaderMap,
+    ),
+    Error<UpdateStorageBoxAccessSettingsError>,
+> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -2207,15 +2699,19 @@ pub async fn update_storage_box_access_settings(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<UpdateStorageBoxAccessSettingsError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
@@ -2229,6 +2725,22 @@ pub async fn update_storage_box_subaccount_access_settings(
     params: UpdateStorageBoxSubaccountAccessSettingsParams,
 ) -> Result<
     models::UpdateAccessSettingsResponse,
+    Error<UpdateStorageBoxSubaccountAccessSettingsError>,
+> {
+    update_storage_box_subaccount_access_settings_with_headers(configuration, params)
+        .await
+        .map(|(local_var_entity, _)| local_var_entity)
+}
+
+/// Same as [`update_storage_box_subaccount_access_settings`], but also returns the response headers.
+pub async fn update_storage_box_subaccount_access_settings_with_headers(
+    configuration: &configuration::Configuration,
+    params: UpdateStorageBoxSubaccountAccessSettingsParams,
+) -> Result<
+    (
+        models::UpdateAccessSettingsResponse,
+        reqwest::header::HeaderMap,
+    ),
     Error<UpdateStorageBoxSubaccountAccessSettingsError>,
 > {
     let local_var_configuration = configuration;
@@ -2263,15 +2775,19 @@ pub async fn update_storage_box_subaccount_access_settings(
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
+    let local_var_headers = local_var_resp.headers().clone();
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        serde_json::from_str(&local_var_content)
+            .map(|local_var_entity| (local_var_entity, local_var_headers))
+            .map_err(Error::from)
     } else {
         let local_var_entity: Option<UpdateStorageBoxSubaccountAccessSettingsError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
+            headers: Box::new(local_var_headers),
             content: local_var_content,
             entity: local_var_entity,
         };
