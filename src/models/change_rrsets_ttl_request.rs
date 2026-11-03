@@ -15,7 +15,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ChangeRrsetsTtlRequest {
     /// Time To Live (TTL) of the RRSet.  Must be in between 60s and 2147483647s.  If not set, the Zone's Default TTL is used.
-    #[serde(rename = "ttl", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "ttl")]
     pub ttl: Option<i32>,
 }
 

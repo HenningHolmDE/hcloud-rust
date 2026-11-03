@@ -15,10 +15,10 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct LoadBalancerPublicNetIpv4 {
     /// Reverse DNS PTR entry for the IPv4 address of this Load Balancer.
-    #[serde(rename = "dns_ptr", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "dns_ptr")]
     pub dns_ptr: Option<String>,
     /// IP address (v4) of this Load Balancer.
-    #[serde(rename = "ip", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "ip")]
     pub ip: Option<String>,
 }
 

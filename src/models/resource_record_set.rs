@@ -28,7 +28,7 @@ pub struct ResourceRecordSet {
     #[serde(rename = "records")]
     pub records: Vec<models::ResourceRecord>,
     /// Time To Live (TTL) of the RRSet.  Must be in between 60s and 2147483647s.  If not set, the Zone's Default TTL is used.
-    #[serde(rename = "ttl", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "ttl")]
     pub ttl: Option<i32>,
     #[serde(rename = "type")]
     pub r#type: models::ResourceRecordSetType,
