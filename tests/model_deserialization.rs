@@ -33,10 +33,7 @@ where
     let mut payload = model_json::<T>();
     payload[field] = value.clone();
     let model: T = serde_json::from_value(payload).expect("nullable field value must deserialize");
-    assert_eq!(
-        serde_json::to_value(model).unwrap().get(field),
-        Some(&value)
-    );
+    assert_eq!(serde_json::to_value(model).unwrap().get(field), Some(&value));
 }
 
 #[test]
