@@ -29,7 +29,7 @@ pub struct Image {
     #[serde(rename = "deleted", deserialize_with = "Option::deserialize")]
     pub deleted: Option<String>,
     /// Point in time when the Image is considered to be deprecated (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).
-    #[serde(rename = "deprecated", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "deprecated", default, deserialize_with = "Option::deserialize")]
     pub deprecated: Option<String>,
     /// Description of the Image.
     #[serde(rename = "description")]

@@ -21,7 +21,7 @@ pub struct StorageBoxType {
     )]
     pub automatic_snapshot_limit: Option<i32>,
     /// Describes if, when and how the resource is deprecated. If this field is set to `null` the resource is not deprecated. If a value is set, it is considered deprecated.
-    #[serde(rename = "deprecation", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "deprecation", default, deserialize_with = "Option::deserialize")]
     pub deprecation: Option<Box<models::DeprecationInfo>>,
     /// Description of the Storage Box Type.
     #[serde(rename = "description")]
