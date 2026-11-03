@@ -18,7 +18,7 @@ pub struct Ipv6 {
     #[serde(rename = "blocked")]
     pub blocked: bool,
     /// Reverse DNS PTR entries for the IPv6 addresses of this Server.
-    #[serde(rename = "dns_ptr", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "dns_ptr")]
     pub dns_ptr: Option<Vec<models::DnsPtr>>,
     /// ID of the Primary IP.
     #[serde(rename = "id", skip_serializing_if = "Option::is_none")]

@@ -32,10 +32,10 @@ pub struct StorageBox {
     #[serde(rename = "protection")]
     pub protection: Box<models::Protection>,
     /// FQDN of the Storage Box.  Not available if the `status` is `initializing`.
-    #[serde(rename = "server", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "server")]
     pub server: Option<String>,
     /// Details of the active snapshot plan.  Not available if the `status` is `initializing`.
-    #[serde(rename = "snapshot_plan", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "snapshot_plan")]
     pub snapshot_plan: Option<Box<models::SnapshotPlan>>,
     #[serde(rename = "stats")]
     pub stats: Box<models::StorageBoxStats>,
@@ -45,10 +45,10 @@ pub struct StorageBox {
     #[serde(rename = "storage_box_type")]
     pub storage_box_type: Box<models::StorageBoxType>,
     /// Host system of the Storage Box.  Not available if the `status` is `initializing`.
-    #[serde(rename = "system", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "system")]
     pub system: Option<String>,
     /// Primary username of the Storage Box.  Not available if the `status` is `initializing`.
-    #[serde(rename = "username", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "username")]
     pub username: Option<String>,
 }
 

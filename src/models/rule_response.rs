@@ -28,7 +28,7 @@ pub struct RuleResponse {
     #[serde(rename = "direction")]
     pub direction: Direction,
     /// Port or port range to apply the rule for.  Only applicable for protocols `tcp` and `udp`.  A port range can be specified by separating lower and upper bounds with a dash. `1024-5000` will include all ports starting from 1024 up to port 5000.
-    #[serde(rename = "port", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "port")]
     pub port: Option<String>,
     /// Network protocol to apply the rule for.
     #[serde(rename = "protocol")]

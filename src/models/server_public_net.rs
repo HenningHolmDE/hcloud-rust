@@ -21,10 +21,10 @@ pub struct ServerPublicNet {
     #[serde(rename = "floating_ips")]
     pub floating_ips: Vec<i64>,
     /// IP address (v4) and its reverse DNS entry of this Server.
-    #[serde(rename = "ipv4", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "ipv4")]
     pub ipv4: Option<Box<models::Ipv4>>,
     /// IPv6 network assigned to this Server and its reverse DNS entry.
-    #[serde(rename = "ipv6", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "ipv6")]
     pub ipv6: Option<Box<models::Ipv6>>,
 }
 

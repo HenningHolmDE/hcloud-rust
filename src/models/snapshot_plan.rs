@@ -15,10 +15,10 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct SnapshotPlan {
     /// Day of the month when the Snapshot Plan is executed.  Null means every day.
-    #[serde(rename = "day_of_month", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "day_of_month")]
     pub day_of_month: Option<i32>,
     /// Day of the week when the Snapshot Plan is executed.  Starts at 1 for Monday til 7 for Sunday. Null means every day.
-    #[serde(rename = "day_of_week", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "day_of_week")]
     pub day_of_week: Option<i32>,
     /// Hour when the Snapshot Plan is executed (UTC).
     #[serde(rename = "hour")]

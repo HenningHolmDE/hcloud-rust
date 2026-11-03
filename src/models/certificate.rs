@@ -15,7 +15,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Certificate {
     /// Certificate and chain in PEM format, in order so that each record directly certifies the one preceding.
-    #[serde(rename = "certificate", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "certificate")]
     pub certificate: Option<String>,
     /// Point in time when the Resource was created (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).
     #[serde(rename = "created")]
@@ -24,7 +24,7 @@ pub struct Certificate {
     #[serde(rename = "domain_names")]
     pub domain_names: Vec<String>,
     /// SHA256 fingerprint of the Certificate.
-    #[serde(rename = "fingerprint", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "fingerprint")]
     pub fingerprint: Option<String>,
     /// ID of the Certificate.
     #[serde(rename = "id")]
@@ -36,10 +36,10 @@ pub struct Certificate {
     #[serde(rename = "name")]
     pub name: String,
     /// Point in time when the Certificate stops being valid (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).
-    #[serde(rename = "not_valid_after", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "not_valid_after")]
     pub not_valid_after: Option<String>,
     /// Point in time when the Certificate becomes valid (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).
-    #[serde(rename = "not_valid_before", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "not_valid_before")]
     pub not_valid_before: Option<String>,
     #[serde(
         rename = "status",

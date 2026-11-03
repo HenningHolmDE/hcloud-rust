@@ -20,7 +20,7 @@ pub struct FloatingIp {
     #[serde(rename = "created")]
     pub created: String,
     /// Description of the Resource.
-    #[serde(rename = "description", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "description")]
     pub description: Option<String>,
     /// List of reverse DNS entries for the Floating IP.
     #[serde(rename = "dns_ptr")]
@@ -42,7 +42,7 @@ pub struct FloatingIp {
     #[serde(rename = "protection")]
     pub protection: Box<models::Protection>,
     /// Server the Floating IP is assigned to.  `null` if not assigned.
-    #[serde(rename = "server", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "server")]
     pub server: Option<i64>,
     #[serde(rename = "type")]
     pub r#type: models::IpType,
