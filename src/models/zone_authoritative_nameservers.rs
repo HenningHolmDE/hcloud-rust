@@ -20,10 +20,7 @@ pub struct ZoneAuthoritativeNameservers {
     #[serde(rename = "delegated")]
     pub delegated: Vec<String>,
     /// Point in time (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format) when the DNS zone delegation was last checked.
-    #[serde(
-        rename = "delegation_last_check",
-        deserialize_with = "Option::deserialize"
-    )]
+    #[serde(rename = "delegation_last_check")]
     pub delegation_last_check: Option<String>,
     /// Status of the delegation.
     #[serde(rename = "delegation_status", skip_serializing_if = "Option::is_none")]

@@ -15,7 +15,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct AssignFloatingIpToServerRequest {
     /// Server the Floating IP is assigned to.  `null` if not assigned.
-    #[serde(rename = "server", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "server")]
     pub server: Option<i64>,
 }
 
