@@ -17,19 +17,19 @@ pub struct Image {
     #[serde(rename = "architecture")]
     pub architecture: models::Architecture,
     /// ID of Server the Image is bound to. Only set for Images of type `backup`.
-    #[serde(rename = "bound_to", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "bound_to")]
     pub bound_to: Option<i64>,
     /// Point in time when the Resource was created (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).
     #[serde(rename = "created")]
     pub created: String,
     /// Information about the Server the Image was created from.
-    #[serde(rename = "created_from", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "created_from")]
     pub created_from: Option<Box<models::CreatedFrom>>,
     /// Point in time where the Image was deleted (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).
-    #[serde(rename = "deleted", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "deleted")]
     pub deleted: Option<String>,
     /// Point in time when the Image is considered to be deprecated (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).
-    #[serde(rename = "deprecated", default, deserialize_with = "Option::deserialize")]
+    #[serde(rename = "deprecated")]
     pub deprecated: Option<String>,
     /// Description of the Image.
     #[serde(rename = "description")]
@@ -41,19 +41,19 @@ pub struct Image {
     #[serde(rename = "id")]
     pub id: i64,
     /// Size of the Image file in our storage in GB. For snapshot Images this is the value relevant for calculating costs for the Image.
-    #[serde(rename = "image_size", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "image_size")]
     pub image_size: Option<f64>,
     /// User-defined labels (`key/value` pairs) for the Resource. For more information, see \"Labels\".  | User-defined labels (`key/value` pairs) for the Resource.  Note that the set of Labels provided in the request will overwrite the existing one.  For more information, see \"Labels\".
     #[serde(rename = "labels")]
     pub labels: std::collections::HashMap<String, String>,
     /// Unique identifier of the Image. This value is only set for system Images.
-    #[serde(rename = "name", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "name")]
     pub name: Option<String>,
     /// Flavor of operating system contained in the Image.
     #[serde(rename = "os_flavor")]
     pub os_flavor: OsFlavor,
     /// Operating system version.
-    #[serde(rename = "os_version", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "os_version")]
     pub os_version: Option<String>,
     #[serde(rename = "protection")]
     pub protection: Box<models::Protection>,

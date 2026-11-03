@@ -15,10 +15,10 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Pagination {
     /// Page number of the last page available. Can be null if the current page is the last one.
-    #[serde(rename = "last_page", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "last_page")]
     pub last_page: Option<i64>,
     /// Page number of the next page. Can be null if the current page is the last one.
-    #[serde(rename = "next_page", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "next_page")]
     pub next_page: Option<i64>,
     /// Current page number.
     #[serde(rename = "page")]
@@ -27,10 +27,10 @@ pub struct Pagination {
     #[serde(rename = "per_page")]
     pub per_page: i64,
     /// Page number of the previous page. Can be null if the current page is the first one.
-    #[serde(rename = "previous_page", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "previous_page")]
     pub previous_page: Option<i64>,
     /// Total number of entries that exist for this query. Can be null if unknown.
-    #[serde(rename = "total_entries", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "total_entries")]
     pub total_entries: Option<i64>,
 }
 

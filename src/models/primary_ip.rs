@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct PrimaryIp {
     /// ID of resource the Primary IP is assigned to.  `null` if the Primary IP is not assigned.
-    #[serde(rename = "assignee_id", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "assignee_id")]
     pub assignee_id: Option<i64>,
     /// Type of resource the Primary IP is assigned to.  As of 01 August 2026 `unassigned` will be returned if the Primary IP is not assigned.
     #[serde(rename = "assignee_type")]
@@ -89,6 +89,8 @@ impl PrimaryIp {
 pub enum AssigneeType {
     #[serde(rename = "server")]
     Server,
+    #[serde(rename = "unassigned")]
+    Unassigned,
 }
 
 impl Default for AssigneeType {

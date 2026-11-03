@@ -18,10 +18,10 @@ pub struct Action {
     #[serde(rename = "command")]
     pub command: String,
     /// Error message for the Action if an error occurred, otherwise null.
-    #[serde(rename = "error", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "error")]
     pub error: Option<Box<models::Error>>,
     /// Point in time when the Action was finished (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format). Only set if the Action is finished otherwise null.
-    #[serde(rename = "finished", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "finished")]
     pub finished: Option<String>,
     /// ID of the Action.
     #[serde(rename = "id")]

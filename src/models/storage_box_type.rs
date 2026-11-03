@@ -15,13 +15,10 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct StorageBoxType {
     /// Maximum number of snapshots created automatically by a snapshot plan.
-    #[serde(
-        rename = "automatic_snapshot_limit",
-        deserialize_with = "Option::deserialize"
-    )]
+    #[serde(rename = "automatic_snapshot_limit")]
     pub automatic_snapshot_limit: Option<i32>,
     /// Describes if, when and how the resource is deprecated. If this field is set to `null` the resource is not deprecated. If a value is set, it is considered deprecated.
-    #[serde(rename = "deprecation", default, deserialize_with = "Option::deserialize")]
+    #[serde(rename = "deprecation")]
     pub deprecation: Option<Box<models::DeprecationInfo>>,
     /// Description of the Storage Box Type.
     #[serde(rename = "description")]
@@ -39,7 +36,7 @@ pub struct StorageBoxType {
     #[serde(rename = "size")]
     pub size: i64,
     /// Maximum number of allowed manual snapshots.
-    #[serde(rename = "snapshot_limit", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "snapshot_limit")]
     pub snapshot_limit: Option<i32>,
     /// Maximum number of subaccounts.
     #[serde(rename = "subaccounts_limit")]

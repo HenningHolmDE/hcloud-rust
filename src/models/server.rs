@@ -15,7 +15,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Server {
     /// Time window (UTC) in which the backup will run, or null if the backups are not enabled.
-    #[serde(rename = "backup_window", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "backup_window")]
     pub backup_window: Option<String>,
     /// Point in time when the Resource was created (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).
     #[serde(rename = "created")]
@@ -24,16 +24,16 @@ pub struct Server {
     #[serde(rename = "id")]
     pub id: i64,
     /// Image the server is based on.
-    #[serde(rename = "image", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "image")]
     pub image: Option<Box<models::Image>>,
     /// Free Traffic for the current billing period in bytes.
-    #[serde(rename = "included_traffic", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "included_traffic")]
     pub included_traffic: Option<i64>,
     /// Inbound Traffic for the current billing period in bytes.
-    #[serde(rename = "ingoing_traffic", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "ingoing_traffic")]
     pub ingoing_traffic: Option<i64>,
     /// ISO Image that is attached to this Server. Null if no ISO is attached.
-    #[serde(rename = "iso", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "iso")]
     pub iso: Option<Box<models::Iso>>,
     /// User-defined labels (`key/value` pairs) for the Resource. For more information, see \"Labels\".  | User-defined labels (`key/value` pairs) for the Resource.  Note that the set of Labels provided in the request will overwrite the existing one.  For more information, see \"Labels\".
     #[serde(rename = "labels")]
@@ -50,7 +50,7 @@ pub struct Server {
     #[serde(rename = "name")]
     pub name: String,
     /// Outbound Traffic for the current billing period in bytes.
-    #[serde(rename = "outgoing_traffic", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "outgoing_traffic")]
     pub outgoing_traffic: Option<i64>,
     #[serde(
         rename = "placement_group",

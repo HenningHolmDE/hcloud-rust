@@ -18,7 +18,7 @@ pub struct ServerTypeLocation {
     #[serde(rename = "available")]
     pub available: bool,
     /// Describes if, when and how the resource is deprecated. If this field is set to `null` the resource is not deprecated. If a value is set, it is considered deprecated.
-    #[serde(rename = "deprecation", default, deserialize_with = "Option::deserialize")]
+    #[serde(rename = "deprecation")]
     pub deprecation: Option<Box<models::DeprecationInfo>>,
     /// ID of the Location.
     #[serde(rename = "id")]

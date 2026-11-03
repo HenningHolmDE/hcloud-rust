@@ -15,10 +15,10 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Iso {
     /// CPU architecture compatible with the ISO.  Null indicates no restriction on the architecture (wildcard).
-    #[serde(rename = "architecture", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "architecture")]
     pub architecture: Option<models::Architecture>,
     /// Describes if, when and how the resource is deprecated. If this field is set to `null` the resource is not deprecated. If a value is set, it is considered deprecated.
-    #[serde(rename = "deprecation", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "deprecation")]
     pub deprecation: Option<Box<models::DeprecationInfo>>,
     /// Description of the ISO.
     #[serde(rename = "description")]
@@ -27,10 +27,10 @@ pub struct Iso {
     #[serde(rename = "id")]
     pub id: i64,
     /// Unique identifier of the ISO. Only set for public ISOs.
-    #[serde(rename = "name", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "name")]
     pub name: Option<String>,
     /// Type of the ISO.
-    #[serde(rename = "type", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "type")]
     pub r#type: Option<Type>,
 }
 

@@ -25,7 +25,7 @@ pub struct LoadBalancer {
     #[serde(rename = "included_traffic")]
     pub included_traffic: i64,
     /// Inbound Traffic for the current billing period in bytes.
-    #[serde(rename = "ingoing_traffic", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "ingoing_traffic")]
     pub ingoing_traffic: Option<i64>,
     /// User-defined labels (`key/value` pairs) for the Resource. For more information, see \"Labels\".  | User-defined labels (`key/value` pairs) for the Resource.  Note that the set of Labels provided in the request will overwrite the existing one.  For more information, see \"Labels\".
     #[serde(rename = "labels")]
@@ -38,7 +38,7 @@ pub struct LoadBalancer {
     #[serde(rename = "name")]
     pub name: String,
     /// Outbound Traffic for the current billing period in bytes.
-    #[serde(rename = "outgoing_traffic", deserialize_with = "Option::deserialize")]
+    #[serde(rename = "outgoing_traffic")]
     pub outgoing_traffic: Option<i64>,
     /// Private networks information.
     #[serde(rename = "private_net")]
