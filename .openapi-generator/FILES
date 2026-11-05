@@ -245,6 +245,7 @@ src/models/load_balancer.rs
 src/models/load_balancer_add_target.rs
 src/models/load_balancer_add_target_server.rs
 src/models/load_balancer_algorithm.rs
+src/models/load_balancer_create_public_net.rs
 src/models/load_balancer_private_net.rs
 src/models/load_balancer_public_net.rs
 src/models/load_balancer_public_net_ipv4.rs

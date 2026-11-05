@@ -446,6 +446,8 @@ pub mod load_balancer_add_target_server;
 pub use self::load_balancer_add_target_server::LoadBalancerAddTargetServer;
 pub mod load_balancer_algorithm;
 pub use self::load_balancer_algorithm::LoadBalancerAlgorithm;
+pub mod load_balancer_create_public_net;
+pub use self::load_balancer_create_public_net::LoadBalancerCreatePublicNet;
 pub mod load_balancer_private_net;
 pub use self::load_balancer_private_net::LoadBalancerPrivateNet;
 pub mod load_balancer_public_net;
