@@ -11,6 +11,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
+/// Resource : Resource the Volume is attached to, null if it is not attached at all. | Resource to which to attach the Volume once it's created (Volume will be created in the same Location as the resource). | Resource the Volume will be attached to.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Resource {
     /// ID of the Resource. | ID of resource referenced.
@@ -22,6 +23,7 @@ pub struct Resource {
 }
 
 impl Resource {
+    /// Resource the Volume is attached to, null if it is not attached at all. | Resource to which to attach the Volume once it's created (Volume will be created in the same Location as the resource). | Resource the Volume will be attached to.
     pub fn new(id: i64, r#type: String) -> Resource {
         Resource { id, r#type }
     }

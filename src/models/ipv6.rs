@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 /// Ipv6 : IPv6 network assigned to this Server and its reverse DNS entry.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Ipv6 {
-    /// If the IP is blocked by our anti abuse dept.
+    /// Whether the IP is blocked by our abuse department.
     #[serde(rename = "blocked")]
     pub blocked: bool,
     /// Reverse DNS PTR entries for the IPv6 addresses of this Server.

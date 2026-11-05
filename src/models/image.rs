@@ -28,9 +28,9 @@ pub struct Image {
     /// Point in time where the Image was deleted (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).
     #[serde(rename = "deleted", deserialize_with = "Option::deserialize")]
     pub deleted: Option<String>,
-    /// Point in time when the Image is considered to be deprecated (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).
-    #[serde(rename = "deprecated", deserialize_with = "Option::deserialize")]
-    pub deprecated: Option<String>,
+    /// Describes if, when and how the resource is deprecated. If this field is set to `null` the resource is not deprecated. If a value is set, it is considered deprecated.
+    #[serde(rename = "deprecation", deserialize_with = "Option::deserialize")]
+    pub deprecation: Option<Box<models::DeprecationInfo>>,
     /// Description of the Image.
     #[serde(rename = "description")]
     pub description: String,
@@ -76,7 +76,7 @@ impl Image {
         created: String,
         created_from: Option<models::CreatedFrom>,
         deleted: Option<String>,
-        deprecated: Option<String>,
+        deprecation: Option<models::DeprecationInfo>,
         description: String,
         disk_size: f64,
         id: i64,
@@ -95,7 +95,7 @@ impl Image {
             created,
             created_from: created_from.map(Box::new),
             deleted,
-            deprecated,
+            deprecation: deprecation.map(Box::new),
             description,
             disk_size,
             id,

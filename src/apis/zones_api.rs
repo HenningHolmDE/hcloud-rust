@@ -1396,7 +1396,7 @@ pub async fn list_actions_for_zone(
     }
 }
 
-/// Returns all RRSets in the Zone.  Use the provided URI parameters to modify the result.  The maximum value for `per_page` on this endpoint is `100` instead of `50`.  Only applicable for Zones in primary mode.  #### Operation specific errors  | Status | Code | Description | | --- | --- | --- | | `422` | `incorrect_zone_mode` | This operation is not supported for this Zone's `mode`. |
+/// Returns all RRSets in the Zone.  Use the provided URI parameters to modify the result.  Only applicable for Zones in primary mode.  #### Operation specific errors  | Status | Code | Description | | --- | --- | --- | | `422` | `incorrect_zone_mode` | This operation is not supported for this Zone's `mode`. |
 pub async fn list_rrsets(
     configuration: &configuration::Configuration,
     params: ListRrsetsParams,

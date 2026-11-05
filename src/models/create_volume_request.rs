@@ -14,6 +14,8 @@ use serde::{Deserialize, Serialize};
 /// CreateVolumeRequest : Request for POST https://api.hetzner.cloud/v1/volumes
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CreateVolumeRequest {
+    #[serde(rename = "assignee", skip_serializing_if = "Option::is_none")]
+    pub assignee: Option<Box<models::Resource>>,
     /// Auto-mount Volume after attach. `server` must be provided.
     #[serde(rename = "automount", skip_serializing_if = "Option::is_none")]
     pub automount: Option<bool>,
@@ -29,7 +31,7 @@ pub struct CreateVolumeRequest {
     /// Name of the volume.
     #[serde(rename = "name")]
     pub name: String,
-    /// Server to which to attach the Volume once it's created (Volume will be created in the same Location as the server).
+    /// This field is deprecated, use the `assignee` field with `server` as the `type` instead.  Server to which to attach the Volume once it's created (Volume will be created in the same Location as the server).
     #[serde(rename = "server", skip_serializing_if = "Option::is_none")]
     pub server: Option<i64>,
     /// Size of the Volume in GB.
@@ -41,6 +43,7 @@ impl CreateVolumeRequest {
     /// Request for POST https://api.hetzner.cloud/v1/volumes
     pub fn new(name: String, size: i32) -> CreateVolumeRequest {
         CreateVolumeRequest {
+            assignee: None,
             automount: None,
             format: None,
             labels: None,

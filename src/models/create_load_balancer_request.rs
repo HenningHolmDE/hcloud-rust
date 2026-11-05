@@ -37,6 +37,8 @@ pub struct CreateLoadBalancerRequest {
     /// Enable or disable the public interface of the Load Balancer.
     #[serde(rename = "public_interface", skip_serializing_if = "Option::is_none")]
     pub public_interface: Option<bool>,
+    #[serde(rename = "public_net", skip_serializing_if = "Option::is_none")]
+    pub public_net: Option<Box<models::LoadBalancerCreatePublicNet>>,
     /// Array of services.
     #[serde(rename = "services", skip_serializing_if = "Option::is_none")]
     pub services: Option<Vec<models::LoadBalancerService>>,
@@ -57,6 +59,7 @@ impl CreateLoadBalancerRequest {
             network: None,
             network_zone: None,
             public_interface: None,
+            public_net: None,
             services: None,
             targets: None,
         }

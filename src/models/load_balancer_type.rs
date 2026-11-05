@@ -13,9 +13,6 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct LoadBalancerType {
-    /// **Deprecated:** This field is deprecated. Use the `deprecation` object instead.  Point in time when the Load Balancer type is deprecated (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).
-    #[serde(rename = "deprecated", deserialize_with = "Option::deserialize")]
-    pub deprecated: Option<String>,
     /// Describes if, when and how the resource is deprecated. If this field is set to `null` the resource is not deprecated. If a value is set, it is considered deprecated.
     #[serde(rename = "deprecation", deserialize_with = "Option::deserialize")]
     pub deprecation: Option<Box<models::DeprecationInfo>>,
@@ -47,7 +44,6 @@ pub struct LoadBalancerType {
 
 impl LoadBalancerType {
     pub fn new(
-        deprecated: Option<String>,
         deprecation: Option<models::DeprecationInfo>,
         description: String,
         id: i64,
@@ -59,7 +55,6 @@ impl LoadBalancerType {
         prices: Vec<models::PricePerTime>,
     ) -> LoadBalancerType {
         LoadBalancerType {
-            deprecated,
             deprecation: deprecation.map(Box::new),
             description,
             id,

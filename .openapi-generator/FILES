@@ -44,8 +44,8 @@ src/models/attach_load_balancer_to_network_request.rs
 src/models/attach_load_balancer_to_network_response.rs
 src/models/attach_server_to_network_request.rs
 src/models/attach_server_to_network_response.rs
-src/models/attach_volume_to_server_request.rs
-src/models/attach_volume_to_server_response.rs
+src/models/attach_volume_to_resource_request.rs
+src/models/attach_volume_to_resource_response.rs
 src/models/certificate.rs
 src/models/certificate_status.rs
 src/models/certificate_status_error.rs
@@ -130,6 +130,7 @@ src/models/create_zone_response.rs
 src/models/created_from.rs
 src/models/data_center.rs
 src/models/data_center_server_types.rs
+src/models/delete_load_balancer_response.rs
 src/models/delete_route_from_network_response.rs
 src/models/delete_rrset_response.rs
 src/models/delete_server_response.rs
@@ -215,6 +216,8 @@ src/models/list_isos_response.rs
 src/models/list_load_balancer_types_response.rs
 src/models/list_load_balancers_response.rs
 src/models/list_locations_response.rs
+src/models/list_members_of_network_response.rs
+src/models/list_members_of_network_response_members_inner.rs
 src/models/list_networks_response.rs
 src/models/list_placement_groups_response.rs
 src/models/list_prices_response.rs
@@ -242,6 +245,7 @@ src/models/load_balancer.rs
 src/models/load_balancer_add_target.rs
 src/models/load_balancer_add_target_server.rs
 src/models/load_balancer_algorithm.rs
+src/models/load_balancer_create_public_net.rs
 src/models/load_balancer_private_net.rs
 src/models/load_balancer_public_net.rs
 src/models/load_balancer_public_net_ipv4.rs
@@ -267,6 +271,8 @@ src/models/load_balancer_type.rs
 src/models/location.rs
 src/models/location_name_or_id.rs
 src/models/meta.rs
+src/models/meta100.rs
+src/models/meta100_pagination.rs
 src/models/metrics.rs
 src/models/metrics_time_series.rs
 src/models/metrics_time_series_value.rs

@@ -59,6 +59,8 @@ impl CreatePrimaryIpRequest {
 pub enum AssigneeType {
     #[serde(rename = "server")]
     Server,
+    #[serde(rename = "unassigned")]
+    Unassigned,
 }
 
 impl Default for AssigneeType {

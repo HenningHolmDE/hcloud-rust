@@ -14,6 +14,9 @@ use serde::{Deserialize, Serialize};
 /// Volume : A Volume is a highly-available, scalable, and SSD-based block storage for Servers. Pricing for Volumes depends on the Volume size and Location, not the actual used storage. Please see [Hetzner Wiki](https://wiki.hetzner.de/index.php/CloudServer/en#Volumes) for more details about Volumes.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Volume {
+    /// Resource the Volume is attached to, null if it is not attached at all.
+    #[serde(rename = "assignee", deserialize_with = "Option::deserialize")]
+    pub assignee: Option<Box<models::Resource>>,
     /// Point in time when the Resource was created (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).
     #[serde(rename = "created")]
     pub created: String,
@@ -36,7 +39,7 @@ pub struct Volume {
     pub name: String,
     #[serde(rename = "protection")]
     pub protection: Box<models::Protection>,
-    /// ID of the Server the Volume is attached to, null if it is not attached at all.
+    /// This field is deprecated, use the `assignee` field instead.  ID of the Server the Volume is attached to, null if it is not attached at all.
     #[serde(rename = "server", deserialize_with = "Option::deserialize")]
     pub server: Option<i64>,
     /// Size in GB of the Volume.
@@ -50,6 +53,7 @@ pub struct Volume {
 impl Volume {
     /// A Volume is a highly-available, scalable, and SSD-based block storage for Servers. Pricing for Volumes depends on the Volume size and Location, not the actual used storage. Please see [Hetzner Wiki](https://wiki.hetzner.de/index.php/CloudServer/en#Volumes) for more details about Volumes.
     pub fn new(
+        assignee: Option<models::Resource>,
         created: String,
         format: Option<String>,
         id: i64,
@@ -63,6 +67,7 @@ impl Volume {
         status: Status,
     ) -> Volume {
         Volume {
+            assignee: assignee.map(Box::new),
             created,
             format,
             id,

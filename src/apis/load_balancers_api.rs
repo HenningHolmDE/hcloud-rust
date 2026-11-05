@@ -788,7 +788,7 @@ pub async fn change_type_of_load_balancer(
     }
 }
 
-/// Creates a Load Balancer.  #### Operation specific errors  | Status | Code | Description | | --- | --- | --- | | `412` | `source_port_already_used` | The source port you are trying to add is already in use | | `422` | `ip_not_owned` | The IP is not owned by the owner of the project of the Load Balancer | | `422` | `load_balancer_not_attached_to_network` | The Load Balancer is not attached to a network | | `422` | `resolve_cloud_private_targets_error` | The server you are trying to add as a target is not attached to the same network as the Load Balancer | | `422` | `resolve_cloud_public_targets_error` | The server that you are trying to add as a public target does not have a public IPv4 address | | `422` | `target_already_defined` | The Load Balancer target you are trying to define is already defined |
+/// Creates a Load Balancer.  #### Operation specific errors  | Status | Code | Description | | --- | --- | --- | | `412` | `source_port_already_used` | The source port you are trying to add is already in use | | `412` | `primary_ip_version_mismatch` | The specified Primary IP has the wrong IP version | | `422` | `ip_not_owned` | The IP is not owned by the owner of the project of the Load Balancer | | `422` | `load_balancer_not_attached_to_network` | The Load Balancer is not attached to a network | | `422` | `resolve_cloud_private_targets_error` | The server you are trying to add as a target is not attached to the same network as the Load Balancer | | `422` | `resolve_cloud_public_targets_error` | The server that you are trying to add as a public target does not have a public IPv4 address | | `422` | `target_already_defined` | The Load Balancer target you are trying to define is already defined | | `422` | `primary_ip_assigned` | The specified Primary IP is already assigned to a resource | | `422` | `primary_ip_blocked` | The specified Primary IP is blocked | | `422` | `primary_ip_location_mismatch` | The specified Primary IP is bound to a different Location than the Load Balancer |
 pub async fn create_load_balancer(
     configuration: &configuration::Configuration,
     params: CreateLoadBalancerParams,
@@ -838,7 +838,7 @@ pub async fn create_load_balancer(
 pub async fn delete_load_balancer(
     configuration: &configuration::Configuration,
     params: DeleteLoadBalancerParams,
-) -> Result<(), Error<DeleteLoadBalancerError>> {
+) -> Result<models::DeleteLoadBalancerResponse, Error<DeleteLoadBalancerError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -866,7 +866,7 @@ pub async fn delete_load_balancer(
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(())
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<DeleteLoadBalancerError> =
             serde_json::from_str(&local_var_content).ok();

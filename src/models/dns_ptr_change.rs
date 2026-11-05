@@ -15,13 +15,8 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct DnsPtrChange {
     /// Domain Name to point to.  PTR record content used for reverse DNS. Set to null to reset (IPv4) to the default value or remove (IPv6) the record.
-    #[serde(
-        rename = "dns_ptr",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub dns_ptr: Option<Option<String>>,
+    #[serde(rename = "dns_ptr", deserialize_with = "Option::deserialize")]
+    pub dns_ptr: Option<String>,
     /// Single IPv4 or IPv6 address to create pointer for.
     #[serde(rename = "ip")]
     pub ip: String,
@@ -29,7 +24,7 @@ pub struct DnsPtrChange {
 
 impl DnsPtrChange {
     /// Request for POST https://api.hetzner.cloud/v1/floating_ips/{id}/actions/change_dns_ptr | Request for POST https://api.hetzner.cloud/v1/load_balancers/{id}/actions/change_dns_ptr | Request for POST https://api.hetzner.cloud/v1/primary_ips/{id}/actions/change_dns_ptr | Request for POST https://api.hetzner.cloud/v1/servers/{id}/actions/change_dns_ptr
-    pub fn new(ip: String) -> DnsPtrChange {
-        DnsPtrChange { dns_ptr: None, ip }
+    pub fn new(dns_ptr: Option<String>, ip: String) -> DnsPtrChange {
+        DnsPtrChange { dns_ptr, ip }
     }
 }
