@@ -130,6 +130,7 @@ src/models/create_zone_response.rs
 src/models/created_from.rs
 src/models/data_center.rs
 src/models/data_center_server_types.rs
+src/models/delete_load_balancer_response.rs
 src/models/delete_route_from_network_response.rs
 src/models/delete_rrset_response.rs
 src/models/delete_server_response.rs

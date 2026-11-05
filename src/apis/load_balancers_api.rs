@@ -838,7 +838,7 @@ pub async fn create_load_balancer(
 pub async fn delete_load_balancer(
     configuration: &configuration::Configuration,
     params: DeleteLoadBalancerParams,
-) -> Result<(), Error<DeleteLoadBalancerError>> {
+) -> Result<models::DeleteLoadBalancerResponse, Error<DeleteLoadBalancerError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
@@ -866,7 +866,7 @@ pub async fn delete_load_balancer(
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(())
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<DeleteLoadBalancerError> =
             serde_json::from_str(&local_var_content).ok();

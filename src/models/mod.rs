@@ -216,6 +216,8 @@ pub mod data_center;
 pub use self::data_center::DataCenter;
 pub mod data_center_server_types;
 pub use self::data_center_server_types::DataCenterServerTypes;
+pub mod delete_load_balancer_response;
+pub use self::delete_load_balancer_response::DeleteLoadBalancerResponse;
 pub mod delete_route_from_network_response;
 pub use self::delete_route_from_network_response::DeleteRouteFromNetworkResponse;
 pub mod delete_rrset_response;
