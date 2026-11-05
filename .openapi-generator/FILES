@@ -44,8 +44,8 @@ src/models/attach_load_balancer_to_network_request.rs
 src/models/attach_load_balancer_to_network_response.rs
 src/models/attach_server_to_network_request.rs
 src/models/attach_server_to_network_response.rs
-src/models/attach_volume_to_server_request.rs
-src/models/attach_volume_to_server_response.rs
+src/models/attach_volume_to_resource_request.rs
+src/models/attach_volume_to_resource_response.rs
 src/models/certificate.rs
 src/models/certificate_status.rs
 src/models/certificate_status_error.rs

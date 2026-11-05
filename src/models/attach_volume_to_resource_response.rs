@@ -11,17 +11,17 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// AttachVolumeToServerResponse : Response to POST https://api.hetzner.cloud/v1/volumes/{id}/actions/attach
+/// AttachVolumeToResourceResponse : Response to POST https://api.hetzner.cloud/v1/volumes/{id}/actions/attach
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct AttachVolumeToServerResponse {
+pub struct AttachVolumeToResourceResponse {
     #[serde(rename = "action")]
     pub action: Box<models::Action>,
 }
 
-impl AttachVolumeToServerResponse {
+impl AttachVolumeToResourceResponse {
     /// Response to POST https://api.hetzner.cloud/v1/volumes/{id}/actions/attach
-    pub fn new(action: models::Action) -> AttachVolumeToServerResponse {
-        AttachVolumeToServerResponse {
+    pub fn new(action: models::Action) -> AttachVolumeToResourceResponse {
+        AttachVolumeToResourceResponse {
             action: Box::new(action),
         }
     }

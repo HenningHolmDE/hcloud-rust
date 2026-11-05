@@ -13,12 +13,12 @@ use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{Deserialize, Serialize};
 
-/// struct for passing parameters to the method [`attach_volume_to_server`]
+/// struct for passing parameters to the method [`attach_volume_to_resource`]
 #[derive(Clone, Debug, Default)]
-pub struct AttachVolumeToServerParams {
+pub struct AttachVolumeToResourceParams {
     /// ID of the Volume.
     pub id: i64,
-    pub attach_volume_to_server_request: models::AttachVolumeToServerRequest,
+    pub attach_volume_to_resource_request: models::AttachVolumeToResourceRequest,
 }
 
 /// struct for passing parameters to the method [`change_volume_protection`]
@@ -135,10 +135,10 @@ pub struct ResizeVolumeParams {
     pub resize_volume_request: models::ResizeVolumeRequest,
 }
 
-/// struct for typed errors of method [`attach_volume_to_server`]
+/// struct for typed errors of method [`attach_volume_to_resource`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum AttachVolumeToServerError {
+pub enum AttachVolumeToResourceError {
     Status4xx(models::ErrorResponse),
     Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
@@ -252,16 +252,16 @@ pub enum ResizeVolumeError {
     UnknownValue(serde_json::Value),
 }
 
-/// Attaches a Volume to a Server. Works only if the Server is in the same Location as the Volume.
-pub async fn attach_volume_to_server(
+/// Attaches a Volume to a Resource. Works only if the Resource is in the same Location as the Volume.
+pub async fn attach_volume_to_resource(
     configuration: &configuration::Configuration,
-    params: AttachVolumeToServerParams,
-) -> Result<models::AttachVolumeToServerResponse, Error<AttachVolumeToServerError>> {
+    params: AttachVolumeToResourceParams,
+) -> Result<models::AttachVolumeToResourceResponse, Error<AttachVolumeToResourceError>> {
     let local_var_configuration = configuration;
 
     // unbox the parameters
     let id = params.id;
-    let attach_volume_to_server_request = params.attach_volume_to_server_request;
+    let attach_volume_to_resource_request = params.attach_volume_to_resource_request;
 
     let local_var_client = &local_var_configuration.client;
 
@@ -277,7 +277,7 @@ pub async fn attach_volume_to_server(
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&attach_volume_to_server_request);
+    local_var_req_builder = local_var_req_builder.json(&attach_volume_to_resource_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -288,7 +288,7 @@ pub async fn attach_volume_to_server(
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<AttachVolumeToServerError> =
+        let local_var_entity: Option<AttachVolumeToResourceError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
@@ -441,7 +441,7 @@ pub async fn delete_volume(
     }
 }
 
-/// Detaches a Volume from the Server it’s attached to. You may attach it to a Server again at a later time.
+/// Detaches a Volume from the Resource it’s attached to. You may attach it to a Resource again at a later time.
 pub async fn detach_volume(
     configuration: &configuration::Configuration,
     params: DetachVolumeParams,
