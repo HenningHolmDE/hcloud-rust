@@ -24,9 +24,6 @@ pub struct ServerType {
     /// Type of cpu.
     #[serde(rename = "cpu_type")]
     pub cpu_type: CpuType,
-    /// This field is deprecated. Use the deprecation object instead.
-    #[serde(rename = "deprecated", deserialize_with = "Option::deserialize")]
-    pub deprecated: Option<bool>,
     /// This field is deprecated.  Use the `deprecation` object in the `locations` field instead (`.locations[].deprecation`).
     #[serde(
         rename = "deprecation",
@@ -66,7 +63,6 @@ impl ServerType {
         architecture: models::Architecture,
         cores: i32,
         cpu_type: CpuType,
-        deprecated: Option<bool>,
         description: String,
         disk: f64,
         id: i64,
@@ -81,7 +77,6 @@ impl ServerType {
             category: None,
             cores,
             cpu_type,
-            deprecated,
             deprecation: None,
             description,
             disk,
