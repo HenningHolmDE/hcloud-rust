@@ -112,6 +112,25 @@ pub struct ListActionsForNetworkParams {
     pub per_page: Option<i64>,
 }
 
+/// struct for passing parameters to the method [`list_members_of_network`]
+#[derive(Clone, Debug, Default)]
+pub struct ListMembersOfNetworkParams {
+    /// ID of the Network.
+    pub id: i64,
+    /// Filter members by type. May be used multiple times.  The response will only contain members matching the specified types.
+    pub r#type: Option<Vec<String>>,
+    /// Filter members by the subnet they are attached to. May be used multiple times.  The response will only contain members attached to the subnets with the specified IP ranges. Uses CIDR notation.
+    pub subnet: Option<Vec<String>>,
+    /// Filter members by status. May be used multiple times.  The response will only contain members matching the specified statuses.
+    pub status: Option<Vec<String>>,
+    /// Sort resources by field and direction. May be used multiple times.  For more information, see \"Sorting\".
+    pub sort: Option<Vec<String>>,
+    /// Page number to return. For more information, see \"Pagination\".
+    pub page: Option<i64>,
+    /// Maximum number of entries returned per page. For more information, see \"Pagination\".
+    pub per_page: Option<i64>,
+}
+
 /// struct for passing parameters to the method [`list_network_actions`]
 #[derive(Clone, Debug, Default)]
 pub struct ListNetworkActionsParams {
@@ -253,6 +272,15 @@ pub enum GetNetworkActionError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListActionsForNetworkError {
+    Status4xx(models::ErrorResponse),
+    Status5xx(models::ErrorResponse),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`list_members_of_network`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum ListMembersOfNetworkError {
     Status4xx(models::ErrorResponse),
     Status5xx(models::ErrorResponse),
     UnknownValue(serde_json::Value),
@@ -908,6 +936,141 @@ pub async fn list_actions_for_network(
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<ListActionsForNetworkError> =
+            serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent {
+            status: local_var_status,
+            content: local_var_content,
+            entity: local_var_entity,
+        };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// List the resources attached to a specific Network.  Use the provided URI parameters to modify the result.
+pub async fn list_members_of_network(
+    configuration: &configuration::Configuration,
+    params: ListMembersOfNetworkParams,
+) -> Result<models::ListMembersOfNetworkResponse, Error<ListMembersOfNetworkError>> {
+    let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let id = params.id;
+    let r#type = params.r#type;
+    let subnet = params.subnet;
+    let status = params.status;
+    let sort = params.sort;
+    let page = params.page;
+    let per_page = params.per_page;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_base_path = local_var_configuration.get_base_path("https://api.hetzner.cloud/v1");
+    let local_var_uri_str = format!("{}/networks/{id}/members", local_base_path, id = id);
+    let mut local_var_req_builder =
+        local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_str) = r#type {
+        local_var_req_builder = match "multi" {
+            "multi" => local_var_req_builder.query(
+                &local_var_str
+                    .iter()
+                    .map(|p| ("type".to_owned(), p.to_string()))
+                    .collect::<Vec<(std::string::String, std::string::String)>>(),
+            ),
+            _ => local_var_req_builder.query(&[(
+                "type",
+                &local_var_str
+                    .iter()
+                    .map(|p| p.to_string())
+                    .collect::<Vec<String>>()
+                    .join(",")
+                    .to_string(),
+            )]),
+        };
+    }
+    if let Some(ref local_var_str) = subnet {
+        local_var_req_builder = match "multi" {
+            "multi" => local_var_req_builder.query(
+                &local_var_str
+                    .iter()
+                    .map(|p| ("subnet".to_owned(), p.to_string()))
+                    .collect::<Vec<(std::string::String, std::string::String)>>(),
+            ),
+            _ => local_var_req_builder.query(&[(
+                "subnet",
+                &local_var_str
+                    .iter()
+                    .map(|p| p.to_string())
+                    .collect::<Vec<String>>()
+                    .join(",")
+                    .to_string(),
+            )]),
+        };
+    }
+    if let Some(ref local_var_str) = status {
+        local_var_req_builder = match "multi" {
+            "multi" => local_var_req_builder.query(
+                &local_var_str
+                    .iter()
+                    .map(|p| ("status".to_owned(), p.to_string()))
+                    .collect::<Vec<(std::string::String, std::string::String)>>(),
+            ),
+            _ => local_var_req_builder.query(&[(
+                "status",
+                &local_var_str
+                    .iter()
+                    .map(|p| p.to_string())
+                    .collect::<Vec<String>>()
+                    .join(",")
+                    .to_string(),
+            )]),
+        };
+    }
+    if let Some(ref local_var_str) = sort {
+        local_var_req_builder = match "multi" {
+            "multi" => local_var_req_builder.query(
+                &local_var_str
+                    .iter()
+                    .map(|p| ("sort".to_owned(), p.to_string()))
+                    .collect::<Vec<(std::string::String, std::string::String)>>(),
+            ),
+            _ => local_var_req_builder.query(&[(
+                "sort",
+                &local_var_str
+                    .iter()
+                    .map(|p| p.to_string())
+                    .collect::<Vec<String>>()
+                    .join(",")
+                    .to_string(),
+            )]),
+        };
+    }
+    if let Some(ref local_var_str) = page {
+        local_var_req_builder =
+            local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = per_page {
+        local_var_req_builder =
+            local_var_req_builder.query(&[("per_page", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder =
+            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<ListMembersOfNetworkError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
