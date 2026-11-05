@@ -14,6 +14,12 @@ use serde::{Deserialize, Serialize};
 /// LoadBalancerTargetHealthStatus : Health status of the services on this target. Only present for target types \"server\" and \"ip\".
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct LoadBalancerTargetHealthStatus {
+    /// Additional details about why the health check failed. Only present when `status` is `unhealthy`.
+    #[serde(rename = "detail", skip_serializing_if = "Option::is_none")]
+    pub detail: Option<Detail>,
+    /// HTTP status code returned by the target during the last health check. Only present when `status` is `unhealthy` and `detail` is `unexpected_http_status`.
+    #[serde(rename = "http_status_code", skip_serializing_if = "Option::is_none")]
+    pub http_status_code: Option<i32>,
     #[serde(rename = "listen_port")]
     pub listen_port: i32,
     #[serde(rename = "status")]
@@ -24,9 +30,33 @@ impl LoadBalancerTargetHealthStatus {
     /// Health status of the services on this target. Only present for target types \"server\" and \"ip\".
     pub fn new(listen_port: i32, status: Status) -> LoadBalancerTargetHealthStatus {
         LoadBalancerTargetHealthStatus {
+            detail: None,
+            http_status_code: None,
             listen_port,
             status,
         }
+    }
+}
+/// Additional details about why the health check failed. Only present when `status` is `unhealthy`.
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum Detail {
+    #[serde(rename = "layer4_no_connection")]
+    Layer4NoConnection,
+    #[serde(rename = "layer4_timeout")]
+    Layer4Timeout,
+    #[serde(rename = "layer7_timeout")]
+    Layer7Timeout,
+    #[serde(rename = "unexpected_http_content")]
+    UnexpectedHttpContent,
+    #[serde(rename = "unexpected_http_status")]
+    UnexpectedHttpStatus,
+    #[serde(rename = "unspecified")]
+    Unspecified,
+}
+
+impl Default for Detail {
+    fn default() -> Detail {
+        Self::Layer4NoConnection
     }
 }
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
