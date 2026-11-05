@@ -15,14 +15,17 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ListRrsetsResponse {
     #[serde(rename = "meta")]
-    pub meta: Box<models::Meta>,
+    pub meta: Box<models::Meta100>,
     #[serde(rename = "rrsets")]
     pub rrsets: Vec<models::ResourceRecordSet>,
 }
 
 impl ListRrsetsResponse {
     /// Response to GET https://api.hetzner.cloud/v1/zones/{id_or_name}/rrsets
-    pub fn new(meta: models::Meta, rrsets: Vec<models::ResourceRecordSet>) -> ListRrsetsResponse {
+    pub fn new(
+        meta: models::Meta100,
+        rrsets: Vec<models::ResourceRecordSet>,
+    ) -> ListRrsetsResponse {
         ListRrsetsResponse {
             meta: Box::new(meta),
             rrsets,
