@@ -59,6 +59,12 @@ placement_group,PlacementGroup; do
     fi
 done
 
+# Replace meta100 models, as different per-page maximum is not reflected in the structs.
+rm src/models/meta100.rs
+rm src/models/meta100_pagination.rs
+sed -i".bak" "s/models::Meta100/models::Meta/g" src/models/*.rs
+sed -i".bak" "/meta100/d" src/models/mod.rs
+
 # The extension parameter (`sed -i EXTENSION`) is required on macOS while it is
 # optional for the GNU version of `sed`. Additionally, while it would be ok to
 # leave the parameter blank for `sed` on macOS to skip backups, an empty
