@@ -14,9 +14,15 @@ use serde::{Deserialize, Serialize};
 /// LoadBalancerPublicNetIpv6 : IP address (v6).
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct LoadBalancerPublicNetIpv6 {
+    /// Whether the IP is blocked by our abuse department.
+    #[serde(rename = "blocked")]
+    pub blocked: bool,
     /// Reverse DNS PTR entry for the IPv6 address of this Load Balancer.
     #[serde(rename = "dns_ptr", deserialize_with = "Option::deserialize")]
     pub dns_ptr: Option<String>,
+    /// ID of the Primary IP assigned to this Load Balancer.  `null` if the IP address is still managed by the system and is not a Primary IP yet.
+    #[serde(rename = "id", deserialize_with = "Option::deserialize")]
+    pub id: Option<i64>,
     /// IP address (v6) of this Load Balancer.
     #[serde(rename = "ip", deserialize_with = "Option::deserialize")]
     pub ip: Option<String>,
@@ -24,7 +30,17 @@ pub struct LoadBalancerPublicNetIpv6 {
 
 impl LoadBalancerPublicNetIpv6 {
     /// IP address (v6).
-    pub fn new(dns_ptr: Option<String>, ip: Option<String>) -> LoadBalancerPublicNetIpv6 {
-        LoadBalancerPublicNetIpv6 { dns_ptr, ip }
+    pub fn new(
+        blocked: bool,
+        dns_ptr: Option<String>,
+        id: Option<i64>,
+        ip: Option<String>,
+    ) -> LoadBalancerPublicNetIpv6 {
+        LoadBalancerPublicNetIpv6 {
+            blocked,
+            dns_ptr,
+            id,
+            ip,
+        }
     }
 }
