@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 /// Ipv4 : IP address (v4) and its reverse DNS entry of this Server.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Ipv4 {
-    /// If the IP is blocked by our anti abuse dept.
+    /// Whether the IP is blocked by our abuse department.
     #[serde(rename = "blocked")]
     pub blocked: bool,
     /// Reverse DNS PTR entry for the IPv4 addresses of this Server.
